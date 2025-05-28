@@ -33,6 +33,12 @@ nav {
     top: 0;
     z-index: 1000;
 }
+.portal-logo {
+  max-width: 100%;
+  height: auto;
+  display: flex;
+  margin: 0 auto;
+}
 
 .nav-container {
     display: flex;
@@ -174,20 +180,21 @@ nav {
     max-width: 1000px;
     margin: 0 auto;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    gap: 2rem;
+    justify-content: center;
+    gap: 3rem;
     position: relative;
     z-index: 1;
 }
 
 .hero-left img {
-    height: 150px; /* Logo portal7 warna-warni */
-    shadow: 0 4px 20px rgba(0,0,0,0.1);
-    /* Ganti dengan path logo Anda: src="Element Asset Portal 7/Portal_Logo.png" */
-    animation: drawLogo 2s ease-out forwards; 
-    ;/* Animasi logo muncul */
+    max-width: 100%;
+    height: auto;
+    animation: drawLogo 2s ease-out forwards;
+    display: block;
 }
+
 
 @keyframes drawLogo { /* Contoh animasi sederhana */
     from { opacity: 0; transform: scale(0.5); }
@@ -288,11 +295,12 @@ nav {
 .highlight-section {}
 .highlight-grid {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     max-width: 1100px;
     margin: 0 auto;
 }
+
 .competition-highlight, .seminar-highlight {
     background-color: #fff;
     padding: 2rem;
@@ -590,42 +598,145 @@ footer {
 
 
 /* Penyesuaian Responsif */
-@media (max-width: 768px) {
-    .hero-right{
-        margin-top: 0 ;
-    }
-    .nav-links {
-        display: none;
-        flex-direction: column; position: absolute; top: 60px; /* Sesuaikan berdasarkan tinggi nav */
-        left: 0; width: 100%; background-color: white;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1); padding: 1rem 0;
-    }
-    .nav-links.active { display: flex; }
-    .nav-a { padding: 0.75rem 2rem; width: 100%; text-align: center; }
-    .nav-a::after { display: none; }
-    .mobile-menu-button { display: block; }
+/* =================== Default Styles =================== */
+/* Semua style utama tanpa media query (untuk ukuran > 1024px) */
 
-    .hero-title { font-size: 2.2rem; }
-    .tagline { font-size: 1rem; }
-    .hero-buttons { flex-direction: column; }
 
-    .about-content { flex-direction: column; }
-    .about-illustration { margin-top: 1rem; }
-
-    .highlight-grid { grid-template-columns: 1fr; }
-    .cta-buttons { flex-direction: column; }
+/* =================== Tablet Landscape (≥ 1024px) =================== */
+@media (max-width: 1024px) {
+  .hero-title {
+    font-size: 3.6rem;
+  }
+  .hero-buttons {
+    gap: 0.75rem;
+  }
+  .about-text h3 {
+    font-size: 1.3rem;
+  }
 }
 
-@media (min-width: 769px) {
-    .hero-content { flex-direction: row; text-align: left; gap: 3rem; }
-    .hero-left { flex-shrink: 0; }
-    .hero-right { align-items: flex-start; }
-    .hero-buttons { flex-direction: row; }
+/* =================== Tablet Portrait (≥ 768px & ≤ 1023px) =================== */
+@media (max-width: 1023px) {
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  .hero-title {
+    font-size: 2.8rem;
+  }
+  .about-content {
+    flex-direction: column;
+  }
+  .highlight-grid {
+    grid-template-columns: 1fr;
+  }
+  .faq-container, .who-can-join-content {
+    padding: 0 1rem;
+  }
+}
 
-    .about-content { flex-direction: row; text-align: left; }
-    .about-text { flex: 2; }
-    .about-illustration { flex: 1; }
+/* =================== Mobile (≥ 480px & ≤ 767px) =================== */
+@media (max-width: 767px) {
+  .nav-links {
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 1rem 0;
+    display: none;
+  }
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  .nav-links.active {
+    display: flex;
+  }
+    @media (max-width: 768px) {
+    .highlight-grid {
+        grid-template-columns: 1fr;
+    }
+}
 
-    .highlight-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); } /* Lebih fleksibel */
-    .cta-buttons { flex-direction: row; justify-content: center; }
+  .nav-a {
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .mobile-menu-button {
+    display: block;
+  }
+
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .tagline {
+    font-size: 1rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .guest-star-card img {
+    height: 40vh;
+  }
+  .timeline-container::before {
+    left: 20px; /* Garis agak ke kiri */
+    background-color: rgba(0, 0, 0, 0.1); /* Lebih soft */
+    width: 2px;
+  }
+
+  .timeline-entry {
+    width: 100%;
+    padding-left: 60px; /* Supaya tidak nabrak garis & titik */
+    padding-right: 20px;
+    left: 0 !important;
+    text-align: left !important;
+  }
+
+  .timeline-entry .timeline-icon-dot {
+    left: 20px; /* Sejajar dengan garis */
+    right: auto;
+    transform: translate(-50%, -50%); /* Pusatkan */
+  }
+
+  .timeline-entry .timeline-label::before {
+    content: '';
+    left: -10px;
+    right: auto;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent white transparent transparent;
+  }
+
+
+/* =================== Mobile Small (≤ 479px) =================== */
+@media (max-width: 479px) {
+  .hero-title {
+    font-size: 1.8rem;
+  }
+
+  .tagline {
+    font-size: 0.95rem;
+  }
+
+  .hero-button {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .faq-question h4 {
+    font-size: 1rem;
+  }
+
+  .guest-star-card img {
+    height: 35vh;
+  }
+}
 }

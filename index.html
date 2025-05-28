@@ -34,7 +34,7 @@
 
             <div class="hero-content">
                 <div class="hero-left">
-                    <img src="img/Portal_Logo.png" alt="Logo Besar Portal 7" height="120">
+                    <img src="img/Portal_Logo.png" alt="Logo Besar Portal 7" class="portal-logo">
                 </div>
                 <div class="hero-right">
                     <h1 class="hero-title">
@@ -331,7 +331,19 @@
                 }
             });
         });
-        
+
+
+    </script>
+    <script>
+        document.querySelectorAll('.faq-question').forEach((question) => {
+            question.addEventListener('click', () => {
+                const currentItem = question.parentElement;
+                document.querySelectorAll('.faq-item').forEach((item) => {
+                    if (item !== currentItem) item.classList.remove('active');
+                });
+                currentItem.classList.toggle('active');
+            });
+        });
     </script>
 </body>
 </html>
