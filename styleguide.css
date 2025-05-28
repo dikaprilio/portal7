@@ -1,0 +1,7 @@
+:root {
+  --text: rgba(226, 239, 253, 1);
+  --background: rgba(4, 44, 76, 1);
+  --accent: rgba(197, 136, 167, 1);
+  --buttons-primary: rgba(123, 193, 244, 1);
+  --buttons-secondary: rgba(155, 13, 147, 1);
+}
