@@ -521,22 +521,24 @@
     
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init();
+        // --- AOS Initialization ---
+        AOS.init({
+            duration: 800,
+            once: true,
+        });
+
+        // --- Mobile Menu Toggle ---
         const menuToggleButton = document.getElementById('mobile-menu-toggle');
         const mainNavLinks = document.getElementById('main-nav-links');
-        
-        // Check if menuToggleButton exists before trying to querySelector on it
-        let menuIcon = null;
-        if (menuToggleButton) {
-            menuIcon = menuToggleButton.querySelector('i');
-        }
+        let menuIcon = menuToggleButton ? menuToggleButton.querySelector('i') : null;
 
-        if (menuToggleButton && mainNavLinks) { // Ensure elements exist
+        if (menuToggleButton && mainNavLinks) {
             menuToggleButton.addEventListener('click', () => {
                 const isExpanded = mainNavLinks.classList.toggle('active');
                 menuToggleButton.setAttribute('aria-expanded', isExpanded);
-                if (menuIcon) { // Check if menuIcon was found
+                if (menuIcon) {
                     if (isExpanded) {
                         menuIcon.classList.remove('fa-bars');
                         menuIcon.classList.add('fa-times');
@@ -545,87 +547,145 @@
                         menuIcon.classList.add('fa-bars');
                     }
                 }
+                // When main mobile menu closes, also close any open dropdowns
+                if (!isExpanded) {
+                    document.querySelectorAll('.nav-links .nav-item.dropdown.open').forEach(openDropdown => {
+                        openDropdown.classList.remove('open');
+                    });
+                }
             });
         }
 
-// Smooth scroll untuk tautan navigasi (dengan offset untuk sticky header)
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const targetHref = this.getAttribute('href');
-                const targetElement = targetHref.length > 1 ? document.querySelector(targetHref) : null; // Ensure href is not just "#"
+        // --- Refined Smooth Scroll Functionality ---
+        function smoothScrollToTarget(targetId, isPageLoad = false) {
+            const targetElement = document.getElementById(targetId);
 
-                if (targetElement) { // Check if the target element exists on the current page
-                    e.preventDefault();
+            if (targetElement) {
+                const navElement = document.querySelector('nav');
+                const navHeight = navElement ? navElement.offsetHeight : 0;
+                let targetElementPosition;
 
-                    const navElement = document.querySelector('nav');
-                    const navHeight = navElement ? navElement.offsetHeight : 0;
-                    const targetElementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-                    const offsetPosition = targetElementPosition - navHeight;
-
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-                // Else, if targetElement is null, it might be a link to another page or just a "#" href,
-                // in which case, we let the default behavior happen or handle it differently if needed.
-                // For this fix, we are primarily concerned with same-page anchor links.
-
-                // Tutup menu mobile jika terbuka setelah klik (specifically for links within mainNavLinks)
-                const mainNavLinks = document.getElementById('main-nav-links'); // Ensure this is defined or passed if script is external
-                const menuToggleButton = document.getElementById('mobile-menu-toggle'); // Ensure this is defined
-                let menuIcon = menuToggleButton ? menuToggleButton.querySelector('i') : null; // Ensure this is defined
-
-                if (mainNavLinks && mainNavLinks.classList.contains('active') && this.closest('#main-nav-links')) {
-                    mainNavLinks.classList.remove('active');
-                    if (menuToggleButton) menuToggleButton.setAttribute('aria-expanded', 'false');
-                    if (menuIcon) { 
-                        menuIcon.classList.remove('fa-times');
-                        menuIcon.classList.add('fa-bars');
+                if (isPageLoad) {
+                    let elem = targetElement;
+                    let top = 0;
+                    while(elem) {
+                        top += elem.offsetTop;
+                        elem = elem.offsetParent;
                     }
+                    targetElementPosition = top;
+                } else {
+                    targetElementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                }
+                
+                const offsetPosition = targetElementPosition - navHeight;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+                return true; 
+            }
+            return false; 
+        }
+
+        // 1. Smooth scroll for same-page clicks (handles dropdowns and direct links on index.html)
+        document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const fullHref = this.getAttribute('href');
+                const currentPath = window.location.pathname.substring(window.location.pathname.lastIndexOf("/") + 1) || "index.html"; // Default to index.html if path is empty
+                
+                const hrefParts = fullHref.split('#');
+                const hrefPath = hrefParts[0];
+                const targetId = hrefParts[1];
+
+                // Check if the link is for the current page (index.html) and has a hash
+                if (targetId && (hrefPath === "" || hrefPath === currentPath || hrefPath.endsWith("index.html"))) {
+                    e.preventDefault();
+                    smoothScrollToTarget(targetId);
+
+                    // Close mobile menu if open and the link is inside the mobile menu
+                    if (mainNavLinks && mainNavLinks.classList.contains('active') && this.closest('#main-nav-links')) {
+                        mainNavLinks.classList.remove('active');
+                        if (menuToggleButton) menuToggleButton.setAttribute('aria-expanded', 'false');
+                        if (menuIcon) {
+                            menuIcon.classList.remove('fa-times');
+                            menuIcon.classList.add('fa-bars');
+                        }
+                        // Close any open mobile dropdowns
+                        document.querySelectorAll('.nav-links .nav-item.dropdown.open').forEach(openDropdown => {
+                            openDropdown.classList.remove('open');
+                        });
+                    }
+                }
+                // If it's a link to a different page with a hash (e.g., competition-hub.html#someSection),
+                // let the browser handle navigation.
+            });
+        });
+
+        // 2. Smooth scroll on page load if URL has a hash (for index.html)
+        window.addEventListener('load', () => {
+            if (window.location.hash) {
+                const targetId = window.location.hash.substring(1);
+                setTimeout(() => {
+                    smoothScrollToTarget(targetId, true);
+                }, 100); 
+            }
+        });
+
+        // --- Mobile Dropdown Toggle Script ---
+        document.querySelectorAll('.nav-links .dropdown-toggle').forEach(toggle => {
+            toggle.addEventListener('click', function(e) {
+                if (this.getAttribute('href') === '#') {
+                    e.preventDefault();
+                }
+                const mainNav = document.getElementById('main-nav-links');
+                if (mainNav && mainNav.classList.contains('active')) { 
+                    const parentDropdown = this.parentElement;
+                    parentDropdown.classList.toggle('open');
+                    // Optional: Close other open dropdowns
+                    document.querySelectorAll('.nav-links .nav-item.dropdown.open').forEach(openDropdown => {
+                        if (openDropdown !== parentDropdown) {
+                            openDropdown.classList.remove('open');
+                        }
+                    });
                 }
             });
         });
 
-        // FAQ Accordion
+        // --- FAQ Accordion ---
         document.querySelectorAll('.faq-question').forEach((question) => {
             question.addEventListener('click', () => {
                 const currentItem = question.parentElement;
-                const isActive = currentItem.classList.contains('active');
+                // const isActive = currentItem.classList.contains('active'); // Not needed for this logic
                 
-                // Close all other items
                 document.querySelectorAll('.faq-item').forEach((item) => {
                     if (item !== currentItem) {
                         item.classList.remove('active');
-                        // Also reset icon for other items
                         const otherIcon = item.querySelector('.faq-question .faq-icon i');
                         if (otherIcon) {
-                            otherIcon.classList.remove('fa-minus'); // Assuming you use fa-minus for active
+                            otherIcon.classList.remove('fa-minus');
                             otherIcon.classList.add('fa-plus');
                         }
                     }
                 });
 
-                // Toggle current item
                 currentItem.classList.toggle('active');
                 const currentIcon = question.querySelector('.faq-icon i');
                 if (currentIcon) {
                     if (currentItem.classList.contains('active')) {
                         currentIcon.classList.remove('fa-plus');
-                        currentIcon.classList.add('fa-minus'); // Change to minus or times
+                        currentIcon.classList.add('fa-minus');
                     } else {
                         currentIcon.classList.remove('fa-minus');
                         currentIcon.classList.add('fa-plus');
                     }
                 }
             });
-        // NEW Countdown Timer Script
-        function startCountdown() {
-            // Set the date we're counting down to
-            // The "Seminar & Awarding Day" is "11 Oktober"
-            const countdownDate = new Date("October 11, 2025 00:00:00").getTime();
+        });
 
-            // Get display elements
+        // --- Countdown Timer Script ---
+        function startCountdown() {
+            const countdownDate = new Date("October 11, 2025 00:00:00").getTime();
             const daysEl = document.getElementById("days");
             const hoursEl = document.getElementById("hours");
             const minutesEl = document.getElementById("minutes");
@@ -633,67 +693,51 @@
             const timerEl = document.getElementById("countdown-timer");
 
             if (!daysEl || !hoursEl || !minutesEl || !secondsEl || !timerEl) {
-                console.error("Countdown timer elements not found!");
+                // console.error("Countdown timer elements not found!");
                 return;
             }
 
             const countdownFunction = setInterval(function() {
-                // Get today's date and time
                 const now = new Date().getTime();
-
-                // Find the distance between now and the count down date
                 const distance = countdownDate - now;
-
-                // Time calculations for days, hours, minutes and seconds
                 const days = Math.floor(distance / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                // Output the result in elements
                 daysEl.innerText = days < 10 ? "0" + days : days;
                 hoursEl.innerText = hours < 10 ? "0" + hours : hours;
                 minutesEl.innerText = minutes < 10 ? "0" + minutes : minutes;
                 secondsEl.innerText = seconds < 10 ? "0" + seconds : seconds;
 
-                // If the count down is over, write some text
                 if (distance < 0) {
                     clearInterval(countdownFunction);
-                    timerEl.innerHTML = "EVENT TELAH DIMULAI!"; // Or "EVENT SUDAH LEWAT"
-                    // You might want to style this expired message differently
+                    timerEl.innerHTML = "EVENT TELAH DIMULAI!";
                     timerEl.style.fontSize = "1.5rem";
                     timerEl.style.fontWeight = "bold";
                 }
-            }, 1000); // Update every 1 second
+            }, 1000);
+        }
+        // Start countdown on DOMContentLoaded for index.html
+        if (document.getElementById("countdown-timer")) { // Check if countdown exists
+             document.addEventListener('DOMContentLoaded', startCountdown);
         }
 
-        // Start the countdown when the page loads
-        document.addEventListener('DOMContentLoaded', startCountdown);
-        });
-                // Add this new script for logo animation sequencing
+        // --- Logo Animation Sequencing ---
         document.addEventListener('DOMContentLoaded', () => {
             const heroLogo = document.querySelector('.hero-left img.portal-logo.hero-logo-entry');
-
             if (heroLogo) {
                 heroLogo.addEventListener('animationend', function handleDrawLogoEnd(event) {
-                    // We check event.animationName to ensure it's the 'drawLogo' animation ending,
-                    // especially if other animations might be on the element in the future.
                     if (event.animationName === 'drawLogo') {
-                        // Remove the class that applied the entry animation
                         heroLogo.classList.remove('hero-logo-entry');
-
-                        // Add the class that applies the continuous floating animation
                         heroLogo.classList.add('hero-logo-float');
-
-                        // Optional: To prevent this listener from firing again if other animations are added later
-                        // and also named 'drawLogo' (unlikely in this simple case, but good practice for complex scenarios)
-                        // or if 'hero-logo-float' itself had a non-infinite animation that you wanted to react to differently.
                         heroLogo.removeEventListener('animationend', handleDrawLogoEnd);
                     }
                 });
             }
         });
-                // --- Berita & Media Section Script ---
+
+        // --- Berita & Media Section Script (JSON Loader) ---
         const blogArticlesContainer = document.querySelector('#blog-articles-container .articles-grid');
         const galleryPhotosContainer = document.querySelector('#gallery-container .gallery-grid.photos');
         const galleryVideosContainer = document.querySelector('#gallery-container .gallery-grid.videos');
@@ -702,7 +746,7 @@
 
         async function loadMediaContent() {
             try {
-                const response = await fetch('media-content.json'); // Or 'data/media-content.json' if in a subfolder
+                const response = await fetch('media-content.json');
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -714,23 +758,22 @@
                 if (partnersSponsorsContainer) renderPartnersSponsors(data.partnersSponsors);
 
             } catch (error) {
-                console.error("Gagal memuat konten media:", error);
-                if (blogArticlesContainer) blogArticlesContainer.innerHTML = '<p class="error-message">Gagal memuat artikel. Silakan coba lagi nanti.</p>';
-                if (galleryPhotosContainer) galleryPhotosContainer.innerHTML = '<p class="error-message">Gagal memuat foto. Silakan coba lagi nanti.</p>';
-                if (galleryVideosContainer) galleryVideosContainer.innerHTML = '<p class="error-message">Gagal memuat video. Silakan coba lagi nanti.</p>';
-                if (partnersSponsorsContainer) partnersSponsorsContainer.innerHTML = '<p class="error-message">Gagal memuat informasi mitra. Silakan coba lagi nanti.</p>';
+                // console.error("Gagal memuat konten media:", error);
+                if (blogArticlesContainer) blogArticlesContainer.innerHTML = '<p class="error-message">Gagal memuat artikel.</p>';
+                if (galleryPhotosContainer) galleryPhotosContainer.innerHTML = '<p class="error-message">Gagal memuat foto.</p>';
+                if (galleryVideosContainer) galleryVideosContainer.innerHTML = '<p class="error-message">Gagal memuat video.</p>';
+                if (partnersSponsorsContainer) partnersSponsorsContainer.innerHTML = '<p class="error-message">Gagal memuat mitra.</p>';
             }
         }
 
-        function renderBlogArticles(articles) {
-            if (!blogArticlesContainer) return; // Guard clause
+        function renderBlogArticles(articles) { /* ... (keep your existing render functions) ... */ 
+            if (!blogArticlesContainer) return; 
             if (!articles || articles.length === 0) {
-                blogArticlesContainer.innerHTML = '<p>Belum ada artikel untuk ditampilkan.</p>';
+                blogArticlesContainer.innerHTML = '<p>Belum ada artikel.</p>';
                 return;
             }
-            blogArticlesContainer.innerHTML = ''; // Clear loading message
-
-            articles.slice(0, 3).forEach(article => { // Displaying max 3 articles on homepage
+            blogArticlesContainer.innerHTML = ''; 
+            articles.slice(0, 3).forEach(article => {
                 const articleCardHTML = `
                     <div class="article-card" data-aos="fade-up" data-aos-anchor="#blog-articles-container">
                         <a href="${article.link}" class="article-card-link">
@@ -752,20 +795,16 @@
                 blogArticlesContainer.insertAdjacentHTML('beforeend', articleCardHTML);
             });
         }
-
-        function renderGalleryPhotos(photos) {
-            if (!photos || photos.length === 0) {
-                galleryPhotosContainer.innerHTML = '<p>Belum ada foto untuk ditampilkan.</p>';
+        function renderGalleryPhotos(photos) { /* ... (keep your existing render functions) ... */ 
+            if (!galleryPhotosContainer || !photos || photos.length === 0) {
+                if(galleryPhotosContainer) galleryPhotosContainer.innerHTML = '<p>Belum ada foto.</p>';
                 return;
             }
-            galleryPhotosContainer.innerHTML = ''; // Clear loading
-            photos.slice(0, 6).forEach(photo => { // Show max 6 photos
-                // For a lightbox, you'd typically wrap the img in an <a> tag
-                // Example: <a href="${photo.fullUrl}" data-lightbox="portal-gallery" data-title="${photo.title}">...</a>
-                // You'll need to include a lightbox library like Lightbox2 for this to work.
+            galleryPhotosContainer.innerHTML = '';
+            photos.slice(0, 6).forEach(photo => {
                 const photoItem = `
                     <div class="gallery-item photo" data-aos="zoom-in-up" data-aos-anchor="#gallery-container">
-                        <img src="${photo.thumbnailUrl}" alt="${photo.title}" onerror="this.src='https://placehold.co/300x300/e0e0e0/757575?text=Foto+Error&font=montserrat';">
+                        <img src="${photo.thumbnailUrl}" alt="${photo.title}" onerror="this.src='https://placehold.co/300x300/e0e0e0/757575?text=Error&font=montserrat';">
                         <div class="gallery-item-overlay">
                             <i class="fas fa-search-plus"></i>
                             <span>${photo.title} (${photo.year || ''})</span>
@@ -775,19 +814,16 @@
                 galleryPhotosContainer.insertAdjacentHTML('beforeend', photoItem);
             });
         }
-
-        function renderGalleryVideos(videos) {
-            if (!videos || videos.length === 0) {
-                galleryVideosContainer.innerHTML = '<p>Belum ada video untuk ditampilkan.</p>';
+        function renderGalleryVideos(videos) { /* ... (keep your existing render functions) ... */ 
+            if (!galleryVideosContainer || !videos || videos.length === 0) {
+                if(galleryVideosContainer) galleryVideosContainer.innerHTML = '<p>Belum ada video.</p>';
                 return;
             }
-            galleryVideosContainer.innerHTML = ''; // Clear loading
-            videos.slice(0, 3).forEach(video => { // Show max 3 videos
-                // For a video lightbox (like Fancybox), wrap in an <a> tag
-                // Example: <a href="${video.videoUrl}" data-fancybox="gallery-video" data-caption="${video.title}">...</a>
+            galleryVideosContainer.innerHTML = '';
+            videos.slice(0, 3).forEach(video => {
                 const videoItem = `
                     <div class="gallery-item video" data-aos="zoom-in-up" data-aos-anchor="#gallery-container">
-                        <img src="${video.thumbnailUrl}" alt="${video.title}" onerror="this.src='https://placehold.co/300x200/e0e0e0/757575?text=Video+Error&font=montserrat';">
+                        <img src="${video.thumbnailUrl}" alt="${video.title}" onerror="this.src='https://placehold.co/300x200/e0e0e0/757575?text=Error&font=montserrat';">
                         <div class="gallery-item-overlay">
                             <i class="fas fa-play-circle"></i>
                             <span>${video.title}</span>
@@ -797,13 +833,12 @@
                 galleryVideosContainer.insertAdjacentHTML('beforeend', videoItem);
             });
         }
-
-        function renderPartnersSponsors(items) {
-            if (!items || items.length === 0) {
-                partnersSponsorsContainer.innerHTML = '<p>Informasi mitra dan sponsor akan segera kami tampilkan.</p>';
+        function renderPartnersSponsors(items) { /* ... (keep your existing render functions) ... */ 
+            if (!partnersSponsorsContainer || !items || items.length === 0) {
+                if(partnersSponsorsContainer) partnersSponsorsContainer.innerHTML = '<p>Mitra akan segera tampil.</p>';
                 return;
             }
-            partnersSponsorsContainer.innerHTML = ''; // Clear loading
+            partnersSponsorsContainer.innerHTML = '';
             items.forEach(item => {
                 const partnerItem = `
                     <div class="partner-item" data-aos="fade-up" data-aos-anchor="#partners-sponsors-container">
@@ -816,17 +851,14 @@
             });
         }
 
-        // Gallery Tab switching logic
         if (galleryTabs.length > 0) {
             galleryTabs.forEach(tab => {
                 tab.addEventListener('click', () => {
                     galleryTabs.forEach(t => t.classList.remove('active'));
                     tab.classList.add('active');
-
                     document.querySelectorAll('#gallery-container .gallery-grid').forEach(content => {
                         content.classList.remove('active-gallery-content');
                     });
-                    
                     const targetContentClass = tab.dataset.tab;
                     const newActiveContent = document.querySelector(`#gallery-container .gallery-grid.${targetContentClass}`);
                     if (newActiveContent) {
@@ -836,11 +868,13 @@
             });
         }
 
-        // Load content when DOM is ready (if not already handled by placement at end of body)
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', loadMediaContent);
-        } else {
-            loadMediaContent(); // Or call it if DOM is already interactive
+        // Load media content if the container exists on the page
+        if (document.getElementById('media')) { // Check if media section exists
+             if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', loadMediaContent);
+            } else {
+                loadMediaContent();
+            }
         }
 
     </script>

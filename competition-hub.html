@@ -15,7 +15,7 @@
                 <img src="img/Portal_Logo.png" alt="Logo Portal 7" onerror="this.onerror=null;this.src='https://placehold.co/120x30/cccccc/ffffff?text=P7+Logo';">
             </a>
             <div class="nav-links" id="main-nav-links">
-                <a class="nav-a" href="#hero">Beranda</a>
+                <a class="nav-a" href="index.html#hero">Beranda</a>
 
                 <div class="nav-item dropdown">
                     <a class="nav-a dropdown-toggle" href="#">Tentang Portal <i class="fas fa-chevron-down dropdown-icon"></i></a>
@@ -135,23 +135,19 @@
         </div>
     </footer>
 </body>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        // --- AOS Initialization ---
         AOS.init({
-            duration: 800, // values from 0 to 3000, with step 50ms
-            once: true, // whether animation should happen only once - while scrolling down
+            duration: 800,
+            once: true,
         });
 
-// Mobile Menu Toggle Script (Copied from index.html for consistency)
+        // --- Mobile Menu Toggle ---
         const menuToggleButton = document.getElementById('mobile-menu-toggle');
         const mainNavLinks = document.getElementById('main-nav-links');
-
-        let menuIcon = null;
-        if (menuToggleButton) {
-            menuIcon = menuToggleButton.querySelector('i');
-        }
+        let menuIcon = menuToggleButton ? menuToggleButton.querySelector('i') : null;
 
         if (menuToggleButton && mainNavLinks) {
             menuToggleButton.addEventListener('click', () => {
@@ -166,45 +162,107 @@
                         menuIcon.classList.add('fa-bars');
                     }
                 }
+                if (!isExpanded) {
+                    document.querySelectorAll('.nav-links .nav-item.dropdown.open').forEach(openDropdown => {
+                        openDropdown.classList.remove('open');
+                    });
+                }
             });
         }
 
-// Smooth scroll untuk tautan navigasi (dengan offset untuk sticky header)
+        // --- Basic Smooth scroll for SAME-PAGE anchor links on competition-hub.html (if any) ---
+        // This will only affect links starting with "#" and pointing to an ID on this page.
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const targetHref = this.getAttribute('href');
-                const targetElement = targetHref.length > 1 ? document.querySelector(targetHref) : null; // Ensure href is not just "#"
+                // Only proceed if it's a valid ID selector (e.g. "#some-id") and not just "#"
+                if (targetHref && targetHref.length > 1 && targetHref.startsWith("#")) {
+                    try {
+                        const targetElement = document.querySelector(targetHref);
 
-                if (targetElement) { // Check if the target element exists on the current page
-                    e.preventDefault();
+                        if (targetElement) { // Check if the target element exists on THIS page
+                            e.preventDefault();
 
-                    const navElement = document.querySelector('nav');
-                    const navHeight = navElement ? navElement.offsetHeight : 0;
-                    const targetElementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-                    const offsetPosition = targetElementPosition - navHeight;
+                            const navElement = document.querySelector('nav');
+                            const navHeight = navElement ? navElement.offsetHeight : 0;
+                            const targetElementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                            const offsetPosition = targetElementPosition - navHeight;
 
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
+                            window.scrollTo({
+                                top: offsetPosition,
+                                behavior: 'smooth'
+                            });
+                        }
+                        // If targetElement is not found on this page, default browser action will occur (e.g., try to navigate if it was a full URL, or do nothing).
+                    } catch (error) {
+                        // If querySelector fails (e.g., invalid selector), let browser handle it.
+                        // console.warn("Smooth scroll target not found or invalid selector:", targetHref);
+                    }
                 }
-                // Else, if targetElement is null, it might be a link to another page or just a "#" href,
-                // in which case, we let the default behavior happen or handle it differently if needed.
-                // For this fix, we are primarily concerned with same-page anchor links.
-
-                // Tutup menu mobile jika terbuka setelah klik (specifically for links within mainNavLinks)
-                const mainNavLinks = document.getElementById('main-nav-links'); // Ensure this is defined or passed if script is external
-                const menuToggleButton = document.getElementById('mobile-menu-toggle'); // Ensure this is defined
-                let menuIcon = menuToggleButton ? menuToggleButton.querySelector('i') : null; // Ensure this is defined
-
+                // For links like "index.html#section", this script does nothing, and default browser navigation will occur.
+                
+                // Close mobile menu if open (this part needs to be here to close menu on any nav link click in mobile)
                 if (mainNavLinks && mainNavLinks.classList.contains('active') && this.closest('#main-nav-links')) {
                     mainNavLinks.classList.remove('active');
                     if (menuToggleButton) menuToggleButton.setAttribute('aria-expanded', 'false');
-                    if (menuIcon) { 
+                    if (menuIcon) {
+                        menuIcon.classList.remove('fa-times');
+                        menuIcon.classList.add('fa-bars');
+                    }
+                    document.querySelectorAll('.nav-links .nav-item.dropdown.open').forEach(openDropdown => {
+                        openDropdown.classList.remove('open');
+                    });
+                }
+            });
+        });
+
+        // --- Mobile Dropdown Toggle Script ---
+        document.querySelectorAll('.nav-links .dropdown-toggle').forEach(toggle => {
+            toggle.addEventListener('click', function(e) {
+                if (this.getAttribute('href') === '#') { 
+                    e.preventDefault();
+                }
+                const mainNav = document.getElementById('main-nav-links');
+                if (mainNav && mainNav.classList.contains('active')) { 
+                    const parentDropdown = this.parentElement;
+                    parentDropdown.classList.toggle('open');
+                    document.querySelectorAll('.nav-links .nav-item.dropdown.open').forEach(openDropdown => {
+                        if (openDropdown !== parentDropdown) {
+                            openDropdown.classList.remove('open');
+                        }
+                    });
+                }
+            });
+        });
+
+        // --- Close mobile dropdowns/menu on item click (Consolidated from previous advice) ---
+        // This listener handles closing the main mobile menu when a link inside it is clicked.
+        // It was part of the more complex smooth scroll before, now it's standalone logic,
+        // but the closing action for nav items is also included in the basic smooth scroll above for immediate feedback.
+        // This also helps close the menu if a link to another page is clicked from mobile.
+        document.addEventListener('click', function(event) {
+            const mainNav = document.getElementById('main-nav-links');
+            // Check if a direct link (not a dropdown toggle) or a dropdown item inside the mobile menu is clicked
+            if (mainNav && mainNav.classList.contains('active')) {
+                 // Check if the click is on a nav-a (that's not a dropdown-toggle) or a dropdown-item
+                if ( (event.target.matches('.nav-links.active .nav-a') && !event.target.matches('.dropdown-toggle')) || 
+                      event.target.matches('.nav-links.active .dropdown-item') ) {
+                    
+                    // Close all open mobile dropdowns
+                    document.querySelectorAll('.nav-links .nav-item.dropdown.open').forEach(openDropdown => {
+                        openDropdown.classList.remove('open');
+                    });
+                    // And close the main mobile menu
+                    mainNav.classList.remove('active');
+                    if (menuToggleButton) menuToggleButton.setAttribute('aria-expanded', 'false');
+                    if (menuIcon) {
                         menuIcon.classList.remove('fa-times');
                         menuIcon.classList.add('fa-bars');
                     }
                 }
-            });
+            }
         });
     </script>
+
+</body>
+</html>
