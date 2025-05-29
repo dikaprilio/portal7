@@ -572,7 +572,7 @@ nav::after {
 /* INSPIRE Framework Section in About */
 .inspire-framework-container {
     margin-top: 3.5rem; /* Space above the framework section */
-    margin: 20rem;
+    margin: 1rem;
     padding: 2.5rem 2rem; /* Inner padding for the container */
     background-color: #ffffff; /* White background to make it stand out */
     border-radius: 12px;
