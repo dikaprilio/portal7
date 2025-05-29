@@ -16,14 +16,17 @@
     --hero-empower-color: #EF4444; /* Merah untuk "Empower" */
     --hero-seven-color: #3B82F6; /* Biru untuk "7" */
     --section-bg-light: #F9FAFB; /* Latar belakang bagian yang sangat terang */
+    --timeline-dot-default: #CBD5E1; /* Warna titik default untuk timeline */
 }
 
 body {
     font-family: 'Montserrat', sans-serif;
     color: var(--text-color);
     line-height: 1.6;
+    position: relative; /* For potential sidebar interactions */
 }
 section {
+    /* section padding is handled by .section-padding */
 }
 /* Gaya Navigasi */
 nav {
@@ -31,7 +34,7 @@ nav {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 1000; /* Ensure nav is above other content but below sidebar */
 }
 .portal-logo {
   max-width: 100%;
@@ -50,11 +53,10 @@ nav {
 }
 
 .logo img {
-    height: 30px; /* Tinggi asli */
-    /* Ganti dengan path logo Anda: src="Element Asset Portal 7/Portal_Logo.png" */
+    height: 30px; 
 }
 
-.nav-links {
+.nav-links { /* Desktop navigation links */
     display: flex;
     align-items: center;
     gap: 1.5rem;
@@ -69,7 +71,7 @@ nav {
     transition: color 0.3s ease;
 }
 
-.nav-a::after { /* Efek garis bawah saat hover */
+.nav-a::after { 
     content: '';
     position: absolute;
     width: 0;
@@ -98,14 +100,18 @@ nav {
     color: var(--blue-accent);
 }
 
+/* Hamburger Menu Button Styling */
 .mobile-menu-button {
-    display: none;
+    display: none; /* Hidden by default, shown on mobile via media query */
     background: none;
     border: none;
-    font-size: 1.5rem;
-    color: var(--text-color);
+    font-size: 1.8rem; /* Slightly larger for better tap target */
+    color: var(--primary-color); /* Consistent with section titles */
     cursor: pointer;
+    padding: 0.5rem; /* Add some padding */
+    z-index: 1100; /* Above sidebar when it's closing, or if nav has higher z-index */
 }
+
 
 /* Gaya Umum Bagian */
 .section-padding {
@@ -130,15 +136,16 @@ nav {
 
 /* Gaya Bagian Hero */
 .hero-section {
-    /* Ganti dengan foto event + efek blur + overlay putih semi-transparan */
     background: linear-gradient(to bottom right, rgba(224, 231, 255, 0.8), rgba(252, 231, 243, 0.8)), url('img/blur-bg.png') no-repeat center center/cover; 
     padding: 4rem 2rem;
     text-align: center;
-    position: relative; /* Untuk elemen mengambang */
-    height: 100vh;
-
+    position: relative; 
+    min-height: 100vh; /* Use min-height to ensure it covers viewport */
+    display: flex; /* For centering content */
+    align-items: center; /* For centering content */
+    justify-content: center; /* For centering content */
 }
-/* Placeholder untuk elemen mengambang */
+
 .floating-element {
     position: absolute;
     opacity: 0.5;
@@ -153,7 +160,7 @@ nav {
   background-image: url('img/plus.png');
   background-size: cover;
   border-radius: 50%;
-  z-index: -1;
+  z-index: 0; /* Behind hero content */
 }
 
 .icon-idea {
@@ -165,7 +172,7 @@ nav {
   background-image: url('img/sun_circle.png');
   background-size: contain;
   background-repeat: no-repeat;
-  z-index: 2;
+  z-index: 0; /* Behind hero content */
 }
 
 
@@ -185,18 +192,18 @@ nav {
     justify-content: center;
     gap: 3rem;
     position: relative;
-    z-index: 1;
+    z-index: 1; /* Above floating elements */
 }
 
 .hero-left img {
-    max-width: 100%;
+    max-width: 100%; /* Max width 250px, can adjust as needed */
     height: auto;
     animation: drawLogo 2s ease-out forwards;
     display: block;
 }
 
 
-@keyframes drawLogo { /* Contoh animasi sederhana */
+@keyframes drawLogo { 
     from { opacity: 0; transform: scale(0.5); }
     to { opacity: 1; transform: scale(1); }
 }
@@ -204,16 +211,16 @@ nav {
 .hero-right {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-top: 4rem; /* Jarak dari logo */
+    align-items: center; /* Center align text and buttons */
+    text-align: center; /* Ensure text within is centered */
+    /* margin-top: 4rem; Removed as hero-content handles alignment */
 }
 
 .hero-title {
-    font-size: 4.8rem; /* Ukuran font responsif */
+    font-size: 4.8rem; 
     font-weight: 800;
-    margin-bottom: 0.5rem; /* Lebih dekat ke subjudul */
+    margin-bottom: 0.5rem; 
     line-height: 1.2;
-    /* Animasi per kata bisa ditambahkan dengan JS atau CSS lebih lanjut */
 }
 
 .hero-title span { display: inline-block; animation: fadeInWord 0.5s ease-out forwards; opacity: 0; }
@@ -227,7 +234,7 @@ nav {
 }
 
 .hero-title-empower { color: var(--hero-empower-color); }
-.hero-title-digital { /* Gaya warna-warni per huruf */ }
+.hero-title-digital { }
 .hero-title-digital .char-d { color: #F87171; } .hero-title-digital .char-i1 { color: #FBBF24; }
 .hero-title-digital .char-g { color: #34D399; } .hero-title-digital .char-i2 { color: #60A5FA; }
 .hero-title-digital .char-t { color: #A78BFA; } .hero-title-digital .char-a { color: #F472B6; }
@@ -235,23 +242,23 @@ nav {
 .hero-title-seven { color: var(--hero-seven-color); }
 
 .tagline {
-    font-size: 20px;
+    font-size: 1.25rem; /* Adjusted from 20px */
     color: #4B5563;
     margin-bottom: 2rem;
     max-width: 600px;
-    font-weight: 600;
+    font-weight: 500; /* Adjusted from 600 */
 }
 
-.hero-buttons { display: flex; gap: 1rem; }
+.hero-buttons { display: flex; gap: 1rem; justify-content: center;}
 .hero-button {
     text-decoration: none;
     color: white;
     font-weight: 600;
-    padding: 0.85rem 2rem; /* Tombol lebih besar */
+    padding: 0.85rem 2rem; 
     border-radius: 8px;
     transition: background-color 0.3s ease, transform 0.2s ease;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    animation: pulseButton 2s infinite ease-in-out; /* Tombol berdenyut */
+    animation: pulseButton 2s infinite ease-in-out; 
 }
     @keyframes pulseButton {
     0% { transform: scale(1); }
@@ -260,30 +267,30 @@ nav {
 }
 
 .hero-button:hover {
-    transform: translateY(-2px) scale(1.05); /* Efek hover lebih menonjol */
-    animation: none; /* Hentikan denyut saat hover */
+    transform: translateY(-2px) scale(1.05); 
+    animation: none; 
 }
 .button-main-cta { background-color: var(--orange-accent); }
 .button-main-cta-b { background-color: var(--pink-accent); }
-.button-main-cta:hover { background-color: #eb2595; }
-.button-main-cta-b:hover { background-color: #f97316; }
+.button-main-cta:hover { background-color: #dd6411; } /* Darken orange */
+.button-main-cta-b:hover { background-color: #d0387c; } /* Darken pink */
 
 
 /* Bagian Tentang Portal 7 */
 .about-section { background-color: var(--section-bg-light); }
 .about-content {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Default to column, will adjust for wider screens */
     gap: 2rem;
     align-items: center;
     max-width: 900px;
     margin: 0 auto;
 }
-.about-text { text-align: left; }
+.about-text { text-align: left; max-width: 600px; } /* Limit text width */
 .about-text h3 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--primary-color); }
 .about-illustration { text-align: center; }
-.about-illustration img { max-width: 250px; height: auto; border-radius: 8px;}
-/* Placeholder untuk swirl pemisah */
+.about-illustration img { max-width: 100%; width: 300px; height: auto; border-radius: 8px;}
+
 .about-section::after {
     content: ''; display: block; width: 150px; height: 5px;
     background: linear-gradient(to right, var(--pink-accent), var(--yellow-accent));
@@ -306,13 +313,15 @@ nav {
     padding: 2rem;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    display: flex; /* Added for better internal alignment */
+    flex-direction: column; /* Added */
 }
 .highlight-title { font-size: 1.75rem; color: var(--primary-color); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;}
 .highlight-title i { color: var(--blue-accent); }
 .competition-item { margin-bottom: 1.5rem; }
 .competition-item h4 { font-size: 1.25rem; color: var(--blue-accent); margin-bottom: 0.5rem; }
 .competition-item p { font-size: 0.95rem; color: #555; }
-.total-prize { font-size: 1.1rem; font-weight: 600; color: var(--orange-accent); margin-top: 1rem; }
+.total-prize { font-size: 1.1rem; font-weight: 600; color: var(--orange-accent); margin-top: auto; /* Pushes to bottom if highlight box has flex */ }
 .seminar-list li { margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
 .seminar-list li i { color: var(--pink-accent); }
 
@@ -327,110 +336,101 @@ nav {
     padding: 2rem 0;
 }
 
-/* Garis vertikal utama */
 .timeline-container::before {
     content: '';
     position: absolute;
     top: 0;
     bottom: 0;
     left: 50%;
-    width: 4px; /* Ketebalan garis */
-    background-color: var(--primary-color); /* Warna garis gelap */
+    width: 4px; 
+    background-color: var(--primary-color); 
     transform: translateX(-50%);
     z-index: 0;
 }
 
 .timeline-entry {
     position: relative;
-    margin-bottom: 50px; /* Jarak antar entri */
-    width: 50%; /* Setiap entri mengambil setengah lebar */
-    padding: 10px 40px; /* Padding di sekitar label */
+    margin-bottom: 50px; 
+    width: 50%; 
+    padding: 10px 40px; 
     box-sizing: border-box;
 }
 
-/* Posisi entri di sisi kiri atau kanan garis */
 .timeline-entry:nth-child(odd) {
     left: 0;
     text-align: right;
 }
 
 .timeline-entry:nth-child(even) {
-    left: 50%; /* Mulai dari tengah untuk entri genap */
+    left: 50%; 
     text-align: left;
 }
 
-/* Titik (dot) pada linimasa */
-.timeline-icon-dot { /* Mengganti nama kelas dari timeline-icon menjadi timeline-icon-dot */
+.timeline-icon-dot { 
     position: absolute;
-    top: 50%; /* Pusatkan titik secara vertikal relatif terhadap .timeline-entry */
+    top: 50%; 
     transform: translateY(-50%);
-    width: 32px; /* Ukuran titik */
+    width: 32px; 
     height: 32px;
     border-radius: 50%;
-    background-color: var(--timeline-dot-default); /* Warna titik default */
-    border: 3px solid var(--section-bg-light); /* Membuatnya menonjol dari garis */
+    background-color: var(--timeline-dot-default); 
+    border: 3px solid var(--section-bg-light); 
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1; /* Di atas garis */
+    z-index: 1; 
     transition: background-color 0.3s ease, transform 0.3s ease;
-    cursor: pointer;
+    cursor: default; /* Changed from pointer as it's decorative */
 }
 
 .timeline-icon-dot i {
-    color: white; /* Warna ikon di dalam titik */
+    color: white; 
     font-size: 0.9rem;
 }
 
-/* Posisi titik untuk entri ganjil dan genap */
 .timeline-entry:nth-child(odd) .timeline-icon-dot {
-    right: -16px; /* (Lebar titik / 2) agar tengahnya pas di garis */
-    /* transform: translateY(-50%); Dihapus karena sudah ada di base .timeline-icon-dot */
+    right: -16px; 
 }
 
 .timeline-entry:nth-child(even) .timeline-icon-dot {
-    left: -16px; /* (Lebar titik / 2) */
-    /* transform: translateY(-50%); Dihapus */
+    left: -16px; 
 }
 
-/* Efek hover untuk titik */
 .timeline-entry:nth-child(odd):hover .timeline-icon-dot {
-    background-color: var(--pink-accent); /* Warna pink saat hover */
-    transform: translateY(-50%) scale(1.15); /* Sedikit zoom */
+    background-color: var(--pink-accent); 
+    transform: translateY(-50%) scale(1.15); 
 }
 .timeline-entry:nth-child(even):hover .timeline-icon-dot {
-    background-color: var(--blue-accent); /* Warna biru saat hover */
+    background-color: var(--blue-accent); 
     transform: translateY(-50%) scale(1.15);
 }
 
-/* Gaya untuk kotak konten */
 .timeline-label {
     padding: 15px 20px;
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    position: relative; /* Untuk panah penunjuk */
+    position: relative; 
 }
 
-/* Panah penunjuk (opsional) */
 .timeline-label::before {
     content: '';
     position: absolute;
     top: 50%;
-    transform: translateY(-50%); /* Pusatkan panah secara vertikal */
+    transform: translateY(-50%); 
     width: 0;
     height: 0;
     border-style: solid;
 }
 
 .timeline-entry:nth-child(odd) .timeline-label::before {
-    right: -10px; /* Menunjuk ke kanan */
-    border-width: 10px 0 10px 10px; /* Atas, Kanan, Bawah, Kiri */
-    border-color: transparent transparent transparent white; /* Warna panah = latar belakang label */
+    right: -10px; 
+    border-width: 10px 0 10px 10px; 
+    border-color: transparent transparent transparent white; 
 }
 
 .timeline-entry:nth-child(even) .timeline-label::before {
-    left: -10px; /* Menunjuk ke kiri */
+    left: -10px; 
     border-width: 10px 10px 10px 0;
     border-color: transparent white transparent transparent;
 }
@@ -439,50 +439,45 @@ nav {
     font-size: 1.1rem;
     font-weight: 600;
     color: var(--primary-color);
-    margin-bottom: 0.3rem; /* Mengurangi margin bawah */
-    text-align: center;
+    margin-bottom: 0.3rem; 
+    /* text-align: center; Removed, alignment handled by entry */
 }
 
 .timeline-event {
-    font-size: 0.95rem; /* Sedikit lebih kecil */
+    font-size: 0.95rem; 
     color: #555;
-    text-align: center;
+    /* text-align: center; Removed */
 }
 /* === Gaya Bagian Past Guest Stars BARU === */
 .guest-stars-section {
-    background-color: #fff; /* Atau var(--section-bg-light) jika ingin sedikit berbeda */
+    background-color: #fff; 
 }
 .guest-stars-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Grid responsif */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
     gap: 2rem;
     max-width: 1100px;
     margin: 0 auto;
 }
 .guest-star-card {
-    background-color: var(--section-bg-light); /* Sedikit berbeda dari latar section */
+    background-color: var(--section-bg-light); 
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.07);
-    overflow: hidden; /* Untuk memastikan gambar tidak keluar dari border-radius */
+    overflow: hidden; 
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    /* Animasi muncul bisa ditambahkan dengan AOS atau CSS keyframes */
 }
 .guest-star-card:hover {
     transform: translateY(-5px) scale(1.03);
     box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-    ; /* Lebih besar saat hover */
 }
 .guest-star-card img {
     width: 100%;
-    height: 50vh; /* Sesuaikan tinggi gambar */
-    object-fit: cover; /* Agar gambar mengisi area tanpa distorsi */
-    transition: all 0.5s;/* Ganti dengan foto/siluet asli */
+    height: 300px; /* Adjusted height */
+    object-fit: cover; 
+    transition: transform 0.5s ease; /* Changed from all to transform */
 }   
-.guest-star-card img:hover {
-    width: 100%;
-    height: 60vh; /* Sesuaikan tinggi gambar */
-    object-fit: cover; /* Agar gambar mengisi area tanpa distorsi */
-    /* Ganti dengan foto/siluet asli */
+.guest-star-card:hover img { /* Zoom image inside card on card hover */
+    transform: scale(1.05);
 }
 .guest-star-info {
     padding: 1.5rem;
@@ -497,7 +492,6 @@ nav {
     font-size: 0.9rem;
     color: #555;
 }
-/* === AKHIR Gaya Bagian Past Guest Stars BARU === */
 
 /* === Gaya Bagian FAQ BARU === */
 .faq-section {
@@ -512,7 +506,7 @@ nav {
     margin-bottom: 1rem;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    overflow: hidden; /* Untuk animasi yang mulus */
+    overflow: hidden; 
 }
 .faq-question {
     display: flex;
@@ -520,9 +514,16 @@ nav {
     align-items: center;
     padding: 1.25rem 1.5rem;
     cursor: pointer;
-    background-color: #fff; /* Pastikan latar belakang untuk klik */
-    border-bottom: 1px solid var(--secondary-color); /* Garis pemisah halus */
+    background-color: #fff; 
+    border-bottom: 1px solid var(--secondary-color); 
 }
+.faq-item:last-child .faq-question { /* Remove border from last item if it's not active */
+    /* border-bottom: none; */ /* Better to keep it for consistency or manage with .active */
+}
+.faq-item.active .faq-question {
+     border-bottom-color: transparent; /* Hide border when answer is open */
+}
+
 .faq-question:hover {
     background-color: #f8f8f8;
 }
@@ -538,22 +539,24 @@ nav {
     transition: transform 0.3s ease;
 }
 .faq-answer {
-    padding: 0 1.5rem; /* Padding awal 0 untuk animasi */
-    max-height: 0; /* Tinggi awal 0 untuk animasi */
+    padding: 0 1.5rem; 
+    max-height: 0; 
     overflow: hidden;
     transition: max-height 0.4s ease-out, padding 0.4s ease-out;
     font-size: 0.95rem;
     color: #555;
     line-height: 1.7;
+    background-color: #fff; /* Ensure answer has background */
 }
 .faq-item.active .faq-answer {
-    padding: 1.25rem 1.5rem; /* Padding saat aktif */
-    max-height: 300px; /* Sesuaikan jika jawaban sangat panjang */
+    padding: 1.25rem 1.5rem; 
+    max-height: 300px; 
 }
-.faq-item.active .faq-question .faq-icon {
-    transform: rotate(45deg); /* Ubah ikon menjadi 'x' atau putar '+' */
+.faq-item.active .faq-question .faq-icon i { /* Target the i tag directly */
+    transform: rotate(135deg); /* Rotates plus to look like a skewed X or minus */
 }
-/* === AKHIR Gaya Bagian FAQ BARU === */
+
+
 /* Bagian Siapa Saja yang Bisa Ikut */
 .who-can-join-section {}
 .who-can-join-content { max-width: 800px; margin: 0 auto; text-align: center; }
@@ -562,8 +565,9 @@ nav {
     background-color: #fff; padding: 1rem; border-radius: 8px;
     margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     display: flex; align-items: center; gap: 1rem; font-size: 1.05rem;
+    text-align: left; /* Align text inside li to left */
 }
-.who-can-join-list li i { font-size: 1.5rem; color: var(--orange-accent); }
+.who-can-join-list li i { font-size: 1.5rem; color: var(--orange-accent); min-width: 25px; /* Ensure icon takes space */ }
 .team-info { margin-top: 1.5rem; font-size: 1rem; color: #555; }
 
 /* Bagian Ajakan Bergabung / CTA Bawah */
@@ -587,156 +591,221 @@ nav {
 footer {
     background-color: var(--primary-color);
     color: var(--secondary-color);
-    padding: 3rem 1rem 1.5rem; /* Padding lebih */
+    padding: 3rem 1rem 1.5rem; 
     text-align: center;
 }
 .footer-logo img { height: 40px; margin-bottom: 1rem; opacity: 0.8; }
 .footer-contact, .footer-social { margin-bottom: 1rem; }
-.footer-contact p, .footer-social a { color: #D1D5DB; text-decoration: none; margin: 0 0.5rem; }
+.footer-contact p, .footer-social a { color: #D1D5DB; text-decoration: none; margin: 0 0.5rem; transition: color 0.3s ease;}
 .footer-social a:hover { color: white; }
 .footer-copyright { font-size: 0.875rem; color: #9CA3AF; margin-top: 1.5rem; }
 
 
 /* Penyesuaian Responsif */
-/* =================== Default Styles =================== */
-/* Semua style utama tanpa media query (untuk ukuran > 1024px) */
+@media (min-width: 768px) { /* Styles for tablet and wider */
+    .about-content {
+        flex-direction: row; /* Side-by-side for wider screens */
+        text-align: left;
+    }
+    .about-text {
+        text-align: left;
+    }
+    .about-illustration {
+        text-align: right; /* Or center, depending on desired layout */
+    }
+    .hero-right {
+        align-items: flex-start; /* Align text to left on desktop */
+        text-align: left; /* Align text to left on desktop */
+    }
+    .hero-buttons {
+        justify-content: flex-start; /* Align buttons to left on desktop */
+    }
+}
 
 
-/* =================== Tablet Landscape (≥ 1024px) =================== */
 @media (max-width: 1024px) {
   .hero-title {
-    font-size: 3.6rem;
+    font-size: 3.6rem; /* Adjusted for tablets */
   }
-  .hero-buttons {
-    gap: 0.75rem;
-  }
+  /* .hero-buttons {
+    gap: 0.75rem; No, keep it 1rem or adjust globally
+  } */
   .about-text h3 {
     font-size: 1.3rem;
   }
 }
 
-/* =================== Tablet Portrait (≥ 768px & ≤ 1023px) =================== */
-@media (max-width: 1023px) {
+@media (max-width: 767px) {
+  /* --- Sidebar Navigation Styles --- */
+  .nav-links { /* This IS the sidebar */
+      position: fixed;
+      top: 0;
+      left: 0; /* Start from the left edge */
+      width: 280px; /* Sidebar width */
+      height: 100vh; /* Full viewport height */
+      background-color: #ffffff; /* White background */
+      box-shadow: 3px 0px 15px rgba(0, 0, 0, 0.15); /* Softer shadow */
+      padding-top: 60px; /* Space for close button or logo if moved inside, or just top padding */
+      
+      display: flex; 
+      flex-direction: column; 
+      align-items: stretch; /* Stretch links to full width */
+      gap: 0; /* Remove desktop gap */
+
+      transform: translateX(-100%); /* Initially hidden off-screen to the left */
+      transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1); /* Smoother transition */
+      z-index: 1050; /* Above other content, below modal if any */
+  }
+
+  .nav-links.active {
+      transform: translateX(0); /* Slide in */
+  }
+
+  .nav-links .nav-a { /* Styling for links within the sidebar */
+      width: 100%; 
+      padding: 1rem 1.5rem; 
+      text-align: left;
+      color: var(--text-color);
+      font-weight: 500;
+      border-bottom: 1px solid #e7e7e7; /* Lighter separator */
+      transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  .nav-links .nav-a:last-child {
+      border-bottom: none;
+  }
+  .nav-links .nav-a:hover {
+      background-color: var(--section-bg-light); 
+      color: var(--blue-accent);
+  }
+  .nav-links .nav-a::after { /* Remove underline effect from desktop */
+      display: none;
+  }
+  
+  .mobile-menu-button {
+    display: block; /* Show hamburger button */
+    order: 3; /* If you want it at the end of the flex container (.nav-container) */
+  }
+
+  /* Adjust hero section for mobile */
+  .hero-section {
+    padding: 3rem 1rem; /* Less padding on mobile */
+    min-height: auto; /* Allow content to define height */
+  }
   .hero-content {
     flex-direction: column;
     text-align: center;
+    gap: 1.5rem; /* Reduced gap */
+  }
+  .hero-left img.portal-logo {
+      max-width: 45vh; /* Smaller logo on mobile */
+  }
+  .hero-right {
+    align-items: center; /* Center content in hero-right */
+    margin-top: 1rem; /* Spacing */
   }
   .hero-title {
-    font-size: 2.8rem;
+    font-size: 2.2rem; /* Smaller title */
   }
+  .tagline {
+    font-size: 1rem; /* Smaller tagline */
+    margin-bottom: 1.5rem;
+  }
+  .hero-buttons {
+    flex-direction: column; /* Stack buttons */
+    gap: 0.75rem;
+    width: 100%; /* Make buttons take more width if desired */
+    align-items: center;
+  }
+   .hero-button {
+    width: 80%; /* Example width for stacked buttons */
+    max-width: 300px;
+    padding: 0.75rem 1rem;
+   }
+
+
+  /* Other mobile adjustments */
   .about-content {
     flex-direction: column;
   }
   .highlight-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Stack highlight items */
   }
   .faq-container, .who-can-join-content {
-    padding: 0 1rem;
-  }
-}
-
-/* =================== Mobile (≥ 480px & ≤ 767px) =================== */
-@media (max-width: 767px) {
-  .nav-links {
-    flex-direction: column;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    width: 100%;
-    background-color: white;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    padding: 1rem 0;
-    display: none;
-  }
-  .hero-content {
-    flex-direction: column;
-    text-align: center;
-  }
-  .nav-links.active {
-    display: flex;
-  }
-    @media (max-width: 768px) {
-    .highlight-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-  .nav-a {
-    width: 100%;
-    text-align: center;
-    padding: 1rem;
+    padding: 0 1rem; /* Add horizontal padding to containers on mobile */
   }
 
-  .mobile-menu-button {
-    display: block;
-  }
-
-  .hero-title {
-    font-size: 2.2rem;
-  }
-
-  .tagline {
-    font-size: 1rem;
-  }
-
-  .hero-buttons {
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .guest-star-card img {
-    height: 40vh;
-  }
+  /* Timeline adjustments for mobile */
   .timeline-container::before {
     left: 20px; /* Garis agak ke kiri */
-    background-color: rgba(0, 0, 0, 0.1); /* Lebih soft */
     width: 2px;
   }
-
   .timeline-entry {
     width: 100%;
-    padding-left: 60px; /* Supaya tidak nabrak garis & titik */
-    padding-right: 20px;
+    padding-left: 50px; /* Supaya tidak nabrak garis & titik */
+    padding-right: 15px;
     left: 0 !important;
     text-align: left !important;
   }
-
   .timeline-entry .timeline-icon-dot {
     left: 20px; /* Sejajar dengan garis */
     right: auto;
     transform: translate(-50%, -50%); /* Pusatkan */
+    width: 28px; height: 28px; /* Slightly smaller dots */
   }
-
-  .timeline-entry .timeline-label::before {
+  .timeline-entry .timeline-icon-dot i {
+    font-size: 0.8rem;
+  }
+  .timeline-entry .timeline-label::before { /* Adjust arrow for left-aligned items */
     content: '';
-    left: -10px;
+    left: -8px; /* Adjust position */
     right: auto;
-    border-width: 10px 10px 10px 0;
+    border-width: 8px 8px 8px 0; /* Adjust size */
     border-color: transparent white transparent transparent;
   }
+  .timeline-date, .timeline-event {
+      text-align: left; /* Ensure text inside label is left-aligned */
+  }
 
 
-/* =================== Mobile Small (≤ 479px) =================== */
-@media (max-width: 479px) {
+  .guest-star-card img {
+    height: 250px; /* Adjust image height for mobile */
+  }
+  .section-title {
+    font-size: 1.8rem; /* Smaller section titles */
+  }
+  .cta-bottom-content h2 {
+    font-size: 1.6rem;
+  }
+}
+
+
+@media (max-width: 479px) { /* Small Mobile */
   .hero-title {
     font-size: 1.8rem;
   }
-
   .tagline {
-    font-size: 0.95rem;
-  }
-
-  .hero-button {
-    padding: 0.75rem 1.5rem;
     font-size: 0.9rem;
   }
-
+  .hero-button {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
+  }
   .faq-question h4 {
     font-size: 1rem;
   }
-
   .guest-star-card img {
-    height: 35vh;
+    height: 220px;
   }
-}
+  .nav-container {
+    padding: 0.75rem 1rem; /* Reduce nav padding */
+  }
+  .logo img {
+    height: 25px; /* Smaller logo */
+  }
+  .mobile-menu-button {
+    font-size: 1.6rem;
+  }
+  .nav-links { /* Sidebar on small mobile */
+    width: 250px; /* Can adjust if needed */
+  }
 }

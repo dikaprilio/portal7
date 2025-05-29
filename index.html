@@ -23,8 +23,10 @@
                 <a class="nav-a" href="#guest-stars">Guest Star</a>
                 <a class="nav-a" href="#faq">FAQ</a>
                 <a class="nav-a" href="#peserta">Peserta</a>
-                </div>
-
+            </div>
+            <button id="mobile-menu-toggle" class="mobile-menu-button" aria-label="Toggle menu" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </nav>
 
@@ -91,7 +93,7 @@
                     <p>Terbuka untuk semua peserta dan dilengkapi sesi:</p>
                     <ul class="seminar-list">
                         <li><i class="fas fa-chalkboard-teacher"></i> Coaching finalis Top 10</li>
-                        <li><i class="fas fa-lightbulb"></i> Pitching Day</li>
+                        <li><i class="fas fa-person"></i> Pitching Day</li>
                         <li><i class="fas fa-award"></i> Awarding Ceremony</li>
                         <li><i class="fas fa-comments"></i> Talkshow bersama pembicara inspiratif</li>
                     </ul>
@@ -140,7 +142,7 @@
                 </div>
                 <div class="timeline-entry">
                     <div class="timeline-icon-dot">
-                        <i class="fas fa-presentation"></i>
+                        <i class="fas fa-chalkboard-teacher"></i>
                     </div>
                     <div class="timeline-label">
                         <p class="timeline-date">15 September</p>
@@ -292,59 +294,92 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
-        
-        // JavaScript Dasar untuk Toggle Menu Mobile
         AOS.init();
         const menuToggleButton = document.getElementById('mobile-menu-toggle');
         const mainNavLinks = document.getElementById('main-nav-links');
-        const menuIcon = menuToggleButton.querySelector('i');
+        
+        // Check if menuToggleButton exists before trying to querySelector on it
+        let menuIcon = null;
+        if (menuToggleButton) {
+            menuIcon = menuToggleButton.querySelector('i');
+        }
 
-        menuToggleButton.addEventListener('click', () => {
-            const isExpanded = mainNavLinks.classList.toggle('active');
-            menuToggleButton.setAttribute('aria-expanded', isExpanded);
-            if (isExpanded) {
-                menuIcon.classList.remove('fa-bars');
-                menuIcon.classList.add('fa-times');
-            } else {
-                menuIcon.classList.remove('fa-times');
-                menuIcon.classList.add('fa-bars');
-            }
-        });
+        if (menuToggleButton && mainNavLinks) { // Ensure elements exist
+            menuToggleButton.addEventListener('click', () => {
+                const isExpanded = mainNavLinks.classList.toggle('active');
+                menuToggleButton.setAttribute('aria-expanded', isExpanded);
+                if (menuIcon) { // Check if menuIcon was found
+                    if (isExpanded) {
+                        menuIcon.classList.remove('fa-bars');
+                        menuIcon.classList.add('fa-times');
+                    } else {
+                        menuIcon.classList.remove('fa-times');
+                        menuIcon.classList.add('fa-bars');
+                    }
+                }
+            });
+        }
 
         // Smooth scroll untuk tautan navigasi
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
+                const targetHref = this.getAttribute('href');
+                // Only prevent default for actual internal links that are part of the sidebar/nav
+                if (targetHref.startsWith('#') && document.querySelector(targetHref)) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(targetHref);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
                 }
-                // Tutup menu mobile jika terbuka setelah klik
-                if (mainNavLinks.classList.contains('active')) {
+
+                // Tutup menu mobile jika terbuka setelah klik (specifically for links within mainNavLinks)
+                if (mainNavLinks && mainNavLinks.classList.contains('active') && this.closest('#main-nav-links')) {
                     mainNavLinks.classList.remove('active');
-                    menuToggleButton.setAttribute('aria-expanded', 'false');
-                    menuIcon.classList.remove('fa-times');
-                    menuIcon.classList.add('fa-bars');
+                    if (menuToggleButton) menuToggleButton.setAttribute('aria-expanded', 'false');
+                    if (menuIcon) { // Check if menuIcon was found
+                        menuIcon.classList.remove('fa-times');
+                        menuIcon.classList.add('fa-bars');
+                    }
                 }
             });
         });
 
-
-    </script>
-    <script>
+        // FAQ Accordion
         document.querySelectorAll('.faq-question').forEach((question) => {
             question.addEventListener('click', () => {
                 const currentItem = question.parentElement;
+                const isActive = currentItem.classList.contains('active');
+                
+                // Close all other items
                 document.querySelectorAll('.faq-item').forEach((item) => {
-                    if (item !== currentItem) item.classList.remove('active');
+                    if (item !== currentItem) {
+                        item.classList.remove('active');
+                        // Also reset icon for other items
+                        const otherIcon = item.querySelector('.faq-question .faq-icon i');
+                        if (otherIcon) {
+                            otherIcon.classList.remove('fa-minus'); // Assuming you use fa-minus for active
+                            otherIcon.classList.add('fa-plus');
+                        }
+                    }
                 });
+
+                // Toggle current item
                 currentItem.classList.toggle('active');
+                const currentIcon = question.querySelector('.faq-icon i');
+                if (currentIcon) {
+                    if (currentItem.classList.contains('active')) {
+                        currentIcon.classList.remove('fa-plus');
+                        currentIcon.classList.add('fa-minus'); // Change to minus or times
+                    } else {
+                        currentIcon.classList.remove('fa-minus');
+                        currentIcon.classList.add('fa-plus');
+                    }
+                }
             });
         });
     </script>
 </body>
 </html>
-
