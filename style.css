@@ -99,6 +99,28 @@ nav {
     margin-left: 5px;
     transition: transform 0.3s ease;
 }
+.nav-cta-button {
+    background-color: var(--orange-accent); /* Using orange accent from your theme */
+    color: white !important; /* Important to override .nav-a color */
+    padding: 0.6rem 1.2rem !important; /* Adjust padding, use !important if needed to override .nav-a padding */
+    border-radius: 6px; /* Rounded corners */
+    text-align: center;
+    font-weight: 600 !important; /* Bolder text */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-left: 0.5rem; /* Optional: add some space to its left */
+}
+
+.nav-cta-button::after { /* Remove the underline hover effect from .nav-a */
+    display: none !important;
+}
+
+.nav-cta-button:hover {
+    background-color: #dd6411; /* Darker orange, consistent with .button-main-cta:hover */
+    color: white !important; /* Ensure text color remains white on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
 
 .nav-item.dropdown:hover .dropdown-toggle .dropdown-icon {
     transform: rotate(180deg); /* Rotate icon on hover/open */
@@ -1736,6 +1758,20 @@ footer {
     .quirky-submit {
         width: 100%; /* Full width button on mobile */
     }
+    .nav-links.active .nav-cta-button { /* When mobile menu is open */
+        background-color: var(--orange-accent);
+        color: white !important;
+        padding: 0.8rem 1.5rem !important; /* Ensure padding is suitable for stacked items */
+        margin: 0.5rem 1.5rem; /* Add horizontal margin to center it or match other items */
+        display: block; /* Make it block to take available width or center */
+        text-align: center;
+        border-radius: 6px;
+    }
+
+    .nav-links.active .nav-cta-button:hover {
+        background-color: #dd6411; /* Darker orange */
+    }
+
 }
 
 @media (max-width: 991.98px) {
