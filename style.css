@@ -89,7 +89,54 @@ nav {
 .nav-a:hover::after {
     width: 100%;
 }
+/* Navigation Dropdown Styling */
+.nav-item.dropdown {
+    position: relative; /* Important for positioning the dropdown menu */
+}
 
+.dropdown-toggle .dropdown-icon {
+    font-size: 0.7em; /* Adjust icon size */
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+}
+
+.nav-item.dropdown:hover .dropdown-toggle .dropdown-icon {
+    transform: rotate(180deg); /* Rotate icon on hover/open */
+}
+
+.dropdown-menu {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 100%; /* Position below the parent link */
+    left: 0;
+    background-color: #fff; /* White background for dropdown */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 8px 8px; /* Rounded bottom corners */
+    z-index: 1010; /* Ensure it's above other content */
+    min-width: 200px; /* Minimum width for the dropdown */
+    padding: 0.5rem 0; /* Padding for the dropdown container */
+}
+
+.nav-item.dropdown:hover .dropdown-menu,
+.nav-item.dropdown.active .dropdown-menu { /* Added .active class for potential JS toggle */
+    display: block; /* Show on hover over the .nav-item.dropdown */
+}
+
+.dropdown-item {
+    display: block;
+    padding: 0.75rem 1.5rem; /* Padding for individual dropdown links */
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 0.9rem; /* Slightly smaller font for dropdown items */
+    white-space: nowrap; /* Prevent text wrapping */
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-item:hover {
+    background-color: var(--section-bg-light); /* Light background on hover */
+    color: var(--blue-accent); /* Accent color on hover */
+}
 .accessibility-icon-container a {
     color: var(--text-color);
     font-size: 1.5rem;
@@ -1160,6 +1207,42 @@ footer {
     display: flex;
     flex-direction: column;
 }
+/* style.css */
+
+.article-image-wrapper {
+    width: 100%;
+    height: 220px; /* Or your desired image height */
+    overflow: hidden;
+    background-color: #e9ecef; /* Background for the wrapper */
+    display: block; /* Important: Allows child img/fallback to fill it */
+    position: relative; /* For potential absolute positioning of overlays if needed */
+}
+
+/* Ensure both img and fallback div can fill the wrapper */
+.article-image-wrapper > img,
+.article-image-wrapper > .article-image-fallback {
+    width: 100%;
+    height: 100%;
+}
+
+.article-image {
+    object-fit: cover; /* Ensures image covers the area, might crop */
+}
+
+.article-image-fallback {
+    /* display: none; /* Initially hidden by inline style, JS shows it on error */
+    display: flex; /* Changed to flex for centering, JS toggles main img display:none */
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: var(--section-bg-light); /* Or #f0f0f0 */
+}
+
+.article-image-fallback i {
+    color: #ccc; /* Color for the placeholder icon */
+    font-size: 3rem; /* Size of the placeholder icon */
+}
 .article-title {
     font-size: 1.25rem;
     font-weight: 700; /* Bolder title */
@@ -1770,6 +1853,23 @@ footer {
   .nav-links.active {
       transform: translateX(0); /* Slide in */
   }
+    .nav-links.active .nav-item.dropdown .dropdown-menu {
+        display: none; /* Keep dropdowns initially hidden in mobile sidebar */
+        position: static; /* Override absolute positioning */
+        box-shadow: none;
+        border-radius: 0;
+        background-color: #fdfdfd; /* Slightly different bg for visual nesting */
+        padding-left: 1rem; /* Indent dropdown items */
+    }
+
+    .nav-links.active .nav-item.dropdown.open .dropdown-menu { /* Use 'open' class to show */
+        display: block;
+    }
+    
+    .nav-links.active .dropdown-toggle .dropdown-icon {
+        /* Style for mobile dropdown icon if needed, e.g., always visible */
+    }
+    
 
   .nav-links .nav-a { /* Styling for links within the sidebar */
       width: 100%; 

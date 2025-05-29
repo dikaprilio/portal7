@@ -17,14 +17,29 @@
             </a>
             <div class="nav-links" id="main-nav-links">
                 <a class="nav-a" href="#hero">Beranda</a>
-                <a class="nav-a" href="#tentang">Tentang</a>
-                <a class="nav-a" href="#highlight">Highlights</a>
-                <a class="nav-a" href="#linimasa">Linimasa</a>
-                <a class="nav-a" href="#guest-stars">Guest Star</a>
-                <a class="nav-a" href="#faq">FAQ</a>
-                <a class="nav-a" href="#peserta">Peserta</a>
-                <a class="nav-a" href="competition-hub.html">Competition Hub</a>
 
+                <div class="nav-item dropdown">
+                    <a class="nav-a dropdown-toggle" href="#">Tentang Portal <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="index.html#tentang">Tentang Kami</a>
+                        <a class="dropdown-item" href="index.html#highlight">Highlights</a>
+                        <a class="dropdown-item" href="index.html#linimasa">Linimasa</a>
+                        <a class="dropdown-item" href="index.html#guest-stars">Guest Star</a>
+                        <a class="dropdown-item" href="index.html#peserta">Siapa Peserta?</a>
+                        <a class="dropdown-item" href="index.html#faq">FAQ</a>
+                    </div>
+                </div>
+
+                <div class="nav-item dropdown">
+                    <a class="nav-a dropdown-toggle" href="#">Kompetisi <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="competition-hub.html">Competition Hub</a>
+                        <a class="dropdown-item" href="index.html#pendaftaran">Pendaftaran</a>
+                    </div>
+                </div>
+
+                <a class="nav-a" href="index.html#media">Media</a>
+                <a class="nav-a" href="index.html#kontak">Kontak Kami</a>
             </div>
             <button id="mobile-menu-toggle" class="mobile-menu-button" aria-label="Toggle menu" aria-expanded="false">
                 <i class="fas fa-bars"></i>
@@ -39,7 +54,8 @@
             <div class="hero-content">
                 <div class="hero-left">
                     <img src="img/Portal_Logo.png" alt="Logo Besar Portal 7" class="portal-logo hero-logo-entry">
-                </div> <div class="hero-right"> <h1 class="hero-title">
+                </div> 
+                <div class="hero-right"> <h1 class="hero-title">
                         <span class="hero-title-empower">Empower</span>
                         <span class="hero-title-digital">
                             <span class="char-d">D</span><span class="char-i1">i</span><span class="char-g">g</span><span class="char-i2">i</span><span class="char-t">t</span><span class="char-a">a</span><span class="char-l">l</span>
@@ -677,150 +693,155 @@
                 });
             }
         });
-            // --- Berita & Media Section Script ---
-    const blogArticlesContainer = document.querySelector('#blog-articles-container .articles-grid');
-    const galleryPhotosContainer = document.querySelector('#gallery-container .gallery-grid.photos');
-    const galleryVideosContainer = document.querySelector('#gallery-container .gallery-grid.videos');
-    const partnersSponsorsContainer = document.querySelector('#partners-sponsors-container .partners-grid');
-    const galleryTabs = document.querySelectorAll('.gallery-tab-button');
+                // --- Berita & Media Section Script ---
+        const blogArticlesContainer = document.querySelector('#blog-articles-container .articles-grid');
+        const galleryPhotosContainer = document.querySelector('#gallery-container .gallery-grid.photos');
+        const galleryVideosContainer = document.querySelector('#gallery-container .gallery-grid.videos');
+        const partnersSponsorsContainer = document.querySelector('#partners-sponsors-container .partners-grid');
+        const galleryTabs = document.querySelectorAll('.gallery-tab-button');
 
-    async function loadMediaContent() {
-        try {
-            const response = await fetch('media-content.json'); // Or 'data/media-content.json' if in a subfolder
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            const data = await response.json();
-
-            if (blogArticlesContainer) renderBlogArticles(data.blogArticles);
-            if (galleryPhotosContainer) renderGalleryPhotos(data.gallery.photos);
-            if (galleryVideosContainer) renderGalleryVideos(data.gallery.videos);
-            if (partnersSponsorsContainer) renderPartnersSponsors(data.partnersSponsors);
-
-        } catch (error) {
-            console.error("Gagal memuat konten media:", error);
-            if (blogArticlesContainer) blogArticlesContainer.innerHTML = '<p class="error-message">Gagal memuat artikel. Silakan coba lagi nanti.</p>';
-            if (galleryPhotosContainer) galleryPhotosContainer.innerHTML = '<p class="error-message">Gagal memuat foto. Silakan coba lagi nanti.</p>';
-            if (galleryVideosContainer) galleryVideosContainer.innerHTML = '<p class="error-message">Gagal memuat video. Silakan coba lagi nanti.</p>';
-            if (partnersSponsorsContainer) partnersSponsorsContainer.innerHTML = '<p class="error-message">Gagal memuat informasi mitra. Silakan coba lagi nanti.</p>';
-        }
-    }
-
-    function renderBlogArticles(articles) {
-        if (!articles || articles.length === 0) {
-            blogArticlesContainer.innerHTML = '<p>Belum ada artikel untuk ditampilkan.</p>';
-            return;
-        }
-        blogArticlesContainer.innerHTML = ''; // Clear loading
-        articles.slice(0, 3).forEach(article => { // Show max 3 on homepage
-            const articleCard = `
-                <div class="article-card" data-aos="fade-up" data-aos-anchor="#blog-articles-container">
-                    <a href="${article.link}" class="article-card-link">
-                        <div class="article-image-wrapper">
-                            <img src="${article.image}" alt="${article.title}" class="article-image" onerror="this.style.display='none'; this.parentElement.style.backgroundColor='var(--section-bg-light)';this.parentElement.innerHTML+='<i class=\\'fas fa-image fa-3x\\' style=\\'color: #ccc;\\'></i>';">
-                        </div>
-                        <div class="article-content">
-                            <h4 class="article-title">${article.title}</h4>
-                            <p class="article-meta">${article.date} | Oleh: ${article.author}</p>
-                            <p class="article-summary">${article.summary}</p>
-                            <span class="article-link-text">Baca Selengkapnya <i class="fas fa-arrow-right"></i></span>
-                        </div>
-                    </a>
-                </div>
-            `;
-            blogArticlesContainer.insertAdjacentHTML('beforeend', articleCard);
-        });
-    }
-
-    function renderGalleryPhotos(photos) {
-        if (!photos || photos.length === 0) {
-            galleryPhotosContainer.innerHTML = '<p>Belum ada foto untuk ditampilkan.</p>';
-            return;
-        }
-        galleryPhotosContainer.innerHTML = ''; // Clear loading
-        photos.slice(0, 6).forEach(photo => { // Show max 6 photos
-            // For a lightbox, you'd typically wrap the img in an <a> tag
-            // Example: <a href="${photo.fullUrl}" data-lightbox="portal-gallery" data-title="${photo.title}">...</a>
-            // You'll need to include a lightbox library like Lightbox2 for this to work.
-            const photoItem = `
-                <div class="gallery-item photo" data-aos="zoom-in-up" data-aos-anchor="#gallery-container">
-                    <img src="${photo.thumbnailUrl}" alt="${photo.title}" onerror="this.src='https://placehold.co/300x300/e0e0e0/757575?text=Foto+Error&font=montserrat';">
-                    <div class="gallery-item-overlay">
-                        <i class="fas fa-search-plus"></i>
-                        <span>${photo.title} (${photo.year || ''})</span>
-                    </div>
-                </div>
-            `;
-            galleryPhotosContainer.insertAdjacentHTML('beforeend', photoItem);
-        });
-    }
-
-    function renderGalleryVideos(videos) {
-        if (!videos || videos.length === 0) {
-            galleryVideosContainer.innerHTML = '<p>Belum ada video untuk ditampilkan.</p>';
-            return;
-        }
-        galleryVideosContainer.innerHTML = ''; // Clear loading
-        videos.slice(0, 3).forEach(video => { // Show max 3 videos
-            // For a video lightbox (like Fancybox), wrap in an <a> tag
-            // Example: <a href="${video.videoUrl}" data-fancybox="gallery-video" data-caption="${video.title}">...</a>
-            const videoItem = `
-                <div class="gallery-item video" data-aos="zoom-in-up" data-aos-anchor="#gallery-container">
-                    <img src="${video.thumbnailUrl}" alt="${video.title}" onerror="this.src='https://placehold.co/300x200/e0e0e0/757575?text=Video+Error&font=montserrat';">
-                    <div class="gallery-item-overlay">
-                        <i class="fas fa-play-circle"></i>
-                        <span>${video.title}</span>
-                    </div>
-                </div>
-            `;
-            galleryVideosContainer.insertAdjacentHTML('beforeend', videoItem);
-        });
-    }
-
-    function renderPartnersSponsors(items) {
-        if (!items || items.length === 0) {
-            partnersSponsorsContainer.innerHTML = '<p>Informasi mitra dan sponsor akan segera kami tampilkan.</p>';
-            return;
-        }
-        partnersSponsorsContainer.innerHTML = ''; // Clear loading
-        items.forEach(item => {
-            const partnerItem = `
-                <div class="partner-item" data-aos="fade-up" data-aos-anchor="#partners-sponsors-container">
-                    <a href="${item.websiteUrl}" target="_blank" rel="noopener noreferrer" title="${item.name} (${item.type})">
-                        <img src="${item.logoUrl}" alt="${item.name}" onerror="this.parentElement.innerHTML = '<span class=\\'partner-name-fallback\\'>${item.name}</span>';">
-                    </a>
-                </div>
-            `;
-            partnersSponsorsContainer.insertAdjacentHTML('beforeend', partnerItem);
-        });
-    }
-
-    // Gallery Tab switching logic
-    if (galleryTabs.length > 0) {
-        galleryTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                galleryTabs.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-
-                document.querySelectorAll('#gallery-container .gallery-grid').forEach(content => {
-                    content.classList.remove('active-gallery-content');
-                });
-                
-                const targetContentClass = tab.dataset.tab;
-                const newActiveContent = document.querySelector(`#gallery-container .gallery-grid.${targetContentClass}`);
-                if (newActiveContent) {
-                    newActiveContent.classList.add('active-gallery-content');
+        async function loadMediaContent() {
+            try {
+                const response = await fetch('media-content.json'); // Or 'data/media-content.json' if in a subfolder
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
                 }
-            });
-        });
-    }
+                const data = await response.json();
 
-    // Load content when DOM is ready (if not already handled by placement at end of body)
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', loadMediaContent);
-    } else {
-        loadMediaContent(); // Or call it if DOM is already interactive
-    }
+                if (blogArticlesContainer) renderBlogArticles(data.blogArticles);
+                if (galleryPhotosContainer) renderGalleryPhotos(data.gallery.photos);
+                if (galleryVideosContainer) renderGalleryVideos(data.gallery.videos);
+                if (partnersSponsorsContainer) renderPartnersSponsors(data.partnersSponsors);
+
+            } catch (error) {
+                console.error("Gagal memuat konten media:", error);
+                if (blogArticlesContainer) blogArticlesContainer.innerHTML = '<p class="error-message">Gagal memuat artikel. Silakan coba lagi nanti.</p>';
+                if (galleryPhotosContainer) galleryPhotosContainer.innerHTML = '<p class="error-message">Gagal memuat foto. Silakan coba lagi nanti.</p>';
+                if (galleryVideosContainer) galleryVideosContainer.innerHTML = '<p class="error-message">Gagal memuat video. Silakan coba lagi nanti.</p>';
+                if (partnersSponsorsContainer) partnersSponsorsContainer.innerHTML = '<p class="error-message">Gagal memuat informasi mitra. Silakan coba lagi nanti.</p>';
+            }
+        }
+
+        function renderBlogArticles(articles) {
+            if (!blogArticlesContainer) return; // Guard clause
+            if (!articles || articles.length === 0) {
+                blogArticlesContainer.innerHTML = '<p>Belum ada artikel untuk ditampilkan.</p>';
+                return;
+            }
+            blogArticlesContainer.innerHTML = ''; // Clear loading message
+
+            articles.slice(0, 3).forEach(article => { // Displaying max 3 articles on homepage
+                const articleCardHTML = `
+                    <div class="article-card" data-aos="fade-up" data-aos-anchor="#blog-articles-container">
+                        <a href="${article.link}" class="article-card-link">
+                            <div class="article-image-wrapper">
+                                <img src="${article.image}" alt="${article.title}" class="article-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <div class="article-image-fallback" style="display: none;">
+                                    <i class="fas fa-image fa-3x"></i>
+                                </div>
+                            </div>
+                            <div class="article-content">
+                                <h4 class="article-title">${article.title}</h4>
+                                <p class="article-meta">${article.date} | Oleh: ${article.author}</p>
+                                <p class="article-summary">${article.summary}</p>
+                                <span class="article-link-text">Baca Selengkapnya <i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </a>
+                    </div>
+                `;
+                blogArticlesContainer.insertAdjacentHTML('beforeend', articleCardHTML);
+            });
+        }
+
+        function renderGalleryPhotos(photos) {
+            if (!photos || photos.length === 0) {
+                galleryPhotosContainer.innerHTML = '<p>Belum ada foto untuk ditampilkan.</p>';
+                return;
+            }
+            galleryPhotosContainer.innerHTML = ''; // Clear loading
+            photos.slice(0, 6).forEach(photo => { // Show max 6 photos
+                // For a lightbox, you'd typically wrap the img in an <a> tag
+                // Example: <a href="${photo.fullUrl}" data-lightbox="portal-gallery" data-title="${photo.title}">...</a>
+                // You'll need to include a lightbox library like Lightbox2 for this to work.
+                const photoItem = `
+                    <div class="gallery-item photo" data-aos="zoom-in-up" data-aos-anchor="#gallery-container">
+                        <img src="${photo.thumbnailUrl}" alt="${photo.title}" onerror="this.src='https://placehold.co/300x300/e0e0e0/757575?text=Foto+Error&font=montserrat';">
+                        <div class="gallery-item-overlay">
+                            <i class="fas fa-search-plus"></i>
+                            <span>${photo.title} (${photo.year || ''})</span>
+                        </div>
+                    </div>
+                `;
+                galleryPhotosContainer.insertAdjacentHTML('beforeend', photoItem);
+            });
+        }
+
+        function renderGalleryVideos(videos) {
+            if (!videos || videos.length === 0) {
+                galleryVideosContainer.innerHTML = '<p>Belum ada video untuk ditampilkan.</p>';
+                return;
+            }
+            galleryVideosContainer.innerHTML = ''; // Clear loading
+            videos.slice(0, 3).forEach(video => { // Show max 3 videos
+                // For a video lightbox (like Fancybox), wrap in an <a> tag
+                // Example: <a href="${video.videoUrl}" data-fancybox="gallery-video" data-caption="${video.title}">...</a>
+                const videoItem = `
+                    <div class="gallery-item video" data-aos="zoom-in-up" data-aos-anchor="#gallery-container">
+                        <img src="${video.thumbnailUrl}" alt="${video.title}" onerror="this.src='https://placehold.co/300x200/e0e0e0/757575?text=Video+Error&font=montserrat';">
+                        <div class="gallery-item-overlay">
+                            <i class="fas fa-play-circle"></i>
+                            <span>${video.title}</span>
+                        </div>
+                    </div>
+                `;
+                galleryVideosContainer.insertAdjacentHTML('beforeend', videoItem);
+            });
+        }
+
+        function renderPartnersSponsors(items) {
+            if (!items || items.length === 0) {
+                partnersSponsorsContainer.innerHTML = '<p>Informasi mitra dan sponsor akan segera kami tampilkan.</p>';
+                return;
+            }
+            partnersSponsorsContainer.innerHTML = ''; // Clear loading
+            items.forEach(item => {
+                const partnerItem = `
+                    <div class="partner-item" data-aos="fade-up" data-aos-anchor="#partners-sponsors-container">
+                        <a href="${item.websiteUrl}" target="_blank" rel="noopener noreferrer" title="${item.name} (${item.type})">
+                            <img src="${item.logoUrl}" alt="${item.name}" onerror="this.parentElement.innerHTML = '<span class=\\'partner-name-fallback\\'>${item.name}</span>';">
+                        </a>
+                    </div>
+                `;
+                partnersSponsorsContainer.insertAdjacentHTML('beforeend', partnerItem);
+            });
+        }
+
+        // Gallery Tab switching logic
+        if (galleryTabs.length > 0) {
+            galleryTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    galleryTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    document.querySelectorAll('#gallery-container .gallery-grid').forEach(content => {
+                        content.classList.remove('active-gallery-content');
+                    });
+                    
+                    const targetContentClass = tab.dataset.tab;
+                    const newActiveContent = document.querySelector(`#gallery-container .gallery-grid.${targetContentClass}`);
+                    if (newActiveContent) {
+                        newActiveContent.classList.add('active-gallery-content');
+                    }
+                });
+            });
+        }
+
+        // Load content when DOM is ready (if not already handled by placement at end of body)
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadMediaContent);
+        } else {
+            loadMediaContent(); // Or call it if DOM is already interactive
+        }
 
     </script>
 </body>
