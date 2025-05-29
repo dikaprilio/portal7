@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Portal 7 - Momen & Karya</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    </head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="img/Portal_Logo.png" alt="Logo Portal 7" onerror="this.onerror=null;this.src='https://placehold.co/120x30/cccccc/ffffff?text=P7+Logo';">
+            </a>
+            <div class="nav-links" id="main-nav-links">
+                <a class="nav-a" href="index.html#hero">Beranda</a>
+                <div class="nav-item dropdown">
+                    <a class="nav-a dropdown-toggle" href="#">Tentang Portal <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="index.html#tentang">Tentang Kami</a>
+                        <a class="dropdown-item" href="index.html#highlight">Highlights</a>
+                        <a class="dropdown-item" href="index.html#linimasa">Linimasa</a>
+                        <a class="dropdown-item" href="index.html#guest-stars">Guest Star</a>
+                        <a class="dropdown-item" href="index.html#peserta">Siapa Peserta?</a>
+                        <a class="dropdown-item" href="index.html#faq">FAQ</a>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a class="nav-a dropdown-toggle" href="#">Event <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="competition-hub.html">Kompetisi</a>
+                        <a class="dropdown-item" href="seminar.html">Seminar</a>
+                    </div>
+                </div>
+                <a class="nav-a" href="index.html#media">Media</a> <a class="nav-a" href="index.html#kontak">Kontak Kami</a>
+                <a class="nav-a nav-cta-button" href="index.html#pendaftaran">Pendaftaran</a>
+            </div>
+            <button id="mobile-menu-toggle" class="mobile-menu-button" aria-label="Toggle menu" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <section class="gallery-page-hero section-padding" id="gallery-page-top">
+            <div class="container">
+                <h1 class="section-title" data-aos="fade-up">Galeri Portal 7</h1>
+                <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Jelajahi momen tak terlupakan dan karya-karya inspiratif dari rangkaian acara Portal 7.</p>
+            </div>
+        </section>
+
+        <section class="gallery-section section-padding">
+            <div class="container">
+                <div class="gallery-tabs" data-aos="fade-up">
+                    <button class="gallery-tab-button active" data-tab="photos-all">Foto Dokumentasi</button>
+                    <button class="gallery-tab-button" data-tab="videos-all">Video Highlights</button>
+                </div>
+
+                <div class="gallery-grid-wrapper">
+                    <div class="gallery-grid photos-all active-gallery-content" id="all-photos-grid" data-aos="fade-up" data-aos-delay="200">
+                        <p class="loading-message">Memuat semua foto...</p>
+                    </div>
+                    <div class="gallery-grid videos-all" id="all-videos-grid" data-aos="fade-up" data-aos-delay="200">
+                        <p class="loading-message">Memuat semua video...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="lightbox-modal" class="lightbox-modal">
+        <span class="lightbox-close">&times;</span>
+        <div class="lightbox-content">
+            <img id="lightbox-image" src="#" alt="Lightbox Image">
+            <iframe id="lightbox-video" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <div id="lightbox-caption" class="lightbox-caption"></div>
+        </div>
+        <a class="lightbox-prev" aria-label="Previous image">&#10094;</a>
+        <a class="lightbox-next" aria-label="Next image">&#10095;</a>
+    </div>
+
+    <footer>
+        </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // --- Standard Scripts (AOS, Mobile Menu, Dropdowns, Basic Smooth Scroll) ---
+        // You can copy the script block from competition-hub.html (the simplified one)
+        // or seminar.html as a base.
+        // Ensure variable names for menu toggle etc. are unique if needed, or ensure scope.
+        // For brevity, I'll outline the NEW gallery-specific JS below.
+
+        // --- AOS Initialization ---
+        AOS.init({
+            duration: 800,
+            once: true,
+        });
+
+        // --- Mobile Menu Toggle ---
+        const menuToggleButtonGallery = document.getElementById('mobile-menu-toggle');
+        const mainNavLinksGallery = document.getElementById('main-nav-links');
+        let menuIconGallery = menuToggleButtonGallery ? menuToggleButtonGallery.querySelector('i') : null;
+
+        if (menuToggleButtonGallery && mainNavLinksGallery) {
+            menuToggleButtonGallery.addEventListener('click', () => {
+                const isExpanded = mainNavLinksGallery.classList.toggle('active');
+                menuToggleButtonGallery.setAttribute('aria-expanded', isExpanded);
+                if (menuIconGallery) {
+                    if (isExpanded) {
+                        menuIconGallery.classList.remove('fa-bars');
+                        menuIconGallery.classList.add('fa-times');
+                    } else {
+                        menuIconGallery.classList.remove('fa-times');
+                        menuIconGallery.classList.add('fa-bars');
+                    }
+                }
+                if (!isExpanded) {
+                    document.querySelectorAll('.nav-links .nav-item.dropdown.open').forEach(openDropdown => {
+                        openDropdown.classList.remove('open');
+                    });
+                }
+            });
+        }
+
+        // --- Basic Smooth scroll for SAME-PAGE anchor links on this page (if any) ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetHref = this.getAttribute('href');
+                if (targetHref && targetHref.length > 1 && targetHref.startsWith("#")) {
+                    try {
+                        const targetElement = document.querySelector(targetHref);
+                        if (targetElement) {
+                            e.preventDefault();
+                            const navElement = document.querySelector('nav');
+                            const navHeight = navElement ? navElement.offsetHeight : 0;
+                            const targetElementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                            const offsetPosition = targetElementPosition - navHeight;
+                            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                        }
+                    } catch (error) { /* console.warn("Smooth scroll target not found:", targetHref); */ }
+                }
+                if (mainNavLinksGallery && mainNavLinksGallery.classList.contains('active') && this.closest('#main-nav-links')) {
+                    mainNavLinksGallery.classList.remove('active');
+                    if (menuToggleButtonGallery) menuToggleButtonGallery.setAttribute('aria-expanded', 'false');
+                    if (menuIconGallery) { menuIconGallery.classList.remove('fa-times'); menuIconGallery.classList.add('fa-bars'); }
+                    document.querySelectorAll('.nav-links .nav-item.dropdown.open').forEach(openDropdown => {
+                        openDropdown.classList.remove('open');
+                    });
+                }
+            });
+        });
+
+        // --- Mobile Dropdown Toggle Script ---
+        document.querySelectorAll('.nav-links .dropdown-toggle').forEach(toggle => {
+            toggle.addEventListener('click', function(e) {
+                if (this.getAttribute('href') === '#') { e.preventDefault(); }
+                const mainNav = document.getElementById('main-nav-links');
+                if (mainNav && mainNav.classList.contains('active')) { 
+                    const parentDropdown = this.parentElement;
+                    parentDropdown.classList.toggle('open');
+                    document.querySelectorAll('.nav-links .nav-item.dropdown.open').forEach(openDropdown => {
+                        if (openDropdown !== parentDropdown) { openDropdown.classList.remove('open'); }
+                    });
+                }
+            });
+        });
+        
+        // --- Close mobile menu on link click (general) ---
+         document.addEventListener('click', function(event) {
+            const mainNav = document.getElementById('main-nav-links');
+            if (mainNav && mainNav.classList.contains('active')) {
+                if ( (event.target.matches('.nav-links.active .nav-a') && !event.target.matches('.dropdown-toggle')) || 
+                      event.target.matches('.nav-links.active .dropdown-item') ) {
+                    document.querySelectorAll('.nav-links .nav-item.dropdown.open').forEach(openDropdown => {
+                        openDropdown.classList.remove('open');
+                    });
+                    mainNav.classList.remove('active');
+                    if (menuToggleButtonGallery) menuToggleButtonGallery.setAttribute('aria-expanded', 'false');
+                    if (menuIconGallery) { menuIconGallery.classList.remove('fa-times'); menuIconGallery.classList.add('fa-bars');}
+                }
+            }
+        });
+
+        // --- Gallery Specific JavaScript ---
+        const allPhotosContainer = document.getElementById('all-photos-grid');
+        const allVideosContainer = document.getElementById('all-videos-grid');
+        const galleryPageTabs = document.querySelectorAll('.gallery-section .gallery-tab-button'); // Be specific to this page's tabs
+
+        // Lightbox elements
+        const lightbox = document.getElementById('lightbox-modal');
+        const lightboxImage = document.getElementById('lightbox-image');
+        const lightboxVideo = document.getElementById('lightbox-video');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+        const lightboxClose = document.querySelector('.lightbox-close');
+        const lightboxPrev = document.querySelector('.lightbox-prev');
+        const lightboxNext = document.querySelector('.lightbox-next');
+        let currentItems = [];
+        let currentIndex = 0;
+        let currentType = 'photos'; // 'photos' or 'videos'
+
+        async function loadAllGalleryContent() {
+            try {
+                const response = await fetch('media-content.json');
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                const data = await response.json();
+
+                if (allPhotosContainer) renderAllGalleryItems(data.gallery.photos, allPhotosContainer, 'photo');
+                if (allVideosContainer) renderAllGalleryItems(data.gallery.videos, allVideosContainer, 'video');
+
+            } catch (error) {
+                console.error("Gagal memuat konten galeri lengkap:", error);
+                if (allPhotosContainer) allPhotosContainer.innerHTML = '<p class="error-message">Gagal memuat foto.</p>';
+                if (allVideosContainer) allVideosContainer.innerHTML = '<p class="error-message">Gagal memuat video.</p>';
+            }
+        }
+
+        function renderAllGalleryItems(items, container, type) {
+            if (!items || items.length === 0) {
+                container.innerHTML = `<p>Belum ada ${type === 'photo' ? 'foto' : 'video'} untuk ditampilkan.</p>`;
+                return;
+            }
+            container.innerHTML = ''; // Clear loading message
+
+            items.forEach((item, index) => {
+                const galleryItemDiv = document.createElement('div');
+                galleryItemDiv.classList.add('gallery-item', type);
+                galleryItemDiv.setAttribute('data-aos', 'zoom-in-up');
+                galleryItemDiv.innerHTML = `
+                    <img src="${item.thumbnailUrl}" alt="${item.title}" onerror="this.src='https://placehold.co/300x300/e0e0e0/757575?text=Error&font=montserrat';">
+                    <div class="gallery-item-overlay">
+                        <i class="fas ${type === 'photo' ? 'fa-search-plus' : 'fa-play-circle'}"></i>
+                        <span>${item.title} ${item.year ? '('+item.year+')' : ''}</span>
+                    </div>
+                `;
+                galleryItemDiv.addEventListener('click', () => openLightbox(items, index, type));
+                container.appendChild(galleryItemDiv);
+            });
+        }
+
+        // Tab Switching for Gallery Page
+        if (galleryPageTabs.length > 0) {
+            galleryPageTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    galleryPageTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    document.querySelectorAll('.gallery-section .gallery-grid').forEach(content => {
+                        content.classList.remove('active-gallery-content');
+                    });
+                    const targetContentClass = tab.dataset.tab; // e.g., "photos-all" or "videos-all"
+                    const newActiveContent = document.querySelector(`.gallery-section .gallery-grid.${targetContentClass}`);
+                    if (newActiveContent) {
+                        newActiveContent.classList.add('active-gallery-content');
+                    }
+                });
+            });
+        }
+        
+        // Lightbox Functions
+        function openLightbox(items, index, type) {
+            currentItems = items;
+            currentIndex = index;
+            currentType = type;
+            updateLightboxContent();
+            lightbox.style.display = 'flex'; // Use flex for centering
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeLightbox() {
+            lightbox.style.display = 'none';
+            lightboxImage.style.display = 'none';
+            lightboxVideo.style.display = 'none';
+            lightboxVideo.src = ""; // Stop video
+            document.body.style.overflow = 'auto';
+        }
+
+        function updateLightboxContent() {
+            const item = currentItems[currentIndex];
+            lightboxImage.style.display = 'none';
+            lightboxVideo.style.display = 'none';
+            lightboxVideo.src = ""; // Stop previous video
+
+            if (currentType === 'photo') {
+                lightboxImage.src = item.fullUrl || item.thumbnailUrl; // Fallback to thumb if fullUrl is missing
+                lightboxImage.alt = item.title;
+                lightboxImage.style.display = 'block';
+            } else if (currentType === 'video') {
+                // Assuming YouTube embeddable URLs are in item.videoUrl
+                // Basic conversion for YouTube: "watch?v=" to "embed/"
+                let videoEmbedUrl = item.videoUrl;
+                if (videoEmbedUrl.includes("youtube.com/watch?v=")) {
+                    videoEmbedUrl = videoEmbedUrl.replace("watch?v=", "embed/");
+                } else if (videoEmbedUrl.includes("youtu.be/")) {
+                    videoEmbedUrl = videoEmbedUrl.replace("youtu.be/", "youtube.com/embed/");
+                }
+                // Add other providers if needed
+                lightboxVideo.src = videoEmbedUrl;
+                lightboxVideo.style.display = 'block';
+            }
+            lightboxCaption.textContent = item.title + (item.description ? ` - ${item.description}` : '');
+            
+            lightboxPrev.style.display = currentItems.length > 1 ? 'block' : 'none';
+            lightboxNext.style.display = currentItems.length > 1 ? 'block' : 'none';
+        }
+
+        function showPrevItem() {
+            currentIndex = (currentIndex - 1 + currentItems.length) % currentItems.length;
+            updateLightboxContent();
+        }
+
+        function showNextItem() {
+            currentIndex = (currentIndex + 1) % currentItems.length;
+            updateLightboxContent();
+        }
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxPrev.addEventListener('click', showPrevItem);
+        lightboxNext.addEventListener('click', showNextItem);
+        
+        // Close lightbox on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.style.display === 'flex') {
+                closeLightbox();
+            }
+            if (lightbox.style.display === 'flex' && currentItems.length > 1) {
+                if (e.key === 'ArrowLeft') showPrevItem();
+                if (e.key === 'ArrowRight') showNextItem();
+            }
+        });
+        
+        // Close lightbox on outside click
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) { // Clicked on the modal backdrop
+                closeLightbox();
+            }
+        });
+
+
+        // Load initial content
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadAllGalleryContent);
+        } else {
+            loadAllGalleryContent();
+        }
+    </script>
+</body>
+</html>

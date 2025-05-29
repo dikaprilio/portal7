@@ -15,7 +15,7 @@
       "date": "25 Mei 2025",
       "author": "Juri Film Portal 7",
       "summary": "Dapatkan bocoran langsung dari para juri mengenai kriteria penilaian, storytelling yang kuat, dan ekspektasi mereka terhadap karya film pendek.",
-      "image": "img/blog/artikel2_thumbnail.jpg",
+      "image": "img/jovial.jpeg",
       "link": "blog-detail.html?id=artikel-2"
     },
     {
@@ -24,7 +24,7 @@
       "date": "22 Mei 2025",
       "author": "Redaksi Portal 7",
       "summary": "Simak perjalanan alumni Portal 7 yang berhasil mengaplikasikan ilmunya di dunia kerja dan industri kreatif.",
-      "image": "img/blog/artikel3_thumbnail.jpg",
+      "image": "img/kevin.jpg",
       "link": "blog-detail.html?id=artikel-3"
     }
   ],
@@ -34,8 +34,8 @@
         "id": "foto-1",
         "title": "Suasana Seminar Portal 6",
         "year": "2024",
-        "thumbnailUrl": "img/gallery/thumbs/seminar_2024_thumb.jpg",
-        "fullUrl": "img/gallery/full/seminar_2024_full.jpg",
+        "thumbnailUrl": "img/jovial.jpeg",
+        "fullUrl": "img/jovial.jpeg",
         "description": "Antusiasme peserta saat sesi talkshow inspiratif."
       },
       {

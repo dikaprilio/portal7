@@ -1710,69 +1710,239 @@ footer {
     filter: hue-rotate(45deg) saturate(1.2); /* Quirky map colors */
 }
 
+/* Add to your style.css */
+
+/* Optional: Specific Hero style for Seminar page if different from competition hub */
+.seminar-hero { /* If you use this class */
+    /* background-color: var(--blue-accent); /* Example: Different hero color */
+    /* You can reuse .competition-hub-hero if the style is similar */
+}
+.seminar-hero h1 span { /* If you want the pill shape like competition hub */
+    background-color: var(--orange-accent); /* Example: Orange accent for seminar title pill */
+    /* padding: 0.5rem 2rem; */
+    /* border-radius: 50px / 50px; */
+    /* display: inline-block; */
+    /* box-shadow: 0 4px 10px rgba(0,0,0,0.2); */
+}
+
+
+.seminar-event-card {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    margin-bottom: 2.5rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start; /* Align icon to the top of content */
+}
+
+.seminar-event-icon {
+    flex-shrink: 0;
+    color: var(--primary-color); /* Or a specific accent */
+    /* background-color: var(--section-bg-light); */
+    /* padding: 1rem; */
+    /* border-radius: 50%; */
+    /* width: 80px; */
+    /* height: 80px; */
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: center; */
+}
+.seminar-event-icon i {
+    color: var(--pink-accent); /* Example */
+}
+
+
+.seminar-event-details h3 {
+    font-size: 1.75rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.seminar-event-details .event-date {
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+.seminar-event-details p {
+    margin-bottom: 1rem;
+    line-height: 1.7;
+}
+
+.seminar-event-details h4 {
+    font-size: 1.1rem;
+    color: var(--blue-accent);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.seminar-event-details ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 1rem;
+}
+
+.seminar-event-details ul li {
+    margin-bottom: 0.4rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.seminar-event-details ul li::before {
+    content: '\f105'; /* FontAwesome angle-right or check */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: var(--orange-accent);
+    position: absolute;
+    left: 0;
+    top: 3px;
+}
+
+.registration-cta { /* For the CTA section at the bottom of seminar.html */
+    text-align: center;
+    background-color: var(--section-bg-light);
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    margin-top: 2rem;
+}
+/* Add to your style.css */
+
+/* Gallery Page Specific Hero (Optional) */
+.gallery-page-hero {
+    background-color: var(--section-bg-light); /* Or a gradient/image */
+    text-align: center;
+}
+.gallery-page-hero .section-title {
+    color: var(--primary-color);
+}
+.gallery-page-hero .section-subtitle {
+    color: #555;
+}
+
+/* Gallery Section on Gallery Page */
+.gallery-section {
+    /* padding-top: 1rem; /* Reduce top padding if hero is present */
+}
+
+/* Ensure .gallery-grid has enough distinct styling for full page */
+.gallery-grid {
+    /* display: grid; /* This is set by JS when active */
+    /* grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust minmax for desired size */
+    /* gap: 1.5rem; */ /* Existing gap is 1rem, can adjust */
+}
+
+/* Gallery Item Styling (Can reuse/enhance from existing) */
+.gallery-item { /* Existing styles are good, ensure aspect-ratio fits your items */
+    /* aspect-ratio: 4 / 3; /* For more rectangular items, or keep 1/1 for square */
+}
+
+/* --- Basic Lightbox Modal Styles --- */
+.lightbox-modal {
+    display: none; /* Hidden by default, shown by JS */
+    position: fixed;
+    z-index: 2000; /* Above everything else */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Enable scroll if content is too big, though image/video should scale */
+    background-color: rgba(0,0,0,0.9);
+    align-items: center; /* Vertically center content */
+    justify-content: center; /* Horizontally center content */
+    padding: 20px; /* Padding around the content area for smaller screens */
+}
+
+.lightbox-content {
+    position: relative;
+    margin: auto;
+    padding: 0;
+    max-width: 90vw; /* Max width of content */
+    max-height: 90vh; /* Max height of content */
+    display: flex; /* Helps in centering image/video if they don't fill max-width/height */
+    flex-direction: column; /* Stack image/video and caption */
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-content img,
+.lightbox-content iframe {
+    display: none; /* Hide both initially, JS will show one */
+    max-width: 100%;
+    max-height: calc(90vh - 60px); /* Adjust based on caption height and desired padding */
+    border-radius: 4px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.5);
+    object-fit: contain; /* Ensure whole image/video is visible */
+}
+.lightbox-content iframe {
+    aspect-ratio: 16 / 9; /* Maintain video aspect ratio */
+    width: 100%; /* Try to fill width up to max-width */
+    max-width: 1000px; /* Limit video width */
+}
+
+
+.lightbox-caption {
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    font-size: 0.9rem;
+    max-width: 80%;
+    margin-top: 10px;
+    line-height: 1.4;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+    z-index: 2001; /* Above content */
+}
+.lightbox-close:hover,
+.lightbox-close:focus {
+    color: #bbb;
+    text-decoration: none;
+}
+
+.lightbox-prev,
+.lightbox-next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -30px; /* Adjust based on final icon size + padding */
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    transition: 0.3s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    background-color: rgba(0,0,0,0.3);
+    z-index: 2001;
+}
+.lightbox-next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+.lightbox-prev {
+    left: 0;
+}
+.lightbox-prev:hover,
+.lightbox-next:hover {
+    background-color: rgba(0,0,0,0.6);
+}
 
 
 /* Penyesuaian Responsif */
-@media (min-width: 768px) { /* Styles for tablet and wider */
-    .about-content {
-        flex-direction: row; /* Side-by-side for wider screens */
-        text-align: left;
-    }
-    .about-text {
-        text-align: left;
-    }
-    .about-illustration {
-        text-align: right; /* Or center, depending on desired layout */
-    }
-    .hero-right {
-        align-items: flex-start; /* Align text to left on desktop */
-        text-align: left; /* Align text to left on desktop */
-    }
-    .hero-buttons {
-        justify-content: flex-start; /* Align buttons to left on desktop */
-    }
-        .quirky-title span {
-        font-size: 2rem;
-        padding: 0.6rem 1.5rem;
-        transform: rotate(-2deg);
-    }
-    .contact-info-form-container {
-        flex-direction: column;
-        gap: 2rem;
-    }
-    .contact-direct-info,
-    .contact-form-container {
-        min-width: 100%;
-        padding: 1.5rem;
-        transform: rotate(0deg) translateY(0px); /* Ensure cards are straight */
-    }
-    .contact-map-container {
-        padding: 2rem 1rem;
-    }
-    .contact-map-container h3 {
-        font-size: 1.4rem;
-    }
-    .contact-direct-info h3, .contact-form-container h3 {
-        font-size: 1.4rem;
-    }
-    .quirky-submit {
-        width: 100%; /* Full width button on mobile */
-    }
-    .nav-links.active .nav-cta-button { /* When mobile menu is open */
-        background-color: var(--orange-accent);
-        color: white !important;
-        padding: 0.8rem 1.5rem !important; /* Ensure padding is suitable for stacked items */
-        margin: 0.5rem 1.5rem; /* Add horizontal margin to center it or match other items */
-        display: block; /* Make it block to take available width or center */
-        text-align: center;
-        border-radius: 6px;
-    }
 
-    .nav-links.active .nav-cta-button:hover {
-        background-color: #dd6411; /* Darker orange */
-    }
-
-}
 
 @media (max-width: 991.98px) {
     .competition-hub-hero h1 {
@@ -1865,6 +2035,66 @@ footer {
 }
 
 @media (max-width: 767px) {
+    .lightbox-content img,
+    .lightbox-content iframe {
+        max-height: calc(80vh - 50px); /* Smaller max height on mobile */
+    }
+    .lightbox-caption {
+        font-size: 0.8rem;
+    }
+    .lightbox-close {
+        font-size: 30px;
+        top: 10px;
+        right: 20px;
+    }
+    .lightbox-prev, .l  ightbox-next {
+        font-size: 18px;
+        padding: 12px;
+    }
+    .about-content {
+    flex-direction: row; /* Side-by-side for wider screens */
+    text-align: left;
+    }
+    .about-text {
+        text-align: left;
+    }
+    .about-illustration {
+        text-align: right; /* Or center, depending on desired layout */
+    }
+    .hero-right {
+        align-items: flex-start; /* Align text to left on desktop */
+        text-align: left; /* Align text to left on desktop */
+    }
+    .hero-buttons {
+        justify-content: flex-start; /* Align buttons to left on desktop */
+    }
+        .quirky-title span {
+        font-size: 2rem;
+        padding: 0.6rem 1.5rem;
+        transform: rotate(-2deg);
+    }
+    .contact-info-form-container {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    .contact-direct-info,
+    .contact-form-container {
+        min-width: 100%;
+        padding: 1.5rem;
+        transform: rotate(0deg) translateY(0px); /* Ensure cards are straight */
+    }
+    .contact-map-container {
+        padding: 2rem 1rem;
+    }
+    .contact-map-container h3 {
+        font-size: 1.4rem;
+    }
+    .contact-direct-info h3, .contact-form-container h3 {
+        font-size: 1.4rem;
+    }
+    .quirky-submit {
+        width: 100%; /* Full width button on mobile */
+    }
   /* --- Sidebar Navigation Styles --- */
   .nav-links { /* This IS the sidebar */
       position: fixed;
@@ -1890,16 +2120,39 @@ footer {
       transform: translateX(0); /* Slide in */
   }
     .nav-links.active .nav-item.dropdown .dropdown-menu {
-        display: none; /* Keep dropdowns initially hidden in mobile sidebar */
-        position: static; /* Override absolute positioning */
+        display: none; /* Hidden by default */
+        position: static; /* Crucial for flow in mobile sidebar */
         box-shadow: none;
         border-radius: 0;
-        background-color: #fdfdfd; /* Slightly different bg for visual nesting */
-        padding-left: 1rem; /* Indent dropdown items */
+        background-color: #fdfdfd; /* Slightly different background for visual nesting */
+        width: 100%; /* Ensure it takes full width of parent */
+        /* Remove padding-left from here; apply to items for better control */
     }
 
     .nav-links.active .nav-item.dropdown.open .dropdown-menu { /* Use 'open' class to show */
         display: block;
+    }
+    .nav-links.active .nav-item.dropdown.open .dropdown-menu .dropdown-item {
+        display: block;
+        /* Adjust padding: 1rem top/bottom, 1.5rem right, 2.5rem left for indentation */
+        padding: 1rem 1.5rem 1rem 2.5rem;
+        text-decoration: none;
+        color: var(--text-color);
+        font-weight: 500;   /* Consistent with .nav-a */
+        font-size: 0.9rem;  /* Consistent with desktop dropdown items, or adjust as needed */
+        white-space: nowrap;
+        transition: background-color 0.2s ease, color 0.2s ease;
+        border-bottom: 1px solid #e7e7e7; /* Separator line, same as .nav-a */
+        background-color: #fdfdfd; /* Ensure it has the nested background color */
+    }
+    .nav-links.active .nav-item.dropdown.open .dropdown-menu .dropdown-item:hover {
+        background-color: #e9ecef; /* Slightly darker hover for submenu items */
+        color: var(--blue-accent);
+    }
+
+
+    .nav-links.active .nav-item.dropdown.open .dropdown-menu .dropdown-item:last-child {
+        border-bottom: none;
     }
     
     .nav-links.active .dropdown-toggle .dropdown-icon {
@@ -2133,6 +2386,18 @@ footer {
     }
     .framework-meaning p {
         font-size: 0.85rem;
+    }
+    .seminar-event-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .seminar-event-icon {
+        margin-bottom: 1rem;
+    }
+    .seminar-event-details ul {
+        display: inline-block; /* For centering list items if parent is text-align:center */
+        text-align: left;
     }
 }
 

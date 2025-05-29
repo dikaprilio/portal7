@@ -15,30 +15,30 @@
             <a href="index.html" class="logo">
                 <img src="img/Portal_Logo.png" alt="Logo Portal 7" onerror="this.onerror=null;this.src='https://placehold.co/120x30/cccccc/ffffff?text=P7+Logo';">
             </a>
-        <div class="nav-links" id="main-nav-links">
-            <a class="nav-a" href="index.html#hero">Beranda</a> <div class="nav-item dropdown">
-                <a class="nav-a dropdown-toggle" href="#">Tentang Portal <i class="fas fa-chevron-down dropdown-icon"></i></a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="index.html#tentang">Tentang Kami</a>
-                    <a class="dropdown-item" href="index.html#highlight">Highlights</a>
-                    <a class="dropdown-item" href="index.html#linimasa">Linimasa</a>
-                    <a class="dropdown-item" href="index.html#guest-stars">Guest Star</a>
-                    <a class="dropdown-item" href="index.html#peserta">Siapa Peserta?</a>
-                    <a class="dropdown-item" href="index.html#faq">FAQ</a>
-                </div>
-            </div>
-
-            <div class="nav-item dropdown">
-                <a class="nav-a dropdown-toggle" href="#">Kompetisi <i class="fas fa-chevron-down dropdown-icon"></i></a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="competition-hub.html">Competition Hub</a>
+            <div class="nav-links" id="main-nav-links">
+                <a class="nav-a" href="index.html#hero">Beranda</a> <div class="nav-item dropdown">
+                    <a class="nav-a dropdown-toggle" href="#">Tentang Portal <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="index.html#tentang">Tentang Kami</a>
+                        <a class="dropdown-item" href="index.html#highlight">Highlights</a>
+                        <a class="dropdown-item" href="index.html#linimasa">Linimasa</a>
+                        <a class="dropdown-item" href="index.html#guest-stars">Guest Star</a>
+                        <a class="dropdown-item" href="index.html#peserta">Siapa Peserta?</a>
+                        <a class="dropdown-item" href="index.html#faq">FAQ</a>
                     </div>
-            </div>
+                </div>
 
-            <a class="nav-a" href="index.html#media">Media</a>
-            <a class="nav-a" href="index.html#kontak">Kontak Kami</a>
-            <a class="nav-a nav-cta-button" href="index.html#pendaftaran">Pendaftaran</a>
-        </div>
+                <div class="nav-item dropdown">
+                    <a class="nav-a dropdown-toggle" href="#">Event <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="competition-hub.html">Kompetisi</a>
+                        <a class="dropdown-item" href="seminar.html">Seminar</a>
+                    </div>
+                </div>
+                <a class="nav-a" href="index.html#media">Media</a>
+                <a class="nav-a" href="index.html#kontak">Kontak Kami</a>
+                <a class="nav-a nav-cta-button" href="index.html#pendaftaran">Pendaftaran</a>
+            </div>
             <button id="mobile-menu-toggle" class="mobile-menu-button" aria-label="Toggle menu" aria-expanded="false">
                 <i class="fas fa-bars"></i>
             </button>
@@ -177,7 +177,7 @@
 
                 <a href="competition-hub.html" class="button-view-more" style="margin-top:1.5rem;">Rincian Kategori Lomba</a>
                 </div>
-                <div class="seminar-highlight" data-aos="flip-up"   >
+                <div class="seminar-highlight" data-aos="flip-up">
                     <h3 class="highlight-title"><i class="fas fa-microphone-alt"></i> Seminar & Talkshow</h3>
                     <p>Terbuka untuk semua peserta dan dilengkapi sesi:</p>
                     <ul class="seminar-list">
@@ -186,6 +186,7 @@
                         <li><i class="fas fa-award"></i> Awarding Ceremony</li>
                         <li><i class="fas fa-comments"></i> Talkshow bersama pembicara inspiratif</li>
                     </ul>
+                    <a href="seminar.html" class="button-view-more" style="margin-top:1.5rem;">Rincian Seminar</a>
                 </div>
             </div>
         </section>
@@ -517,8 +518,6 @@
         </div>
     </footer>
     
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         // --- AOS Initialization ---
@@ -527,26 +526,36 @@
             once: true,
         });
 
-        // --- Mobile Menu Toggle ---
+        // --- Mobile Navigation Variables ---
         const menuToggleButton = document.getElementById('mobile-menu-toggle');
         const mainNavLinks = document.getElementById('main-nav-links');
         let menuIcon = menuToggleButton ? menuToggleButton.querySelector('i') : null;
 
-        if (menuToggleButton && mainNavLinks) {
-            menuToggleButton.addEventListener('click', () => {
-                const isExpanded = mainNavLinks.classList.toggle('active');
-                menuToggleButton.setAttribute('aria-expanded', isExpanded);
+        // --- Central Function to Close Mobile Menu ---
+        function closeMobileMenu() {
+            if (mainNavLinks && mainNavLinks.classList.contains('active')) {
+                mainNavLinks.classList.remove('active');
+                if (menuToggleButton) menuToggleButton.setAttribute('aria-expanded', 'false');
                 if (menuIcon) {
-                    if (isExpanded) {
-                        menuIcon.classList.remove('fa-bars');
-                        menuIcon.classList.add('fa-times');
-                    } else {
-                        menuIcon.classList.remove('fa-times');
-                        menuIcon.classList.add('fa-bars');
-                    }
+                    menuIcon.classList.remove('fa-times');
+                    menuIcon.classList.add('fa-bars');
                 }
-                // When main mobile menu closes, also close any open dropdowns
-                if (!isExpanded) {
+                document.querySelectorAll('.nav-links .nav-item.dropdown.open').forEach(openDropdown => {
+                    openDropdown.classList.remove('open');
+                });
+            }
+        }
+
+        // --- 1. Toggle Main Mobile Menu (Hamburger) ---
+        if (menuToggleButton) {
+            menuToggleButton.addEventListener('click', (e) => {
+                e.stopPropagation(); // Important to prevent immediate close if click bubbles
+                const isActive = mainNavLinks.classList.toggle('active');
+                menuToggleButton.setAttribute('aria-expanded', isActive);
+                if (menuIcon) {
+                    menuIcon.className = isActive ? 'fas fa-times' : 'fas fa-bars';
+                }
+                if (!isActive) { // If menu is being closed by toggle
                     document.querySelectorAll('.nav-links .nav-item.dropdown.open').forEach(openDropdown => {
                         openDropdown.classList.remove('open');
                     });
@@ -554,174 +563,171 @@
             });
         }
 
-        // --- Refined Smooth Scroll Functionality ---
+        // --- 2. Toggle Dropdowns within Mobile Menu ---
+        document.querySelectorAll('.nav-links .dropdown-toggle').forEach(toggle => {
+            // console.log("Attaching click listener to dropdown toggle:", toggle.textContent.trim());
+            toggle.addEventListener('click', function(e) {
+                // console.log("Dropdown toggle clicked:", this.textContent.trim());
+                if (mainNavLinks && mainNavLinks.classList.contains('active')) { // Only operate if mobile menu is open
+                    // console.log("Mobile menu is active, proceeding with toggle for:", this.textContent.trim());
+                    
+                    // For dropdown toggles that are actual links (e.g., href="#some-section-if-no-js")
+                    // AND if they are just placeholders (href="#"), prevent default jump.
+                    if (this.getAttribute('href') === '#') {
+                        e.preventDefault();
+                    }
+
+                    const parentDropdown = this.closest('.nav-item.dropdown');
+                    if (!parentDropdown) {
+                        // console.error("Could not find .nav-item.dropdown parent for", this);
+                        return;
+                    }
+                    // console.log("Parent dropdown element:", parentDropdown);
+                    const currentlyOpen = parentDropdown.classList.contains('open');
+                    // console.log(this.textContent.trim() + " - Currently open:", currentlyOpen);
+
+                    // Accordion behavior: Close other open dropdowns
+                    document.querySelectorAll('.nav-links.active .nav-item.dropdown.open').forEach(openSubDropdown => {
+                        if (openSubDropdown !== parentDropdown) {
+                            // console.log("Closing other dropdown:", openSubDropdown);
+                            openSubDropdown.classList.remove('open');
+                        }
+                    });
+
+                    // Toggle the current one
+                    parentDropdown.classList.toggle('open', !currentlyOpen);
+                    // console.log(this.textContent.trim() + " - Toggled 'open'. Now open:", parentDropdown.classList.contains('open'));
+                    e.stopPropagation(); // Prevent click from bubbling to document listener for "click outside"
+                } else {
+                    // console.log("Mobile menu NOT active. Desktop hover should handle this for:", this.textContent.trim());
+                }
+            });
+        });
+
+        // --- 3. Handle Clicks on Nav Items (for closing menu and smooth scroll) ---
+        // This listener is primarily for same-page anchor links on index.html
+        // For other pages, it ensures menu closes on navigation.
+        document.querySelectorAll('#main-nav-links a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const fullHref = this.getAttribute('href');
+                const isDropdownToggle = this.classList.contains('dropdown-toggle');
+
+                // If it's a dropdown toggle clicked in mobile view, the specific dropdown handler above deals with it.
+                // Don't close the whole menu here for dropdown toggles.
+                if (isDropdownToggle && mainNavLinks.classList.contains('active')) {
+                    // console.log("Dropdown toggle clicked, mobile dropdown logic will handle it.");
+                    return; // Let the dedicated dropdown toggle handler work
+                }
+
+                // For same-page anchor links on index.html
+                if (fullHref && fullHref.includes('index.html#') && window.location.pathname.endsWith('index.html')) {
+                    const targetId = fullHref.split('#')[1];
+                    if (targetId && document.getElementById(targetId)) {
+                        e.preventDefault();
+                        smoothScrollToTarget(targetId); // smoothScrollToTarget should be defined
+                        closeMobileMenu();
+                    } else { // Hash target doesn't exist on this page
+                        if(mainNavLinks.classList.contains('active')) closeMobileMenu();
+                    }
+                } else if (fullHref && fullHref.startsWith('#') && document.getElementById(fullHref.substring(1))) {
+                    // Same-page anchor on the current page (could be index.html or other pages)
+                    e.preventDefault();
+                    smoothScrollToTarget(fullHref.substring(1)); // smoothScrollToTarget should be defined
+                    closeMobileMenu();
+                } else {
+                    // Link to another page or a non-scroll action
+                    if(mainNavLinks.classList.contains('active')) {
+                         closeMobileMenu();
+                    }
+                }
+            });
+        });
+        
+        // Smooth Scroll Function (ensure this is defined - from index.html)
         function smoothScrollToTarget(targetId, isPageLoad = false) {
             const targetElement = document.getElementById(targetId);
-
             if (targetElement) {
                 const navElement = document.querySelector('nav');
                 const navHeight = navElement ? navElement.offsetHeight : 0;
-                let targetElementPosition;
-
-                if (isPageLoad) {
-                    let elem = targetElement;
-                    let top = 0;
-                    while(elem) {
-                        top += elem.offsetTop;
-                        elem = elem.offsetParent;
-                    }
+                let targetElementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                if (isPageLoad) { 
+                    let elem = targetElement; let top = 0;
+                    while(elem) { top += elem.offsetTop; elem = elem.offsetParent; }
                     targetElementPosition = top;
-                } else {
-                    targetElementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
                 }
-                
                 const offsetPosition = targetElementPosition - navHeight;
-
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-                return true; 
+                window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                return true;
             }
-            return false; 
+            return false;
+        }
+        
+        // Scroll on page load if hash present (mainly for index.html)
+        if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/index')) { // Check if on index page
+            window.addEventListener('load', () => {
+                if (window.location.hash) {
+                    const targetId = window.location.hash.substring(1);
+                    setTimeout(() => { smoothScrollToTarget(targetId, true); }, 100);
+                }
+            });
         }
 
-        // 1. Smooth scroll for same-page clicks (handles dropdowns and direct links on index.html)
-        document.querySelectorAll('a[href*="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const fullHref = this.getAttribute('href');
-                const currentPath = window.location.pathname.substring(window.location.pathname.lastIndexOf("/") + 1) || "index.html"; // Default to index.html if path is empty
-                
-                const hrefParts = fullHref.split('#');
-                const hrefPath = hrefParts[0];
-                const targetId = hrefParts[1];
 
-                // Check if the link is for the current page (index.html) and has a hash
-                if (targetId && (hrefPath === "" || hrefPath === currentPath || hrefPath.endsWith("index.html"))) {
-                    e.preventDefault();
-                    smoothScrollToTarget(targetId);
-
-                    // Close mobile menu if open and the link is inside the mobile menu
-                    if (mainNavLinks && mainNavLinks.classList.contains('active') && this.closest('#main-nav-links')) {
-                        mainNavLinks.classList.remove('active');
-                        if (menuToggleButton) menuToggleButton.setAttribute('aria-expanded', 'false');
-                        if (menuIcon) {
-                            menuIcon.classList.remove('fa-times');
-                            menuIcon.classList.add('fa-bars');
-                        }
-                        // Close any open mobile dropdowns
-                        document.querySelectorAll('.nav-links .nav-item.dropdown.open').forEach(openDropdown => {
-                            openDropdown.classList.remove('open');
-                        });
-                    }
+        // --- 4. Click Outside to Close Mobile Menu ---
+        document.addEventListener('click', function(event) {
+            if (mainNavLinks && mainNavLinks.classList.contains('active')) {
+                const isClickInsideNav = mainNavLinks.contains(event.target);
+                const isClickOnToggleButton = menuToggleButton ? menuToggleButton.contains(event.target) : false;
+                if (!isClickInsideNav && !isClickOnToggleButton) {
+                    // console.log("Click outside detected, closing mobile menu.");
+                    closeMobileMenu();
                 }
-                // If it's a link to a different page with a hash (e.g., competition-hub.html#someSection),
-                // let the browser handle navigation.
-            });
-        });
-
-        // 2. Smooth scroll on page load if URL has a hash (for index.html)
-        window.addEventListener('load', () => {
-            if (window.location.hash) {
-                const targetId = window.location.hash.substring(1);
-                setTimeout(() => {
-                    smoothScrollToTarget(targetId, true);
-                }, 100); 
             }
-        });
-
-        // --- Mobile Dropdown Toggle Script ---
-        document.querySelectorAll('.nav-links .dropdown-toggle').forEach(toggle => {
-            toggle.addEventListener('click', function(e) {
-                if (this.getAttribute('href') === '#') {
-                    e.preventDefault();
-                }
-                const mainNav = document.getElementById('main-nav-links');
-                if (mainNav && mainNav.classList.contains('active')) { 
-                    const parentDropdown = this.parentElement;
-                    parentDropdown.classList.toggle('open');
-                    // Optional: Close other open dropdowns
-                    document.querySelectorAll('.nav-links .nav-item.dropdown.open').forEach(openDropdown => {
-                        if (openDropdown !== parentDropdown) {
-                            openDropdown.classList.remove('open');
-                        }
-                    });
-                }
-            });
         });
 
         // --- FAQ Accordion ---
+        // ... (Your existing FAQ script - it's good) ...
         document.querySelectorAll('.faq-question').forEach((question) => {
             question.addEventListener('click', () => {
                 const currentItem = question.parentElement;
-                // const isActive = currentItem.classList.contains('active'); // Not needed for this logic
-                
                 document.querySelectorAll('.faq-item').forEach((item) => {
                     if (item !== currentItem) {
                         item.classList.remove('active');
                         const otherIcon = item.querySelector('.faq-question .faq-icon i');
-                        if (otherIcon) {
-                            otherIcon.classList.remove('fa-minus');
-                            otherIcon.classList.add('fa-plus');
-                        }
+                        if (otherIcon) { otherIcon.classList.remove('fa-minus'); otherIcon.classList.add('fa-plus'); }
                     }
                 });
-
                 currentItem.classList.toggle('active');
-                const currentIcon = question.querySelector('.faq-icon i');
+                const currentIcon = question.querySelector('.faq-question .faq-icon i');
                 if (currentIcon) {
-                    if (currentItem.classList.contains('active')) {
-                        currentIcon.classList.remove('fa-plus');
-                        currentIcon.classList.add('fa-minus');
-                    } else {
-                        currentIcon.classList.remove('fa-minus');
-                        currentIcon.classList.add('fa-plus');
-                    }
+                    if (currentItem.classList.contains('active')) { currentIcon.classList.remove('fa-plus'); currentIcon.classList.add('fa-minus'); }
+                    else { currentIcon.classList.remove('fa-minus'); currentIcon.classList.add('fa-plus'); }
                 }
             });
         });
 
         // --- Countdown Timer Script ---
+        // ... (Your existing Countdown script - it's good) ...
         function startCountdown() {
             const countdownDate = new Date("October 11, 2025 00:00:00").getTime();
-            const daysEl = document.getElementById("days");
-            const hoursEl = document.getElementById("hours");
-            const minutesEl = document.getElementById("minutes");
-            const secondsEl = document.getElementById("seconds");
+            const daysEl = document.getElementById("days"); const hoursEl = document.getElementById("hours");
+            const minutesEl = document.getElementById("minutes"); const secondsEl = document.getElementById("seconds");
             const timerEl = document.getElementById("countdown-timer");
-
-            if (!daysEl || !hoursEl || !minutesEl || !secondsEl || !timerEl) {
-                // console.error("Countdown timer elements not found!");
-                return;
-            }
-
+            if (!daysEl || !hoursEl || !minutesEl || !secondsEl || !timerEl) return;
             const countdownFunction = setInterval(function() {
-                const now = new Date().getTime();
-                const distance = countdownDate - now;
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                daysEl.innerText = days < 10 ? "0" + days : days;
-                hoursEl.innerText = hours < 10 ? "0" + hours : hours;
-                minutesEl.innerText = minutes < 10 ? "0" + minutes : minutes;
-                secondsEl.innerText = seconds < 10 ? "0" + seconds : seconds;
-
-                if (distance < 0) {
-                    clearInterval(countdownFunction);
-                    timerEl.innerHTML = "EVENT TELAH DIMULAI!";
-                    timerEl.style.fontSize = "1.5rem";
-                    timerEl.style.fontWeight = "bold";
-                }
+                const now = new Date().getTime(); const distance = countdownDate - now;
+                const days = Math.floor(distance / (1000*60*60*24)); const hours = Math.floor((distance % (1000*60*60*24))/(1000*60*60));
+                const minutes = Math.floor((distance % (1000*60*60))/(1000*60)); const seconds = Math.floor((distance % (1000*60))/1000);
+                daysEl.innerText = days < 10 ? "0"+days : days; hoursEl.innerText = hours < 10 ? "0"+hours : hours;
+                minutesEl.innerText = minutes < 10 ? "0"+minutes : minutes; secondsEl.innerText = seconds < 10 ? "0"+seconds : seconds;
+                if (distance < 0) { clearInterval(countdownFunction); timerEl.innerHTML = "EVENT TELAH DIMULAI!"; timerEl.style.fontSize="1.5rem"; timerEl.style.fontWeight="bold";}
             }, 1000);
         }
-        // Start countdown on DOMContentLoaded for index.html
-        if (document.getElementById("countdown-timer")) { // Check if countdown exists
-             document.addEventListener('DOMContentLoaded', startCountdown);
-        }
+        if (document.getElementById("countdown-timer")) { document.addEventListener('DOMContentLoaded', startCountdown); }
+
 
         // --- Logo Animation Sequencing ---
+        // ... (Your existing Logo Animation script - it's good) ...
         document.addEventListener('DOMContentLoaded', () => {
             const heroLogo = document.querySelector('.hero-left img.portal-logo.hero-logo-entry');
             if (heroLogo) {
@@ -736,25 +742,22 @@
         });
 
         // --- Berita & Media Section Script (JSON Loader) ---
+        // ... (Your existing Media Loader script - it's good, just ensure functions are defined or pasted here) ...
         const blogArticlesContainer = document.querySelector('#blog-articles-container .articles-grid');
         const galleryPhotosContainer = document.querySelector('#gallery-container .gallery-grid.photos');
         const galleryVideosContainer = document.querySelector('#gallery-container .gallery-grid.videos');
         const partnersSponsorsContainer = document.querySelector('#partners-sponsors-container .partners-grid');
-        const galleryTabs = document.querySelectorAll('.gallery-tab-button');
+        const galleryTabs = document.querySelectorAll('#media .gallery-tab-button'); // More specific selector for homepage tabs
 
         async function loadMediaContent() {
             try {
                 const response = await fetch('media-content.json');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 const data = await response.json();
-
                 if (blogArticlesContainer) renderBlogArticles(data.blogArticles);
                 if (galleryPhotosContainer) renderGalleryPhotos(data.gallery.photos);
                 if (galleryVideosContainer) renderGalleryVideos(data.gallery.videos);
                 if (partnersSponsorsContainer) renderPartnersSponsors(data.partnersSponsors);
-
             } catch (error) {
                 // console.error("Gagal memuat konten media:", error);
                 if (blogArticlesContainer) blogArticlesContainer.innerHTML = '<p class="error-message">Gagal memuat artikel.</p>';
@@ -763,116 +766,55 @@
                 if (partnersSponsorsContainer) partnersSponsorsContainer.innerHTML = '<p class="error-message">Gagal memuat mitra.</p>';
             }
         }
-
-        function renderBlogArticles(articles) { /* ... (keep your existing render functions) ... */ 
-            if (!blogArticlesContainer) return; 
-            if (!articles || articles.length === 0) {
-                blogArticlesContainer.innerHTML = '<p>Belum ada artikel.</p>';
-                return;
-            }
+        function renderBlogArticles(articles) { 
+            if (!blogArticlesContainer || !articles || articles.length === 0) { if(blogArticlesContainer) blogArticlesContainer.innerHTML = '<p>Belum ada artikel.</p>'; return; }
             blogArticlesContainer.innerHTML = ''; 
             articles.slice(0, 3).forEach(article => {
-                const articleCardHTML = `
-                    <div class="article-card" data-aos="fade-up" data-aos-anchor="#blog-articles-container">
-                        <a href="${article.link}" class="article-card-link">
-                            <div class="article-image-wrapper">
-                                <img src="${article.image}" alt="${article.title}" class="article-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                                <div class="article-image-fallback" style="display: none;">
-                                    <i class="fas fa-image fa-3x"></i>
-                                </div>
-                            </div>
-                            <div class="article-content">
-                                <h4 class="article-title">${article.title}</h4>
-                                <p class="article-meta">${article.date} | Oleh: ${article.author}</p>
-                                <p class="article-summary">${article.summary}</p>
-                                <span class="article-link-text">Baca Selengkapnya <i class="fas fa-arrow-right"></i></span>
-                            </div>
-                        </a>
-                    </div>
-                `;
+                const articleCardHTML = `<div class="article-card" data-aos="fade-up" data-aos-anchor="#blog-articles-container"><a href="${article.link}" class="article-card-link"><div class="article-image-wrapper"><img src="${article.image}" alt="${article.title}" class="article-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="article-image-fallback" style="display: none;"><i class="fas fa-image fa-3x"></i></div></div><div class="article-content"><h4 class="article-title">${article.title}</h4><p class="article-meta">${article.date} | Oleh: ${article.author}</p><p class="article-summary">${article.summary}</p><span class="article-link-text">Baca Selengkapnya <i class="fas fa-arrow-right"></i></span></div></a></div>`;
                 blogArticlesContainer.insertAdjacentHTML('beforeend', articleCardHTML);
             });
         }
-        function renderGalleryPhotos(photos) { /* ... (keep your existing render functions) ... */ 
-            if (!galleryPhotosContainer || !photos || photos.length === 0) {
-                if(galleryPhotosContainer) galleryPhotosContainer.innerHTML = '<p>Belum ada foto.</p>';
-                return;
-            }
+        function renderGalleryPhotos(photos) { 
+            if (!galleryPhotosContainer || !photos || photos.length === 0) { if(galleryPhotosContainer) galleryPhotosContainer.innerHTML = '<p>Belum ada foto.</p>'; return; }
             galleryPhotosContainer.innerHTML = '';
             photos.slice(0, 6).forEach(photo => {
-                const photoItem = `
-                    <div class="gallery-item photo" data-aos="zoom-in-up" data-aos-anchor="#gallery-container">
-                        <img src="${photo.thumbnailUrl}" alt="${photo.title}" onerror="this.src='https://placehold.co/300x300/e0e0e0/757575?text=Error&font=montserrat';">
-                        <div class="gallery-item-overlay">
-                            <i class="fas fa-search-plus"></i>
-                            <span>${photo.title} (${photo.year || ''})</span>
-                        </div>
-                    </div>
-                `;
+                const photoItem = `<div class="gallery-item photo" data-aos="zoom-in-up" data-aos-anchor="#gallery-container"><img src="${photo.thumbnailUrl}" alt="${photo.title}" onerror="this.src='https://placehold.co/300x300/e0e0e0/757575?text=Error&font=montserrat';"><div class="gallery-item-overlay"><i class="fas fa-search-plus"></i><span>${photo.title} (${photo.year || ''})</span></div></div>`;
                 galleryPhotosContainer.insertAdjacentHTML('beforeend', photoItem);
             });
         }
-        function renderGalleryVideos(videos) { /* ... (keep your existing render functions) ... */ 
-            if (!galleryVideosContainer || !videos || videos.length === 0) {
-                if(galleryVideosContainer) galleryVideosContainer.innerHTML = '<p>Belum ada video.</p>';
-                return;
-            }
+        function renderGalleryVideos(videos) { 
+            if (!galleryVideosContainer || !videos || videos.length === 0) { if(galleryVideosContainer) galleryVideosContainer.innerHTML = '<p>Belum ada video.</p>'; return; }
             galleryVideosContainer.innerHTML = '';
             videos.slice(0, 3).forEach(video => {
-                const videoItem = `
-                    <div class="gallery-item video" data-aos="zoom-in-up" data-aos-anchor="#gallery-container">
-                        <img src="${video.thumbnailUrl}" alt="${video.title}" onerror="this.src='https://placehold.co/300x200/e0e0e0/757575?text=Error&font=montserrat';">
-                        <div class="gallery-item-overlay">
-                            <i class="fas fa-play-circle"></i>
-                            <span>${video.title}</span>
-                        </div>
-                    </div>
-                `;
+                const videoItem = `<div class="gallery-item video" data-aos="zoom-in-up" data-aos-anchor="#gallery-container"><img src="${video.thumbnailUrl}" alt="${video.title}" onerror="this.src='https://placehold.co/300x200/e0e0e0/757575?text=Error&font=montserrat';"><div class="gallery-item-overlay"><i class="fas fa-play-circle"></i><span>${video.title}</span></div></div>`;
                 galleryVideosContainer.insertAdjacentHTML('beforeend', videoItem);
             });
         }
-        function renderPartnersSponsors(items) { /* ... (keep your existing render functions) ... */ 
-            if (!partnersSponsorsContainer || !items || items.length === 0) {
-                if(partnersSponsorsContainer) partnersSponsorsContainer.innerHTML = '<p>Mitra akan segera tampil.</p>';
-                return;
-            }
+        function renderPartnersSponsors(items) { 
+            if (!partnersSponsorsContainer || !items || items.length === 0) { if(partnersSponsorsContainer) partnersSponsorsContainer.innerHTML = '<p>Mitra akan segera tampil.</p>'; return; }
             partnersSponsorsContainer.innerHTML = '';
             items.forEach(item => {
-                const partnerItem = `
-                    <div class="partner-item" data-aos="fade-up" data-aos-anchor="#partners-sponsors-container">
-                        <a href="${item.websiteUrl}" target="_blank" rel="noopener noreferrer" title="${item.name} (${item.type})">
-                            <img src="${item.logoUrl}" alt="${item.name}" onerror="this.parentElement.innerHTML = '<span class=\\'partner-name-fallback\\'>${item.name}</span>';">
-                        </a>
-                    </div>
-                `;
+                const partnerItem = `<div class="partner-item" data-aos="fade-up" data-aos-anchor="#partners-sponsors-container"><a href="${item.websiteUrl}" target="_blank" rel="noopener noreferrer" title="${item.name} (${item.type})"><img src="${item.logoUrl}" alt="${item.name}" onerror="this.parentElement.innerHTML = '<span class=\\'partner-name-fallback\\'>${item.name}</span>';"></a></div>`;
                 partnersSponsorsContainer.insertAdjacentHTML('beforeend', partnerItem);
             });
         }
-
         if (galleryTabs.length > 0) {
             galleryTabs.forEach(tab => {
                 tab.addEventListener('click', () => {
                     galleryTabs.forEach(t => t.classList.remove('active'));
                     tab.classList.add('active');
-                    document.querySelectorAll('#gallery-container .gallery-grid').forEach(content => {
+                    document.querySelectorAll('#media .gallery-grid').forEach(content => { // Specific to #media section
                         content.classList.remove('active-gallery-content');
                     });
                     const targetContentClass = tab.dataset.tab;
-                    const newActiveContent = document.querySelector(`#gallery-container .gallery-grid.${targetContentClass}`);
-                    if (newActiveContent) {
-                        newActiveContent.classList.add('active-gallery-content');
-                    }
+                    const newActiveContent = document.querySelector(`#media .gallery-grid.${targetContentClass}`);
+                    if (newActiveContent) newActiveContent.classList.add('active-gallery-content');
                 });
             });
         }
-
-        // Load media content if the container exists on the page
-        if (document.getElementById('media')) { // Check if media section exists
-             if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', loadMediaContent);
-            } else {
-                loadMediaContent();
-            }
+        if (document.getElementById('media')) { 
+            if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', loadMediaContent); } 
+            else { loadMediaContent(); }
         }
 
     </script>
