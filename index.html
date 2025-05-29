@@ -18,11 +18,13 @@
             <div class="nav-links" id="main-nav-links">
                 <a class="nav-a" href="#hero">Beranda</a>
                 <a class="nav-a" href="#tentang">Tentang</a>
-                <a class="nav-a" href="#highlight">Kompetisi & Seminar</a>
+                <a class="nav-a" href="#highlight">Highlights</a>
                 <a class="nav-a" href="#linimasa">Linimasa</a>
                 <a class="nav-a" href="#guest-stars">Guest Star</a>
                 <a class="nav-a" href="#faq">FAQ</a>
                 <a class="nav-a" href="#peserta">Peserta</a>
+                <a class="nav-a" href="competition-hub.html">Competition Hub</a>
+
             </div>
             <button id="mobile-menu-toggle" class="mobile-menu-button" aria-label="Toggle menu" aria-expanded="false">
                 <i class="fas fa-bars"></i>
@@ -47,6 +49,12 @@
                         <span class="hero-title-seven">7</span>
                     </h1>
                     <p class="tagline">Embrace Your Potential: Empowered by Inspiration, Driven by Innovation</p>
+                    <div id="countdown-timer" class="countdown-timer">
+                        <span><span id="days">00</span><small>Hari</small></span>
+                        <span><span id="hours">00</span><small>Jam</small></span>
+                        <span><span id="minutes">00</span><small>Menit</small></span>
+                        <span><span id="seconds">00</span><small>Detik</small></span>
+                    </div>   
                     <div class="hero-buttons">
                         <a href="#cta-bottom" class="hero-button button-main-cta">Daftar Sekarang</a>
                         <a href="#tentang" class="hero-button button-main-cta-b">What is Portal?</a>
@@ -55,38 +63,107 @@
             </div>
         </section>
 
-        <section class="about-section section-padding" id="tentang">
-            <h2 class="section-title" data-aos="zoom-in-out">Tentang Portal 7</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>Apa itu Portal 7?</h3>
-                    <p>Portal 7 adalah ajang kreatif teknologi tingkat internasional yang diselenggarakan oleh mahasiswa IPB University. Acara ini memadukan kompetisi digital dan seminar inspiratif untuk memberdayakan generasi muda dalam menciptakan karya berdampak melalui desain, komunikasi visual, dan storytelling digital.</p>
-                    <p>Portal 7 mengajak peserta untuk berinovasi, berkolaborasi, dan menyuarakan isu global melalui kreativitas yang inklusif dan berkelanjutan.</p>
+<section class="about-section section-padding" id="tentang">
+    <h2 class="section-title" data-aos="zoom-in-out">Tentang Portal 7</h2>
+    <div class="about-content" data-aos="fade-up"> <div class="about-text">
+            <h3>Apa itu Portal 7?</h3>
+            <p>Portal 7 adalah ajang kreatif teknologi tingkat internasional yang diselenggarakan oleh mahasiswa IPB University. Acara ini memadukan kompetisi digital dan seminar inspiratif untuk memberdayakan generasi muda dalam menciptakan karya berdampak melalui desain, komunikasi visual, dan storytelling digital.</p>
+            <p>Portal 7 mengajak peserta untuk berinovasi, berkolaborasi, dan menyuarakan isu global melalui kreativitas yang inklusif dan berkelanjutan.</p>
+        </div>
+        <div class="about-illustration">
+            <img src="https://placehold.co/300x200/A78BFA/FFFFFF?text=Ilustrasi+Tentang+Kami&font=inter" alt="Ilustrasi Portal 7">
+        </div>
+    </div>
+
+    <div class="inspire-framework-container" data-aos="fade-up" data-aos-delay="300"> <h3 class="framework-title">INSPIRE Framework: Landasan Visi & Misi Kami</h3>
+        <div class="framework-grid">
+            <div class="framework-item">
+                <div class="framework-letter-wrapper">
+                    <span class="framework-letter">I</span>
                 </div>
-                <div class="about-illustration">
-                    <img src="https://placehold.co/300x200/A78BFA/FFFFFF?text=Ilustrasi+Tentang+Kami&font=inter" alt="Ilustrasi Portal 7">
+                <div class="framework-meaning">
+                    <h4>Inspirasi</h4>
+                    <p>Memicu ide-ide baru dan semangat berkarya tanpa batas.</p>
                 </div>
             </div>
-        </section>
+            <div class="framework-item">
+                <div class="framework-letter-wrapper">
+                    <span class="framework-letter">N</span>
+                </div>
+                <div class="framework-meaning">
+                    <h4>Networking</h4>
+                    <p>Membangun koneksi dan kolaborasi yang kuat dan berkelanjutan.</p>
+                </div>
+            </div>
+            <div class="framework-item">
+                <div class="framework-letter-wrapper">
+                    <span class="framework-letter">S</span>
+                </div>
+                <div class="framework-meaning">
+                    <h4>Solusi</h4>
+                    <p>Mendorong penciptaan solusi kreatif untuk tantangan nyata.</p>
+                </div>
+            </div>
+            <div class="framework-item">
+                <div class="framework-letter-wrapper">
+                    <span class="framework-letter">P</span>
+                </div>
+                <div class="framework-meaning">
+                    <h4>Potensi</h4>
+                    <p>Menggali dan memaksimalkan potensi unik setiap individu.</p>
+                </div>
+            </div>
+            <div class="framework-item">
+                <div class="framework-letter-wrapper">
+                    <span class="framework-letter">I</span>
+                </div>
+                <div class="framework-meaning">
+                    <h4>Inovasi</h4>
+                    <p>Menghadirkan terobosan baru dalam teknologi dan kreativitas digital.</p>
+                </div>
+            </div>
+            <div class="framework-item">
+                <div class="framework-letter-wrapper">
+                    <span class="framework-letter">R</span>
+                </div>
+                <div class="framework-meaning">
+                    <h4>Relevansi</h4>
+                    <p>Menghubungkan pembelajaran dengan kebutuhan industri dan masyarakat.</p>
+                </div>
+            </div>
+            <div class="framework-item">
+                <div class="framework-letter-wrapper">
+                    <span class="framework-letter">E</span>
+                </div>
+                <div class="framework-meaning">
+                    <h4>Empowerment</h4>
+                    <p>Memberdayakan generasi muda untuk mengambil peran dan menciptakan dampak positif.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
 
         <section class="highlight-section section-padding" id="highlight">
             <h2 class="section-title">Highlight Kompetisi & Seminar</h2>
             <div class="highlight-grid">
-                <div class="competition-highlight" data-aos="flip-up">
-                    <h3 class="highlight-title"><i class="fas fa-trophy"></i> Kompetisi</h3>
-                    <div class="competition-item">
-                        <h4>UI/UX Design</h4>
-                        <p>Desain tampilan antarmuka aplikasi atau website yang fungsional dan estetis. Peserta merancang solusi digital yang ramah pengguna dan relevan dengan isu sosial/SDGs.</p>
-                    </div>
-                    <div class="competition-item">
-                        <h4>Digital Poster</h4>
-                        <p>Membuat poster digital yang menyampaikan pesan kuat secara visual. Mengasah kemampuan desain grafis, pemilihan warna, dan tipografi untuk menyuarakan ide perubahan.</p>
-                    </div>
-                    <div class="competition-item">
-                        <h4>Short Movie</h4>
-                        <p>Film pendek berdurasi maksimal 5 menit yang menyampaikan cerita bermakna dan relevan dengan tema global. Fokus pada kekuatan narasi visual dan emosi.</p>
-                    </div>
-                    <p class="total-prize">Hadiah total: hingga Rp14.600.000</p>
+            <div class="competition-highlight" data-aos="flip-up">
+                <h3 class="highlight-title"><i class="fas fa-trophy"></i> Kompetisi</h3>
+                <div class="competition-item">
+                    <h4>UI/UX Design</h4>
+                    <p>Desain tampilan antarmuka aplikasi atau website yang fungsional dan estetis...</p>
+                </div>
+                <div class="competition-item">
+                    <h4>Digital Poster</h4>
+                    <p>Membuat poster digital yang menyampaikan pesan kuat secara visual...</p>
+                </div>
+                <div class="competition-item">
+                    <h4>Short Movie</h4>
+                    <p>Film pendek berdurasi maksimal 5 menit yang menyampaikan cerita bermakna...</p>
+                </div>
+                <p class="total-prize">Hadiah total: hingga Rp14.600.000</p>
+
+                <a href="competition-hub.html" class="button-view-more" style="margin-top:1.5rem;">Rincian Kategori Lomba</a>
                 </div>
                 <div class="seminar-highlight" data-aos="flip-up"   >
                     <h3 class="highlight-title"><i class="fas fa-microphone-alt"></i> Seminar & Talkshow</h3>
@@ -320,26 +397,38 @@
             });
         }
 
-        // Smooth scroll untuk tautan navigasi
+// Smooth scroll untuk tautan navigasi (dengan offset untuk sticky header)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const targetHref = this.getAttribute('href');
-                // Only prevent default for actual internal links that are part of the sidebar/nav
-                if (targetHref.startsWith('#') && document.querySelector(targetHref)) {
+                const targetElement = targetHref.length > 1 ? document.querySelector(targetHref) : null; // Ensure href is not just "#"
+
+                if (targetElement) { // Check if the target element exists on the current page
                     e.preventDefault();
-                    const targetElement = document.querySelector(targetHref);
-                    if (targetElement) {
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth'
-                        });
-                    }
+
+                    const navElement = document.querySelector('nav');
+                    const navHeight = navElement ? navElement.offsetHeight : 0;
+                    const targetElementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = targetElementPosition - navHeight;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
                 }
+                // Else, if targetElement is null, it might be a link to another page or just a "#" href,
+                // in which case, we let the default behavior happen or handle it differently if needed.
+                // For this fix, we are primarily concerned with same-page anchor links.
 
                 // Tutup menu mobile jika terbuka setelah klik (specifically for links within mainNavLinks)
+                const mainNavLinks = document.getElementById('main-nav-links'); // Ensure this is defined or passed if script is external
+                const menuToggleButton = document.getElementById('mobile-menu-toggle'); // Ensure this is defined
+                let menuIcon = menuToggleButton ? menuToggleButton.querySelector('i') : null; // Ensure this is defined
+
                 if (mainNavLinks && mainNavLinks.classList.contains('active') && this.closest('#main-nav-links')) {
                     mainNavLinks.classList.remove('active');
                     if (menuToggleButton) menuToggleButton.setAttribute('aria-expanded', 'false');
-                    if (menuIcon) { // Check if menuIcon was found
+                    if (menuIcon) { 
                         menuIcon.classList.remove('fa-times');
                         menuIcon.classList.add('fa-bars');
                     }
@@ -379,6 +468,56 @@
                     }
                 }
             });
+        // NEW Countdown Timer Script
+        function startCountdown() {
+            // Set the date we're counting down to
+            // The "Seminar & Awarding Day" is "11 Oktober"
+            const countdownDate = new Date("October 11, 2025 00:00:00").getTime();
+
+            // Get display elements
+            const daysEl = document.getElementById("days");
+            const hoursEl = document.getElementById("hours");
+            const minutesEl = document.getElementById("minutes");
+            const secondsEl = document.getElementById("seconds");
+            const timerEl = document.getElementById("countdown-timer");
+
+            if (!daysEl || !hoursEl || !minutesEl || !secondsEl || !timerEl) {
+                console.error("Countdown timer elements not found!");
+                return;
+            }
+
+            const countdownFunction = setInterval(function() {
+                // Get today's date and time
+                const now = new Date().getTime();
+
+                // Find the distance between now and the count down date
+                const distance = countdownDate - now;
+
+                // Time calculations for days, hours, minutes and seconds
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Output the result in elements
+                daysEl.innerText = days < 10 ? "0" + days : days;
+                hoursEl.innerText = hours < 10 ? "0" + hours : hours;
+                minutesEl.innerText = minutes < 10 ? "0" + minutes : minutes;
+                secondsEl.innerText = seconds < 10 ? "0" + seconds : seconds;
+
+                // If the count down is over, write some text
+                if (distance < 0) {
+                    clearInterval(countdownFunction);
+                    timerEl.innerHTML = "EVENT TELAH DIMULAI!"; // Or "EVENT SUDAH LEWAT"
+                    // You might want to style this expired message differently
+                    timerEl.style.fontSize = "1.5rem";
+                    timerEl.style.fontWeight = "bold";
+                }
+            }, 1000); // Update every 1 second
+        }
+
+        // Start the countdown when the page loads
+        document.addEventListener('DOMContentLoaded', startCountdown);
         });
     </script>
 </body>
