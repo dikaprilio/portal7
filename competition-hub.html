@@ -18,12 +18,8 @@
                 <a class="nav-a" href="index.html#hero">Beranda</a>
                 <a class="nav-a" href="index.html#tentang">Tentang</a>
                 <a class="nav-a" href="index.html#highlight">Highlights</a>
-                <a class="nav-a" href="#index.html#linimasa">Linimasa</a>
-                <a class="nav-a" href="#guest-stars">Guest Star</a>
-                <a class="nav-a" href="#index.html##faq">FAQ</a>
-                <a class="nav-a" href="#index.html##peserta">Peserta</a>
-                <a class="nav-a" href="competition-hub.html">Competition Hub</a>
-
+                <a class="nav-a" href="index.html#linimasa">Linimasa</a>   <a class="nav-a" href="index.html#guest-stars">Guest Star</a> <a class="nav-a" href="index.html#faq">FAQ</a>       <a class="nav-a" href="index.html#peserta">Peserta</a>   <a class="nav-a" href="competition-hub.html">Competition Hub</a>
+                </div>
             <button id="mobile-menu-toggle" class="mobile-menu-button" aria-label="Toggle menu" aria-expanded="false">
                 <i class="fas fa-bars"></i>
             </button>
@@ -128,20 +124,20 @@
             once: true, // whether animation should happen only once - while scrolling down
         });
 
-        // Mobile Menu Toggle Script (Copied from index.html for consistency)
+// Mobile Menu Toggle Script (Copied from index.html for consistency)
         const menuToggleButton = document.getElementById('mobile-menu-toggle');
         const mainNavLinks = document.getElementById('main-nav-links');
-        
+
         let menuIcon = null;
         if (menuToggleButton) {
             menuIcon = menuToggleButton.querySelector('i');
         }
 
-        if (menuToggleButton && mainNavLinks) { 
+        if (menuToggleButton && mainNavLinks) {
             menuToggleButton.addEventListener('click', () => {
                 const isExpanded = mainNavLinks.classList.toggle('active');
                 menuToggleButton.setAttribute('aria-expanded', isExpanded);
-                if (menuIcon) { 
+                if (menuIcon) {
                     if (isExpanded) {
                         menuIcon.classList.remove('fa-bars');
                         menuIcon.classList.add('fa-times');

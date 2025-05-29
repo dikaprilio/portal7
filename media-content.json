@@ -1,0 +1,101 @@
+{
+  "blogArticles": [
+    {
+      "id": "artikel-1",
+      "title": "5 Tips Jitu Desain UI/UX yang Memukau Pengguna",
+      "date": "28 Mei 2025",
+      "author": "Tim Portal 7",
+      "summary": "Pelajari cara meningkatkan pengalaman pengguna dengan prinsip desain UI/UX yang efektif dan inovatif untuk memenangkan hati audiens.",
+      "image": "img/blog/artikel1_thumbnail.jpg",
+      "link": "blog-detail.html?id=artikel-1"
+    },
+    {
+      "id": "artikel-2",
+      "title": "Insight Juri: Apa yang Dicari dari Karya Film Pendek?",
+      "date": "25 Mei 2025",
+      "author": "Juri Film Portal 7",
+      "summary": "Dapatkan bocoran langsung dari para juri mengenai kriteria penilaian, storytelling yang kuat, dan ekspektasi mereka terhadap karya film pendek.",
+      "image": "img/blog/artikel2_thumbnail.jpg",
+      "link": "blog-detail.html?id=artikel-2"
+    },
+    {
+      "id": "artikel-3",
+      "title": "Kisah Inspiratif Alumni Portal: Dari Peserta Menjadi Profesional",
+      "date": "22 Mei 2025",
+      "author": "Redaksi Portal 7",
+      "summary": "Simak perjalanan alumni Portal 7 yang berhasil mengaplikasikan ilmunya di dunia kerja dan industri kreatif.",
+      "image": "img/blog/artikel3_thumbnail.jpg",
+      "link": "blog-detail.html?id=artikel-3"
+    }
+  ],
+  "gallery": {
+    "photos": [
+      {
+        "id": "foto-1",
+        "title": "Suasana Seminar Portal 6",
+        "year": "2024",
+        "thumbnailUrl": "img/gallery/thumbs/seminar_2024_thumb.jpg",
+        "fullUrl": "img/gallery/full/seminar_2024_full.jpg",
+        "description": "Antusiasme peserta saat sesi talkshow inspiratif."
+      },
+      {
+        "id": "foto-2",
+        "title": "Awarding Night Portal 6",
+        "year": "2024",
+        "thumbnailUrl": "img/gallery/thumbs/awarding_2024_thumb.jpg",
+        "fullUrl": "img/gallery/full/awarding_2024_full.jpg",
+        "description": "Momen penghargaan untuk para pemenang kompetisi UI/UX."
+      },
+      {
+        "id": "foto-3",
+        "title": "Workshop Desain Grafis",
+        "year": "2024",
+        "thumbnailUrl": "img/gallery/thumbs/workshop_desain_thumb.jpg",
+        "fullUrl": "img/gallery/full/workshop_desain_full.jpg",
+        "description": "Peserta aktif dalam sesi praktik workshop."
+      }
+    ],
+    "videos": [
+      {
+        "id": "video-1",
+        "title": "Company Profile Portal 7",
+        "type": "company-profile",
+        "thumbnailUrl": "img/gallery/thumbs/company_profile_thumb.jpg",
+        "videoUrl": "https://www.youtube.com/embed/YOUR_VIDEO_ID_1",
+        "description": "Kenali lebih dekat Portal 7: Visi, Misi, dan Semangat Kami!"
+      },
+      {
+        "id": "video-2",
+        "title": "Aftermovie Portal 6 (2024)",
+        "type": "documentation",
+        "year": "2024",
+        "thumbnailUrl": "img/gallery/thumbs/aftermovie_2024_thumb.jpg",
+        "videoUrl": "https://www.youtube.com/embed/YOUR_VIDEO_ID_2",
+        "description": "Kilas balik semua keseruan dan momen tak terlupakan di Portal 6."
+      }
+    ]
+  },
+  "partnersSponsors": [
+    {
+      "id": "partner-1",
+      "name": "Nama Media Partner Keren",
+      "logoUrl": "img/partners/partner_a_logo.png",
+      "type": "media_partner",
+      "websiteUrl": "#partner-link-1"
+    },
+    {
+      "id": "sponsor-1",
+      "name": "Sponsor Utama Hebat",
+      "logoUrl": "img/sponsors/sponsor_b_logo.png",
+      "type": "sponsor",
+      "websiteUrl": "#sponsor-link-1"
+    },
+    {
+      "id": "sponsor-2",
+      "name": "Sponsor Pendukung Inovatif",
+      "logoUrl": "img/sponsors/sponsor_c_logo.png",
+      "type": "sponsor",
+      "websiteUrl": "#sponsor-link-2"
+    }
+  ]
+}

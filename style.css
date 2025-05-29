@@ -136,14 +136,18 @@ nav {
 
 /* Gaya Bagian Hero */
 .hero-section {
-    background: linear-gradient(to bottom right, rgba(224, 231, 255, 0.8), rgba(252, 231, 243, 0.8)), url('img/blur-bg.png') no-repeat center center/cover; 
-    padding: 4rem 2rem;
+    background: linear-gradient(to bottom right, rgba(224, 231, 255, 0.8), rgba(252, 231, 243, 0.8)), url('img/blur-bg.png') no-repeat center center/cover;
+    /* padding: 4rem 2rem; /* Old padding */
+    padding-top: 2.5rem;    /* Example: Reduced from 4rem by 1.5rem */
+    padding-bottom: 5.5rem;  /* Example: Increased from 4rem by 1.5rem */
+    padding-left: 2rem;
+    padding-right: 2rem;
     text-align: center;
-    position: relative; 
-    min-height: 100vh; /* Use min-height to ensure it covers viewport */
-    display: flex; /* For centering content */
-    align-items: center; /* For centering content */
-    justify-content: center; /* For centering content */
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 /* Countdown Timer Styling - REVISED for better branding cohesion */
 .countdown-timer {
@@ -159,7 +163,14 @@ nav {
     border: none; /* Remove border for a cleaner look */
     text-align: center;
 }
-
+#countdown-timer.countdown-timer { /* Adding ID for specificity, ensure class is also there */
+    margin-top: 1rem;  /* Reduced space above countdown, as tagline provides bottom margin */
+    margin-bottom: 2.5rem; /* Increased space below countdown before buttons */
+    /* Optional: Slightly scale down the timer if it feels too large */
+    /* transform: scale(0.95); */
+    /* transform-origin: left; /* If text-align is left for hero-right */
+    /* If you scale, you might need to adjust font sizes within it too if they don't scale automatically */
+}
 /* Direct children spans that act as blocks for Day, Hour, Min, Sec */
 .countdown-timer > span {
     display: inline-flex; /* Use flex for better internal alignment */
@@ -246,23 +257,64 @@ nav {
 
 
 .hero-content {
-    max-width: 1000px;
+    max-width: 1100px; /* Optional: Slightly increase max-width for more space */
     margin: 0 auto;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
-    gap: 3rem;
+    justify-content: center; /* Or 'space-between' if you want them further apart */
+    gap: 4rem; /* Increased from 3rem for more breathing room */
     position: relative;
-    z-index: 1; /* Above floating elements */
+    z-index: 1;
 }
 
-.hero-left img {
-    max-width: 100%; /* Max width 250px, can adjust as needed */
-    height: auto;
-    animation: drawLogo 2s ease-out forwards;
-    display: block;
+/* In style.css */
+
+/* Make sure your @keyframes are defined (they are already in your style.css) */
+@keyframes drawLogo {
+    from { opacity: 0; transform: scale(0.5); }
+    to { opacity: 1; transform: scale(1); }
 }
+
+@keyframes floatSwirl {
+  0%   { transform: translate(0, 0) rotate(0deg); }
+  25%  { transform: translate(5px, -10px) rotate(3deg); }
+  50%  { transform: translate(0px, -15px) rotate(0deg); }
+  75%  { transform: translate(-5px, -10px) rotate(-3deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+/* Optional: Slightly adjust logo max-width if it feels too large */
+.hero-left img.portal-logo {
+    max-width: 500vh; /* Was 300px, try a bit smaller if needed */
+    width: 100%;
+    height: auto;
+    display: block;
+    position: relative;
+}
+
+/* Class for the entry animation */
+.hero-logo-entry {
+    animation: drawLogo 2s ease-out forwards;
+}
+
+/* Class for the continuous floating animation */
+.hero-logo-float {
+    animation: floatSwirl 6s ease-in-out infinite;
+}
+
+/* You can remove or repurpose the old .floating-logo class if it only contained the animation,
+   or keep it if it has other styles like display or position that you want to keep separate.
+   For this setup, we don't strictly need the .floating-logo class for the animation itself.
+   If you remove it, ensure any 'display' or 'position' properties from it are on '.hero-left img.portal-logo' or '.hero-logo-float' if needed.
+   The `display: block` and `position: relative` on `.hero-left img.portal-logo` should suffice.
+*/
+/*
+.floating-logo {
+  display: inline-block;
+  position: relative;
+}
+*/
 
 
 @keyframes drawLogo { 
@@ -270,19 +322,19 @@ nav {
     to { opacity: 1; transform: scale(1); }
 }
 
+/* Adjustments for elements within hero-right for better hierarchy and spacing */
 .hero-right {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center align text and buttons */
-    text-align: center; /* Ensure text within is centered */
-    /* margin-top: 4rem; Removed as hero-content handles alignment */
+    /* Desktop alignment (align-items: flex-start; text-align: left;)
+       is handled by your existing @media (min-width: 768px) query, which is good. */
 }
 
 .hero-title {
-    font-size: 4.8rem; 
+    font-size: 4.2rem; /* Reduced from 4.8rem for less dominance */
     font-weight: 800;
-    margin-bottom: 0.5rem; 
-    line-height: 1.2;
+    margin-bottom: 0.75rem; /* Slightly increased space below title */
+    line-height: 1.15; /* Adjusted line height */
 }
 
 .hero-title span { display: inline-block; animation: fadeInWord 0.5s ease-out forwards; opacity: 0; }
@@ -304,14 +356,14 @@ nav {
 .hero-title-seven { color: var(--hero-seven-color); }
 
 .tagline {
-    font-size: 1.25rem; /* Adjusted from 20px */
+    font-size: 1.15rem; /* Adjusted from 20px */
     color: #4B5563;
     margin-bottom: 2rem;
-    max-width: 600px;
+    max-width: 500px;
     font-weight: 500; /* Adjusted from 600 */
 }
 
-.hero-buttons { display: flex; gap: 1rem; justify-content: center;}
+.hero-buttons { display: flex; gap: 1.25rem; justify-content: center;}
 .hero-button {
     text-decoration: none;
     color: white;
@@ -648,6 +700,147 @@ nav {
     font-size: 0.9rem;
     color: #555;
 }
+/* Registration Section Styles - Refined */
+.registration-section {
+    background-color: #fff; /* Change from section-bg-light for more contrast if desired */
+    border-top: 1px solid #e7e7e7; /* Optional: subtle top border */
+    border-bottom: 1px solid #e7e7e7; /* Optional: subtle bottom border */
+}
+
+.registration-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem; /* Increased gap slightly */
+    max-width: 1100px;
+    margin: 0 auto;
+    background-color: transparent; /* Remove inner card background if section has bg */
+    padding: 0; /* Remove padding if section has it */
+    box-shadow: none; /* Remove inner card shadow if section has bg */
+    /* If .registration-section remains var(--section-bg-light),
+       then .registration-content can keep its #fff background and shadow.
+       Adjust based on your preferred overall section look.
+    */
+}
+
+.registration-batches,
+.registration-form-area {
+    flex: 1;
+    min-width: 320px; /* Adjust min-width for better wrapping */
+    padding: 1.5rem; /* Add padding to individual columns if .registration-content padding is removed */
+    background-color: #fff; /* Give individual columns a card look */
+    border-radius: 12px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.07);
+}
+
+.registration-batches h3,
+.registration-form-area h3 {
+    font-size: 1.6rem; /* Slightly larger title for columns */
+    color: var(--primary-color);
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--pink-accent); /* Use a Portal accent color */
+    display: inline-block; /* To make border only as wide as text */
+}
+
+.registration-batches ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1rem;
+}
+
+.registration-batches ul li {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+    padding: 0.75rem 1rem;
+    background-color: var(--section-bg-light); /* Subtle background for each batch */
+    border-left: 5px solid; /* Placeholder for cycling colors */
+    border-radius: 6px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.registration-batches ul li:hover {
+    transform: translateX(5px);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* Cycle through Portal accent colors for batch list items */
+.registration-batches ul li:nth-child(3n+1) { border-left-color: var(--orange-accent); }
+.registration-batches ul li:nth-child(3n+2) { border-left-color: var(--pink-accent); }
+.registration-batches ul li:nth-child(3n+3) { border-left-color: var(--blue-accent); } /* Or yellow-accent */
+
+.registration-batches ul li strong {
+    color: var(--primary-color); /* Make batch number darker */
+    font-weight: 600;
+}
+
+.batch-note {
+    font-size: 0.9rem;
+    color: #555;
+    /* font-style: italic; /* Optional */
+    margin-top: 1rem;
+    line-height: 1.5;
+}
+.batch-note a {
+    color: var(--blue-accent);
+    font-weight: 600;
+}
+
+.registration-form-area .form-status-placeholder { /* Renamed from form-placeholder */
+    margin-top: 1rem;
+    padding: 1.5rem;
+    background-color: var(--section-bg-light); /* Using a theme light color */
+    border: 2px dashed var(--blue-accent); /* Use an accent color for the border */
+    border-radius: 8px;
+    text-align: center;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-status-placeholder .status-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.form-status-placeholder .status-message {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* Hide the old button placeholder if using the status box */
+.registration-form-area .form-placeholder a.hero-button {
+    /* display: none; */ /* Or restyle if you keep it as a non-button notice */
+    background-color: #ccc; /* Visually disable it */
+    color: #777;
+    cursor: not-allowed;
+    margin-top: 1rem;
+    pointer-events: none; /* Make it non-clickable */
+}
+.registration-form-area .form-placeholder a.hero-button:hover {
+    background-color: #ccc; /* No hover effect */
+    transform: none;
+}
+
+
+.submission-info {
+    margin-top: 2.5rem; /* Increased space */
+    padding-top: 1.5rem;
+    border-top: 1px solid #e0e0e0; /* Lighter, more subtle separator */
+}
+.submission-info h4 {
+    font-size: 1.3rem; /* Slightly larger */
+    color: var(--primary-color);
+    margin-bottom: 0.75rem;
+}
+.submission-info p {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.6;
+}
 
 /* === Gaya Bagian FAQ BARU === */
 .faq-section {
@@ -874,6 +1067,545 @@ footer {
     color: var(--orange-accent);
     text-decoration: underline;
 }
+/* Berita & Media Section Styles */
+.media-section {
+    background-color: #fff; /* Or var(--section-bg-light) if preferred */
+}
+
+.media-subsection {
+    margin-bottom: 3.5rem; /* Increased spacing */
+    padding: 2rem 1.5rem; /* Inner padding */
+    background-color: var(--section-bg-light);
+    border-radius: 12px;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.06);
+}
+.media-subsection:last-child {
+    margin-bottom: 0;
+}
+
+.media-subsection h3 {
+    font-size: 1.85rem; /* Slightly larger subsection titles */
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    font-weight: 700;
+}
+.media-subsection h3 i {
+    color: var(--orange-accent); /* Unified accent for these icons, or cycle */
+    transform: rotate(-5deg); /* Quirky touch */
+}
+
+.loading-message, .error-message,
+#blog-articles-container .articles-grid > p,
+#gallery-container .gallery-grid > p,
+#partners-sponsors-container .partners-grid > p { /* Targeting the placeholder <p> tags */
+    text-align: center;
+    padding: 2.5rem 1rem;
+    font-size: 1rem;
+    font-style: italic;
+    color: #888;
+    background-color: rgba(0,0,0,0.02);
+    border-radius: 6px;
+}
+.error-message {
+    color: var(--hero-empower-color);
+    font-weight: 500;
+}
+
+/* Articles Grid */
+.articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem; /* Increased gap */
+}
+.article-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none; /* For the <a> wrapper */
+}
+.article-card:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 7px 20px rgba(0,0,0,0.12);
+}
+.article-image-wrapper {
+    width: 100%;
+    height: 220px; /* Slightly taller image */
+    overflow: hidden;
+    background-color: #f0f0f0; /* Fallback bg for image wrapper */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.article-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+.article-card:hover .article-image {
+    transform: scale(1.05);
+}
+.article-content {
+    padding: 1.25rem; /* Increased padding */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+.article-title {
+    font-size: 1.25rem;
+    font-weight: 700; /* Bolder title */
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+}
+.article-meta {
+    font-size: 0.8rem;
+    color: #777;
+    margin-bottom: 0.75rem;
+}
+.article-summary {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.6; /* Improved line height */
+    margin-bottom: 1rem;
+    flex-grow: 1;
+}
+.article-link-text { /* Changed from a.article-link to span */
+    display: inline-block;
+    color: var(--blue-accent);
+    font-weight: 600;
+    font-size: 0.9rem;
+    align-self: flex-start;
+    margin-top: auto; /* Pushes to bottom */
+    padding: 0.3rem 0; /* Better click area */
+}
+.article-link-text i {
+    margin-left: 0.3rem;
+    transition: transform 0.2s ease;
+}
+.article-card-link:hover .article-link-text {
+    color: var(--pink-accent);
+}
+.article-card-link:hover .article-link-text i {
+    transform: translateX(4px);
+}
+
+/* Gallery Styles */
+.gallery-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem; /* Increased space */
+    gap: 1rem;
+    border-bottom: 2px solid #e0e0e0;
+}
+.gallery-tab-button {
+    padding: 0.75rem 1.75rem; /* Larger tabs */
+    font-size: 1.05rem;
+    font-weight: 600; /* Bolder tab text */
+    border: none;
+    border-bottom: 3px solid transparent; /* For active state */
+    background-color: transparent;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: -2px; /* To make active border align with container border */
+}
+.gallery-tab-button.active,
+.gallery-tab-button:hover {
+    color: var(--pink-accent);
+    border-bottom-color: var(--pink-accent);
+}
+.gallery-grid-wrapper {
+    /* background-color: #fdfdfd; */ /* Optional wrapper bg */
+    /* padding: 0.5rem; */
+    border-radius: 8px;
+}
+.gallery-grid {
+    display: none;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem; /* Consistent gap */
+}
+.gallery-grid.active-gallery-content {
+    display: grid;
+}
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    aspect-ratio: 1 / 1; /* Square items, or 4/3, 16/9 */
+    cursor: pointer;
+}
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s ease, filter 0.35s ease;
+}
+.gallery-item:hover img {
+    transform: scale(1.1);
+    filter: brightness(0.8);
+}
+.gallery-item-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 50%, transparent 100%);
+    color: white;
+    padding: 1rem 0.75rem 0.75rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column; /* Stack icon and text */
+    align-items: center;
+    text-align: center;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.35s ease;
+    pointer-events: none; /* Allow click on image if no specific action on overlay */
+}
+.gallery-item:hover .gallery-item-overlay {
+    opacity: 1;
+}
+.gallery-item-overlay i {
+    font-size: 2rem; /* Larger icon */
+    margin-bottom: 0.25rem;
+}
+
+/* Partners & Sponsors Grid */
+.partners-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem; /* Increased gap */
+    padding: 1rem 0;
+}
+.partner-item {
+    /* padding: 0.5rem; */ /* Removed, direct image control */
+    /* background-color: #fff; */ /* Removed for cleaner look, relies on image bg or transparency */
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.partner-item img {
+    max-height: 70px;
+    max-width: 160px;
+    object-fit: contain;
+    filter: grayscale(100%) opacity(0.6); /* Start more subdued */
+    transition: filter 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+}
+.partner-item a:hover img { /* Apply hover to link for better click area */
+    filter: grayscale(0%) opacity(1);
+    transform: scale(1.1);
+}
+.partner-name-fallback { /* Fallback if image fails to load */
+    font-size: 0.9rem;
+    color: #777;
+    padding: 0.5rem;
+    border: 1px dashed #ccc;
+    border-radius: 4px;
+}
+
+
+.view-all-container {
+    text-align: center;
+    margin-top: 2.5rem; /* Increased space */
+}
+.button-view-more-media {
+    display: inline-block;
+    padding: 0.8rem 1.8rem; /* Slightly larger button */
+    background-color: var(--orange-accent); /* Changed color */
+    color: white;
+    text-decoration: none;
+    border-radius: 50px; /* Pill shape */
+    font-weight: 600; /* Bolder */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.button-vie w-more-media:hover {
+    background-color: var(--pink-accent);
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 4px 10px rgba(var(--pink-accent-rgb),0.3);
+}
+/* Quirky Contact Section Styles */
+.contact-section {
+    background: linear-gradient(135deg, rgba(var(--blue-accent-rgb), 0.05), rgba(var(--pink-accent-rgb), 0.05), rgba(var(--yellow-accent-rgb), 0.05));
+    overflow: hidden; /* Important for tilted elements not breaking layout */
+}
+
+.contact-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+}
+
+.quirky-title span {
+    display: inline-block;
+    background-color: var(--yellow-accent);
+    color: var(--primary-color);
+    padding: 0.7rem 2rem;
+    border-radius: 50px 10px 50px 10px; /* Asymmetrical pill */
+    transform: rotate(-3deg) translateX(-5px);
+    font-size: 2.6rem; /* Match or adjust based on section-title */
+    box-shadow: 4px 4px 0px rgba(var(--pink-accent-rgb), 0.7); /* Solid quirky shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.quirky-title span:hover {
+    transform: rotate(1deg) scale(1.05) translateX(0);
+    box-shadow: 2px 2px 0px rgba(var(--blue-accent-rgb), 0.8);
+}
+
+.quirky-subtitle {
+    margin-top: 1.25rem;
+    font-size: 1.15rem;
+    color: #4B5563; /* Slightly darker for subtitle */
+    font-style: italic;
+}
+
+.contact-content-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.contact-info-form-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    margin-bottom: 3.5rem;
+}
+
+.contact-direct-info,
+.contact-form-container {
+    flex: 1;
+    min-width: 320px;
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white cards */
+    padding: 2.5rem 2rem; /* More padding */
+    border-radius: 25px 8px 25px 8px; /* Quirky radius */
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    border: 3px solid; /* Solid border, color set below */
+    position: relative; /* For pseudo-elements if needed */
+}
+.contact-direct-info {
+    border-image: linear-gradient(to bottom right, var(--blue-accent), var(--pink-accent)) 1;
+    transform: rotate(-1deg) translateY(-5px); /* Slight tilt */
+}
+.contact-form-container {
+    border-image: linear-gradient(to top left, var(--orange-accent), var(--yellow-accent)) 1;
+    transform: rotate(1deg) translateY(5px); /* Opposite tilt */
+}
+.contact-direct-info:hover, .contact-form-container:hover {
+    transform: rotate(0deg) translateY(0px) scale(1.01); /* Straighten on hover */
+}
+
+.contact-direct-info h3,
+.contact-form-container h3,
+.contact-map-container h3 {
+    font-size: 1.6rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 0.6rem;
+    display: flex; /* For icon alignment */
+    align-items: center;
+    gap: 0.5rem;
+}
+.quirky-icon-header {
+    font-size: 1.3em; /* Relative to h3 font size */
+    transform: rotate(-5deg);
+}
+.contact-direct-info h3 .quirky-icon-header { color: var(--blue-accent); }
+.contact-form-container h3 .quirky-icon-header { color: var(--orange-accent); }
+.contact-map-container h3 .quirky-icon-header { color: var(--pink-accent); }
+
+
+.contact-direct-info h3::after,
+.contact-form-container h3::after,
+.contact-map-container h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 5px; /* Indent a bit */
+    width: 60px;
+    height: 4px; /* Thicker underline */
+    background-image: linear-gradient(to right, var(--pink-accent) 30%, var(--yellow-accent) 70%);
+    border-radius: 4px;
+    transform: skewX(-15deg); /* Skewed underline */
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start; /* Align icon to top of text block */
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+.info-item .accent-icon {
+    font-size: 1.6rem; /* Larger icons */
+    width: 45px;
+    height: 45px;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; /* Blobby shape */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+.info-item .accent-icon.orange { background-color: var(--orange-accent); }
+.info-item .accent-icon.pink { background-color: var(--pink-accent); }
+
+.info-item p strong {
+    display: block;
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 0.15rem;
+}
+.info-item a {
+    color: var(--blue-accent);
+    text-decoration: none;
+    font-weight: 500;
+    word-break: break-all; /* For long links/emails */
+}
+.info-item a:hover {
+    color: var(--pink-accent);
+    text-decoration: underline wavy; /* Quirky underline */
+}
+
+.contact-direct-info .social-title {
+    margin-top: 2.5rem;
+}
+.contact-social-links {
+    display: flex;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+.contact-social-links .social-icon {
+    font-size: 2rem; /* Larger social icons */
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px 25px 10px 25px; /* Quirky shape for social icons */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55), box-shadow 0.3s ease; /* Bouncy transition */
+    box-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+}
+.contact-social-links .social-icon:hover {
+    transform: translateY(-5px) rotate(10deg) scale(1.1);
+    box-shadow: 5px 5px 12px rgba(0,0,0,0.3);
+}
+.contact-social-links .social-icon.ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%); }
+.contact-social-links .social-icon.tw { background-color: #000000; } /* For X */
+.contact-social-links .social-icon.yt { background-color: #FF0000; }
+.contact-social-links .social-icon.tk { background-color: #000000; /* TikTok often black/white or specific turquoise/pink */ }
+
+
+/* Quirky Contact Form Styling */
+.contact-form .form-group {
+    margin-bottom: 1.75rem; /* More space */
+    position: relative; /* For label positioning */
+}
+.contact-form label {
+    position: absolute;
+    top: 0.85rem; /* Adjust to be inside the input initially */
+    left: 1rem;
+    font-weight: 500; /* Medium weight for labels */
+    color: #777; /* Lighter placeholder color */
+    font-size: 1rem;
+    pointer-events: none; /* Allow clicks to pass through to input */
+    transition: all 0.25s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Bouncy transition */
+    background-color: var(--section-bg-light); /* Match input bg for clean look when not focused */
+    padding: 0 0.3rem; /* Padding around label text */
+    transform-origin: left top;
+}
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 2px solid var(--timeline-dot-default); /* Default border */
+    border-radius: 10px 2px 10px 2px; /* Quirky input radius */
+    background-color: var(--section-bg-light);
+    font-family: inherit;
+    font-size: 1rem;
+    color: #333;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+/* Floating label effect: when input has content (via placeholder trick or :focus) */
+.contact-form input:focus + label,
+.contact-form input:not(:placeholder-shown) + label, /* :not(:placeholder-shown) for modern browsers */
+.contact-form textarea:focus + label,
+.contact-form textarea:not(:placeholder-shown) + label {
+    transform: translateY(-1.8rem) scale(0.85) translateX(-0.2rem); /* Move up and shrink */
+    color: var(--pink-accent); /* Change color on focus/filled */
+    font-weight: 600;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--pink-accent); /* Active border color */
+    box-shadow: 0 0 0 3px rgba(var(--pink-accent-rgb), 0.2);
+}
+.contact-form textarea {
+    resize: vertical;
+    min-height: 130px;
+}
+
+.quirky-submit { /* Uses .hero-button, .button-main-cta */
+    /* background-color: var(--orange-accent); */ /* from .button-main-cta */
+    border-radius: 50px 10px 50px 10px; /* Match title quirky shape */
+    box-shadow: 3px 3px 0px var(--blue-accent);
+    padding: 0.9rem 2.2rem; /* Slightly larger */
+    font-size: 1.05rem;
+    transition: all 0.2s ease-in-out !important; /* Ensure it overrides other transitions */
+    animation: none !important; /* Override pulseButton */
+}
+.quirky-submit:hover {
+    background-color: var(--pink-accent) !important; /* Change color dramatically */
+    color: white !important;
+    transform: translateY(-4px) rotate(3deg) scale(1.05) !important;
+    box-shadow: 1px 1px 0px var(--yellow-accent) !important;
+}
+
+
+/* Map Area */
+.contact-map-container {
+    background-color: rgba(var(--blue-accent-rgb), 0.05); /* Subtle background */
+    padding: 2.5rem 2rem;
+    border-radius: 8px 25px 8px 25px; /* Opposite of other cards */
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    text-align: center;
+    margin-top: 2rem; /* Ensure spacing if elements wrap differently */
+    border-top: 5px dotted var(--pink-accent); /* Dotted top border */
+}
+.map-placeholder {
+    margin-top: 1.5rem;
+    border-radius: 10px;
+    overflow: hidden; /* To clip iframe border-radius */
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+}
+.map-placeholder iframe {
+    display: block; /* Remove any extra space below iframe */
+    filter: hue-rotate(45deg) saturate(1.2); /* Quirky map colors */
+}
+
+
 
 /* Penyesuaian Responsif */
 @media (min-width: 768px) { /* Styles for tablet and wider */
@@ -894,9 +1626,113 @@ footer {
     .hero-buttons {
         justify-content: flex-start; /* Align buttons to left on desktop */
     }
+        .quirky-title span {
+        font-size: 2rem;
+        padding: 0.6rem 1.5rem;
+        transform: rotate(-2deg);
+    }
+    .contact-info-form-container {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    .contact-direct-info,
+    .contact-form-container {
+        min-width: 100%;
+        padding: 1.5rem;
+        transform: rotate(0deg) translateY(0px); /* Ensure cards are straight */
+    }
+    .contact-map-container {
+        padding: 2rem 1rem;
+    }
+    .contact-map-container h3 {
+        font-size: 1.4rem;
+    }
+    .contact-direct-info h3, .contact-form-container h3 {
+        font-size: 1.4rem;
+    }
+    .quirky-submit {
+        width: 100%; /* Full width button on mobile */
+    }
 }
 
+@media (max-width: 991.98px) {
+    .competition-hub-hero h1 {
+        font-size: 2.5rem; /* Adjust title size for tablets */
+    }
+    .competition-hub-hero h1 span {
+        padding: 0.4rem 1.8rem; /* Adjust pill padding */
+    }
+    .competition-hub-hero p {
+        font-size: 1.05rem; /* Adjust paragraph font size */
+    }
 
+    .competition-category {
+        gap: 1.5rem; /* Reduce gap for tablet view if still side-by-side */
+    }
+    .competition-category-details h3 {
+        font-size: 1.8rem;
+    }
+        .registration-content {
+        flex-direction: column;
+        gap: 1.5rem; /* Reduce gap when stacked */
+    }
+    .registration-batches,
+    .registration-form-area {
+        min-width: 100%;
+        padding: 1.25rem; /* Adjust padding for mobile */
+    }
+    .registration-batches h3,
+    .registration-form-area h3 {
+        font-size: 1.4rem; /* Adjust title size */
+    }
+    .registration-batches ul li {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.95rem;
+    }
+    .contact-direct-info,
+    .contact-form-container {
+        transform: rotate(0deg) translateY(0px); /* Straighten cards on tablet */
+    }
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+    .competition-hub-hero {
+        padding: 2.5rem 1rem;
+    }
+    .competition-hub-hero h1 {
+        font-size: 1.75rem;
+    }
+    .competition-hub-hero h1 span {
+        padding: 0.25rem 1rem;
+         /* If text breaks awkwardly, you might need to allow the span to be block or adjust word-break */
+    }
+    .competition-hub-hero p {
+        font-size: 0.875rem;
+    }
+
+    .competition-category {
+        padding: 1rem;
+        margin-bottom: 2rem;
+    }
+    .competition-category-details h3 {
+        font-size: 1.4rem;
+    }
+    .competition-category-details .description {
+        font-size: 0.85rem;
+    }
+    .competition-category-details h4 {
+        font-size: 1.05rem;
+    }
+    .competition-category-details ul li {
+        font-size: 0.8rem;
+         padding-left: 1.25rem; /* Adjust for smaller icon/text */
+    }
+    .competition-category-details ul li::before {
+        top: 2px;
+        font-size: 0.75rem; /* Adjust icon size if needed */
+    }
+}
 @media (max-width: 1024px) {
   .hero-title {
     font-size: 3.6rem; /* Adjusted for tablets */
@@ -1012,7 +1848,80 @@ footer {
     padding: 0.75rem 1rem;
    }
 
+    .competition-hub-hero {
+        padding: 3rem 1rem; /* Reduce padding for hero section */
+        margin-bottom: 2rem; /* Adjust bottom margin */
+    }
+    .competition-hub-hero h1 {
+        font-size: 2rem; /* Further reduce title font size */
+        line-height: 1.3;
+    }
+    .competition-hub-hero h1 span {
+        padding: 0.3rem 1.2rem; /* Reduce padding for the pill shape */
+        /* Consider display: block and text-align: center on h1 if pill gets too wide */
+    }
+    .competition-hub-hero p {
+        font-size: 0.95rem; /* Reduce paragraph font size */
+    }
 
+    .competition-category {
+        flex-direction: column !important; /* Stack image and text */
+        padding: 1.5rem;
+        margin-bottom: 2.5rem; /* Adjust space between stacked categories */
+        gap: 1.5rem; /* Gap between image and text when stacked */
+    }
+
+    .competition-category-img {
+        max-width: 100%; /* Image container can take full width */
+        flex: 1 1 auto; /* Reset flex properties for stacked layout */
+        margin-bottom: 1.5rem; /* Space below image when stacked */
+    }
+    .competition-category-img img{
+        max-height: 300px; /* Optional: constrain image height on mobile */
+        object-fit: cover;
+    }
+
+    .competition-category-details {
+        flex: 1 1 auto; /* Reset flex properties */
+        text-align: center; /* Center text details when stacked */
+    }
+
+    .competition-category-details h3 {
+        font-size: 1.6rem; /* Adjust category title font size */
+        margin-bottom: 0.5rem;
+    }
+
+    .competition-category-details .description {
+        font-size: 0.9rem;
+        text-align: left; /* Keep description text left-aligned or center if preferred */
+        margin-bottom: 1rem;
+    }
+
+    .competition-category-details h4 {
+        font-size: 1.15rem; /* Criteria/Template title */
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+        /* text-align: left; /* Or center if preferred */
+    }
+
+    .competition-category-details ul {
+        /* text-align: left; /* Ensure list items are left-aligned */
+        padding-left: 0; /* Remove padding if icons are centered or handled differently */
+        display: inline-block; /* If text-align:center on parent, this helps to left align content of ul */
+        text-align: left;
+    }
+    .competition-category-details ul li {
+        font-size: 0.85rem;
+        padding-left: 1.5rem; /* Ensure space for icon */
+        margin-bottom: 0.4rem;
+    }
+     .competition-category-details ul li::before {
+        top: 3px; /* Re-adjust icon position if needed due to font size changes */
+    }
+
+    .example-link {
+        font-size: 0.9rem;
+    }
   /* Other mobile adjustments */
   .about-content {
     flex-direction: column;
