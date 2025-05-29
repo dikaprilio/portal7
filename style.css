@@ -1,4 +1,3 @@
-/* Reset dan Variabel Root */
 * {
     margin: 0;
     padding: 0;
@@ -7,8 +6,8 @@
 
 :root {
     --primary-color: #243124; /* Hijau Tua */
-    --secondary-color: #f0f0f0; /* Abu-abu Muda */
-    --text-color: #333; /* Abu-abu Tua untuk teks */
+    --secondary-color: #f0f0f0; /* Abu-abu Muda - Good for text on dark backgrounds */
+    --text-color: #333; /* Abu-abu Tua untuk teks (original) */
     --pink-accent: #EC4899; /* Warna pink dari gambar asli */
     --blue-accent: #3B82F6; /* Warna biru dari gambar asli */
     --orange-accent: #F97316; /* Oranye untuk aksen */
@@ -17,172 +16,262 @@
     --hero-seven-color: #3B82F6; /* Biru untuk "7" */
     --section-bg-light: #F9FAFB; /* Latar belakang bagian yang sangat terang */
     --timeline-dot-default: #CBD5E1; /* Warna titik default untuk timeline */
+
+    /* RGB versions for box shadows and effects */
+    --pink-accent-rgb: 236, 72, 153;
+    --blue-accent-rgb: 59, 130, 246;
+    --orange-accent-rgb: 249, 115, 22;
+    --yellow-accent-rgb: 251, 191, 36;
+
+    /* New Navbar Specific Colors */
+    --navbar-bg: #1a1d24; /* Dark, slightly desaturated blue/grey - Portal-like */
+    --navbar-text: var(--secondary-color); /* Light text for dark navbar */
+    --navbar-dropdown-bg: #23272f; /* Slightly lighter than nav bg for dropdowns */
+    --navbar-link-hover-glow: rgba(var(--blue-accent-rgb), 0.25); /* Glow color for links */
 }
 
+@keyframes quirkyNavBorderAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+main {
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
 body {
     font-family: 'Montserrat', sans-serif;
     color: var(--text-color);
     line-height: 1.6;
-    position: relative; /* For potential sidebar interactions */
+    position: relative;
+    overflow-x: hidden;
 }
-section {
-    /* section padding is handled by .section-padding */
-}
-/* Gaya Navigasi */
+
+/* --- NAVBAR STYLES START --- */
 nav {
-    background-color: #fff; /* Latar belakang putih untuk nav */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: var(--navbar-bg); /* Dark background for the navbar */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35), 0 0 40px rgba(var(--blue-accent-rgb), 0.2); /* Stronger shadow + wider blue glow */
     position: sticky;
     top: 0;
-    z-index: 1000; /* Ensure nav is above other content but below sidebar */
+    z-index: 1000;
+    border-bottom: 1px solid rgba(var(--blue-accent-rgb), 0.3); /* Subtle structural border */
 }
-.portal-logo {
-  max-width: 100%;
-  height: auto;
-  display: flex;
-  margin: 0 auto;
+
+/* Animated Gradient Line at the bottom */
+nav::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; /* Sits just on top of the border-bottom */
+    left: 0;
+    width: 100%;
+    height: 5px; /* Thicker, more prominent line */
+    background: linear-gradient(
+        90deg,
+        var(--pink-accent),
+        var(--yellow-accent),
+        var(--blue-accent),
+        var(--orange-accent),
+        var(--pink-accent) /* Loop back for smooth animation */
+    );
+    background-size: 300% 100%; /* Wider background for smoother, slower animation */
+    animation: quirkyNavBorderAnimation 7s linear infinite; /* Slightly faster and more energetic */
+    opacity: 1;
+    filter: blur(1px); /* Softens the gradient line slightly */
 }
 
 .nav-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem 2rem;
+    padding: 0.75rem 2rem; /* Slightly reduced padding for a sleeker bar */
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1; /* Above the ::after pseudo-element */
 }
 
 .logo img {
-    height: 30px; 
+    height: 35px; /* Slightly larger logo */
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.4s ease; /* Bouncier transform */
+}
+.logo img:hover {
+    transform: scale(1.15) rotate(-3deg); /* More playful hover */
+    filter: drop-shadow(0 0 12px var(--yellow-accent)) brightness(1.1);
 }
 
-.nav-links { /* Desktop navigation links */
+.nav-links {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 2rem; /* Adjusted gap */
 }
 
 .nav-a {
     text-decoration: none;
-    color: var(--text-color);
+    color: var(--navbar-text);
     font-weight: 500;
-    padding: 0.5rem 0;
+    padding: 0.75rem 0.5rem; /* Adjusted padding */
     position: relative;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    z-index: 1;
+    overflow: visible; /* Allow pseudo-elements to extend */
 }
 
-.nav-a::after { 
+/* Underline reveal effect - more subtle */
+.nav-a::before {
     content: '';
     position: absolute;
+    bottom: 0px; /* Closer to the text */
+    left: 50%;
     width: 0;
     height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: var(--blue-accent);
-    transition: width 0.3s ease;
+    background: linear-gradient(to right, var(--pink-accent), var(--yellow-accent));
+    transform: translateX(-50%);
+    transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity: 0.7;
+}
+
+/* "Portal" Glow/Aura effect on hover */
+.nav-a::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px; /* Start small */
+    height: 10px; /* Start small */
+    background: var(--navbar-link-hover-glow);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1), width 0.4s ease, height 0.4s ease;
+    z-index: -1;
+    filter: blur(3px); /* Soften the glow */
 }
 
 .nav-a:hover {
-    color: var(--blue-accent);
+    color: white;
+    text-shadow: 0 0 8px rgba(255,255,255,0.7), 0 0 15px var(--navbar-link-hover-glow); /* Enhance text pop */
+}
+.nav-a:hover::before {
+    width: 100%;
+    opacity: 1;
+}
+.nav-a:hover::after {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    width: 150%; /* Expand glow wider than text */
+    height: 200%; /* Expand glow taller than text */
 }
 
-.nav-a:hover::after {
-    width: 100%;
-}
-/* Navigation Dropdown Styling */
 .nav-item.dropdown {
-    position: relative; /* Important for positioning the dropdown menu */
+    position: relative;
 }
 
 .dropdown-toggle .dropdown-icon {
-    font-size: 0.7em; /* Adjust icon size */
+    font-size: 0.7em;
     margin-left: 5px;
     transition: transform 0.3s ease;
-}
-.nav-cta-button {
-    background-color: var(--orange-accent); /* Using orange accent from your theme */
-    color: white !important; /* Important to override .nav-a color */
-    padding: 0.6rem 1.2rem !important; /* Adjust padding, use !important if needed to override .nav-a padding */
-    border-radius: 6px; /* Rounded corners */
-    text-align: center;
-    font-weight: 600 !important; /* Bolder text */
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    margin-left: 0.5rem; /* Optional: add some space to its left */
-}
-
-.nav-cta-button::after { /* Remove the underline hover effect from .nav-a */
-    display: none !important;
-}
-
-.nav-cta-button:hover {
-    background-color: #dd6411; /* Darker orange, consistent with .button-main-cta:hover */
-    color: white !important; /* Ensure text color remains white on hover */
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    color: var(--navbar-text);
 }
 
 .nav-item.dropdown:hover .dropdown-toggle .dropdown-icon {
-    transform: rotate(180deg); /* Rotate icon on hover/open */
+    transform: rotate(180deg);
 }
 
+/* Dropdown Menu Styling */
 .dropdown-menu {
-    display: none; /* Hidden by default */
     position: absolute;
-    top: 100%; /* Position below the parent link */
-    left: 0;
-    background-color: #fff; /* White background for dropdown */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    border-radius: 0 0 8px 8px; /* Rounded bottom corners */
-    z-index: 1010; /* Ensure it's above other content */
-    min-width: 200px; /* Minimum width for the dropdown */
-    padding: 0.5rem 0; /* Padding for the dropdown container */
+    top: calc(100% + 12px); /* Increased gap for a "floating" feel */
+    left: 50%;
+    transform: translateX(-50%); /* Center dropdown */
+    background-color: var(--navbar-dropdown-bg);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 20px rgba(var(--pink-accent-rgb), 0.15); /* More dramatic shadow */
+    border-radius: 8px;
+    z-index: 1010;
+    min-width: 240px;
+    padding: 0.75rem 0;
+    border: 1px solid rgba(var(--blue-accent-rgb), 0.25);
+    border-top: 4px solid var(--pink-accent); /* Accent top border */
+    opacity: 0;
+    transform: translateX(-50%) translateY(25px) scale(0.9); /* Start further down and smaller */
+    transform-origin: top center;
+    pointer-events: none;
+    transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), visibility 0s 0.4s;
+    visibility: hidden;
 }
 
-.nav-item.dropdown:hover .dropdown-menu,
-.nav-item.dropdown.active .dropdown-menu { /* Added .active class for potential JS toggle */
-    display: block; /* Show on hover over the .nav-item.dropdown */
+.nav-item.dropdown:hover .dropdown-menu {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1); /* Smooth entry */
+    pointer-events: auto;
+    visibility: visible;
+    transition-delay: 0s, 0s, 0s;
 }
 
 .dropdown-item {
     display: block;
-    padding: 0.75rem 1.5rem; /* Padding for individual dropdown links */
+    padding: 0.9rem 1.8rem;
     text-decoration: none;
-    color: var(--text-color);
+    color: var(--navbar-text);
     font-weight: 500;
-    font-size: 0.9rem; /* Slightly smaller font for dropdown items */
-    white-space: nowrap; /* Prevent text wrapping */
-    transition: background-color 0.2s ease, color 0.2s ease;
+    white-space: nowrap;
+    transition: background-color 0.3s ease, color 0.3s ease, padding-left 0.3s ease, letter-spacing 0.3s ease;
+    position: relative;
+    border: none;
+}
+.dropdown-item::before { /* Remove old dot effect, or repurpose if desired */
+    content: none;
 }
 
 .dropdown-item:hover {
-    background-color: var(--section-bg-light); /* Light background on hover */
-    color: var(--blue-accent); /* Accent color on hover */
-}
-.accessibility-icon-container a {
-    color: var(--text-color);
-    font-size: 1.5rem;
-    transition: color 0.3s ease;
+    background-color: rgba(var(--pink-accent-rgb), 0.2); /* More vibrant hover */
+    color: white; /* Brighter text on hover */
+    padding-left: 2.3rem; /* More pronounced indent */
+    letter-spacing: 0.8px; /* Add subtle pop */
 }
 
-.accessibility-icon-container a:hover {
-    color: var(--blue-accent);
+/* Call to Action Button - "Pendaftaran" */
+.nav-cta-button {
+    background: linear-gradient(45deg, var(--orange-accent), var(--pink-accent) 70%, var(--yellow-accent));
+    color: white !important; /* Ensure high contrast */
+    padding: 0.8rem 1.8rem !important; /* Slightly larger padding */
+    border-radius: 50px; /* Pill shape */
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    letter-spacing: 1px; /* More spacing for emphasis */
+    transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncier transition */
+    box-shadow: 0 0 20px rgba(var(--pink-accent-rgb), 0.5), 0 0 25px rgba(var(--orange-accent-rgb), 0.3), inset 0 -2px 3px rgba(0,0,0,0.25);
+    margin-left: 1rem;
+    border: none;
+    position: relative;
+    overflow: hidden; /* For potential shine effect */
 }
 
-/* Hamburger Menu Button Styling */
+.nav-cta-button:hover {
+    transform: translateY(-4px) scale(1.08); /* More lift and scale */
+    box-shadow: 0 5px 25px rgba(var(--pink-accent-rgb), 0.7), 0 5px 30px rgba(var(--orange-accent-rgb), 0.5), inset 0 -1px 2px rgba(0,0,0,0.2);
+    filter: brightness(1.15);
+}
+
+/* Mobile Menu Button Styling */
 .mobile-menu-button {
-    display: none; /* Hidden by default, shown on mobile via media query */
+    display: none;
     background: none;
     border: none;
-    font-size: 1.8rem; /* Slightly larger for better tap target */
-    color: var(--primary-color); /* Consistent with section titles */
+    font-size: 1.8rem;
+    color: var(--navbar-text); /* Light color for dark navbar */
     cursor: pointer;
-    padding: 0.5rem; /* Add some padding */
-    z-index: 1100; /* Above sidebar when it's closing, or if nav has higher z-index */
+    padding: 0.5rem;
+    z-index: 1100;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
+.mobile-menu-button:hover {
+    color: white;
+    transform: scale(1.1);
+}   
 
+/* --- NAVBAR STYLES END --- */
 
-/* Gaya Umum Bagian */
+/* Gaya Umum Bagian (Keep existing or adjust as needed) */
 .section-padding {
     padding: 3rem 2rem;
 }
@@ -483,6 +572,7 @@ nav {
 /* INSPIRE Framework Section in About */
 .inspire-framework-container {
     margin-top: 3.5rem; /* Space above the framework section */
+    margin: 20rem;
     padding: 2.5rem 2rem; /* Inner padding for the container */
     background-color: #ffffff; /* White background to make it stand out */
     border-radius: 12px;
@@ -560,47 +650,405 @@ nav {
     color: #4B5563; /* Darker gray for better readability */
     line-height: 1.6;
 }
-/* Bagian Highlight Kompetisi & Seminar */
-.highlight-section {}
-.highlight-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    max-width: 1100px;
-    margin: 0 auto;
+/* === NEW: Highlight Kompetisi & Seminar - Artistic "Portal" Overhaul === */
+
+.highlight-section {
+    background-color: var(--navbar-bg); /* Dark background for the section */
+    /* Or a more complex gradient:
+    background: linear-gradient(180deg, #1a1d24 0%, #10121A 100%); */
+    padding-top: 4rem;
+    padding-bottom: 5rem;
+    position: relative;
+    overflow: hidden; /* For background pseudo-elements */
 }
 
-.competition-highlight, .seminar-highlight {
-    background-color: #fff;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    display: flex; /* Added for better internal alignment */
-    flex-direction: column; /* Added */
+/* Optional: Subtle animated background grid for portal theme */
+.highlight-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(rgba(var(--blue-accent-rgb), 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(var(--blue-accent-rgb), 0.05) 1px, transparent 1px);
+    background-size: 30px 30px; /* Adjust grid size */
+    opacity: 0.5;
+    animation: backgroundGridMove 60s linear infinite;
+    z-index: 0;
 }
-.highlight-title { font-size: 1.75rem; color: var(--primary-color); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;}
-.highlight-title i { color: var(--blue-accent); }
-.competition-item { margin-bottom: 1.5rem; }
-.competition-item h4 { font-size: 1.25rem; color: var(--blue-accent); margin-bottom: 0.5rem; }
-.competition-item p { font-size: 0.95rem; color: #555; }
-.total-prize { font-size: 1.1rem; font-weight: 600; color: var(--orange-accent); margin-top: auto; /* Pushes to bottom if highlight box has flex */ }
-.seminar-list li { margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
-.seminar-list li i { color: var(--pink-accent); }
-.button-view-more {
+
+@keyframes backgroundGridMove {
+    0% { background-position: 0 0; }
+    100% { background-position: 300px 300px; } /* Adjust for seamless loop based on size */
+}
+
+.highlight-section .section-title {
+    color: var(--secondary-color); /* Light text for dark background */
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px rgba(var(--blue-accent-rgb), 0.3);
+}
+.highlight-section .section-title span { /* For "Unlock" */
+    color: var(--pink-accent);
+    font-style: italic; /* Agency-style touch */
+}
+
+.highlight-section .section-subtitle {
+    color: #b0b8c4; /* Lighter grey for better readability on dark bg */
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3.5rem; /* More space before cards */
+    line-height: 1.7;
+    text-align: center;
+}
+
+.highlight-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Min card width, 1fr for flexibility */
+    gap: 2.5rem; /* Increased gap for a more premium feel */
+    max-width: 1200px; /* Wider layout if desired */
+    margin: 0 auto;
+    position: relative; /* For z-index stacking context */
+    z-index: 1;
+}
+
+.portal-card {
+    background: rgba(35, 39, 47, 0.6); /* Dark semi-transparent background */
+    backdrop-filter: blur(10px) saturate(120%);
+    -webkit-backdrop-filter: blur(10px) saturate(120%); /* For Safari */
+    border-radius: 20px; /* More rounded, modern feel */
+    padding: 2.5rem 2rem; /* Generous padding */
+    border: 1px solid rgba(var(--blue-accent-rgb), 0.2);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3), 
+                inset 0 0 0 1px rgba(var(--secondary-color), 0.05); /* Subtle inner border */
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                box-shadow 0.4s ease,
+                border-color 0.4s ease;
+    position: relative;
+    overflow: hidden; /* Crucial for ::before/::after effects */
+}
+
+.portal-card::before { /* Inner glow effect - subtle */
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    border-radius: inherit; /* Match parent's border-radius */
+    box-shadow: inset 0 0 40px rgba(var(--pink-accent-rgb), 0), /* Initially no glow */
+                inset 0 0 20px rgba(var(--blue-accent-rgb), 0);
+    transition: box-shadow 0.4s ease;
+    z-index: 0; /* Behind content */
+    pointer-events: none; /* Allow clicks through */
+}
+
+.portal-card:hover {
+    transform: translateY(-12px) scale(1.03); /* Enhanced hover lift */
+    border-color: rgba(var(--pink-accent-rgb), 0.5);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4), /* Stronger shadow on hover */
+                0 0 30px rgba(var(--pink-accent-rgb), 0.2); /* Themed glow */
+}
+.portal-card:hover::before { /* Activate inner glow on hover */
+    box-shadow: inset 0 0 60px rgba(var(--pink-accent-rgb), 0.3),
+                inset 0 0 30px rgba(var(--blue-accent-rgb), 0.2);
+}
+
+
+.portal-card .card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(var(--secondary-color), 0.1);
+    padding-bottom: 1rem;
+}
+
+.portal-card .card-icon {
+    font-size: 2.5rem;
+    color: var(--pink-accent);
+    text-shadow: 0 0 15px rgba(var(--pink-accent-rgb), 0.5);
+    transition: transform 0.3s ease;
+}
+.portal-card:hover .card-icon {
+    transform: scale(1.1) rotate(-10deg); /* Animate icon on card hover */
+}
+
+.portal-card .highlight-title { /* Title inside card */
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin-bottom: 0; /* Reset margin as it's in card-header */
+    text-shadow: none; /* Remove general section title shadow */
+}
+.portal-card .highlight-title .title-accent {
+    color: var(--yellow-accent);
+    font-style: normal; /* Reset italic from section title if not desired here */
+}
+
+.portal-card .card-intro {
+    font-size: 0.95rem;
+    color: #a9b3c1; /* Lighter text for readability */
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    flex-grow: 1; /* Pushes prize/button down if content is short */
+}
+/* Ensure some minimum height for intros if needed */
+.competition-highlight .card-intro { min-height: 60px; } 
+.seminar-highlight .card-intro { min-height: 40px; }
+
+
+.competition-item {
+    margin-bottom: 1.25rem;
+    padding-left: 0.5rem;
+    border-left: 3px solid transparent; /* Prepare for hover effect */
+    transition: border-left-color 0.3s ease, padding-left 0.3s ease;
+}
+.portal-card:hover .competition-item:hover { /* Item specific hover */
+    border-left-color: var(--pink-accent);
+    padding-left: 1rem; /* Indent on hover */
+}
+
+.competition-item h4 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--blue-accent);
+    margin-bottom: 0.3rem;
+    display: flex;
+    align-items: center;
+}
+.competition-item .item-icon {
+    font-size: 0.9em; /* Relative to h4 */
+    margin-right: 0.5rem;
+    color: var(--orange-accent);
+    opacity: 0.8;
+    transition: transform 0.3s ease;
+}
+.competition-item:hover .item-icon {
+    transform: scale(1.2) rotate(10deg);
+}
+
+.competition-item p {
+    font-size: 0.9rem;
+    color: #9ca7b8; /* Lighter text */
+    line-height: 1.5;
+}
+
+/* --- KAPOW Prize Money Animation & Styling --- */
+.total-prize-container {
+    background: linear-gradient(45deg, rgba(var(--pink-accent-rgb),0.15), rgba(var(--blue-accent-rgb),0.15));
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    margin-top: auto; /* Pushes to the bottom of the flex column card */
+    text-align: center;
+    border: 1px solid rgba(var(--yellow-accent-rgb), 0.3);
+    box-shadow: 0 0 20px rgba(var(--yellow-accent-rgb), 0.1), /* Outer glow */
+                inset 0 0 10px rgba(0,0,0,0.2); /* Inner shadow for depth */
+    position: relative; /* For pseudo elements like shimmer */
+    overflow: hidden; 
+}
+
+.total-prize-container::before { /* Shimmer effect moving across */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%; /* Start off-screen */
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
+    transform: skewX(-25deg); /* Angled shine */
+    animation: prizeContainerShine 5s infinite linear;
+    animation-delay: 1s; /* Stagger the animation */
+}
+
+@keyframes prizeContainerShine {
+    0% { left: -150%; }
+    100% { left: 150%; } /* Move fully across */
+}
+
+.prize-label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--secondary-color);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.75rem;
+    opacity: 0.7;
+}
+
+.prize-amount-wrapper {
+    display: flex;
+    align-items: baseline; /* Align currency symbol (Rp) with start of number */
+    justify-content: center;
+    line-height: 1; /* Crucial for big text alignment */
+    margin-bottom: 0.25rem;
+}
+
+.prize-currency {
+    font-size: 1.8rem; /* Slightly smaller than value */
+    font-weight: 600;
+    color: var(--yellow-accent);
+    margin-right: 0.25rem; /* Space between Rp and number */
+    opacity: 0.8;
+    transform: translateY(-2px); /* Fine-tune alignment */
+}
+
+.prize-value {
+    font-family: 'Impact', 'Arial Black', sans-serif; /* Impactful, bold font */
+    font-size: 3.2rem; /* HUGE and proud */
+    font-weight: 900; /* Max boldness */
+    color: #fff; /* White for max contrast on its background */
+    letter-spacing: -1px; /* Tighten spacing for impact */
+    text-shadow: 
+        0 0 5px var(--yellow-accent),
+        0 0 15px var(--yellow-accent),
+        0 0 25px rgba(var(--orange-accent-rgb),0.8),
+        0 0 35px rgba(var(--pink-accent-rgb),0.6),
+        2px 2px 2px rgba(0,0,0,0.3); /* Complex text shadow for depth and glow */
+    animation: prizePop 2.5s infinite ease-in-out alternate;
+    position: relative; 
+}
+
+@keyframes prizePop {
+    0% {
+        transform: scale(1);
+        opacity: 0.9;
+         text-shadow: 
+            0 0 5px var(--yellow-accent),
+            0 0 15px var(--yellow-accent),
+            0 0 25px rgba(var(--orange-accent-rgb),0.7),
+            0 0 35px rgba(var(--pink-accent-rgb),0.5),
+            2px 2px 2px rgba(0,0,0,0.2);
+    }
+    50% {
+        transform: scale(1.08); /* Slightly larger and more prominent */
+        opacity: 1;
+        text-shadow: 
+            0 0 8px var(--yellow-accent),
+            0 0 20px var(--yellow-accent),
+            0 0 35px rgba(var(--orange-accent-rgb),1), /* Intensify glow */
+            0 0 50px rgba(var(--pink-accent-rgb),0.8),
+            3px 3px 3px rgba(0,0,0,0.3);
+    }
+    100% { /* Return to base for smooth loop */
+        transform: scale(1);
+        opacity: 0.9;
+        text-shadow: 
+            0 0 5px var(--yellow-accent),
+            0 0 15px var(--yellow-accent),
+            0 0 25px rgba(var(--orange-accent-rgb),0.7),
+            0 0 35px rgba(var(--pink-accent-rgb),0.5),
+            2px 2px 2px rgba(0,0,0,0.2);
+    }
+}
+
+.prize-details {
+    display: block;
+    font-size: 0.75rem;
+    font-style: italic;
+    color: #a9b3c1;
+    opacity: 0.6;
+}
+
+/* Seminar List Styling */
+.seminar-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem; /* Space before button */
+    margin-top: 0.5rem; /* Space after card-intro */
+    flex-grow: 1; /* Pushes button down in flex column */
+}
+.seminar-list li {
+    display: flex;
+    align-items: flex-start; /* Align icon with top of text line */
+    gap: 0.75rem;
+    margin-bottom: 0.9rem;
+    font-size: 0.9rem;
+    color: #b0b8c4; /* Light text */
+    line-height: 1.5;
+    padding: 0.5rem 0.25rem;
+    border-bottom: 1px solid rgba(var(--secondary-color), 0.05); /* Very subtle separator */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.portal-card:hover .seminar-list li:hover {
+    background-color: rgba(var(--pink-accent-rgb), 0.05); /* Faint highlight on item hover */
+    color: var(--secondary-color); /* Brighten text on item hover */
+}
+.seminar-list li:last-child {
+    border-bottom: none;
+}
+
+.seminar-list .list-icon {
+    color: var(--orange-accent);
+    font-size: 1.1em; /* Relative to li font size */
+    margin-top: 0.15em; /* Fine-tune vertical alignment */
+    opacity: 0.7;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+.seminar-list li:hover .list-icon {
+    transform: scale(1.3) translateX(2px); /* Animate icon on item hover */
+    color: var(--pink-accent);
+}
+.seminar-list li span { /* For the bolded part like "Exclusive Mentorship:" */
+    font-weight: 600;
+    color: var(--blue-accent);
+}
+
+/* Button Styling (replaces .button-view-more specific styles for this section) */
+.portal-button.button-view-more { 
     display: inline-block;
-    padding: 0.6rem 1.2rem;
-    background-color: var(--orange-accent); /* Or another accent */
+    padding: 0.8rem 1.8rem;
+    background: linear-gradient(45deg, var(--pink-accent), var(--orange-accent));
     color: white;
     text-decoration: none;
-    border-radius: 6px;
-    font-weight: 500;
+    border-radius: 50px; /* Pill shape for modern look */
+    font-weight: 600;
     text-align: center;
-    margin-top: 1rem;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 1.5rem; /* Ensure it has spacing from content above */
+    align-self: center; /* Center button if card has extra space */
+    border: none;
+    box-shadow: 0 4px 15px rgba(var(--pink-accent-rgb),0.3);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy transition */
+    position: relative; /* For pseudo-elements */
+    overflow: hidden; 
 }
-.button-view-more:hover {
-    background-color: var(--pink-accent); /* Darken or change color on hover */
-    transform: translateY(-2px);
+.portal-button.button-view-more .btn-icon {
+    margin-left: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.portal-button.button-view-more:hover {
+    transform: translateY(-4px) scale(1.05); /* Lift and scale */
+    box-shadow: 0 8px 25px rgba(var(--orange-accent-rgb),0.4);
+    background: linear-gradient(45deg, var(--orange-accent), var(--pink-accent)); /* Flip gradient on hover */
+}
+.portal-button.button-view-more:hover .btn-icon {
+    transform: translateX(5px); /* Animate arrow */
+}
+
+.portal-button.button-view-more::before { /* Shimmer effect on button */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%; /* Start off-screen */
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, transparent 0%, rgba(255,255,255,0.5) 50%, transparent 100%);
+    transform: skewX(-25deg);
+    transition: left 0.5s ease; /* Slower transition for visibility */
+}
+.portal-button.button-view-more:hover::before {
+    left: 150%; /* Move across on hover */
+}
+
+/* Ensure aos data attributes don't conflict visually if needed */
+[data-aos] {
+    z-index: 1; /* Ensure AOS elements are above pseudo backgrounds like the grid */
 }
 /* === Gaya Bagian Linimasa (Timeline) BARU === */
 .timeline-section {
@@ -1939,7 +2387,92 @@ footer {
 .lightbox-next:hover {
     background-color: rgba(0,0,0,0.6);
 }
+/* === Blog Page Specific Styles === */
 
+.blog-page-hero {
+    background: linear-gradient(rgba(var(--navbar-bg-rgb, 26, 29, 36), 0.85), rgba(var(--navbar-bg-rgb, 26, 29, 36), 0.95)), 
+                url('https://placehold.co/1920x600/2a2f3b/1a1d24?text=Portal+Blog+Background&font=montserrat') no-repeat center center/cover; /* Placeholder background */
+    color: var(--navbar-text); /* Light text */
+    text-align: center;
+    padding: 5rem 2rem; /* Generous padding */
+    position: relative;
+    overflow: hidden;
+}
+/* If --navbar-bg-rgb is not defined, add it to :root in style.css */
+/* :root { --navbar-bg-rgb: 26, 29, 36; } */
+
+
+.blog-page-hero::before { /* Subtle overlay pattern */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle at center, rgba(var(--blue-accent-rgb), 0.1) 0%, transparent 60%);
+    opacity: 0.3;
+    animation: pulseOverlay 10s infinite ease-in-out;
+}
+
+@keyframes pulseOverlay {
+    0% { transform: scale(1); opacity: 0.3; }
+    50% { transform: scale(1.05); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 0.3; }
+}
+
+.blog-page-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 15px rgba(0,0,0,0.3);
+    letter-spacing: 1px;
+}
+
+.blog-page-title span { /* For the "7" */
+    color: var(--hero-seven-color); /* */
+    font-family: 'Arial Black', Gadget, sans-serif; /* Example of a more impactful font for the number */
+    text-shadow: 0 0 10px rgba(var(--blue-accent-rgb), 0.7);
+}
+
+.blog-page-subtitle {
+    font-size: 1.25rem;
+    max-width: 700px;
+    margin: 0 auto 1rem auto;
+    opacity: 0.9;
+    line-height: 1.7;
+}
+
+.blog-listing-section {
+    background-color: var(--section-bg-light); /* */
+}
+
+#full-articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Uses existing .articles-grid style */
+    gap: 2rem; /* Uses existing .articles-grid style */
+}
+
+/* Ensure .articles-grid and .article-card styles from your main style.css are applied */
+/* You might want to adjust the number of columns for .articles-grid on blog.html if needed */
+/* For example, if you want max 3 columns on wider screens: */
+@media (min-width: 992px) {
+    #full-articles-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+    #full-articles-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* --- Make sure the general .container class is defined if you use it --- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem; /* Horizontal padding for content within container */
+}
 
 /* Penyesuaian Responsif */
 
@@ -2095,95 +2628,7 @@ footer {
     .quirky-submit {
         width: 100%; /* Full width button on mobile */
     }
-  /* --- Sidebar Navigation Styles --- */
-  .nav-links { /* This IS the sidebar */
-      position: fixed;
-      top: 0;
-      left: 0; /* Start from the left edge */
-      width: 280px; /* Sidebar width */
-      height: 100vh; /* Full viewport height */
-      background-color: #ffffff; /* White background */
-      box-shadow: 3px 0px 15px rgba(0, 0, 0, 0.15); /* Softer shadow */
-      padding-top: 60px; /* Space for close button or logo if moved inside, or just top padding */
-      
-      display: flex; 
-      flex-direction: column; 
-      align-items: stretch; /* Stretch links to full width */
-      gap: 0; /* Remove desktop gap */
-
-      transform: translateX(-100%); /* Initially hidden off-screen to the left */
-      transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1); /* Smoother transition */
-      z-index: 1050; /* Above other content, below modal if any */
-  }
-
-  .nav-links.active {
-      transform: translateX(0); /* Slide in */
-  }
-    .nav-links.active .nav-item.dropdown .dropdown-menu {
-        display: none; /* Hidden by default */
-        position: static; /* Crucial for flow in mobile sidebar */
-        box-shadow: none;
-        border-radius: 0;
-        background-color: #fdfdfd; /* Slightly different background for visual nesting */
-        width: 100%; /* Ensure it takes full width of parent */
-        /* Remove padding-left from here; apply to items for better control */
-    }
-
-    .nav-links.active .nav-item.dropdown.open .dropdown-menu { /* Use 'open' class to show */
-        display: block;
-    }
-    .nav-links.active .nav-item.dropdown.open .dropdown-menu .dropdown-item {
-        display: block;
-        /* Adjust padding: 1rem top/bottom, 1.5rem right, 2.5rem left for indentation */
-        padding: 1rem 1.5rem 1rem 2.5rem;
-        text-decoration: none;
-        color: var(--text-color);
-        font-weight: 500;   /* Consistent with .nav-a */
-        font-size: 0.9rem;  /* Consistent with desktop dropdown items, or adjust as needed */
-        white-space: nowrap;
-        transition: background-color 0.2s ease, color 0.2s ease;
-        border-bottom: 1px solid #e7e7e7; /* Separator line, same as .nav-a */
-        background-color: #fdfdfd; /* Ensure it has the nested background color */
-    }
-    .nav-links.active .nav-item.dropdown.open .dropdown-menu .dropdown-item:hover {
-        background-color: #e9ecef; /* Slightly darker hover for submenu items */
-        color: var(--blue-accent);
-    }
-
-
-    .nav-links.active .nav-item.dropdown.open .dropdown-menu .dropdown-item:last-child {
-        border-bottom: none;
-    }
-    
-    .nav-links.active .dropdown-toggle .dropdown-icon {
-        /* Style for mobile dropdown icon if needed, e.g., always visible */
-    }
-    
-
-  .nav-links .nav-a { /* Styling for links within the sidebar */
-      width: 100%; 
-      padding: 1rem 1.5rem; 
-      text-align: left;
-      color: var(--text-color);
-      font-weight: 500;
-      border-bottom: 1px solid #e7e7e7; /* Lighter separator */
-      transition: background-color 0.2s ease, color 0.2s ease;
-  }
-  .nav-links .nav-a:last-child {
-      border-bottom: none;
-  }
-  .nav-links .nav-a:hover {
-      background-color: var(--section-bg-light); 
-      color: var(--blue-accent);
-  }
-  .nav-links .nav-a::after { /* Remove underline effect from desktop */
-      display: none;
-  }
   
-  .mobile-menu-button {
-    display: block; /* Show hamburger button */
-    order: 3; /* If you want it at the end of the flex container (.nav-container) */
-  }
 
   /* Adjust hero section for mobile */
   .hero-section {
@@ -2212,7 +2657,7 @@ footer {
     gap: 1.5rem; /* Reduced gap */
   }
   .hero-left img.portal-logo {
-      max-width: 45vh; /* Smaller logo on mobile */
+    max-width: 40vh; /* Smaller logo on mobile */
   }
   .hero-right {
     align-items: center; /* Center content in hero-right */
@@ -2413,6 +2858,19 @@ footer {
     padding: 0.7rem 1.2rem;
     font-size: 0.9rem;
   }
+    .media-section.section-padding { /* Targeting the media section specifically */
+        padding-left: 1rem;  /* Reduce left padding */
+        padding-right: 1rem; /* Reduce right padding */
+    }
+
+    .media-subsection { /* Targeting the container of articles-grid */
+        padding-left: 0.75rem;  /* Further reduce left padding */
+        padding-right: 0.75rem; /* Further reduce right padding */
+    }
+
+    .articles-grid {
+        gap: 1rem; /* Optionally reduce the gap between cards if they stack */
+    }
   .faq-question h4 {
     font-size: 1rem;
   }
@@ -2421,6 +2879,8 @@ footer {
   }
   .nav-container {
     padding: 0.75rem 1rem; /* Reduce nav padding */
+    z-index: 1;
+    position: relative;
   }
   .logo img {
     height: 25px; /* Smaller logo */
@@ -2448,5 +2908,170 @@ footer {
     .countdown-timer span small { /* Labels */
         font-size: 0.55rem;
         margin-top: 2px; /* Reduce space between number and label */
+    }
+}
+
+/* === MEDIA QUERIES === */
+@media (max-width: 767px) {
+    .nav-container {
+        padding: 0.75rem 1rem;
+    }
+
+    /* --- Mobile Sidebar Navigation Styles (Portal Theme) --- */
+    .nav-links { /* This IS the sidebar */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 280px; /* Adjust width as desired */
+        height: 100vh;
+        background-color: var(--navbar-bg); /* DARK BACKGROUND for sidebar */
+        box-shadow: 3px 0px 15px rgba(0, 0, 0, 0.25); /* Shadow for dark bg */
+        padding-top: 50px; /* Adjust based on your top bar/close button */
+        display: flex;
+        flex-direction: column;
+        align-items: stretch; /* Links take full width */
+        gap: 0; /* Reset gap from desktop, manage spacing with padding on .nav-a */
+        transform: translateX(-100%); /* Initially hidden */
+        transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+        z-index: 1050; /* Above other content */
+        overflow-y: auto; /* Allow scrolling if content overflows */
+    }
+
+    .nav-links.active {
+        transform: translateX(0); /* Slide in */
+    }
+
+    /* Styling for main links within the mobile sidebar */
+    .nav-links .nav-a {
+        width: 100%;
+        padding: 1rem 1.5rem;
+        text-align: left;
+        color: var(--navbar-text) !important; /* LIGHT TEXT for dark sidebar (using !important to ensure override) */
+        font-weight: 500;
+        border-bottom: 1px solid rgba(var(--secondary-color), 0.1); /* Subtle separator */
+        transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    /* Remove ::before and ::after pseudo-elements for mobile links if they cause issues */
+    .nav-links .nav-a::before,
+    .nav-links .nav-a::after {
+        display: none;
+    }
+
+
+    /* Hover state for regular links (not CTA button) */
+    .nav-links .nav-a:hover:not(.nav-cta-button) {
+        background-color: rgba(var(--pink-accent-rgb), 0.15);
+        color: white !important; /* Using !important to ensure override */
+    }
+
+    /* Specific styling for CTA button inside mobile menu */
+    .nav-links .nav-a.nav-cta-button {
+        margin: 1rem 1.5rem; /* Give it some space */
+        width: calc(100% - 3rem); /* Adjust width to fit padding */
+        text-align: center;
+        border-bottom: none; /* No border for CTA */
+        color: white !important; /* Ensure CTA text is white */
+    }
+    .nav-links .nav-a.nav-cta-button:hover {
+        /* CTA hover is already defined globally, should work */
+        filter: brightness(1.15); /* Keep existing hover from desktop */
+    }
+
+
+    /* --- Mobile Dropdown Menu Styles (Dark Theme) --- */
+    .nav-links.active .nav-item.dropdown .dropdown-menu {
+        display: none; /* Hidden by default */
+        box-shadow: none;
+        border-radius: 0;
+        background-color: var(--navbar-dropdown-bg); /* Darker background for submenu */
+        width: 100%;
+        padding-left: 1.5rem; /* Indent submenu items */
+        border-top: 1px solid rgba(var(--secondary-color), 0.1); /* Separator from parent */
+    }
+
+    .nav-links.active .nav-item.dropdown.open .dropdown-menu {
+        display: block; /* Show when .open class is added by JS */
+    }
+
+    .nav-links.active .nav-item.dropdown.open .dropdown-menu .dropdown-item {
+        display: block;
+        padding: 0.9rem 1.5rem;
+        text-decoration: none;
+        color: var(--navbar-text) !important; /* LIGHT TEXT for submenu items (using !important) */
+        font-weight: 500;
+        font-size: 0.9rem;
+        white-space: nowrap;
+        transition: background-color 0.2s ease, color 0.2s ease;
+        border-bottom: 1px solid rgba(var(--secondary-color), 0.08); /* Fainter separator */
+        background-color: transparent; /* Inherit dark bg from .dropdown-menu */
+    }
+
+    .nav-links.active .nav-item.dropdown.open .dropdown-menu .dropdown-item:last-child {
+        border-bottom: none;
+    }
+
+    .nav-links.active .nav-item.dropdown.open .dropdown-menu .dropdown-item:hover {
+        background-color: rgba(var(--pink-accent-rgb), 0.25);
+        color: white !important; /* Using !important */
+    }
+
+    /* Dropdown icon in mobile menu */
+    .nav-links.active .dropdown-toggle .dropdown-icon {
+        /* Color should be inherited from .nav-a (var(--navbar-text)) */
+        /* Transition is already set globally */
+    }
+    .nav-links.active .nav-item.dropdown.open > .nav-a.dropdown-toggle {
+        background-color: rgba(var(--blue-accent-rgb), 0.1); /* Slight highlight for open parent toggle */
+    }
+
+
+    /* Hamburger Button */
+    .mobile-menu-button {
+        display: block; /* Show the button */
+        color: var(--navbar-text); /* Light color for hamburger icon on dark navbar */
+        /* Other styles (background, border, font-size, z-index etc. are already set globally) */
+    }
+    .mobile-menu-button:hover {
+        color: white; /* Brighter on hover */
+    }
+
+    /* Other mobile styles for sections like hero, timeline etc. should follow */
+    /* ... (your existing other mobile styles from 767px query) ... */
+
+    /* Fix for the hero section text alignment and button stacking on mobile */
+    .hero-content {
+        flex-direction: column;
+        text-align: center; /* Center align for hero text on mobile */
+        gap: 1.5rem;
+    }
+    .hero-right {
+        align-items: center; /* Center content in hero-right */
+        text-align: center; /* Ensure text is centered */
+    }
+    .hero-buttons {
+        justify-content: center; /* Center buttons */
+        flex-direction: column; /* Stack buttons */
+    }
+
+    /* Make sure timeline is correctly aligned on mobile */
+    .timeline-container::before {
+        left: 20px; /* Garis agak ke kiri */
+        transform: translateX(0); /* Reset from -50% for left alignment */
+    }
+    .timeline-entry {
+        width: 100%;
+        padding-left: 50px; /* Supaya tidak nabrak garis & titik */
+        padding-right: 15px;
+        left: 0 !important; /* Ensure it's aligned to the new line */
+        text-align: left !important;
+    }
+    .timeline-entry .timeline-icon-dot {
+        left: 20px; /* Sejajar dengan garis */
+        transform: translate(-50%, -50%); /* Pusatkan ikon pada garis */
+    }
+    .timeline-entry .timeline-label::before { /* Adjust arrow for left-aligned items */
+        left: -8px;
+        border-width: 8px 8px 8px 0;
+        border-color: transparent white transparent transparent;
     }
 }

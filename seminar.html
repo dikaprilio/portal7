@@ -146,25 +146,36 @@
             once: true,
         });
 
-        // --- Mobile Menu Toggle ---
-        const menuToggleButtonSeminar = document.getElementById('mobile-menu-toggle');
-        const mainNavLinksSeminar = document.getElementById('main-nav-links');
-        let menuIconSeminar = menuToggleButtonSeminar ? menuToggleButtonSeminar.querySelector('i') : null;
+       // --- Mobile Navigation Variables ---
+        const menuToggleButton = document.getElementById('mobile-menu-toggle');
+        const mainNavLinks = document.getElementById('main-nav-links');
+        let menuIcon = menuToggleButton ? menuToggleButton.querySelector('i') : null;
 
-        if (menuToggleButtonSeminar && mainNavLinksSeminar) {
-            menuToggleButtonSeminar.addEventListener('click', () => {
-                const isExpanded = mainNavLinksSeminar.classList.toggle('active');
-                menuToggleButtonSeminar.setAttribute('aria-expanded', isExpanded);
-                if (menuIconSeminar) {
-                    if (isExpanded) {
-                        menuIconSeminar.classList.remove('fa-bars');
-                        menuIconSeminar.classList.add('fa-times');
-                    } else {
-                        menuIconSeminar.classList.remove('fa-times');
-                        menuIconSeminar.classList.add('fa-bars');
-                    }
+        // --- Central Function to Close Mobile Menu ---
+        function closeMobileMenu() {
+            if (mainNavLinks && mainNavLinks.classList.contains('active')) {
+                mainNavLinks.classList.remove('active');
+                if (menuToggleButton) menuToggleButton.setAttribute('aria-expanded', 'false');
+                if (menuIcon) {
+                    menuIcon.classList.remove('fa-times');
+                    menuIcon.classList.add('fa-bars');
                 }
-                if (!isExpanded) {
+                document.querySelectorAll('.nav-links .nav-item.dropdown.open').forEach(openDropdown => {
+                    openDropdown.classList.remove('open');
+                });
+            }
+        }
+
+        // --- 1. Toggle Main Mobile Menu (Hamburger) ---
+        if (menuToggleButton) {
+            menuToggleButton.addEventListener('click', (e) => {
+                e.stopPropagation(); // Important to prevent immediate close if click bubbles
+                const isActive = mainNavLinks.classList.toggle('active');
+                menuToggleButton.setAttribute('aria-expanded', isActive);
+                if (menuIcon) {
+                    menuIcon.className = isActive ? 'fas fa-times' : 'fas fa-bars';
+                }
+                if (!isActive) { // If menu is being closed by toggle
                     document.querySelectorAll('.nav-links .nav-item.dropdown.open').forEach(openDropdown => {
                         openDropdown.classList.remove('open');
                     });
@@ -172,61 +183,124 @@
             });
         }
 
-        // --- Basic Smooth scroll for SAME-PAGE anchor links on seminar.html (if any) ---
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const targetHref = this.getAttribute('href');
-                if (targetHref && targetHref.length > 1 && targetHref.startsWith("#")) {
-                    try {
-                        const targetElement = document.querySelector(targetHref);
-                        if (targetElement) {
-                            e.preventDefault();
-                            const navElement = document.querySelector('nav');
-                            const navHeight = navElement ? navElement.offsetHeight : 0;
-                            const targetElementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-                            const offsetPosition = targetElementPosition - navHeight;
-                            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-                        }
-                    } catch (error) { /* console.warn("Smooth scroll target not found:", targetHref); */ }
-                }
-                if (mainNavLinksSeminar && mainNavLinksSeminar.classList.contains('active') && this.closest('#main-nav-links')) {
-                    mainNavLinksSeminar.classList.remove('active');
-                    if (menuToggleButtonSeminar) menuToggleButtonSeminar.setAttribute('aria-expanded', 'false');
-                    if (menuIconSeminar) { menuIconSeminar.classList.remove('fa-times'); menuIconSeminar.classList.add('fa-bars'); }
-                    document.querySelectorAll('.nav-links .nav-item.dropdown.open').forEach(openDropdown => {
-                        openDropdown.classList.remove('open');
-                    });
+        // --- 2. Toggle Dropdowns within Mobile Menu ---
+        document.querySelectorAll('.nav-links .dropdown-toggle').forEach(toggle => {
+            toggle.addEventListener('click', function(e) {
+                if (mainNavLinks && mainNavLinks.classList.contains('active')) { 
+                    if (this.getAttribute('href') === '#') { // Prevent jump for placeholder links
+                        e.preventDefault();
+                    }
+                    const parentDropdown = this.closest('.nav-item.dropdown');
+                    if (!parentDropdown) {
+                        return;
+                    }
+                    const currentlyOpen = parentDropdown.classList.contains('open');
+                    // Optional: Accordion behavior (close other open dropdowns)
+                    // document.querySelectorAll('.nav-links.active .nav-item.dropdown.open').forEach(openSubDropdown => {
+                    //    if (openSubDropdown !== parentDropdown) {
+                    //        openSubDropdown.classList.remove('open');
+                    //    }
+                    // });
+                    parentDropdown.classList.toggle('open', !currentlyOpen); // Toggle current one
+                    e.stopPropagation(); // Prevent click from bubbling to document listener
                 }
             });
         });
 
-        // --- Mobile Dropdown Toggle Script ---
-        document.querySelectorAll('.nav-links .dropdown-toggle').forEach(toggle => {
-            toggle.addEventListener('click', function(e) {
-                if (this.getAttribute('href') === '#') { e.preventDefault(); }
-                const mainNav = document.getElementById('main-nav-links');
-                if (mainNav && mainNav.classList.contains('active')) { 
-                    const parentDropdown = this.parentElement;
-                    parentDropdown.classList.toggle('open');
-                    document.querySelectorAll('.nav-links .nav-item.dropdown.open').forEach(openDropdown => {
-                        if (openDropdown !== parentDropdown) { openDropdown.classList.remove('open'); }
-                    });
+        // --- 3. Handle Clicks on Nav Items (for closing menu and smooth scroll) ---
+        document.querySelectorAll('#main-nav-links a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const fullHref = this.getAttribute('href');
+                const isDropdownToggle = this.classList.contains('dropdown-toggle');
+
+                // If it's a dropdown toggle clicked in mobile view, let the dedicated handler above manage it
+                if (isDropdownToggle && mainNavLinks.classList.contains('active')) {
+                    return; 
+                }
+
+                const isIndexPage = window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/index');
+                
+                if (fullHref && fullHref.includes('index.html#') && isIndexPage) { 
+                    // Case 1: Link to an index.html section from index.html itself
+                    const targetId = fullHref.split('#')[1];
+                    if (targetId && document.getElementById(targetId)) {
+                        e.preventDefault();
+                        smoothScrollToTarget(targetId);
+                        closeMobileMenu();
+                    } else { 
+                        // Target doesn't exist on index.html, or malformed hash
+                        if(mainNavLinks.classList.contains('active')) closeMobileMenu();
+                    }
+                } else if (fullHref && fullHref.startsWith('#')) { 
+                    // Case 2: Same-page anchor on the *current* page (e.g., #details on competition.html)
+                    const targetId = fullHref.substring(1);
+                    if (targetId && document.getElementById(targetId)) {
+                         e.preventDefault();
+                         smoothScrollToTarget(targetId);
+                         closeMobileMenu();
+                    } else {
+                        // Link is just "#" or target doesn't exist on current page
+                        if(mainNavLinks.classList.contains('active')) closeMobileMenu();
+                    }
+                } else { 
+                    // Case 3: Link to another page (e.g., "competition-hub.html" or "index.html#section" from a non-index page)
+                    // or a non-scroll action.
+                    if(mainNavLinks.classList.contains('active')) {
+                         closeMobileMenu(); // Close menu before navigating
+                    }
+                    // Allow default browser navigation to handle the link.
+                    // If it's a link to index.html#section from another page, index.html's own load handler will manage the scroll.
                 }
             });
         });
         
-        // --- Close mobile menu on link click (general) ---
-         document.addEventListener('click', function(event) {
-            const mainNav = document.getElementById('main-nav-links');
-            if (mainNav && mainNav.classList.contains('active')) {
-                if ( (event.target.matches('.nav-links.active .nav-a') && !event.target.matches('.dropdown-toggle')) || 
-                      event.target.matches('.nav-links.active .dropdown-item') ) {
-                    document.querySelectorAll('.nav-links .nav-item.dropdown.open').forEach(openDropdown => {
-                        openDropdown.classList.remove('open');
-                    });
-                    mainNav.classList.remove('active');
-                    if (menuToggleButtonSeminar) menuToggleButtonSeminar.setAttribute('aria-expanded', 'false');
-                    if (menuIconSeminar) { menuIconSeminar.classList.remove('fa-times'); menuIconSeminar.classList.add('fa-bars');}
+        // Smooth Scroll Function
+        function smoothScrollToTarget(targetId, isPageLoad = false) {
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                const navElement = document.querySelector('nav');
+                const navHeight = navElement ? navElement.offsetHeight : 0;
+                let targetElementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+
+                // This specific calculation for 'isPageLoad' is more critical for index.html's initial scroll.
+                if (isPageLoad && (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/index'))) { 
+                    let elem = targetElement; let top = 0;
+                    while(elem) { top += elem.offsetTop; elem = elem.offsetParent; }
+                    targetElementPosition = top;
+                }
+                const offsetPosition = targetElementPosition - navHeight;
+                window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                return true;
+            }
+            return false;
+        }
+        
+        // Scroll on page load if hash present
+        // Handles navigating to index.html#section from another page, or refreshing index.html#section
+        if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/index')) { // Specifically for index.html
+            window.addEventListener('load', () => {
+                if (window.location.hash) {
+                    const targetId = window.location.hash.substring(1);
+                    setTimeout(() => { smoothScrollToTarget(targetId, true); }, 100); // Delay for layout stability
+                }
+            });
+        } else if (window.location.hash) { // For other pages (not index.html)
+            // This handles if a non-index page (e.g., gallery.html) is loaded directly with a hash (e.g., gallery.html#sectionOnGallery)
+            window.addEventListener('load', () => {
+                const targetId = window.location.hash.substring(1);
+                if (document.getElementById(targetId)) { // Check if the target element exists on this non-index page
+                    setTimeout(() => { smoothScrollToTarget(targetId, false); }, 100); // isPageLoad=false for simpler scroll on non-index pages
+                }
+            });
+        }
+
+        // --- 4. Click Outside to Close Mobile Menu ---
+        document.addEventListener('click', function(event) {
+            if (mainNavLinks && mainNavLinks.classList.contains('active')) {
+                const isClickInsideNav = mainNavLinks.contains(event.target);
+                const isClickOnToggleButton = menuToggleButton ? menuToggleButton.contains(event.target) : false;
+                if (!isClickInsideNav && !isClickOnToggleButton) {
+                    closeMobileMenu();
                 }
             }
         });

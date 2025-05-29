@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal 7 Chronicles - Insights & Stories</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="img/Portal_Logo.png" alt="Logo Portal 7" onerror="this.onerror=null;this.src='https://placehold.co/120x30/cccccc/ffffff?text=P7+Logo';">
+            </a>
+            <div class="nav-links" id="main-nav-links">
+                <a class="nav-a" href="index.html#hero">Beranda</a>
+                <div class="nav-item dropdown">
+                    <a class="nav-a dropdown-toggle" href="#">Tentang Portal <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="index.html#tentang">Tentang Kami</a>
+                        <a class="dropdown-item" href="index.html#highlight">Highlights</a>
+                        <a class="dropdown-item" href="index.html#linimasa">Linimasa</a>
+                        <a class="dropdown-item" href="index.html#guest-stars">Guest Star</a>
+                        <a class="dropdown-item" href="index.html#peserta">Siapa Peserta?</a>
+                        <a class="dropdown-item" href="index.html#faq">FAQ</a>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a class="nav-a dropdown-toggle" href="#">Event <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="competition-hub.html">Kompetisi</a>
+                        <a class="dropdown-item" href="seminar.html">Seminar</a>
+                    </div>
+                </div>
+                <a class="nav-a" href="index.html#media">Media</a>
+                <a class="nav-a" href="index.html#kontak">Kontak Kami</a>
+                <a class="nav-a nav-cta-button" href="index.html#pendaftaran">Pendaftaran</a>
+            </div>
+            <button id="mobile-menu-toggle" class="mobile-menu-button" aria-label="Toggle menu" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <section class="blog-page-hero section-padding">
+            <div class="container" data-aos="fade-up">
+                <h1 class="blog-page-title">Portal <span>7</span> Chronicles</h1>
+                <p class="blog-page-subtitle">Dive into insights, stories, and updates from the heart of digital empowerment and creativity.</p>
+            </div>
+        </section>
+
+        <section class="blog-listing-section section-padding" id="blog-posts">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">All Articles</h2>
+                <div class="articles-grid" id="full-articles-grid" data-aos="fade-up" data-aos-delay="200">
+                    <p class="loading-message">Memuat semua artikel...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-logo">
+             <img src="img/Portal_Logo.png" alt="Logo Mini Portal 7" class="portal-logo">
+        </div>
+        <div class="footer-contact">
+            <p>Kontak: <a href="mailto:portalbemsvipb@gmail.com" style="text-decoration: none; color:#f0f0f0 ;">portalbemsvipb@gmail.com</a></p>
+        </div>
+        <div class="footer-social">
+            <a href="https://instagram.com/portal_ipb" target="_blank" aria-label="Instagram Portal IPB"><i class="fab fa-instagram fa-lg"></i> @portal_ipb</a>
+        </div>
+        <div class="footer-copyright">
+            <p>&copy; 2025 Badan Eksekutif Mahasiswa Sekolah Vokasi IPB University. All rights reserved.</p>
+        </div>
+    </footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    // --- AOS Initialization ---
+    AOS.init({
+        duration: 800,
+        once: true,
+    });
+
+    // --- Mobile Navigation (copy from index.html or other pages) ---
+    const menuToggleButton = document.getElementById('mobile-menu-toggle');
+    const mainNavLinks = document.getElementById('main-nav-links');
+    let menuIcon = menuToggleButton ? menuToggleButton.querySelector('i') : null;
+
+    function closeMobileMenu() {
+        if (mainNavLinks && mainNavLinks.classList.contains('active')) {
+            mainNavLinks.classList.remove('active');
+            if (menuToggleButton) menuToggleButton.setAttribute('aria-expanded', 'false');
+            if (menuIcon) {
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            }
+            document.querySelectorAll('.nav-links .nav-item.dropdown.open').forEach(openDropdown => {
+                openDropdown.classList.remove('open');
+            });
+        }
+    }
+
+    if (menuToggleButton) {
+        menuToggleButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isActive = mainNavLinks.classList.toggle('active');
+            menuToggleButton.setAttribute('aria-expanded', isActive);
+            if (menuIcon) {
+                menuIcon.className = isActive ? 'fas fa-times' : 'fas fa-bars';
+            }
+            if (!isActive) {
+                document.querySelectorAll('.nav-links .nav-item.dropdown.open').forEach(openDropdown => {
+                    openDropdown.classList.remove('open');
+                });
+            }
+        });
+    }
+
+    document.querySelectorAll('.nav-links .dropdown-toggle').forEach(toggle => {
+        toggle.addEventListener('click', function(e) {
+            if (mainNavLinks && mainNavLinks.classList.contains('active')) { 
+                if (this.getAttribute('href') === '#') {
+                    e.preventDefault();
+                }
+                const parentDropdown = this.closest('.nav-item.dropdown');
+                if (!parentDropdown) return;
+                const currentlyOpen = parentDropdown.classList.contains('open');
+                parentDropdown.classList.toggle('open', !currentlyOpen);
+                e.stopPropagation();
+            }
+        });
+    });
+    
+    document.querySelectorAll('#main-nav-links a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const fullHref = this.getAttribute('href');
+            const isDropdownToggle = this.classList.contains('dropdown-toggle');
+
+            if (isDropdownToggle && mainNavLinks.classList.contains('active')) {
+                return; 
+            }
+            // Simplified: just close menu if it's a link click
+            if(mainNavLinks.classList.contains('active') && fullHref && fullHref !== '#') {
+                // If it's not an "index.html#" link on the same page, or a simple "#" link,
+                // allow default navigation but close menu.
+                // For full smooth scroll logic across pages, refer to index.html's script.
+                if (!fullHref.includes('index.html#') || !window.location.pathname.endsWith('index.html')) {
+                    closeMobileMenu();
+                }
+            }
+        });
+    });
+
+    document.addEventListener('click', function(event) {
+        if (mainNavLinks && mainNavLinks.classList.contains('active')) {
+            const isClickInsideNav = mainNavLinks.contains(event.target);
+            const isClickOnToggleButton = menuToggleButton ? menuToggleButton.contains(event.target) : false;
+            if (!isClickInsideNav && !isClickOnToggleButton) {
+                closeMobileMenu();
+            }
+        }
+    });
+
+    // --- Load Blog Articles ---
+    const fullArticlesGrid = document.getElementById('full-articles-grid');
+
+    async function loadAllBlogArticles() {
+        try {
+            const response = await fetch('media-content.json'); //
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            const data = await response.json(); //
+            if (fullArticlesGrid) renderFullBlogArticles(data.blogArticles); //
+        } catch (error) {
+            console.error("Gagal memuat semua artikel blog:", error);
+            if (fullArticlesGrid) fullArticlesGrid.innerHTML = '<p class="error-message">Gagal memuat artikel. Silakan coba lagi nanti.</p>';
+        }
+    }
+
+    function renderFullBlogArticles(articles) {
+        if (!fullArticlesGrid || !articles || articles.length === 0) {
+            if(fullArticlesGrid) fullArticlesGrid.innerHTML = '<p>Belum ada artikel untuk ditampilkan.</p>';
+            return;
+        }
+        fullArticlesGrid.innerHTML = ''; // Clear loading message
+        articles.forEach(article => { //
+            const articleCardHTML = `
+                <div class="article-card" data-aos="fade-up">
+                    <a href="${article.link}" class="article-card-link">
+                        <div class="article-image-wrapper">
+                            <img src="${article.image}" alt="${article.title}" class="article-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="article-image-fallback" style="display: none;"><i class="fas fa-image fa-3x"></i></div>
+                        </div>
+                        <div class="article-content">
+                            <h4 class="article-title">${article.title}</h4>
+                            <p class="article-meta">${article.date} | Oleh: ${article.author}</p>
+                            <p class="article-summary">${article.summary}</p>
+                            <span class="article-link-text">Baca Selengkapnya <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </a>
+                </div>`;
+            fullArticlesGrid.insertAdjacentHTML('beforeend', articleCardHTML);
+        });
+    }
+
+        // Load content when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadAllBlogArticles);
+        } else {
+            loadAllBlogArticles();
+        }
+    // --- Add this to your existing script block in index.html ---
+
+    // Function to animate number count-up
+    function animateValue(element, start, end, duration, currencyPrefix = "Rp", punctuation = ".") {
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            let currentValue = Math.floor(progress * (end - start) + start);
+            
+            // Format number with Indonesian locale for dot as thousands separator
+            let formattedValue = currentValue.toLocaleString('id-ID');
+            
+            element.innerHTML = `Hadiah total: hingga ${currencyPrefix}${formattedValue}`; // Assuming prefix "hingga "
+            
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            } else {
+                element.innerHTML = `Hadiah total: hingga ${currencyPrefix}${end.toLocaleString('id-ID')}`; // Ensure final value is exact
+            }
+        };
+        window.requestAnimationFrame(step);
+    }
+
+    // --- Modify your existing DOMContentLoaded listener ---
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- AOS Initialization (Keep your existing one) ---
+        AOS.init({
+            duration: 800,
+            once: true,
+        });
+
+        // --- Mobile Navigation (Keep your existing one) ---
+        // ... (your existing mobile nav JS) ...
+
+        // --- FAQ Accordion (Keep your existing one) ---
+        // ... (your existing FAQ JS) ...
+
+        // --- Countdown Timer Script (Keep your existing one) ---
+        // ... (your existing Countdown JS) ...
+
+        // --- Logo Animation Sequencing (Keep your existing one) ---
+        // ... (your existing Logo Animation JS) ...
+        
+        // --- Berita & Media Section Script (Keep your existing one) ---
+        // ... (your existing Media Loader JS) ...
+
+
+        // --- NEW: Prize Animation ---
+        const prizeElement = document.querySelector('.total-prize');
+        if (prizeElement) {
+            const prizeText = prizeElement.textContent; // e.g., "Hadiah total: hingga Rp14.600.000"
+            const match = prizeText.match(/Rp([\d.]+)/); // Extract the number part
+
+            if (match && match[1]) {
+                const prizeAmount = parseInt(match[1].replace(/\./g, ''), 10); // Convert "14.600.000" to 14600000
+                
+                if (!isNaN(prizeAmount)) {
+                    const sectionToObserve = prizeElement.closest('.highlight-section');
+                    
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                // Temporarily set a placeholder or the final text to maintain layout
+                                prizeElement.innerHTML = `Hadiah total: hingga Rp0`; // Or final text
+                                // Then start animation
+                                animateValue(prizeElement, 0, prizeAmount, 2500); // Animate over 2.5 seconds
+                                observer.unobserve(entry.target); // Animate only once
+                            }
+                        });
+                    }, { threshold: 0.4 }); // Trigger when 40% of the section is visible
+
+                    if (sectionToObserve) {
+                        observer.observe(sectionToObserve);
+                    } else {
+                        // Fallback if section not found, animate directly (though less ideal)
+                        animateValue(prizeElement, 0, prizeAmount, 2500);
+                    }
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>
