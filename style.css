@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
 * {
     margin: 0;
     padding: 0;
@@ -44,7 +48,8 @@ body {
     color: var(--text-color);
     line-height: 1.6;
     position: relative;
-    overflow-x: hidden;
+    overflow-y: visible;
+    
 }
 
 /* --- NAVBAR STYLES START --- */
@@ -1895,7 +1900,6 @@ footer {
 /* Quirky Contact Section Styles */
 .contact-section {
     background: linear-gradient(135deg, rgba(var(--blue-accent-rgb), 0.05), rgba(var(--pink-accent-rgb), 0.05), rgba(var(--yellow-accent-rgb), 0.05));
-    overflow: hidden; /* Important for tilted elements not breaking layout */
 }
 
 .contact-header {
