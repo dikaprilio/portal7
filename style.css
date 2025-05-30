@@ -3209,4 +3209,15 @@ footer {
         border-width: 8px 8px 8px 0;
         border-color: transparent white transparent transparent;
     }
+    .blog-page-title {
+        font-size: 2.8rem; /* Adjust blog title for mobile */
+        text-align: center; /* Center align title */
+        line-height: 1.2;
+    }
+    .gallery-page-hero .section-title {
+        font-size: 3rem; /* Larger title for hero */
+        margin-bottom: 1rem;
+        font-weight: 700; /* Bolder title */
+        line-height: 1.2;
+    }
 }
