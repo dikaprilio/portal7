@@ -678,7 +678,7 @@ nav::after {
 .about-text { text-align: left; max-width: 600px; } /* Limit text width */
 .about-text h3 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--primary-color); }
 .about-illustration { text-align: center; }
-.about-illustration img { max-width: 100%; width: 300px; height: auto; border-radius: 8px;}
+.about-illustration img { max-width: 100%; width: 600px; height: auto; border-radius: 8px;}
 
 .about-section::after {
     content: ''; display: block; width: 150px; height: 5px;

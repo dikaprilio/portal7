@@ -60,8 +60,8 @@
         "id": "video-1",
         "title": "Company Profile Portal 7",
         "type": "company-profile",
-        "thumbnailUrl": "img/gallery/thumbs/company_profile_thumb.jpg",
-        "videoUrl": "https://www.youtube.com/embed/YOUR_VIDEO_ID_1",
+        "thumbnailUrl": "img/winnerd.png",
+        "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ?si=GSklJvXhsn4C6yuf",
         "description": "Kenali lebih dekat Portal 7: Visi, Misi, dan Semangat Kami!"
       },
       {
@@ -69,7 +69,7 @@
         "title": "Aftermovie Portal 6 (2024)",
         "type": "documentation",
         "year": "2024",
-        "thumbnailUrl": "img/gallery/thumbs/aftermovie_2024_thumb.jpg",
+        "thumbnailUrl": "img/",
         "videoUrl": "https://www.youtube.com/embed/YOUR_VIDEO_ID_2",
         "description": "Kilas balik semua keseruan dan momen tak terlupakan di Portal 6."
       }
@@ -78,22 +78,22 @@
   "partnersSponsors": [
     {
       "id": "partner-1",
-      "name": "Nama Media Partner Keren",
-      "logoUrl": "img/partners/partner_a_logo.png",
+      "name": "UNICEF",
+      "logoUrl": "img/UNICEF_Logo.png",
       "type": "media_partner",
       "websiteUrl": "#partner-link-1"
     },
     {
       "id": "sponsor-1",
       "name": "Sponsor Utama Hebat",
-      "logoUrl": "img/sponsors/sponsor_b_logo.png",
+      "logoUrl": "img/Deloitte_Logo.png",
       "type": "sponsor",
       "websiteUrl": "#sponsor-link-1"
     },
     {
       "id": "sponsor-2",
       "name": "Sponsor Pendukung Inovatif",
-      "logoUrl": "img/sponsors/sponsor_c_logo.png",
+      "logoUrl": "img/UNESCO_logo.png",
       "type": "sponsor",
       "websiteUrl": "#sponsor-link-2"
     }
