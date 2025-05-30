@@ -297,261 +297,373 @@ nav::after {
     margin-right: auto;
 }
 
-/* Gaya Bagian Hero */
+/* --- HERO SECTION REVAMP --- */
 .hero-section {
-    background: linear-gradient(to bottom right, rgba(224, 231, 255, 0.8), rgba(252, 231, 243, 0.8)), url('img/blur-bg.png') no-repeat center center/cover;
-    /* padding: 4rem 2rem; /* Old padding */
-    padding-top: 2.5rem;    /* Example: Reduced from 4rem by 1.5rem */
-    padding-bottom: 5.5rem;  /* Example: Increased from 4rem by 1.5rem */
+    /* New Background: Dark, "portal" inspired */
+    background-color: #0c0a1f; /* Deep dark blue/purple */
+    background-image:
+        radial-gradient(ellipse at 70% 30%, rgba(var(--pink-accent-rgb), 0.3) 0%, transparent 40%),
+        radial-gradient(ellipse at 30% 70%, rgba(var(--blue-accent-rgb), 0.35) 0%, transparent 40%),
+        linear-gradient(160deg, #0c0a1f 40%, #1a1238 100%); /* Dark base with subtle color hints */
+    color: var(--secondary-color); /* Light text for dark background */
+    padding-top: 4rem; /* Adjusted padding */
+    padding-bottom: 6rem; /* Adjusted padding */
     padding-left: 2rem;
     padding-right: 2rem;
     text-align: center;
-    position: relative;
+    position: relative; /* Crucial for absolute positioned children (clouds, effects) */
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-/* Countdown Timer Styling - REVISED for better branding cohesion */
-.countdown-timer {
-    font-size: 1.6rem; /* Slightly adjusted for balance */
-    font-weight: 600;
-    background-color: rgba(255, 255, 255, 0.92); /* Clean white, slightly more opaque for readability */
-    padding: 1.25rem; /* Adjusted padding */
-    border-radius: 10px; /* Softer radius */
-    margin-top: 2rem;
-    margin-bottom: 1.5rem;
-    display: inline-block;
-    box-shadow: 0 6px 20px rgba(50, 50, 93, 0.12), 0 3px 9px rgba(0, 0, 0, 0.08); /* Softer, more modern shadow */
-    border: none; /* Remove border for a cleaner look */
-    text-align: center;
-}
-#countdown-timer.countdown-timer { /* Adding ID for specificity, ensure class is also there */
-    margin-top: 1rem;  /* Reduced space above countdown, as tagline provides bottom margin */
-    margin-bottom: 2.5rem; /* Increased space below countdown before buttons */
-    /* Optional: Slightly scale down the timer if it feels too large */
-    /* transform: scale(0.95); */
-    /* transform-origin: left; /* If text-align is left for hero-right */
-    /* If you scale, you might need to adjust font sizes within it too if they don't scale automatically */
-}
-/* Direct children spans that act as blocks for Day, Hour, Min, Sec */
-.countdown-timer > span {
-    display: inline-flex; /* Use flex for better internal alignment */
-    flex-direction: column; /* Stack number and label vertically */
-    align-items: center;
-    justify-content: center;
-    margin: 0 0.4rem; /* Slightly reduced margin between blocks */
-    padding: 0.6rem 0.8rem; /* Adjusted padding within blocks */
-    border-radius: 6px; /* Softer radius for blocks */
-
-    /* Using the blue accent from your theme for the blocks */
-    background-color: #34D399; /* Example: #3B82F6, prominent in "Digital 7" */
-    /* You can experiment with other theme accents like:
-       var(--pink-accent) or var(--orange-accent)
-       or even var(--primary-color) if you prefer the dark green but with better label contrast.
-    */
-    color: white; /* Default text color within block (numbers will inherit) */
-    min-width: 65px; /* Adjusted min-width for consistency */
-    line-height: 1.3; /* Base line-height for the block */
-    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out; /* Smooth hover effect */
+    overflow: hidden; /* Important to contain floating elements and portal effects */
 }
 
-.countdown-timer > span:hover {
-    transform: translateY(-3px); /* Subtle lift effect on hover */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-/* Styles for the numbers (e.g., "00") */
-.countdown-timer span span {
-    display: block;
-    font-size: 1.8rem; /* Font size for the numbers */
-    font-weight: 700; /* Bold numbers */
-    color: white; /* Ensure numbers are white */
-    padding: 0;
-    margin:0; /* Reset margin */
-    line-height: 1.1; /* Tighten line height for the number itself */
-}
-
-/* Styles for the labels (Hari, Jam, etc.) */
-.countdown-timer span small {
-    font-size: 0.7rem; /* Smaller, clear labels */
-    display: block;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.85); /* Light white for good contrast on colored blocks */
-    text-transform: uppercase; /* HARI, JAM, MENIT, DETIK */
-    margin-top: 4px; /* Space between number and its label */
-}
-
-.floating-element {
+/* Optional: Portal Background Effect (add HTML div if you use this) */
+/*
+.portal-background-effect {
     position: absolute;
-    opacity: 0.5;
-    animation: float 6s ease-in-out infinite;
-}
-.swirl-1 {
-  position: absolute;
-  top: 10%;
-  left: 5%;
-  width: 100px;
-  height: 100px;
-  background-image: url('img/plus.png');
-  background-size: cover;
-  border-radius: 50%;
-  z-index: 0; /* Behind hero content */
-}
-
-.icon-idea {
-  position: absolute;
-  bottom: 15%;
-  right: 10%;
-  width: 50px;
-  height: 50px;
-  background-image: url('img/sun_circle.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  z-index: 0; /* Behind hero content */
+    top: 50%;
+    left: 50%;
+    width: 120vmax;
+    height: 120vmax;
+    background-image:
+        radial-gradient(circle, rgba(var(--blue-accent-rgb), 0.1) 10%, transparent 11%),
+        radial-gradient(circle, rgba(var(--blue-accent-rgb), 0.08) 20%, transparent 21%),
+        radial-gradient(circle, rgba(var(--blue-accent-rgb), 0.05) 30%, transparent 31%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    animation: pulsePortalEffect 15s infinite linear;
+    z-index: 0;
 }
 
+@keyframes pulsePortalEffect {
+    0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.5; }
+    50% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+    100% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.5; }
+}
+*/
 
-@keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
-    100% { transform: translateY(0px); }
+/* Floating Cloud Elements - General */
+.floating-cloud {
+    position: absolute;
+    z-index: 1; /* Above background effects, below main content if needed */
+    pointer-events: none; /* So they don't interfere with clicks */
 }
 
-
-.hero-content {
-    max-width: 1100px; /* Optional: Slightly increase max-width for more space */
-    margin: 0 auto;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center; /* Or 'space-between' if you want them further apart */
-    gap: 4rem; /* Increased from 3rem for more breathing room */
-    position: relative;
-    z-index: 1;
-}
-
-/* In style.css */
-
-/* Make sure your @keyframes are defined (they are already in your style.css) */
-@keyframes drawLogo {
-    from { opacity: 0; transform: scale(0.5); }
-    to { opacity: 1; transform: scale(1); }
-}
-
-@keyframes floatSwirl {
-  0%   { transform: translate(0, 0) rotate(0deg); }
-  25%  { transform: translate(5px, -10px) rotate(3deg); }
-  50%  { transform: translate(0px, -15px) rotate(0deg); }
-  75%  { transform: translate(-5px, -10px) rotate(-3deg); }
-  100% { transform: translate(0, 0) rotate(0deg); }
-}
-
-/* Optional: Slightly adjust logo max-width if it feels too large */
-.hero-left img.portal-logo {
-    max-width: 500vh; /* Was 300px, try a bit smaller if needed */
+.floating-cloud img {
+    display: block;
     width: 100%;
     height: auto;
-    display: block;
+}
+
+/* Individual Cloud Styling & Animation */
+.cloud-1 { /* Pink */
+    width: 150px; /* Adjust size */
+    top: 10%;
+    left: 5%;
+    opacity: 0.7;
+    animation: driftAndRotate 25s infinite linear alternate;
+}
+
+.cloud-2 { /* Blue */
+    width: 120px;
+    top: 60%;
+    left: 15%;
+    opacity: 0.6;
+    animation: driftAndFloat 20s infinite ease-in-out;
+    animation-delay: -5s; /* Stagger animation */
+}
+
+.cloud-3 { /* Yellow */
+    width: 180px;
+    top: 0%;
+    right: 8%;
+    opacity: 0.8;
+    animation: slowDrift 30s infinite linear;
+    z-index: 3; /* Example: This cloud could be slightly more prominent */
+}
+
+.cloud-4 { /* Orange */
+    width: 100px;
+    bottom: 10%;
+    right: 20%;
+    opacity: 0.65;
+    animation: driftAndRotate 22s infinite linear alternate-reverse;
+    animation-delay: -10s;
+}
+
+.cloud-5 { /* Another Blue */
+    width: 90px;
+    bottom: 25%;
+    left: 5%;
+    opacity: 0.5;
+    animation: driftAndFloat 18s infinite ease-in-out;
+    animation-delay: -15s;
+}
+
+/* New Keyframes for Cloud Animations */
+@keyframes driftAndFloat {
+    0%   { transform: translate(0px, 0px) rotate(0deg); }
+    25%  { transform: translate(20px, -15px) rotate(-3deg); }
+    50%  { transform: translate(-10px, 0px) rotate(2deg); }
+    75%  { transform: translate(10px, 15px) rotate(3deg); }
+    100% { transform: translate(0px, 0px) rotate(0deg); }
+}
+
+@keyframes driftAndRotate {
+    0%   { transform: translate(0, 0) rotate(-5deg) scale(1); }
+    50%  { transform: translate(30px, -10px) rotate(0deg) scale(1.05); }
+    100% { transform: translate(-20px, 10px) rotate(5deg) scale(1); }
+}
+
+@keyframes slowDrift {
+    0%   { transform: translateX(-20px) translateY(-5px) rotate(2deg); }
+    50%  { transform: translateX(20px) translateY(5px) rotate(-2deg); }
+    100% { transform: translateX(-20px) translateY(-5px) rotate(2deg); }
+}
+
+
+/* Hero Content, Logo, Text - Make them "Kapow!" */
+.hero-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row; /* Keep side-by-side for desktop */
+    align-items: center;
+    justify-content: center;
+    gap: 3rem; /* Adjusted gap */
     position: relative;
+    z-index: 2; /* Ensure content is above clouds and background effects */
 }
 
-/* Class for the entry animation */
-.hero-logo-entry {
-    animation: drawLogo 2s ease-out forwards;
+.hero-left img.portal-logo {
+    max-width: 600px; /* Adjust if needed */
+    filter: drop-shadow(0 0 15px rgba(var(--yellow-accent-rgb), 0.5)); /* Add a themed glow */
+    /* Animation is already good, but you can tweak 'floatSwirl' if desired */
 }
 
-/* Class for the continuous floating animation */
-.hero-logo-float {
-    animation: floatSwirl 6s ease-in-out infinite;
-}
-
-/* You can remove or repurpose the old .floating-logo class if it only contained the animation,
-   or keep it if it has other styles like display or position that you want to keep separate.
-   For this setup, we don't strictly need the .floating-logo class for the animation itself.
-   If you remove it, ensure any 'display' or 'position' properties from it are on '.hero-left img.portal-logo' or '.hero-logo-float' if needed.
-   The `display: block` and `position: relative` on `.hero-left img.portal-logo` should suffice.
-*/
-/*
-.floating-logo {
-  display: inline-block;
-  position: relative;
-}
-*/
-
-
-@keyframes drawLogo { 
-    from { opacity: 0; transform: scale(0.5); }
-    to { opacity: 1; transform: scale(1); }
-}
-
-/* Adjustments for elements within hero-right for better hierarchy and spacing */
 .hero-right {
     display: flex;
     flex-direction: column;
-    /* Desktop alignment (align-items: flex-start; text-align: left;)
-       is handled by your existing @media (min-width: 768px) query, which is good. */
+    /* Text alignment handled by media queries */
 }
 
 .hero-title {
-    font-size: 4.2rem; /* Reduced from 4.8rem for less dominance */
-    font-weight: 800;
-    margin-bottom: 0.75rem; /* Slightly increased space below title */
-    line-height: 1.15; /* Adjusted line height */
+    font-size: 4.5rem; /* Slightly larger for more impact */
+    font-weight: 800; /* Keep bold */
+    margin-bottom: 1rem;
+    line-height: 1.1;
+    color: var(--secondary-color); /* Ensure it's light */
+    text-shadow:
+        0 0 5px rgba(var(--secondary-color-rgb, 240, 240, 240), 0.3), /* Softer overall glow */
+        0 0 15px rgba(var(--pink-accent-rgb), 0.4),
+        0 0 25px rgba(var(--blue-accent-rgb), 0.3);
+    /* Animation for words already exists and is good */
+}
+/* Ensure --secondary-color-rgb is defined in :root if you use it, or use a direct rgba value */
+/* Example: :root { --secondary-color-rgb: 240, 240, 240; } */
+
+
+.hero-title-empower,
+.hero-title-digital span, /* For individual colored chars */
+.hero-title-seven {
+    /* Keep existing individual color styles */
+    /* Add a bit more pop to these specifically */
+    text-shadow: 0 0 8px currentColor, 0 0 15px rgba(255,255,255,0.5);
 }
 
-.hero-title span { display: inline-block; animation: fadeInWord 0.5s ease-out forwards; opacity: 0; }
-.hero-title span:nth-child(1) { animation-delay: 0.2s; }
-.hero-title span:nth-child(2) { animation-delay: 0.4s; }
-.hero-title span:nth-child(3) { animation-delay: 0.6s; }
-
-@keyframes fadeInWord {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.hero-title-empower { color: var(--hero-empower-color); }
-.hero-title-digital { }
-.hero-title-digital .char-d { color: #F87171; } .hero-title-digital .char-i1 { color: #FBBF24; }
-.hero-title-digital .char-g { color: #34D399; } .hero-title-digital .char-i2 { color: #60A5FA; }
-.hero-title-digital .char-t { color: #A78BFA; } .hero-title-digital .char-a { color: #F472B6; }
-.hero-title-digital .char-l { color: #818CF8; }
-.hero-title-seven { color: var(--hero-seven-color); }
 
 .tagline {
-    font-size: 1.15rem; /* Adjusted from 20px */
-    color: #4B5563;
-    margin-bottom: 2rem;
-    max-width: 500px;
-    font-weight: 500; /* Adjusted from 600 */
+    font-size: 1.2rem;
+    color: #d1d5db; /* Lighter grey for dark background */
+    margin-bottom: 2.5rem;
+    max-width: 550px;
+    font-weight: 500;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5); /* Subtle shadow for readability */
 }
 
-.hero-buttons { display: flex; gap: 1.25rem; justify-content: center;}
+/* Countdown Timer - Thematic Revamp */
+.countdown-timer {
+    font-size: 1.4rem;
+    font-weight: 600;
+    background-color: rgba(12, 10, 31, 0.7); /* Dark semi-transparent background like nav */
+    backdrop-filter: blur(5px);
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+    display: inline-block;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3), inset 0 0 0 1px rgba(var(--blue-accent-rgb), 0.3);
+    border: 1px solid rgba(var(--blue-accent-rgb), 0.5);
+    text-align: center;
+}
+
+.countdown-timer > span { /* Time unit blocks */
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0.5rem;
+    padding: 0.5rem 0.7rem;
+    border-radius: 8px;
+    background-color: rgba(var(--pink-accent-rgb), 0.15); /* Themed accent for blocks */
+    /* Or cycle through your accent colors:
+       &:nth-child(4n+1) { background-color: rgba(var(--pink-accent-rgb), 0.2); }
+       &:nth-child(4n+2) { background-color: rgba(var(--blue-accent-rgb), 0.2); }
+       etc.
+    */
+    color: var(--secondary-color);
+    min-width: 60px;
+    line-height: 1.2;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(var(--pink-accent-rgb), 0.4);
+}
+
+.countdown-timer > span:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(var(--pink-accent-rgb), 0.3);
+}
+
+.countdown-timer span span { /* Numbers */
+    font-size: 1.6rem; /* Slightly smaller numbers if overall timer is smaller */
+    font-weight: 700;
+    color: #fff; /* Bright white numbers */
+    text-shadow: 0 0 5px currentColor;
+}
+
+.countdown-timer span small { /* Labels */
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: rgba(240, 240, 240, 0.8); /* Light, slightly transparent label */
+    text-transform: uppercase;
+    margin-top: 3px;
+}
+
+/* Hero Buttons - Enhance "Kapow" */
+.hero-buttons {
+    display: flex;
+    gap: 1.5rem; /* More space between buttons */
+    justify-content: center; /* Keep centered for desktop */
+}
 .hero-button {
     text-decoration: none;
     color: white;
-    font-weight: 600;
-    padding: 0.85rem 2rem; 
-    border-radius: 8px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    animation: pulseButton 2s infinite ease-in-out; 
+    font-weight: 700; /* Bolder */
+    padding: 0.9rem 2.2rem;
+    border-radius: 50px; /* Pill shape */
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncier */
+    border: 2px solid transparent; /* Prepare for border animation */
+    position: relative;
+    overflow: hidden;
+    /* Remove old pulseButton animation if adding more interactive hover */
+    /* animation: pulseButton 2s infinite ease-in-out; REMOVED for new effects */
 }
-    @keyframes pulseButton {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
+
+.hero-button::before { /* For shine/glow effect */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%);
+    transform: skewX(-25deg);
+    transition: left 0.6s ease;
+}
+
+.hero-button:hover::before {
+    left: 150%;
 }
 
 .hero-button:hover {
-    transform: translateY(-2px) scale(1.05); 
-    animation: none; 
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2); /* Enhanced shadow */
+    /* animation: none; /* Ensure old pulse is off */
 }
-.button-main-cta { background-color: var(--orange-accent); }
-.button-main-cta-b { background-color: var(--pink-accent); }
-.button-main-cta:hover { background-color: #dd6411; } /* Darken orange */
-.button-main-cta-b:hover { background-color: #d0387c; } /* Darken pink */
 
+.button-main-cta { /* Daftar Sekarang */
+    background: linear-gradient(45deg, var(--orange-accent), var(--pink-accent));
+    box-shadow: 0 5px 15px rgba(var(--pink-accent-rgb),0.3);
+}
+.button-main-cta:hover {
+    background: linear-gradient(45deg, var(--pink-accent), var(--orange-accent)); /* Flip gradient */
+    box-shadow: 0 8px 25px rgba(var(--orange-accent-rgb),0.4);
+    border-color: var(--yellow-accent);
+}
+
+.button-main-cta-b { /* What is Portal? */
+    background: linear-gradient(45deg, var(--blue-accent), #4A00E0); /* Blue to a deeper purple */
+    box-shadow: 0 5px 15px rgba(var(--blue-accent-rgb),0.3);
+}
+.button-main-cta-b:hover {
+    background: linear-gradient(45deg, #4A00E0, var(--blue-accent)); /* Flip gradient */
+    box-shadow: 0 8px 25px rgba(74,0,224,0.4);
+    border-color: var(--secondary-color);
+}
+
+/* --- END HERO SECTION REVAMP --- */
+
+/* Ensure your existing responsive styles for hero section are checked and adjusted:
+   Especially for .hero-content (flex-direction), .hero-left img size, .hero-title font size,
+   and .hero-buttons (flex-direction).
+   The new cloud positions might also need adjustment in media queries if they look odd on smaller screens.
+*/
+
+/* Example of adjusting cloud for mobile (add to your @media (max-width: 767px) etc.) */
+@media (max-width: 767px) {
+    .hero-section {
+        padding-top: 3rem;
+        padding-bottom: 4rem;
+    }
+    .hero-left img.portal-logo {
+        max-width: 150px; /* Smaller logo for mobile */
+        /* Adjust filter or remove if too much on mobile */
+        filter: drop-shadow(0 0 8px rgba(var(--yellow-accent-rgb), 0.4));
+    }
+    .hero-title {
+        font-size: 2.8rem; /* Adjust title for mobile */
+        text-shadow: 0 0 8px rgba(var(--pink-accent-rgb), 0.3), 0 0 15px rgba(var(--blue-accent-rgb), 0.2);
+    }
+    .tagline {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+    .countdown-timer {
+        padding: 0.75rem 1rem;
+        margin-top: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    .countdown-timer > span {
+        margin: 0 0.25rem;
+        padding: 0.4rem 0.5rem;
+        min-width: 50px;
+    }
+    .countdown-timer span span { font-size: 1.2rem; }
+    .countdown-timer span small { font-size: 0.55rem; }
+
+    .hero-buttons { gap: 1rem; } /* Stacked buttons will have this gap */
+    .hero-button {
+        padding: 0.8rem 1.5rem;
+        width: 80%; /* If stacked */
+        max-width: 280px;
+    }
+
+    /* Adjust cloud sizes and positions for mobile */
+    .cloud-1 { width: 80px; top: 5%; left: 2%; }
+    .cloud-2 { width: 70px; top: auto; bottom: 55%; left: 8%; animation-delay: -2s;}
+    .cloud-3 { width: 90px; top: 20%; right: 3%; animation-delay: -1s;}
+    .cloud-4 { width: 60px; bottom: 25%; right: 10%; animation-delay: -3s;}
+    .cloud-5 { width: 50px; bottom: 25%; top: 45%; left: 2%; opacity: 0.4; animation-delay: -4s;}
+
+    /* If you used the portal-background-effect, scale it down or simplify for mobile */
+    /*
+    .portal-background-effect {
+        width: 200vmax;
+        height: 200vmax;
+    }
+    */
+}
 
 /* Bagian Tentang Portal 7 */
 .about-section { background-color: var(--section-bg-light); }
