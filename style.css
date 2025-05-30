@@ -320,7 +320,7 @@ nav::after {
 }
 
 /* Optional: Portal Background Effect (add HTML div if you use this) */
-/*
+
 .portal-background-effect {
     position: absolute;
     top: 50%;
@@ -342,7 +342,7 @@ nav::after {
     50% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
     100% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.5; }
 }
-*/
+
 
 /* Floating Cloud Elements - General */
 .floating-cloud {
