@@ -20,7 +20,10 @@ html {
     --hero-seven-color: #3B82F6; /* Biru untuk "7" */
     --section-bg-light: #F9FAFB; /* Latar belakang bagian yang sangat terang */
     --timeline-dot-default: #CBD5E1; /* Warna titik default untuk timeline */
-
+    --hero-empower-color-rgb: 239, 68, 68; /* RGB for --hero-empower-color */
+    --hero-seven-color-rgb: 59, 130, 246;   /* RGB for --hero-seven-color */
+    --green-accent: #34D399;
+    --purple-accent: #A78BFA;
     /* RGB versions for box shadows and effects */
     --pink-accent-rgb: 236, 72, 153;
     --blue-accent-rgb: 59, 130, 246;
@@ -561,6 +564,7 @@ nav::after {
     justify-content: center; /* Keep centered for desktop */
 }
 .hero-button {
+    display: inline-block;
     text-decoration: none;
     color: white;
     font-weight: 700; /* Bolder */
@@ -680,37 +684,125 @@ nav::after {
 }
 
 /* Bagian Tentang Portal 7 */
-.about-section { background-color: var(--section-bg-light); }
+.about-section {
+    background-color: var(--navbar-bg); /* Dark background */
+    color: var(--secondary-color); /* Default light text for the section */
+    position: relative; /* For positioning decorative elements */
+    overflow: hidden; /* Contain decos */
+}
+
+.about-section .section-title {
+    color: var(--secondary-color); /* Ensure title is light */
+    text-shadow: 0 0 10px rgba(var(--pink-accent-rgb), 0.3); /* Add subtle glow */
+}
+
+/* Hide or restyle the old ::after gradient line if it doesn't fit the dark theme */
+.about-section::after {
+    display: none; /* Hiding the old gradient line */
+    /* Or restyle it:
+    background: linear-gradient(to right, var(--blue-accent), var(--yellow-accent));
+    opacity: 0.5;
+    height: 3px;
+    */
+}
+
 .about-content {
     display: flex;
-    flex-direction: column; /* Default to column, will adjust for wider screens */
-    gap: 2rem;
-    align-items: center;
-    max-width: 900px;
-    margin: 0 auto;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 2.5rem; /* Increased gap */
+    align-items: center; /* Vertically align items */
+    max-width: 1000px; /* Slightly increased max-width */
+    margin: 0 auto 3rem auto; /* Space before INSPIRE framework */
+    position: relative; /* For z-index */
+    z-index: 1;
 }
-.about-text { text-align: left; max-width: 600px; } /* Limit text width */
-.about-text h3 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--primary-color); }
-.about-illustration { text-align: center; }
-.about-illustration img { max-width: 100%; width: 600px; height: auto; border-radius: 8px;}
 
-.about-section::after {
-    content: ''; display: block; width: 150px; height: 5px;
-    background: linear-gradient(to right, var(--pink-accent), var(--yellow-accent));
-    margin: 2rem auto 0; border-radius: 5px;
+.about-text {
+    flex: 1 1 55%; /* Text takes slightly more space */
+    min-width: 300px;
+    padding: 1.5rem;
+    background: rgba(35, 39, 47, 0.5); /* Subtle dark card bg for text area */
+    backdrop-filter: blur(5px);
+    border-radius: 12px;
+    border: 1px solid rgba(var(--blue-accent-rgb),0.15);
+}
+
+.about-text h3 {
+    font-size: 1.8rem; /* Larger subtitle */
+    margin-bottom: 1.25rem;
+    color: var(--secondary-color); /* Light text */
+    font-weight: 700;
+    display: flex; /* For icon alignment */
+    align-items: center;
+}
+.about-text h3 .title-icon-about { /* Optional icon */
+    margin-left: 0.5rem;
+    color: var(--yellow-accent);
+    font-size: 0.9em;
+}
+
+.about-text p {
+    font-size: 1rem; /* Readable paragraph text */
+    color: #c0c8d4; /* Lighter grey for paragraphs */
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+.about-text p:last-child {
+    margin-bottom: 0;
+}
+
+.about-illustration {
+    flex: 1 1 40%; /* Image takes slightly less space */
+    min-width: 280px;
+    text-align: center; /* Center image if flex item doesn't fill space */
+}
+
+.about-illustration img {
+    max-width: 100%;
+    border-radius: 12px; /* Rounded corners for image */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3), 0 0 15px rgba(var(--pink-accent-rgb),0.2); /* Themed shadow */
+    border: 2px solid rgba(var(--pink-accent-rgb), 0.3);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    /* clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 90%); /* Example dynamic shape */
+}
+.about-illustration img:hover {
+    transform: scale(1.03) rotate(-1deg);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.4), 0 0 25px rgba(var(--pink-accent-rgb),0.3);
+}
+
+/* Decorative Elements for About Section */
+.about-deco {
+    position: absolute;
+    opacity: 0.08; /* Very subtle */
+    z-index: 0;
+    pointer-events: none;
+    filter: blur(1px);
+}
+.about-deco.about-deco-top {
+    top: 5%; left: 2%;
+    width: 150px; transform: rotate(15deg);
+}
+.about-deco.about-deco-star {
+    top: 15%; right: 10%;
+    width: 80px; transform: rotate(-10deg); opacity: 0.12;
+}
+.about-deco.about-deco-bottom {
+    bottom: 5%; right: 5%;
+    width: 180px; transform: rotate(-20deg);
+    z-index: 0; /* Behind the content */
 }
 
 /* INSPIRE Framework Section in About */
 .inspire-framework-container {
-    margin: 0 auto;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 3.5rem; /* Space above the framework section */
-    max-width: 900px;
-    padding: 2.5rem 2rem; /* Inner padding for the container */
-    background-color: #ffffff; /* White background to make it stand out */
-    border-radius: 12px;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.09); /* Slightly more prominent shadow */
+    margin-top: 3.5rem;
+    max-width: 1000px; /* Match .about-content max-width */
+    padding: 2.5rem 2rem;
+    background-color: #23272f; /* Dark card background */
+    border-radius: 16px; /* Slightly more rounded */
+    box-shadow: 0 10px 35px rgba(0,0,0,0.4); /* Dark theme shadow */
+    border: 1px solid rgba(var(--blue-accent-rgb), 0.2);
+    position: relative; /* For z-index */
+    z-index: 1;
 }
 
 .framework-title {
@@ -929,12 +1021,257 @@ nav::after {
 .sdg-star-deco {
     position: absolute;
     bottom: 20px;
-    left: 50%;
+    left: 30%;
     transform: translateX(-50%) rotate(15deg);
     width: 80px; /* Adjust size */
     opacity: 0.2;
-    z-index: 0;
+    z-index: 1;
     pointer-events: none;
+}
+/* === THIS YEAR'S WOW! GUEST STARS SECTION === */
+.wow-guest-stars-section {
+    background-color: var(--navbar-bg); /* Dark background */
+    /* Example using a subtle gradient from your assets if desired
+    background-image: linear-gradient(rgba(var(--navbar-bg-rgb),0.95), rgba(var(--navbar-bg-rgb),0.95)), url('img/Asset_16@4x.png');
+    background-blend-mode: overlay;
+    background-size: cover;
+    */
+    position: relative;
+    overflow: hidden;
+}
+
+.wow-guest-stars-section .section-title {
+    color: var(--secondary-color);
+    margin-bottom: 0.75rem;
+}
+
+.wow-guest-stars-section .section-title .wow-accent {
+    color: var(--yellow-accent); /* Or var(--pink-accent) */
+    font-style: italic;
+    font-weight: 800;
+    text-shadow: 0 0 15px rgba(var(--yellow-accent-rgb), 0.7);
+    display: inline-block;
+    transform: rotate(-2deg);
+}
+
+.wow-guest-stars-section .section-subtitle {
+    color: #b0b8c4; /* Light grey for readability on dark bg */
+    margin-bottom: 3.5rem;
+}
+
+.wow-guest-stars-grid {
+    display: grid;
+    /* Default for multiple guests (2 or more) */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    max-width: 1100px; /* Max width when there are multiple cards */
+    margin: 0 auto;
+    position: relative; /* For z-index stacking context */
+    z-index: 1; /* Above background decos */
+}
+.wow-guest-stars-grid.single-guest {
+    grid-template-columns: minmax(300px, 550px); /* Single column, max width for the card */
+    justify-content: center; /* Center the single column in the grid area */
+    max-width: 700px; /* Overall container can be a bit narrower for a single item */
+}
+.wow-guest-star-card {
+    background: linear-gradient(145deg, #23272f, #1a1d24);
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5),
+                inset 0 0 0 1px rgba(var(--blue-accent-rgb),0.15);
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+    border: 1px solid transparent;
+    /* For single prominent card, ensure it doesn't get cut off if grid is too small */
+    width: 100%; 
+}
+
+.wow-guest-star-card:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.6), 0 0 30px rgba(var(--pink-accent-rgb), 0.3);
+    border-image: linear-gradient(to bottom right, var(--pink-accent), var(--yellow-accent), var(--blue-accent)) 1;
+}
+
+.wow-guest-star-image-wrapper {
+    height: 380px; /* Adjust height as needed */
+    position: relative;
+    overflow: hidden;
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%); /* Angled bottom for image */
+}
+
+.wow-guest-star-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.4s ease;
+}
+
+.wow-guest-star-card:hover .wow-guest-star-image-wrapper img {
+    transform: scale(1.1);
+    filter: brightness(1.1);
+}
+
+.wow-guest-star-image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, transparent 40%, transparent 70%, rgba(var(--pink-accent-rgb),0.3) 100%);
+    opacity: 0.6;
+    transition: opacity 0.4s ease;
+}
+.wow-guest-star-card:hover .wow-guest-star-image-overlay {
+    opacity: 1;
+}
+.wow-guest-star-image-overlay .overlay-year {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: rgba(var(--yellow-accent-rgb), 0.85);
+    color: var(--primary-color);
+    font-weight: 700;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+
+.wow-guest-star-info {
+    padding: 1.5rem 1.75rem 2rem; /* Adjusted padding */
+    text-align: center;
+    position: relative; /* Ensure it's above the flare */
+    z-index: 2;
+}
+
+.wow-guest-star-info h4 {
+    font-size: 1.6rem; /* Larger name */
+    color: var(--secondary-color);
+    margin-bottom: 0.4rem;
+    font-weight: 700;
+    text-shadow: 0 0 8px rgba(var(--secondary-color),0.3);
+}
+
+.wow-guest-star-info .wow-guest-title {
+    font-size: 0.95rem;
+    color: var(--pink-accent); /* Accent color for title */
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.5px;
+}
+
+.wow-guest-star-info .wow-guest-teaser {
+    font-size: 0.85rem;
+    color: #a9b3c1; /* Lighter text for teaser */
+    line-height: 1.6;
+    min-height: 50px; /* Give some space for teaser */
+}
+
+/* Card Flare Effect */
+.wow-guest-card-flare {
+    position: absolute;
+    top: 0;
+    left: -150%; /* Start off-screen */
+    width: 80px; /* Width of the flare */
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        transparent 0%,
+        rgba(255, 255, 255, 0.03) 40%, /* Very subtle flare */
+        rgba(255, 255, 255, 0.06) 50%,
+        rgba(255, 255, 255, 0.03) 60%,
+        transparent 100%
+    );
+    transform: skewX(-25deg); /* Angled flare */
+    transition: left 0.7s ease-in-out;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.wow-guest-star-card:hover .wow-guest-card-flare {
+    left: 150%; /* Animate flare across the card on hover */
+}
+
+
+/* Responsive adjustments for WOW Guest Stars */
+@media (max-width: 991px) { /* Tablets */
+    .wow-guest-stars-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+    .wow-guest-star-image-wrapper {
+        height: 340px;
+        clip-path: polygon(0 0, 100% 0, 100% 92%, 0% 100%); /* Adjust angle if needed */
+    }
+    .wow-guest-star-info h4 {
+        font-size: 1.45rem;
+    }
+        .blog-page-title, .gallery-page-main-title {
+        font-size: 2.8rem;
+    }
+    .blog-page-subtitle, .gallery-page-main-subtitle {
+        font-size: 1.1rem;
+    }
+    .gallery-grid.photos-all, .gallery-grid.videos-all {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    }
+}
+
+@media (max-width: 767px) { /* Mobile */
+    .wow-guest-stars-section .section-title .wow-accent {
+        font-size: 0.8em; /* Make WOW accent slightly smaller relative to title on mobile */
+    }
+    .wow-guest-stars-grid {
+        grid-template-columns: 1fr; /* Stack cards on mobile */
+        gap: 2rem;
+    }
+     .wow-guest-star-image-wrapper {
+        height: 320px; /* Adjust for mobile */
+        clip-path: polygon(0 0, 100% 0, 100% 95%, 0% 100%); /* Slightly less angle or adjust */
+    }
+    .wow-guest-star-info h4 {
+        font-size: 1.35rem;
+    }
+    .wow-guest-star-info .wow-guest-title {
+        font-size: 0.9rem;
+    }
+    .wow-guest-star-info .wow-guest-teaser {
+        font-size: 0.8rem;
+        min-height: 40px;
+    }
+.wow-guest-deco {
+    position: absolute;
+    opacity: 0.1; /* More subtle for these */
+    z-index: 0; /* Behind the cards */
+    pointer-events: none;
+    filter: blur(1px);
+}
+
+.wow-guest-deco.deco-left {
+    top: 10%;
+    left: -50px;
+    width: 20px; /* Adjust size as needed */
+    transform: rotate(-25deg);
+}
+
+.wow-guest-deco.deco-star-top {
+    top: 5%;
+    right: 10%;
+    width: 100px; /* Adjust size */
+    transform: rotate(15deg);
+    opacity: 0.15;
+}
+
+.wow-guest-deco.deco-right {
+    bottom: 5%;
+    right: -60px;
+    width: 220px; /* Adjust size */
+    transform: rotate(30deg);
+    opacity: 0.08; /* Even more subtle */
+}
+
 }
 /* === NEW: Highlight Kompetisi & Seminar - Artistic "Portal" Overhaul === */
 
@@ -1336,129 +1673,170 @@ nav::after {
 [data-aos] {
     z-index: 1; /* Ensure AOS elements are above pseudo backgrounds like the grid */
 }
-/* === Gaya Bagian Linimasa (Timeline) BARU === */
+/* === Gaya Bagian Linimasa (Timeline) REVAMPED === */
 .timeline-section {
-    background-color: var(--section-bg-light);
+    /* background-color: var(--section-bg-light); /* Original */
+    background-color: var(--navbar-bg); /* Consistent dark background */
+    position: relative; /* For potential decorative elements if added later */
 }
+
+.timeline-section .section-title {
+    color: var(--secondary-color); /* Light text for dark background */
+    text-shadow: 0 0 10px rgba(var(--blue-accent-rgb), 0.3); /* Consistent title shadow */
+}
+
 .timeline-container {
     position: relative;
-    max-width: 800px;
+    max-width: 900px; /* Increased max-width for a bit more space */
     margin: 0 auto;
     padding: 2rem 0;
 }
 
+/* The Central Line */
 .timeline-container::before {
     content: '';
     position: absolute;
     top: 0;
     bottom: 0;
     left: 50%;
-    width: 4px; 
-    background-color: var(--secondary-color); 
+    width: 3px; /* Slightly thicker */
+    /* background-color: var(--secondary-color); /* Original */
+    background-image: linear-gradient(to bottom, var(--blue-accent), var(--pink-accent), var(--yellow-accent)); /* Gradient line */
     transform: translateX(-50%);
     z-index: 0;
+    border-radius: 3px;
+    
 }
 
 .timeline-entry {
     position: relative;
-    margin-bottom: 50px; 
-    width: 50%; 
-    padding: 10px 40px; 
+    margin-bottom: 60px; /* Increased spacing between entries */
+    width: 50%;
+    padding: 10px 40px;
     box-sizing: border-box;
 }
 
 .timeline-entry:nth-child(odd) {
     left: 0;
-    text-align: right;
+    /* text-align: right; */ /* Text inside card will be left by default */
 }
 
 .timeline-entry:nth-child(even) {
-    left: 50%; 
-    text-align: left;
+    left: 50%;
+    /* text-align: left; */
 }
 
-.timeline-icon-dot { 
+/* The Dot on the Timeline */
+.timeline-icon-dot {
     position: absolute;
-    top: 50%; 
+    top: 50%;
     transform: translateY(-50%);
-    width: 32px; 
-    height: 32px;
+    width: 28px; /* Slightly smaller but will have a border */
+    height: 28px;
     border-radius: 50%;
-    background-color: var(--timeline-dot-default); 
-    border: 3px solid var(--section-bg-light); 
+    background-color: var(--navbar-bg); /* Match section background */
+    border: 3px solid var(--yellow-accent); /* Prominent border color */
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1; 
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    cursor: default; /* Changed from pointer as it's decorative */
+    z-index: 2; /* Above the line, below card's potential ::before arrow tip */
+    transition: background-color 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+    box-shadow: 0 0 10px rgba(var(--yellow-accent-rgb), 0.5); /* Glow effect */
 }
 
 .timeline-icon-dot i {
-    color: white; 
+    color: var(--yellow-accent); /* Icon color matching border */
     font-size: 0.9rem;
+    transition: color 0.3s ease;
 }
 
 .timeline-entry:nth-child(odd) .timeline-icon-dot {
-    right: -16px; 
+    right: -14px; /* Adjusted for 28px width */
 }
 
 .timeline-entry:nth-child(even) .timeline-icon-dot {
-    left: -16px; 
+    left: -14px; /* Adjusted for 28px width */
 }
 
-.timeline-entry:nth-child(odd):hover .timeline-icon-dot {
-    background-color: var(--pink-accent); 
-    transform: translateY(-50%) scale(1.15); 
+.timeline-entry:hover .timeline-icon-dot {
+    /* background-color: var(--pink-accent); */ /* Example hover */
+    transform: translateY(-50%) scale(1.2);
+    border-color: var(--pink-accent); /* Change border color on hover */
+    box-shadow: 0 0 15px rgba(var(--pink-accent-rgb), 0.7);
 }
-.timeline-entry:nth-child(even):hover .timeline-icon-dot {
-    background-color: var(--blue-accent); 
-    transform: translateY(-50%) scale(1.15);
+.timeline-entry:hover .timeline-icon-dot i {
+    color: var(--pink-accent);
 }
 
+
+/* The Timeline Card (Label) */
 .timeline-label {
-    padding: 15px 20px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    position: relative; 
+    padding: 1.25rem 1.5rem; /* Increased padding */
+    /* background-color: white; /* Original */
+    background-color: #23272f; /* Dark card background */
+    color: var(--secondary-color); /* Light text for card */
+    border-radius: 12px; /* More modern radius */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3), inset 0 0 0 1px rgba(var(--secondary-color-rgb), 0.05); /* Dark theme shadow */
+    position: relative;
+    border: 1px solid rgba(var(--blue-accent-rgb), 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.timeline-entry:hover .timeline-label {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(var(--pink-accent-rgb),0.2), 0 5px 15px rgba(0,0,0,0.4);
+    border-color: rgba(var(--pink-accent-rgb), 0.3);
 }
 
+/* The Arrow/Tip of the Card */
 .timeline-label::before {
     content: '';
     position: absolute;
     top: 50%;
-    transform: translateY(-50%); 
+    transform: translateY(-50%);
     width: 0;
     height: 0;
     border-style: solid;
+    z-index: 1; /* Ensure it's above the card's border but below the dot if overlapping */
 }
 
 .timeline-entry:nth-child(odd) .timeline-label::before {
-    right: -10px; 
-    border-width: 10px 0 10px 10px; 
-    border-color: transparent transparent transparent white; 
+    right: -10px;
+    border-width: 10px 0 10px 10px;
+    /* border-color: transparent transparent transparent white; /* Original */
+    border-color: transparent transparent transparent #23272f; /* Match new card bg */
 }
 
 .timeline-entry:nth-child(even) .timeline-label::before {
-    left: -10px; 
+    left: -10px;
     border-width: 10px 10px 10px 0;
-    border-color: transparent white transparent transparent;
+    /* border-color: transparent white transparent transparent; /* Original */
+    border-color: transparent #23272f transparent transparent; /* Match new card bg */
+}
+/* Filter to make the CSS triangle arrow border blend with the card border */
+.timeline-entry:nth-child(odd) .timeline-label:hover::before {
+    filter: drop-shadow(1px 0px 0px rgba(var(--pink-accent-rgb), 0.3));
+}
+.timeline-entry:nth-child(even) .timeline-label:hover::before {
+   filter: drop-shadow(-1px 0px 0px rgba(var(--pink-accent-rgb), 0.3));
 }
 
+
 .timeline-date {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--primary-color);
-    margin-bottom: 0.3rem; 
-    /* text-align: center; Removed, alignment handled by entry */
+    font-size: 1rem; /* Slightly reduced for balance */
+    font-weight: 700;
+    color: var(--yellow-accent); /* Accent color for date */
+    margin-bottom: 0.5rem;
+    display: block; /* Ensure it takes its own line */
 }
 
 .timeline-event {
-    font-size: 0.95rem; 
-    color: #555;
-    /* text-align: center; Removed */
+    font-size: 1.05rem; /* Main event text */
+    color: var(--secondary-color);
+    font-weight: 500;
+    line-height: 1.5;
 }
+
+
 /* === Gaya Bagian Past Guest Stars BARU === */
 .guest-stars-section {
     background-color: #fff; 
@@ -1544,13 +1922,16 @@ nav::after {
     min-width: 300px;
     position: relative; /* For z-index stacking context if needed */
     z-index: 1;
+    border-radius: 16px;
+    padding: 2rem 1.5rem; 
 }
 
 /* Batches Styling - Cleaned up, border-radius focus, subtle PNG use */
 .registration-batches h3 {
     font-size: 1.9rem;
     color: var(--secondary-color);
-    margin-bottom: 2rem;
+    /* margin-top: 0; /* Reset or adjust if using padding on parent for top space */
+    margin-bottom: 2rem; /* This creates space below the title */
     text-align: center;
     font-weight: 700;
     text-transform: uppercase;
@@ -1770,6 +2151,8 @@ nav::after {
     gap: 0.75rem;
     position: relative;
     z-index: 1;
+    text-decoration: none;
+    border-radius: 20px; /* Pill shape for modern look */
 }
 .guidebook-button:hover {
     background: linear-gradient(45deg, var(--yellow-accent), var(--orange-accent));
@@ -1803,7 +2186,7 @@ nav::after {
     content: '';
     position: absolute;
     top: 0; left: 0;
-    width: 100%; height: 100%;
+    width: 10%; height: 10%;
     background-image: url('img/Asset 16@4x.png'); /* Example: a larger, simpler asset */
     background-repeat: no-repeat;
     background-position: center center;
@@ -1817,14 +2200,14 @@ nav::after {
     position: absolute;
     pointer-events: none;
     z-index: 0; /* Below content, above section::before if layered */
-    opacity: 0.15; /* Default opacity, can be adjusted */
+    opacity: 100%; /* Default opacity, can be adjusted */
     transition: transform 0.5s ease-out, opacity 0.5s ease-out;
 }
 .registration-section:hover .registration-deco-1,
 .registration-section:hover .registration-deco-2,
 .registration-section:hover .registration-deco-3 {
     transform: scale(1.1) rotate(5deg); /* Example hover effect */
-    opacity: 0.2;
+    opacity: 0.9;
 }
 
 .registration-deco-1 { /* Asset 30@4x.png (Pink checker) */
@@ -2123,142 +2506,390 @@ nav::after {
 
 
 .back-to-top {
-    display: inline-flex; /* Use flex for icon centering */
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     background-color: var(--pink-accent);
     color: white;
-    width: 40px;
-    height: 40px;
+    width: 45px;  /* Slightly larger for better tap target */
+    height: 45px; /* Slightly larger */
     border-radius: 50%;
     text-decoration: none;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.3); /* Slightly enhanced shadow */
+    
+    /* --- Sticky Positioning --- */
+    position: fixed;
+    bottom: 25px; /* Distance from the bottom of the viewport */
+    right: 25px;  /* Distance from the right of the viewport */
+    z-index: 990; /* Ensures it's above most page content, but below critical modals (like lightbox) */
+
+    /* --- Transitions & Initial State (for potential JS show/hide later) --- */
+    opacity: 1; /* Visible by default with CSS only */
+    visibility: visible; /* Visible by default */
+    transform: translateY(0) scale(1); /* Initial state for hover */
+    transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+
 .back-to-top i {
-    font-size: 1rem;
+    font-size: 1.1rem; /* Slightly larger icon */
 }
+
 .back-to-top:hover {
     background-color: var(--yellow-accent);
-    transform: translateY(-3px) scale(1.1);
+    transform: translateY(-4px) scale(1.12); /* Enhanced hover effect */
+    box-shadow: 0 5px 15px rgba(var(--yellow-accent-rgb),0.4);
 }
-/* Page-specific styles for competition-hub, can be moved to style.css later */
+
+/* === COMPETITION HUB PAGE REVAMP === */
+
+/* --- Competition Hub Hero Section --- */
 .competition-hub-hero {
-    background-color: var(--primary-color); /* Using primary color for hero background */
-    /* Or use a gradient similar to index.html hero if preferred:
-        background: linear-gradient(to bottom right, rgba(var(--blue-accent-rgb),0.1), rgba(var(--pink-accent-rgb),0.1)), var(--section-bg-light);
-        You'd need to define --blue-accent-rgb and --pink-accent-rgb in your :root if you go this route.
-        For simplicity, a solid color or a slight variant of an existing one.
-    */
-    color: white;
-    padding: 4rem 2rem;
+    background-color: #0c0a1f; /* Deep dark blue/purple from index hero */
+    background-image:
+        radial-gradient(ellipse at 70% 30%, rgba(var(--pink-accent-rgb), 0.25) 0%, transparent 45%),
+        radial-gradient(ellipse at 30% 70%, rgba(var(--blue-accent-rgb), 0.3) 0%, transparent 45%),
+        linear-gradient(160deg, #0c0a1f 30%, #1a1238 100%);
+    color: var(--secondary-color);
     text-align: center;
-    margin-bottom: 3rem; /* Space before the competition details */
-}
-
-.competition-hub-hero h1 {
-    font-size: 3rem; /* Large title */
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: white; /* Ensure title is white on dark background */
-}
-    /* Optional: Inspired by the image_29edd8.png "OUR COMPETITION" background shape */
-.competition-hub-hero h1 span {
-    background-color: var(--pink-accent); /* Pink accent for the title background */
-    padding: 0.5rem 2rem;
-    border-radius: 50px / 50px; /* Creates an oval/pill shape */
-    display: inline-block;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
-
-.competition-hub-hero p {
-    font-size: 1.125rem;
-    max-width: 700px;
-    margin: 0 auto;
-    opacity: 0.9;
-}
-
-.competition-category {
+    position: relative;
+    min-height: 60vh; /* Adjust as needed */
     display: flex;
-    gap: 2rem;
     align-items: center;
-    margin-bottom: 4rem; /* Space between categories */
-    padding: 2rem;
-    background-color: #fff; /* White background for category cards */
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+    justify-content: center;
+    overflow: hidden;
 }
 
-/* Alternating layout */
-.competition-category:nth-child(even) {
-    flex-direction: row-reverse;
+/* Re-use portal-background-effect and floating-cloud styles from index.html if not already global */
+/* Ensure they are defined or copy them here if they are page-specific in original CSS */
+
+.hero-content-comp-hub {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
 }
 
-.competition-category-img {
-    flex: 1 1 40%; /* Image takes up about 40% of the width */
-    max-width: 400px; /* Max width for image container */
+.competition-hub-title {
+    font-size: 3.5rem; /* Adjust size as needed */
+    font-weight: 800;
+    color: var(--secondary-color);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    text-shadow: 0 0 10px rgba(var(--pink-accent-rgb), 0.3), 0 0 20px rgba(var(--blue-accent-rgb), 0.3);
+    display: block; /* Allow for easier centering of multi-line title */
 }
 
-.competition-category-img img {
+.competition-hub-title .title-main-word {
+    display: block; /* Puts "COMPETITIONS" on its own line */
+    font-size: 4.5rem; /* Larger for the main word */
+    letter-spacing: 2px;
+    color: var(--yellow-accent);
+    text-shadow: 0 0 15px rgba(var(--yellow-accent-rgb),0.7), 0 0 5px rgba(var(--secondary-color),0.5);
+}
+
+.competition-hub-title .title-accent-char {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: charFadeInUp 0.5s forwards;
+    color: var(--pink-accent); /* Example accent */
+}
+/* Stagger animation for each character */
+.competition-hub-title .title-accent-char:nth-child(1) { animation-delay: 0.2s; }
+.competition-hub-title .title-accent-char:nth-child(2) { animation-delay: 0.3s; }
+.competition-hub-title .title-accent-char:nth-child(3) { animation-delay: 0.4s; }
+/* ... add for more chars if needed */
+.competition-hub-title .title-accent-char.title-accent-char:last-of-type { animation-delay: 0.6s; } /* For the S */
+
+
+@keyframes charFadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.competition-hub-subtitle {
+    font-size: 1.15rem;
+    color: #c0c8d4;
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.7;
+    font-style: italic;
+}
+
+/* --- Competition Listing Section --- */
+.competition-listing-section {
+    background-color: var(--navbar-bg); /* Dark background */
+}
+
+.portal-card-comp { /* New card style for competition categories */
+    background: rgba(35, 39, 47, 0.7);
+    backdrop-filter: blur(10px) saturate(110%);
+    border-radius: 16px;
+    padding: 0; /* Remove padding, will be handled by inner elements */
+    border: 1px solid rgba(var(--blue-accent-rgb), 0.2);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column; /* Default stack image above details */
+    margin-bottom: 3rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden; /* Important for image wrapper */
+}
+
+.portal-card-comp:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 35px rgba(var(--pink-accent-rgb),0.2), 0 0 20px rgba(var(--blue-accent-rgb),0.15);
+}
+
+/* Alternating layout for desktop */
+@media (min-width: 768px) {
+    .portal-card-comp {
+        flex-direction: row; /* Side by side on desktop */
+    }
+    .portal-card-comp:nth-child(even) {
+        flex-direction: row-reverse; /* Alternate image position */
+    }
+    .portal-card-comp .competition-category-img-wrapper {
+        flex: 0 0 40%; /* Image takes 40% width */
+        max-width: 40%;
+    }
+    .portal-card-comp .competition-category-details {
+        flex: 0 0 60%; /* Details take 60% width */
+        max-width: 60%;
+        padding: 2.5rem 2rem; /* Padding for details section on desktop */
+    }
+}
+
+
+.competition-category-img-wrapper {
+    position: relative;
+    overflow: hidden;
+    /* Default for mobile (stacked) */
     width: 100%;
-    height: auto;
-    border-radius: 8px;
+    height: 280px; /* Fixed height for mobile image area */
+    background-color: #1a1d24; /* Dark bg if image is transparent or fails */
+}
+
+.competition-category-img-wrapper img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+.portal-card-comp:hover .competition-category-img-wrapper img {
+    transform: scale(1.05);
+    filter: brightness(0.9) saturate(1.2);
+}
+
+.comp-img-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    text-align: right;
 }
 
 .competition-category-details {
-    flex: 1 1 60%; /* Text details take up about 60% */
+    padding: 2rem 1.5rem; /* Padding for mobile details */
+    color: var(--secondary-color);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
-.competition-category-details h3 {
-    font-size: 2rem;
-    color: var(--primary-color); /* Using primary color for category titles */
-    margin-bottom: 0.75rem;
+.card-header-comp {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(var(--blue-accent-rgb), 0.2);
+}
+.card-header-comp .card-icon-comp {
+    font-size: 1.8rem;
+    color: var(--pink-accent);
+}
+.card-header-comp h3 {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin: 0;
 }
 
 .competition-category-details .description {
-    font-size: 1rem;
-    line-height: 1.7;
+    font-size: 0.9rem;
+    color: #b0b8c4;
+    line-height: 1.6;
     margin-bottom: 1.5rem;
+    flex-grow: 1; /* Allows description to push button down */
 }
 
-.competition-category-details h4 {
-    font-size: 1.25rem;
-    color: var(--blue-accent); /* Accent color for subheadings */
-    margin-top: 1.5rem;
-    margin-bottom: 0.5rem;
+/* Accordion Styling for Criteria */
+.criteria-accordion {
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(var(--secondary-color), 0.1);
+    border-radius: 8px;
+    overflow: hidden;
 }
-
-.competition-category-details ul {
-    list-style: none; /* Remove default bullets */
-    padding-left: 0;
+.accordion-toggle {
+    background-color: rgba(var(--secondary-color), 0.05);
+    color: var(--secondary-color);
+    cursor: pointer;
+    padding: 0.9rem 1rem;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
-.competition-category-details ul li {
-    margin-bottom: 0.5rem;
-    padding-left: 1.5rem;
+.accordion-toggle:hover, .accordion-toggle.active {
+    background-color: rgba(var(--pink-accent-rgb), 0.15);
+}
+.accordion-toggle .accordion-icon {
+    transition: transform 0.3s ease;
+    font-size: 0.9em;
+}
+.accordion-toggle.active .accordion-icon {
+    transform: rotate(180deg);
+}
+.accordion-content {
+    padding: 0 1rem;
+    background-color: transparent; /* Will inherit from card */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+}
+.accordion-content ul {
+    list-style: none;
+    padding: 1rem 0; /* Padding when open */
+}
+.accordion-content ul li {
+    padding: 0.3rem 0 0.3rem 1.2rem;
     position: relative;
+    font-size: 0.85rem;
+    color: #a9b3c1;
 }
-.competition-category-details ul li::before {
-    content: '\f00c'; /* FontAwesome check icon */
+.accordion-content ul li::before {
+    content: '\f00c'; /* Check icon */
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
-    color: var(--orange-accent); /* Accent for list icon */
+    color: var(--yellow-accent);
     position: absolute;
     left: 0;
-    top: 2px;
+    top: 0.35rem; /* Adjust for vertical alignment */
+    font-size: 0.8em;
 }
 
-.example-link {
-    display: inline-block;
-    margin-top: 0.5rem;
-    color: var(--pink-accent);
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s ease;
+.comp-template-info {
+    font-size: 0.8rem;
+    font-style: italic;
+    color: #8a94a2;
+    margin-bottom: 1rem;
+    text-align: center;
 }
-.example-link:hover {
-    color: var(--orange-accent);
-    text-decoration: underline;
+
+.comp-action-button.portal-button { /* Reusing .portal-button styles from index.html */
+    /* Ensure .portal-button style definition is accessible or copy relevant parts */
+    margin-top: auto; /* Pushes button to bottom of flex column */
+    align-self: center;
+    /* Customize if needed, e.g., color: */
+    /* background: linear-gradient(45deg, var(--blue-accent), var(--green-accent)); */
+}
+.comp-action-button.portal-button:hover {
+    /* background: linear-gradient(45deg, var(--green-accent), var(--blue-accent)); */
+}
+
+
+/* Ensure portal-button and other common styles are defined in your style.css */
+/* If not, copy the .portal-button styles from the Highlight section of index.html here */
+.portal-button { 
+    display: inline-flex; /* align icon and text */
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 1.8rem;
+    background: linear-gradient(45deg, var(--pink-accent), var(--orange-accent));
+    color: white !important; /* Ensure text is white */
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    text-align: center;
+    border: none;
+    box-shadow: 0 4px 15px rgba(var(--pink-accent-rgb),0.3);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden; 
+}
+.portal-button .btn-icon {
+    margin-left: 0.5rem;
+    transition: transform 0.3s ease;
+}
+.portal-button:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(var(--orange-accent-rgb),0.4);
+    background: linear-gradient(45deg, var(--orange-accent), var(--pink-accent));
+}
+.portal-button:hover .btn-icon {
+    transform: translateX(5px);
+}
+.portal-button::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 50%; height: 100%;
+    background: linear-gradient(to right, transparent 0%, rgba(255,255,255,0.5) 50%, transparent 100%);
+    transform: skewX(-25deg);
+    transition: left 0.5s ease;
+}
+.portal-button:hover::before { left: 150%; }
+
+
+/* --- Responsive for Competition Hub Page --- */
+@media (max-width: 991px) { /* Tablets */
+    .competition-hub-title { font-size: 2.8rem; }
+    .competition-hub-title .title-main-word { font-size: 3.5rem; }
+    .competition-hub-subtitle { font-size: 1.05rem; }
+
+    .portal-card-comp .competition-category-details { padding: 2rem 1.5rem; }
+    .card-header-comp h3 { font-size: 1.5rem; }
+}
+
+@media (max-width: 767px) { /* Mobile */
+    .competition-hub-hero { min-height: 50vh; padding: 3rem 1rem; }
+    .competition-hub-title { font-size: 2.2rem; }
+    .competition-hub-title .title-main-word { font-size: 2.8rem; letter-spacing: 1px;}
+    .competition-hub-subtitle { font-size: 1rem; }
+
+    .portal-card-comp {
+        flex-direction: column !important; /* Stack image and details, override desktop */
+        margin-bottom: 2rem;
+    }
+    .portal-card-comp .competition-category-img-wrapper {
+        height: 220px; /* Adjust image height for mobile stack */
+        max-width: 100%; /* Full width for image wrapper in stack */
+    }
+    .portal-card-comp .competition-category-details {
+        padding: 1.5rem 1.25rem; /* Adjust padding for mobile */
+        max-width: 100%;
+    }
+    .card-header-comp h3 { font-size: 1.4rem; }
+    .card-header-comp .card-icon-comp { font-size: 1.6rem; }
+    .competition-category-details .description { font-size: 0.85rem; }
+    .accordion-toggle { font-size: 0.9rem; padding: 0.8rem; }
+    .accordion-content ul li { font-size: 0.8rem; padding: 0.25rem 0 0.25rem 1rem;}
+    .accordion-content ul li::before { top: 0.3rem; }
+    .comp-template-info { font-size: 0.75rem; }
+    .comp-action-button.portal-button { padding: 0.7rem 1.5rem; font-size: 0.9rem;}
 }
 /* Berita & Media Section Styles */
 .media-section {
@@ -2303,6 +2934,62 @@ nav::after {
     color: #888;
     background-color: rgba(0,0,0,0.02);
     border-radius: 6px;
+}
+#partners-sponsors-container .partners-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem; /* Keep or adjust gap */
+    padding: 1rem 0;
+}
+
+#partners-sponsors-container .partner-item {
+    /* Provide a very subtle, slightly lighter background for each logo item
+       to help dark logos stand out from the main dark section background. */
+    background-color: rgba(86, 104, 157, 0.5); /* Faintly lighter than section bg */
+    /* Or an alternative darker shade: background-color: #2a2e37; */
+    padding: 0.75rem; /* Add padding around the logo within its tile */
+    border-radius: 8px; /* Rounded corners for the tile */
+    height: auto; /* Let content + padding define height */
+    min-height: 80px; /* Ensure a decent minimum height for the tile */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+#partners-sponsors-container .partner-item:hover {
+    background-color: rgba(255, 255, 255, 0.08); /* Slightly more prominent on hover */
+}
+
+#partners-sponsors-container .partner-item img {
+    max-height: 55px; /* Max height of the logo itself, accounting for parent padding */
+    max-width: 140px; /* Max width of the logo */
+    object-fit: contain;
+    
+    /* --- Key change for Dark Mode Visibility --- */
+    /* Remove the previous filters that made logos subdued (grayscale, low opacity) */
+    filter: none; 
+    opacity: 0.85; /* Start with good visibility, slightly less than full for a softer look */
+    
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#partners-sponsors-container .partner-item a:hover img {
+    filter: none; /* Ensure no unintended filters are applied on hover */
+    opacity: 1;   /* Full opacity on hover for clarity */
+    transform: scale(1.08); /* Slight zoom effect */
+}
+
+/* Fallback text style for when logo images fail to load, in dark mode */
+#partners-sponsors-container .partner-name-fallback {
+    font-size: 0.9rem;
+    color: #a0aec0; /* Light gray for fallback text */
+    padding: 0.5rem;
+    border: 1px dashed rgba(var(--secondary-color-rgb, 240, 240, 240), 0.3); /* Subtle dashed border */
+    border-radius: 4px;
+    text-align: center;
 }
 .error-message {
     color: var(--hero-empower-color);
@@ -2469,6 +3156,9 @@ nav::after {
 .gallery-grid.active-gallery-content {
     display: grid;
 }
+.gallery-grid.photos-all, .gallery-grid.videos-all {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); /* Slightly larger items for full page */
+}
 .gallery-item {
     position: relative;
     overflow: hidden;
@@ -2573,7 +3263,10 @@ nav::after {
 }
 /* Quirky Contact Section Styles */
 .contact-section {
-    background: linear-gradient(135deg, rgba(var(--blue-accent-rgb), 0.05), rgba(var(--pink-accent-rgb), 0.05), rgba(var(--yellow-accent-rgb), 0.05));
+    /* Changed background to a dark theme color */
+    background-color: var(--navbar-bg); 
+    /* Removed the light gradient, could be replaced with a subtle dark pattern or overlay if desired */
+    color: var(--secondary-color); /* Default text color for the section */
 }
 
 .contact-header {
@@ -2581,15 +3274,17 @@ nav::after {
     margin-bottom: 3.5rem;
 }
 
+/* Quirky title span itself is bright, text inside it is dark, this contrast is good.
+   Shadow might need adjustment if it's too dark for the new dark background. */
 .quirky-title span {
     display: inline-block;
     background-color: var(--yellow-accent);
-    color: var(--primary-color);
+    color: var(--primary-color); /* Keep dark text on yellow bg for contrast */
     padding: 0.7rem 2rem;
-    border-radius: 50px 10px 50px 10px; /* Asymmetrical pill */
+    border-radius: 50px 10px 50px 10px;
     transform: rotate(-3deg) translateX(-5px);
-    font-size: 2.6rem; /* Match or adjust based on section-title */
-    box-shadow: 4px 4px 0px rgba(var(--pink-accent-rgb), 0.7); /* Solid quirky shadow */
+    font-size: 2.6rem;
+    box-shadow: 4px 4px 0px rgba(var(--pink-accent-rgb), 0.7); /* This shadow should still pop */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .quirky-title span:hover {
@@ -2600,7 +3295,7 @@ nav::after {
 .quirky-subtitle {
     margin-top: 1.25rem;
     font-size: 1.15rem;
-    color: #4B5563; /* Slightly darker for subtitle */
+    color: #c0c8d4; /* Lightened for dark mode */
     font-style: italic;
 }
 
@@ -2620,41 +3315,62 @@ nav::after {
 .contact-form-container {
     flex: 1;
     min-width: 320px;
-    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white cards */
-    padding: 2.5rem 2rem; /* More padding */
-    border-radius: 25px 8px 25px 8px; /* Quirky radius */
-    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-    border: 3px solid; /* Solid border, color set below */
-    position: relative; /* For pseudo-elements if needed */
+    /* Changed background to a dark card style */
+    background-color: #23272f; /* Dark card background */
+    /* Or: background: rgba(35, 39, 47, 0.65); backdrop-filter: blur(10px); */
+    padding: 2.5rem 2rem;
+    border-radius: 25px 8px 25px 8px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3); /* Adjusted shadow for dark theme */
+    /* Replaced border-image with a simpler, dark-theme friendly border */
+    border: 1px solid rgba(var(--blue-accent-rgb), 0.25);
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; /* Added border-color transition */
 }
 .contact-direct-info {
-    border-image: linear-gradient(to bottom right, var(--blue-accent), var(--pink-accent)) 1;
-    transform: rotate(-1deg) translateY(-5px); /* Slight tilt */
+    /* border-image: linear-gradient(to bottom right, var(--blue-accent), var(--pink-accent)) 1; */ /* Removed */
+    border-left-color: var(--blue-accent);
+    border-top-color: var(--blue-accent);
+    border-right-color: var(--pink-accent);
+    border-bottom-color: var(--pink-accent);
+    transform: rotate(-1deg) translateY(-5px);
 }
+.contact-direct-info:hover {
+    border-color: var(--pink-accent); /* Example hover border */
+}
+
 .contact-form-container {
-    border-image: linear-gradient(to top left, var(--orange-accent), var(--yellow-accent)) 1;
-    transform: rotate(1deg) translateY(5px); /* Opposite tilt */
+    /* border-image: linear-gradient(to top left, var(--orange-accent), var(--yellow-accent)) 1; */ /* Removed */
+    border-left-color: var(--orange-accent);
+    border-top-color: var(--orange-accent);
+    border-right-color: var(--yellow-accent);
+    border-bottom-color: var(--yellow-accent);
+    transform: rotate(1deg) translateY(5px);
 }
+.contact-form-container:hover {
+    border-color: var(--yellow-accent); /* Example hover border */
+}
+
 .contact-direct-info:hover, .contact-form-container:hover {
-    transform: rotate(0deg) translateY(0px) scale(1.01); /* Straighten on hover */
+    transform: rotate(0deg) translateY(0px) scale(1.01);
 }
 
 .contact-direct-info h3,
 .contact-form-container h3,
 .contact-map-container h3 {
     font-size: 1.6rem;
-    color: var(--primary-color);
+    color: var(--secondary-color); /* Lightened for dark mode */
     margin-bottom: 1.5rem;
     position: relative;
     padding-bottom: 0.6rem;
-    display: flex; /* For icon alignment */
+    display: flex;
     align-items: center;
     gap: 0.5rem;
 }
 .quirky-icon-header {
-    font-size: 1.3em; /* Relative to h3 font size */
+    font-size: 1.3em;
     transform: rotate(-5deg);
 }
+/* Icon colors are fine as they are accents */
 .contact-direct-info h3 .quirky-icon-header { color: var(--blue-accent); }
 .contact-form-container h3 .quirky-icon-header { color: var(--orange-accent); }
 .contact-map-container h3 .quirky-icon-header { color: var(--pink-accent); }
@@ -2666,27 +3382,28 @@ nav::after {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 5px; /* Indent a bit */
+    left: 5px;
     width: 60px;
-    height: 4px; /* Thicker underline */
+    height: 4px;
     background-image: linear-gradient(to right, var(--pink-accent) 30%, var(--yellow-accent) 70%);
     border-radius: 4px;
-    transform: skewX(-15deg); /* Skewed underline */
+    transform: skewX(-15deg);
 }
 
 .info-item {
     display: flex;
-    align-items: flex-start; /* Align icon to top of text block */
+    align-items: flex-start;
     gap: 1rem;
     margin-bottom: 1.5rem;
     font-size: 1rem;
     line-height: 1.5;
 }
+/* Accent icon styles are good */
 .info-item .accent-icon {
-    font-size: 1.6rem; /* Larger icons */
+    font-size: 1.6rem;
     width: 45px;
     height: 45px;
-    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; /* Blobby shape */
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -2699,24 +3416,29 @@ nav::after {
 
 .info-item p strong {
     display: block;
-    color: var(--primary-color);
+    color: var(--secondary-color); /* Lightened for dark mode */
     font-weight: 600;
     margin-bottom: 0.15rem;
 }
+.info-item p { /* The regular text within the info item */
+    color: #b0b8c4; /* Lighter gray for readability */
+}
 .info-item a {
-    color: var(--blue-accent);
+    color: var(--blue-accent); /* Link color is good */
     text-decoration: none;
     font-weight: 500;
-    word-break: break-all; /* For long links/emails */
+    word-break: break-all;
 }
 .info-item a:hover {
-    color: var(--pink-accent);
-    text-decoration: underline wavy; /* Quirky underline */
+    color: var(--pink-accent); /* Hover color is good */
+    text-decoration: underline wavy;
 }
 
 .contact-direct-info .social-title {
     margin-top: 2.5rem;
+    /* color: var(--secondary-color); /* Ensure this h3 also gets lightened */
 }
+/* Social links styles should be fine as they are icon-based with their own backgrounds */
 .contact-social-links {
     display: flex;
     gap: 1.25rem;
@@ -2724,16 +3446,16 @@ nav::after {
     margin-top: 1rem;
 }
 .contact-social-links .social-icon {
-    font-size: 2rem; /* Larger social icons */
+    font-size: 2rem;
     color: white;
     width: 50px;
     height: 50px;
-    border-radius: 10px 25px 10px 25px; /* Quirky shape for social icons */
+    border-radius: 10px 25px 10px 25px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55), box-shadow 0.3s ease; /* Bouncy transition */
+    transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55), box-shadow 0.3s ease;
     box-shadow: 3px 3px 6px rgba(0,0,0,0.2);
 }
 .contact-social-links .social-icon:hover {
@@ -2741,27 +3463,27 @@ nav::after {
     box-shadow: 5px 5px 12px rgba(0,0,0,0.3);
 }
 .contact-social-links .social-icon.ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%); }
-.contact-social-links .social-icon.tw { background-color: #000000; } /* For X */
+.contact-social-links .social-icon.tw { background-color: #000000; }
 .contact-social-links .social-icon.yt { background-color: #FF0000; }
-.contact-social-links .social-icon.tk { background-color: #000000; /* TikTok often black/white or specific turquoise/pink */ }
+.contact-social-links .social-icon.tk { background-color: #000000; }
 
 
 /* Quirky Contact Form Styling */
 .contact-form .form-group {
-    margin-bottom: 1.75rem; /* More space */
-    position: relative; /* For label positioning */
+    margin-bottom: 1.75rem;
+    position: relative;
 }
 .contact-form label {
     position: absolute;
-    top: 0.85rem; /* Adjust to be inside the input initially */
+    top: 0.85rem;
     left: 1rem;
-    font-weight: 500; /* Medium weight for labels */
-    color: #777; /* Lighter placeholder color */
+    font-weight: 500;
+    color: #a0aec0; /* Lightened placeholder/label color */
     font-size: 1rem;
-    pointer-events: none; /* Allow clicks to pass through to input */
-    transition: all 0.25s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Bouncy transition */
-    background-color: var(--section-bg-light); /* Match input bg for clean look when not focused */
-    padding: 0 0.3rem; /* Padding around label text */
+    pointer-events: none;
+    transition: all 0.25s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    background-color: #2e343f; /* Darker bg for label to match dark input */
+    padding: 0 0.3rem;
     transform-origin: left top;
 }
 .contact-form input[type="text"],
@@ -2769,46 +3491,47 @@ nav::after {
 .contact-form textarea {
     width: 100%;
     padding: 0.85rem 1rem;
-    border: 2px solid var(--timeline-dot-default); /* Default border */
-    border-radius: 10px 2px 10px 2px; /* Quirky input radius */
-    background-color: var(--section-bg-light);
+    border: 2px solid rgba(var(--secondary-color), 0.3); /* Lighter default border */
+    border-radius: 10px 2px 10px 2px;
+    background-color: #2e343f; /* Dark input background */
     font-family: inherit;
     font-size: 1rem;
-    color: #333;
+    color: var(--secondary-color); /* Light text color for input */
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
-/* Floating label effect: when input has content (via placeholder trick or :focus) */
+/* Floating label effect: when input has content */
 .contact-form input:focus + label,
-.contact-form input:not(:placeholder-shown) + label, /* :not(:placeholder-shown) for modern browsers */
+.contact-form input:not(:placeholder-shown) + label,
 .contact-form textarea:focus + label,
 .contact-form textarea:not(:placeholder-shown) + label {
-    transform: translateY(-1.8rem) scale(0.85) translateX(-0.2rem); /* Move up and shrink */
-    color: var(--pink-accent); /* Change color on focus/filled */
+    transform: translateY(-1.8rem) scale(0.85) translateX(-0.2rem);
+    color: var(--pink-accent); /* Focused label color is good */
     font-weight: 600;
+    background-color: #23272f; /* Match card background for focused label background */
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
     outline: none;
-    border-color: var(--pink-accent); /* Active border color */
-    box-shadow: 0 0 0 3px rgba(var(--pink-accent-rgb), 0.2);
+    border-color: var(--pink-accent);
+    box-shadow: 0 0 0 3px rgba(var(--pink-accent-rgb), 0.25); /* Adjusted shadow for dark */
 }
 .contact-form textarea {
     resize: vertical;
     min-height: 130px;
 }
 
-.quirky-submit { /* Uses .hero-button, .button-main-cta */
-    /* background-color: var(--orange-accent); */ /* from .button-main-cta */
-    border-radius: 50px 10px 50px 10px; /* Match title quirky shape */
+/* Submit button styles are likely fine as they use hero button classes, which are vibrant */
+.quirky-submit {
+    border-radius: 50px 10px 50px 10px;
     box-shadow: 3px 3px 0px var(--blue-accent);
-    padding: 0.9rem 2.2rem; /* Slightly larger */
+    padding: 0.9rem 2.2rem;
     font-size: 1.05rem;
-    transition: all 0.2s ease-in-out !important; /* Ensure it overrides other transitions */
-    animation: none !important; /* Override pulseButton */
+    transition: all 0.2s ease-in-out !important;
+    animation: none !important;
 }
 .quirky-submit:hover {
-    background-color: var(--pink-accent) !important; /* Change color dramatically */
+    background-color: var(--pink-accent) !important;
     color: white !important;
     transform: translateY(-4px) rotate(3deg) scale(1.05) !important;
     box-shadow: 1px 1px 0px var(--yellow-accent) !important;
@@ -2817,136 +3540,348 @@ nav::after {
 
 /* Map Area */
 .contact-map-container {
-    background-color: rgba(var(--blue-accent-rgb), 0.05); /* Subtle background */
+    background-color: rgba(var(--blue-accent-rgb), 0.1); /* Darker subtle background */
     padding: 2.5rem 2rem;
-    border-radius: 8px 25px 8px 25px; /* Opposite of other cards */
-    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    border-radius: 8px 25px 8px 25px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25); /* Adjusted shadow */
     text-align: center;
-    margin-top: 2rem; /* Ensure spacing if elements wrap differently */
-    border-top: 5px dotted var(--pink-accent); /* Dotted top border */
+    margin-top: 2rem;
+    border-top: 5px dotted var(--pink-accent); /* Dotted border should still be visible */
 }
 .map-placeholder {
     margin-top: 1.5rem;
     border-radius: 10px;
-    overflow: hidden; /* To clip iframe border-radius */
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+    overflow: hidden;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.2); /* Adjusted inset shadow */
 }
 .map-placeholder iframe {
-    display: block; /* Remove any extra space below iframe */
-    filter: hue-rotate(45deg) saturate(1.2); /* Quirky map colors */
+    display: block;
+    /* The filter might make the map too dark on a dark theme, consider reducing or removing */
+    /* filter: hue-rotate(20deg) saturate(0.8) brightness(0.9); */ /* Example: toned down filter */
+    filter: invert(0.9) hue-rotate(180deg) saturate(0.5) brightness(1.1); /* Alternative dark mode map filter */
+
 }
 
-/* Add to your style.css */
-
-/* Optional: Specific Hero style for Seminar page if different from competition hub */
-.seminar-hero { /* If you use this class */
-    /* background-color: var(--blue-accent); /* Example: Different hero color */
-    /* You can reuse .competition-hub-hero if the style is similar */
-}
-.seminar-hero h1 span { /* If you want the pill shape like competition hub */
-    background-color: var(--orange-accent); /* Example: Orange accent for seminar title pill */
-    /* padding: 0.5rem 2rem; */
-    /* border-radius: 50px / 50px; */
-    /* display: inline-block; */
-    /* box-shadow: 0 4px 10px rgba(0,0,0,0.2); */
-}
-
-
-.seminar-event-card {
-    background-color: #fff;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    margin-bottom: 2.5rem;
-    display: flex;
-    gap: 1.5rem;
-    align-items: flex-start; /* Align icon to the top of content */
-}
-
-.seminar-event-icon {
-    flex-shrink: 0;
-    color: var(--primary-color); /* Or a specific accent */
-    /* background-color: var(--section-bg-light); */
-    /* padding: 1rem; */
-    /* border-radius: 50%; */
-    /* width: 80px; */
-    /* height: 80px; */
-    /* display: flex; */
-    /* align-items: center; */
-    /* justify-content: center; */
-}
-.seminar-event-icon i {
-    color: var(--pink-accent); /* Example */
+/* Responsive adjustments for dark mode if any conflicts arise */
+@media (max-width: 767px) {
+    .contact-form label {
+        /* Ensure label background matches input background in mobile if they change */
+         background-color: #2e343f; /* Default dark input bg */
+    }
+    .contact-form input:focus + label,
+    .contact-form input:not(:placeholder-shown) + label,
+    .contact-form textarea:focus + label,
+    .contact-form textarea:not(:placeholder-shown) + label {
+        background-color: #23272f; /* Match card background for focused label background */
+    }
 }
 
 
-.seminar-event-details h3 {
-    font-size: 1.75rem;
-    color: var(--primary-color);
-    margin-bottom: 0.5rem;
+/* === SEMINAR PAGE REVAMP === */
+
+/* --- Seminar Hub Hero Section --- */
+.seminar-hero { /* Reuses .competition-hub-hero styles but can have overrides */
+    min-height: 60vh; /* Or adjust as needed */
+    /* Backgrounds and portal effects are inherited if .competition-hub-hero is styled globally */
 }
 
-.seminar-event-details .event-date {
-    font-size: 0.9rem;
-    color: #666;
+.hero-content-seminar-hub {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+}
+
+.seminar-hub-title {
+    font-size: 3.8rem; /* Prominent title */
+    font-weight: 800;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+    line-height: 1.1;
+    text-shadow: 0 0 10px rgba(var(--blue-accent-rgb), 0.4), 0 0 20px rgba(var(--pink-accent-rgb), 0.3);
+    text-transform: uppercase;
+}
+.seminar-hub-title .seminar-title-accent {
+    color: var(--yellow-accent);
     font-style: italic;
-    margin-bottom: 1rem;
+    text-shadow: 0 0 15px rgba(var(--yellow-accent-rgb),0.7);
 }
 
-.seminar-event-details p {
-    margin-bottom: 1rem;
+.seminar-hub-subtitle {
+    font-size: 1.2rem;
+    color: #c8d0da;
+    max-width: 700px;
+    margin: 0 auto;
     line-height: 1.7;
 }
 
-.seminar-event-details h4 {
-    font-size: 1.1rem;
-    color: var(--blue-accent);
-    margin-top: 1.5rem;
-    margin-bottom: 0.5rem;
+/* --- Seminar Listing Section --- */
+.seminar-listing-section {
+    background-color: var(--navbar-bg); /* Dark background */
+}
+.seminar-listing-section .section-title {
+    color: var(--secondary-color);
+}
+
+.portal-card-seminar {
+    background: rgba(35, 39, 47, 0.75); /* Slightly more opaque than competition cards */
+    backdrop-filter: blur(8px) saturate(100%);
+    border-radius: 16px;
+    padding: 2rem 2.25rem; /* Generous padding */
+    border: 1px solid rgba(var(--blue-accent-rgb), 0.25);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+    margin-bottom: 2.5rem; /* Space between seminar cards */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: var(--secondary-color);
+}
+
+.portal-card-seminar:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 12px 38px rgba(var(--pink-accent-rgb),0.2), 0 0 15px rgba(var(--blue-accent-rgb),0.1);
+    border-color: rgba(var(--pink-accent-rgb),0.4);
+}
+
+.card-seminar-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(var(--secondary-color), 0.15);
+}
+.card-seminar-header .card-icon-seminar {
+    font-size: 2rem; /* Larger icon */
+    color: var(--orange-accent); /* Different accent for seminar icons */
+    min-width: 30px; /* Ensure icon space */
+}
+.card-seminar-header h3 {
+    font-size: 1.6rem; /* Card title size */
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin: 0;
+}
+
+.card-seminar-body .event-date-seminar {
+    font-size: 0.85rem;
     font-weight: 600;
-}
-
-.seminar-event-details ul {
-    list-style: none;
-    padding-left: 0;
+    color: var(--yellow-accent);
     margin-bottom: 1rem;
+    display: block;
+}
+.card-seminar-body .event-date-seminar i {
+    margin-right: 0.5rem;
+    opacity: 0.8;
 }
 
-.seminar-event-details ul li {
-    margin-bottom: 0.4rem;
-    padding-left: 1.5rem;
+.card-seminar-body .description-seminar {
+    font-size: 0.95rem;
+    color: #b8c0cc;
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+}
+
+/* Speaker Highlight (Stephen Spielberg) */
+.speaker-highlight {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background-color: rgba(var(--pink-accent-rgb), 0.08);
+    padding: 1rem;
+    border-radius: 10px;
+    margin: 1.5rem 0;
+    border-left: 4px solid var(--pink-accent);
+}
+.speaker-img-placeholder img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--pink-accent);
+}
+.speaker-info h4 {
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+    margin-bottom: 0.25rem;
+}
+.wow-speaker-tag {
+    display: inline-block;
+    background-color: var(--pink-accent);
+    color: white;
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 700;
+    margin-right: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.speaker-info .speaker-title {
+    font-size: 0.9rem;
+    color: var(--pink-accent);
+    font-style: italic;
+    margin-bottom: 0.3rem;
+}
+.speaker-info .speaker-teaser {
+    font-size: 0.85rem;
+    color: #b8c0cc;
+    line-height: 1.5;
+}
+
+
+/* Accordion for Seminar Lists */
+.accordion-seminar {
+    margin: 1.5rem 0;
+    border: 1px solid rgba(var(--secondary-color), 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+.accordion-seminar-toggle {
+    background-color: rgba(var(--secondary-color), 0.05);
+    color: var(--secondary-color);
+    cursor: pointer;
+    padding: 0.9rem 1.25rem;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.accordion-seminar-toggle:hover, .accordion-seminar-toggle.active {
+    background-color: rgba(var(--blue-accent-rgb), 0.15);
+}
+.accordion-seminar-toggle .accordion-icon { /* Shared with competition page */
+    transition: transform 0.3s ease;
+    font-size: 0.9em;
+}
+.accordion-seminar-toggle.active .accordion-icon {
+    transform: rotate(180deg);
+}
+.accordion-seminar-content {
+    padding: 0 1.25rem;
+    background-color: transparent;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+}
+.accordion-seminar-content ul {
+    list-style: none;
+    padding: 1rem 0;
+}
+.accordion-seminar-content ul li {
+    padding: 0.35rem 0 0.35rem 1.25rem;
     position: relative;
+    font-size: 0.9rem;
+    color: #a9b3c1;
 }
-
-.seminar-event-details ul li::before {
-    content: '\f105'; /* FontAwesome angle-right or check */
+.accordion-seminar-content ul li::before {
+    content: '\f105'; /* Angle Right -> Could be check, star, etc. */
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
     color: var(--orange-accent);
     position: absolute;
     left: 0;
-    top: 3px;
+    top: 0.4rem;
+    font-size: 0.85em;
 }
 
-.registration-cta { /* For the CTA section at the bottom of seminar.html */
-    text-align: center;
-    background-color: var(--section-bg-light);
-    padding: 3rem 2rem;
-    border-radius: 12px;
-    margin-top: 2rem;
+.portal-card-seminar .seminar-note {
+    font-size: 0.8rem;
+    color: #8a94a2;
+    font-style: italic;
+    margin-top: 1.5rem;
+    line-height: 1.5;
+    background-color: rgba(var(--secondary-color), 0.03);
+    padding: 0.75rem;
+    border-radius: 6px;
+    border-left: 3px solid var(--blue-accent);
 }
-/* Add to your style.css */
+
+/* Registration CTA section at bottom of seminar page */
+.registration-cta {
+    background-color: #1f232c; /* Darker than main cards, but lighter than section bg */
+    /* padding, border-radius, margin-top are from HTML or existing CSS */
+}
+.registration-cta .section-title { /* If using section-title class */
+    color: var(--secondary-color);
+    font-size: 2rem; /* Adjusted size */
+}
+.registration-cta .section-subtitle {
+    color: #b0b8c4;
+    font-size: 1.05rem;
+}
+/* seminar.html - Centering for the button in .registration-cta */
+.registration-cta > .hero-button.button-main-cta {
+    display: block;          /* Make the anchor tag behave like a block element */
+    width: -moz-fit-content; /* For Firefox browser compatibility */
+    width: fit-content;      /* This makes the block element's width determined by its content */
+    margin-left: auto;       /* Auto margin on left */
+    margin-right: auto;      /* Auto margin on right, centers the block */
+    /* Ensure no text-align on the button itself interferes if it was accidentally added */
+    text-align: center;      /* Centers text *inside* the button, which is default for buttons anyway */
+}
+/* Buttons within .registration-cta should inherit .hero-button styles */
+
+
+/* --- Responsive for Seminar Page --- */
+@media (max-width: 991px) { /* Tablets */
+    .seminar-hub-title { font-size: 3rem; }
+    .seminar-hub-subtitle { font-size: 1.1rem; }
+    .portal-card-seminar { padding: 1.75rem 2rem; }
+    .card-seminar-header h3 { font-size: 1.45rem; }
+    .speaker-highlight { flex-direction: column; text-align: center; align-items: center;}
+    .speaker-img-placeholder img { margin-bottom: 0.5rem;}
+}
+
+@media (max-width: 767px) { /* Mobile */
+    .seminar-hero { min-height: 40vh; padding: 3rem 1rem; }
+    .seminar-hub-title { font-size: 2.4rem; }
+    .seminar-hub-subtitle { font-size: 1rem; }
+
+    .portal-card-seminar { padding: 1.5rem 1.25rem; margin-bottom: 2rem; }
+    .card-seminar-header { gap: 0.75rem; padding-bottom: 0.75rem; margin-bottom: 1rem;}
+    .card-seminar-header .card-icon-seminar { font-size: 1.6rem; }
+    .card-seminar-header h3 { font-size: 1.3rem; }
+    .card-seminar-body .description-seminar { font-size: 0.9rem; }
+    .speaker-highlight { padding: 0.75rem; }
+    .speaker-img-placeholder img { width: 70px; height: 70px; }
+    .speaker-info h4 { font-size: 1.1rem; }
+
+    .accordion-seminar-toggle { font-size: 0.9rem; padding: 0.8rem 1rem; }
+    .accordion-seminar-content ul li { font-size: 0.85rem; padding: 0.3rem 0 0.3rem 1.1rem;}
+    .registration-cta .section-title { font-size: 1.6rem; }
+    .registration-cta .section-subtitle { font-size: 0.95rem; }
+}
 
 /* Gallery Page Specific Hero (Optional) */
+.blog-page-hero,
 .gallery-page-hero {
-    background: linear-gradient(rgba(var(--navbar-bg-rgb, 26, 29, 36), 0.85), rgba(var(--navbar-bg-rgb, 26, 29, 36), 0.95)), 
-                url('img/foto-bersama.png') no-repeat center center/cover; /* Placeholder background */
-    color: var(--navbar-text); /* Light text */
+    background-color: #0c0a1f; /* Deep dark base */
+    background-image:
+        radial-gradient(ellipse at 70% 30%, rgba(var(--pink-accent-rgb), 0.2) 0%, transparent 40%),
+        radial-gradient(ellipse at 30% 70%, rgba(var(--blue-accent-rgb), 0.25) 0%, transparent 40%),
+        linear-gradient(160deg, #0c0a1f 40%, #1a1238 100%);
+    color: var(--secondary-color);
     text-align: center;
-    padding: 5rem 2rem; /* Generous padding */
-    position: relative;
+    position: relative; /* For clouds and portal effect */
+    min-height: 50vh; /* Adjust height as desired */
+    display: flex;
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
-
+}
+.blog-page-title,
+.gallery-page-main-title { /* Renamed from .section-title in gallery.html for distinct styling */
+    font-size: 6.4rem;
+    font-weight: 800;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px rgba(var(--secondary-color-rgb), 0.3), 0 0 20px rgba(var(--pink-accent-rgb), 0.3);
+    position: relative; /* For z-index above clouds if needed */
+    z-index: 1;
 }
 .gallery-page-hero .section-title {
     color: var(--secondary-color);
@@ -2962,6 +3897,7 @@ nav::after {
 
 /* Gallery Section on Gallery Page */
 .gallery-section {
+    background-color: var(--navbar-bg);
     /* padding-top: 1rem; /* Reduce top padding if hero is present */
 }
 
@@ -3109,32 +4045,33 @@ nav::after {
     100% { transform: scale(1); opacity: 0.3; }
 }
 
-.blog-page-title {
-    font-size: 3.5rem;
-    font-weight: 800;
-    margin-bottom: 1rem;
-    text-shadow: 0 2px 15px rgba(0,0,0,0.3);
-    letter-spacing: 1px;
+.blog-page-title .title-accent-highlight, /* New class for "7" or "Portal 7" accent */
+.gallery-page-main-title .title-accent-highlight {
+    color: var(--yellow-accent);
+    font-style: italic;
+    text-shadow: 0 0 15px rgba(var(--yellow-accent-rgb), 0.7);
 }
 
-.blog-page-title span { /* For the "7" */
-    color: var(--hero-seven-color); /* */
-    font-family: 'Arial Black', Gadget, sans-serif; /* Example of a more impactful font for the number */
-    text-shadow: 0 0 10px rgba(var(--blue-accent-rgb), 0.7);
-}
-
-.blog-page-subtitle {
-    font-size: 1.25rem;
-    max-width: 700px;
-    margin: 0 auto 1rem auto;
-    opacity: 0.9;
+.blog-page-subtitle,
+.gallery-page-main-subtitle { /* Renamed */
+    font-size: 1.15rem;
+    color: #c0c8d4;
+    max-width: 650px;
+    margin: 0 auto;
     line-height: 1.7;
+    position: relative; /* For z-index */
+    z-index: 1;
 }
 
+/* --- Blog Listing Section --- */
 .blog-listing-section {
-    background-color: var(--section-bg-light); /* */
+    background-color: var(--navbar-bg); /* Dark section background */
 }
-
+.blog-listing-section .section-title { /* "All Articles" */
+    color: var(--secondary-color);
+    margin-bottom: 2.5rem; /* More space before grid */
+    text-shadow: 0 0 8px rgba(var(--blue-accent-rgb), 0.2);
+}
 #full-articles-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Uses existing .articles-grid style */
@@ -3560,6 +4497,7 @@ section,
         gap: 2rem;
     }
     .sdg-item {
+        z-index: 1;
         padding: 1.5rem;
          clip-path: polygon(0 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%); /* Smaller cut */
     }
@@ -3889,37 +4827,7 @@ section,
     padding: 0 1rem; /* Add horizontal padding to containers on mobile */
   }
 
-  /* Timeline adjustments for mobile */
-  .timeline-container::before {
-    left: 20px; /* Garis agak ke kiri */
-    width: 2px;
-  }
-  .timeline-entry {
-    width: 100%;
-    padding-left: 50px; /* Supaya tidak nabrak garis & titik */
-    padding-right: 15px;
-    left: 0 !important;
-    text-align: left !important;
-  }
-  .timeline-entry .timeline-icon-dot {
-    left: 20px; /* Sejajar dengan garis */
-    right: auto;
-    transform: translate(-50%, -50%); /* Pusatkan */
-    width: 28px; height: 28px; /* Slightly smaller dots */
-  }
-  .timeline-entry .timeline-icon-dot i {
-    font-size: 0.8rem;
-  }
-  .timeline-entry .timeline-label::before { /* Adjust arrow for left-aligned items */
-    content: '';
-    left: -8px; /* Adjust position */
-    right: auto;
-    border-width: 8px 8px 8px 0; /* Adjust size */
-    border-color: transparent white transparent transparent;
-  }
-  .timeline-date, .timeline-event {
-      text-align: left; /* Ensure text inside label is left-aligned */
-  }
+
 
 
   .guest-star-card img {
@@ -4219,27 +5127,7 @@ section,
     .prize-value{
         font-size: 2.4rem;
     }
-    /* Make sure timeline is correctly aligned on mobile */
-    .timeline-container::before {
-        left: 20px; /* Garis agak ke kiri */
-        transform: translateX(0); /* Reset from -50% for left alignment */
-    }
-    .timeline-entry {
-        width: 100%;
-        padding-left: 50px; /* Supaya tidak nabrak garis & titik */
-        padding-right: 15px;
-        left: 0 !important; /* Ensure it's aligned to the new line */
-        text-align: left !important;
-    }
-    .timeline-entry .timeline-icon-dot {
-        left: 20px; /* Sejajar dengan garis */
-        transform: translate(-50%, -50%); /* Pusatkan ikon pada garis */
-    }
-    .timeline-entry .timeline-label::before { /* Adjust arrow for left-aligned items */
-        left: -8px;
-        border-width: 8px 8px 8px 0;
-        border-color: transparent white transparent transparent;
-    }
+
     .blog-page-title {
         font-size: 2.8rem; /* Adjust blog title for mobile */
         text-align: center; /* Center align title */
@@ -4250,5 +5138,214 @@ section,
         margin-bottom: 1rem;
         font-weight: 700; /* Bolder title */
         line-height: 1.2;
+    }
+}
+.wow-guest-deco {
+    position: absolute;
+    opacity: 0.1; /* More subtle for these */
+    z-index: 0; /* Behind the cards */
+    pointer-events: none;
+    filter: blur(1px);
+}
+
+.wow-guest-deco.deco-left {
+    top: 10%;
+    left: -50px;
+    width: 200px; /* Adjust size as needed */
+    transform: rotate(-25deg);
+}
+
+.wow-guest-deco.deco-star-top {
+    top: 5%;
+    right: 10%;
+    width: 100px; /* Adjust size */
+    transform: rotate(15deg);
+    opacity: 0.15;
+}
+
+.wow-guest-deco.deco-right {
+    bottom: 5%;
+    right: -60px;
+    width: 220px; /* Adjust size */
+    transform: rotate(30deg);
+    opacity: 0.08; /* Even more subtle */
+}
+/* Responsive adjustments for WOW Guest Stars */
+@media (max-width: 991px) { /* Tablets */
+    .wow-guest-stars-grid.single-guest {
+        grid-template-columns: minmax(280px, 500px);
+    }
+    .wow-guest-deco.deco-left { left: -30px; width: 180px; top: 5%;}
+    .wow-guest-deco.deco-star-top { right: 5%; width: 80px; }
+    .wow-guest-deco.deco-right { right: -40px; width: 180px; bottom: 2%;}
+}
+
+@media (max-width: 767px) { /* Mobile */
+    .wow-guest-stars-grid.single-guest {
+        grid-template-columns: minmax(260px, 1fr); /* Allow card to take more width within padding */
+        padding-left: 1rem;
+        padding-right: 1rem;
+        max-width: 100%; /* Grid takes full width within section padding */
+    }
+    /* Make card itself have margin for centering if grid takes full width */
+    .wow-guest-stars-grid.single-guest .wow-guest-star-card {
+        max-width: 400px; /* Max width for the card on mobile */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .wow-guest-deco.deco-left { left: -20px; width: 30px; opacity: 0.07; }
+    .wow-guest-deco.deco-star-top { display: none; } /* Hide one for less clutter */
+    .wow-guest-deco.deco-right { right: -30px; width: 150px; opacity: 0.05;}
+    .timeline-container {
+        padding: 2rem 1rem; /* Keep container padding */
+        /* max-width remains 900px or your chosen value */
+    }
+
+    /* 1. The Main Vertical Line */
+    .timeline-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 20px; /* Position of the left edge of the line from .timeline-container edge */
+        width: 3px;  /* Width of the line */
+        background-image: linear-gradient(to bottom, var(--blue-accent), var(--pink-accent), var(--yellow-accent));
+        z-index: 0;
+        border-radius: 3px;
+        /* transform: translateX(0); /* No longer needed if left is absolute edge */
+    }
+
+    /* 2. Each Timeline Entry */
+    .timeline-entry {
+        display: flex; /* Use Flexbox for layout */
+        align-items: flex-start; /* Aligns top of dot with top of card's padding area */
+                                /* Try 'center' if you want dot centered to full card height */
+        gap: 10px;      /* Space between the dot area and the card */
+        
+        width: 100%;
+        padding-left: 0; /* Reset desktop/previous padding */
+        padding-right: 0;
+        left: 0 !important; /* Override alternating desktop styles */
+        margin-bottom: 1.5rem; /* Reduced margin for tighter mobile look */
+        box-sizing: border-box;
+        position: relative; /* Keep for stacking context if needed */
+    }
+
+    /* 3. The Timeline Dot */
+    .timeline-icon-dot {
+        position: static; /* RESET from absolute positioning */
+        transform: none;  /* RESET transforms */
+        top: auto; left: auto; right: auto; /* RESET offsets */
+
+        /* Sizing and appearance (mostly unchanged) */
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background-color: var(--navbar-bg);
+        border: 3px solid var(--yellow-accent);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2; /* Still keep above line if line was somehow part of entry bg */
+        box-shadow: 0 0 10px rgba(var(--yellow-accent-rgb), 0.5);
+        transition: background-color 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+        
+        flex-shrink: 0; /* Prevent dot from shrinking */
+
+        /* Horizontal Alignment:
+           The line's center is at 20px (line left) + 1.5px (half line width) = 21.5px
+           The dot is 28px wide, so its center is 14px from its edge.
+           To align dot's center with line's center (21.5px):
+           margin-left should be 21.5px - 14px = 7.5px
+        */
+        margin-left: 6.5px;
+
+        /* Vertical Alignment with card's content start:
+           If .timeline-label has padding-top: 1rem, this margin-top on the dot
+           will align the top of the dot with the start of the card's text area.
+        */
+        margin-top: 1rem; /* Match this to the .timeline-label's padding-top */
+    }
+    .timeline-icon-dot i { /* Icon inside the dot */
+        color: var(--yellow-accent);
+        font-size: 0.9rem;
+        transition: color 0.3s ease;
+    }
+    
+    .timeline-entry:hover .timeline-icon-dot {
+        transform: scale(1.1); /* Simpler hover transform as it's not absolutely positioned */
+        border-color: var(--pink-accent);
+        box-shadow: 0 0 15px rgba(var(--pink-accent-rgb), 0.7);
+    }
+    .timeline-entry:hover .timeline-icon-dot i {
+        color: var(--pink-accent);
+    }
+
+    /* 4. The Timeline Card (Label) */
+    .timeline-label {
+        flex-grow: 1; /* Card takes up remaining space */
+        padding: 1rem; /* Keep consistent mobile padding */
+        background-color: #23272f;
+        color: var(--secondary-color);
+        border-radius: 12px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.3), inset 0 0 0 1px rgba(var(--secondary-color-rgb), 0.05);
+        border: 1px solid rgba(var(--blue-accent-rgb), 0.15);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        text-align: left; /* Ensure text is left-aligned */
+    }
+    .timeline-label::before {
+        display: none; /* Hide the CSS triangle arrow on mobile */
+    }
+    
+    .timeline-entry:hover .timeline-label {
+        transform: translateY(-3px); /* Simpler hover for card */
+        box-shadow: 0 8px 22px rgba(var(--pink-accent-rgb),0.15), 0 4px 12px rgba(0,0,0,0.35);
+        border-color: rgba(var(--pink-accent-rgb), 0.3);
+    }
+
+    .timeline-date { /* Typography within the card */
+        font-size: 0.9rem; /* Adjusted from previous mobile size */
+        font-weight: 700;
+        color: var(--yellow-accent);
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+    .timeline-event {
+        font-size: 0.95rem; /* Adjusted from previous mobile size */
+        color: var(--secondary-color);
+        font-weight: 500;
+        line-height: 1.5;
+    }
+        .blog-page-hero, .gallery-page-hero {
+        min-height: 40vh;
+        padding-top: 4rem; /* Ensure nav doesn't overlap too much */
+        padding-bottom: 3rem;
+    }
+    .blog-page-title, .gallery-page-main-title {
+        font-size: 2.2rem; /* Original gallery title was 3rem, now consistent */
+        line-height: 1.2;
+    }
+    .blog-page-subtitle, .gallery-page-main-subtitle {
+        font-size: 1rem;
+    }
+
+    .blog-listing-section .section-title {
+        font-size: 1.8rem; /* Match other mobile section titles */
+        margin-bottom: 2rem;
+    }
+    #full-articles-grid { /* From style.css, ensure mobile columns are okay */
+        /* grid-template-columns: 1fr; /* Stack if not already handled by auto-fill */
+    }
+    .gallery-tabs {
+        gap: 0.5rem; /* Smaller gap for tabs */
+    }
+    .gallery-tab-button {
+        padding: 0.6rem 1rem; /* Smaller tabs */
+        font-size: 0.9rem;
+    }
+    .gallery-grid.photos-all, .gallery-grid.videos-all {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Smaller items on mobile */
+        gap: 0.75rem;
     }
 }

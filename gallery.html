@@ -6,11 +6,11 @@
     <title>Galeri Portal 7 - Momen & Karya</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    </head>
+</head>
 <body>
     <nav>
         <div class="nav-container">
@@ -18,7 +18,8 @@
                 <img src="img/Portal_Logo.png" alt="Logo Portal 7" onerror="this.onerror=null;this.src='https://placehold.co/120x30/cccccc/ffffff?text=P7+Logo';">
             </a>
             <div class="nav-links" id="main-nav-links">
-                <a class="nav-a" href="index.html#hero">Beranda</a> <div class="nav-item dropdown">
+                <a class="nav-a" href="index.html#hero">Beranda</a>
+                <div class="nav-item dropdown">
                     <a class="nav-a dropdown-toggle" href="#">Tentang Portal <i class="fas fa-chevron-down dropdown-icon"></i></a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="index.html#tentang">Tentang Kami</a>
@@ -29,9 +30,8 @@
                         <a class="dropdown-item" href="index.html#faq">FAQ</a>
                     </div>
                 </div>
-
                 <div class="nav-item dropdown">
-                    <a class="nav-a dropdown-toggle" href="#"">Event <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                    <a class="nav-a dropdown-toggle" href="#">Event <i class="fas fa-chevron-down dropdown-icon"></i></a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="competition-hub.html">Kompetisi</a>
                         <a class="dropdown-item" href="seminar.html">Seminar</a>
@@ -55,9 +55,13 @@
 
     <main>
         <section class="gallery-page-hero section-padding" id="gallery-page-top">
+            <div class="portal-background-effect"></div>
+            <div class="floating-cloud cloud-2"><img src="img/cloud_blue.png" alt="Blue cloud"></div>
+            <div class="floating-cloud cloud-5"><img src="img/cloud_pink.png" alt="Pink cloud"></div>
+            
             <div class="container">
-                <h1 class="section-title" data-aos="fade-up">Galeri Portal 7</h1>
-                <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Jelajahi momen tak terlupakan dan karya-karya inspiratif dari rangkaian acara Portal 7.</p>
+                <h1 class="gallery-page-main-title" data-aos="fade-up">Gallery <span class="title-accent-highlight">Portal 7</span></h1>
+                <p class="gallery-page-main-subtitle" data-aos="fade-up" data-aos-delay="100">Jelajahi momen tak terlupakan dan karya-karya inspiratif dari rangkaian acara Portal 7.</p>
             </div>
         </section>
 
@@ -79,367 +83,386 @@
             </div>
         </section>
     </main>
+
     <footer>
-        <div class="footer-logo">
-             <img src="img/Portal_Logo.png" alt="Logo Mini Portal 7" class="portal-logo">
-        </div>
-        <div class="footer-contact">
-            <p>Kontak: <a href="mailto:portalbemsvipb@gmail.com" style="text-decoration: none; color:#f0f0f0 ;">portalbemsvipb@gmail.com</a></p>
-        </div>
-        <div class="footer-social">
-            <a href="https://instagram.com/portal_ipb" target="_blank" aria-label="Instagram Portal IPB"><i class="fab fa-instagram fa-lg"></i> @portal_ipb</a>
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-logo-area">
+                    <a href="index.html#hero">
+                        <img src="img/Portal_Logo.png" alt="Logo Mini Portal 7" class="portal-logo footer-logo-img">
+                    </a>
+                    <p class="footer-event-name">Portal 7: Empower Digital</p>
+                </div>
+                <div class="footer-quick-links">
+                    <h4>Navigasi Cepat</h4>
+                    <a href="index.html#tentang">Tentang Kami</a>
+                    <a href="competition-hub.html">Kompetisi</a>
+                    <a href="seminar.html">Seminar</a>
+                    <a href="index.html#linimasa">Linimasa</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="gallery.html">Galeri</a>
+                    <a href="index.html#faq">FAQ</a>
+                </div>
+                <div class="footer-contact-social">
+                    <h4>Terhubung Dengan Kami</h4>
+                    <div class="footer-contact-item">
+                        <i class="far fa-envelope"></i> <a href="mailto:portalbemsvipb@gmail.com">portalbemsvipb@gmail.com</a>
+                    </div>
+                    <div class="footer-social-links">
+                        <a href="https://instagram.com/portal_ipb" target="_blank" class="social-icon ig" aria-label="Instagram Portal IPB"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank" class="social-icon tw" aria-label="X/Twitter Portal IPB"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank" class="social-icon yt" aria-label="YouTube Portal IPB"><i class="fab fa-youtube"></i></a>
+                        <a href="#" target="_blank" class="social-icon tk" aria-label="TikTok Portal IPB"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
             </div>
-        <div class="footer-copyright">
-            <p>&copy; 2025 Badan Eksekutif Mahasiswa Sekolah Vokasi IPB University. All rights reserved.</p>
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <p>&copy; 2025 Badan Eksekutif Mahasiswa Sekolah Vokasi IPB University. All rights reserved.</p>
+                    <p>Empowered by Inspiration, Driven by Innovation.</p>
+                </div>
+                <a href="#gallery-page-top" class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
+            </div>
         </div>
     </footer>
+    
     <div id="lightbox-modal" class="lightbox-modal">
-        <span class="lightbox-close">&times;</span>
+        <span class="lightbox-close">×</span>
         <div class="lightbox-content">
             <img id="lightbox-image" src="#" alt="Lightbox Image">
             <iframe id="lightbox-video" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             <div id="lightbox-caption" class="lightbox-caption"></div>
         </div>
-        <a class="lightbox-prev" aria-label="Previous image">&#10094;</a>
-        <a class="lightbox-next" aria-label="Next image">&#10095;</a>
+        <a class="lightbox-prev" aria-label="Previous image">❮</a>
+        <a class="lightbox-next" aria-label="Next image">❯</a>
     </div>
 
-    <footer>
-        </footer>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    // --- AOS Initialization ---
+    AOS.init({
+        duration: 800,
+        once: true,
+    });
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        // --- Standard Scripts (AOS, Mobile Menu, Dropdowns, Basic Smooth Scroll) ---
-        // You can copy the script block from competition-hub.html (the simplified one)
-        // or seminar.html as a base.
-        // Ensure variable names for menu toggle etc. are unique if needed, or ensure scope.
-        // For brevity, I'll outline the NEW gallery-specific JS below.
+    // --- Mobile Navigation Variables ---
+    const menuToggleButton = document.getElementById('mobile-menu-toggle');
+    const mainNavLinks = document.getElementById('main-nav-links');
+    let menuIcon = menuToggleButton ? menuToggleButton.querySelector('i') : null;
 
-        // --- AOS Initialization ---
-        AOS.init({
-            duration: 800,
-            once: true,
-        });
+    // --- Central Function to Close Mobile Menu ---
+    function closeMobileMenu() {
+        if (mainNavLinks && mainNavLinks.classList.contains('active')) {
+            mainNavLinks.classList.remove('active');
+            if (menuToggleButton) menuToggleButton.setAttribute('aria-expanded', 'false');
+            if (menuIcon) {
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            }
+            document.querySelectorAll('.nav-links .nav-item.dropdown.open').forEach(openDropdown => {
+                openDropdown.classList.remove('open');
+            });
+        }
+    }
 
-        // --- Mobile Navigation Variables ---
-        const menuToggleButton = document.getElementById('mobile-menu-toggle');
-        const mainNavLinks = document.getElementById('main-nav-links');
-        let menuIcon = menuToggleButton ? menuToggleButton.querySelector('i') : null;
-
-        // --- Central Function to Close Mobile Menu ---
-        function closeMobileMenu() {
-            if (mainNavLinks && mainNavLinks.classList.contains('active')) {
-                mainNavLinks.classList.remove('active');
-                if (menuToggleButton) menuToggleButton.setAttribute('aria-expanded', 'false');
-                if (menuIcon) {
-                    menuIcon.classList.remove('fa-times');
-                    menuIcon.classList.add('fa-bars');
-                }
+    // --- 1. Toggle Main Mobile Menu (Hamburger) ---
+    if (menuToggleButton) {
+        menuToggleButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isActive = mainNavLinks.classList.toggle('active');
+            menuToggleButton.setAttribute('aria-expanded', isActive);
+            if (menuIcon) {
+                menuIcon.className = isActive ? 'fas fa-times' : 'fas fa-bars';
+            }
+            if (!isActive) {
                 document.querySelectorAll('.nav-links .nav-item.dropdown.open').forEach(openDropdown => {
                     openDropdown.classList.remove('open');
                 });
             }
-        }
-
-        // --- 1. Toggle Main Mobile Menu (Hamburger) ---
-        if (menuToggleButton) {
-            menuToggleButton.addEventListener('click', (e) => {
-                e.stopPropagation(); // Important to prevent immediate close if click bubbles
-                const isActive = mainNavLinks.classList.toggle('active');
-                menuToggleButton.setAttribute('aria-expanded', isActive);
-                if (menuIcon) {
-                    menuIcon.className = isActive ? 'fas fa-times' : 'fas fa-bars';
-                }
-                if (!isActive) { // If menu is being closed by toggle
-                    document.querySelectorAll('.nav-links .nav-item.dropdown.open').forEach(openDropdown => {
-                        openDropdown.classList.remove('open');
-                    });
-                }
-            });
-        }
-
-        // --- 2. Toggle Dropdowns within Mobile Menu ---
-        document.querySelectorAll('.nav-links .dropdown-toggle').forEach(toggle => {
-            toggle.addEventListener('click', function(e) {
-                if (mainNavLinks && mainNavLinks.classList.contains('active')) { 
-                    if (this.getAttribute('href') === '#') { // Prevent jump for placeholder links
-                        e.preventDefault();
-                    }
-                    const parentDropdown = this.closest('.nav-item.dropdown');
-                    if (!parentDropdown) {
-                        return;
-                    }
-                    const currentlyOpen = parentDropdown.classList.contains('open');
-                    // Optional: Accordion behavior (close other open dropdowns)
-                    // document.querySelectorAll('.nav-links.active .nav-item.dropdown.open').forEach(openSubDropdown => {
-                    //    if (openSubDropdown !== parentDropdown) {
-                    //        openSubDropdown.classList.remove('open');
-                    //    }
-                    // });
-                    parentDropdown.classList.toggle('open', !currentlyOpen); // Toggle current one
-                    e.stopPropagation(); // Prevent click from bubbling to document listener
-                }
-            });
         });
+    }
 
-        // --- 3. Handle Clicks on Nav Items (for closing menu and smooth scroll) ---
-        document.querySelectorAll('#main-nav-links a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const fullHref = this.getAttribute('href');
-                const isDropdownToggle = this.classList.contains('dropdown-toggle');
-
-                // If it's a dropdown toggle clicked in mobile view, let the dedicated handler above manage it
-                if (isDropdownToggle && mainNavLinks.classList.contains('active')) {
-                    return; 
+    // --- 2. Toggle Dropdowns within Mobile Menu ---
+    document.querySelectorAll('.nav-links .dropdown-toggle').forEach(toggle => {
+        toggle.addEventListener('click', function(e) {
+            if (mainNavLinks && mainNavLinks.classList.contains('active')) { 
+                if (this.getAttribute('href') === '#') {
+                    e.preventDefault();
                 }
-
-                const isIndexPage = window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/index');
-                
-                if (fullHref && fullHref.includes('index.html#') && isIndexPage) { 
-                    // Case 1: Link to an index.html section from index.html itself
-                    const targetId = fullHref.split('#')[1];
-                    if (targetId && document.getElementById(targetId)) {
-                        e.preventDefault();
-                        smoothScrollToTarget(targetId);
-                        closeMobileMenu();
-                    } else { 
-                        // Target doesn't exist on index.html, or malformed hash
-                        if(mainNavLinks.classList.contains('active')) closeMobileMenu();
-                    }
-                } else if (fullHref && fullHref.startsWith('#')) { 
-                    // Case 2: Same-page anchor on the *current* page (e.g., #details on competition.html)
-                    const targetId = fullHref.substring(1);
-                    if (targetId && document.getElementById(targetId)) {
-                         e.preventDefault();
-                         smoothScrollToTarget(targetId);
-                         closeMobileMenu();
-                    } else {
-                        // Link is just "#" or target doesn't exist on current page
-                        if(mainNavLinks.classList.contains('active')) closeMobileMenu();
-                    }
-                } else { 
-                    // Case 3: Link to another page (e.g., "competition-hub.html" or "index.html#section" from a non-index page)
-                    // or a non-scroll action.
-                    if(mainNavLinks.classList.contains('active')) {
-                         closeMobileMenu(); // Close menu before navigating
-                    }
-                    // Allow default browser navigation to handle the link.
-                    // If it's a link to index.html#section from another page, index.html's own load handler will manage the scroll.
-                }
-            });
-        });
-        
-        // Smooth Scroll Function
-        function smoothScrollToTarget(targetId, isPageLoad = false) {
-            const targetElement = document.getElementById(targetId);
-            if (targetElement) {
-                const navElement = document.querySelector('nav');
-                const navHeight = navElement ? navElement.offsetHeight : 0;
-                let targetElementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-
-                // This specific calculation for 'isPageLoad' is more critical for index.html's initial scroll.
-                if (isPageLoad && (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/index'))) { 
-                    let elem = targetElement; let top = 0;
-                    while(elem) { top += elem.offsetTop; elem = elem.offsetParent; }
-                    targetElementPosition = top;
-                }
-                const offsetPosition = targetElementPosition - navHeight;
-                window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-                return true;
+                const parentDropdown = this.closest('.nav-item.dropdown');
+                if (!parentDropdown) return;
+                const currentlyOpen = parentDropdown.classList.contains('open');
+                parentDropdown.classList.toggle('open', !currentlyOpen);
+                e.stopPropagation();
             }
-            return false;
-        }
-        
-        // Scroll on page load if hash present
-        // Handles navigating to index.html#section from another page, or refreshing index.html#section
-        if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/index')) { // Specifically for index.html
-            window.addEventListener('load', () => {
-                if (window.location.hash) {
-                    const targetId = window.location.hash.substring(1);
-                    setTimeout(() => { smoothScrollToTarget(targetId, true); }, 100); // Delay for layout stability
-                }
-            });
-        } else if (window.location.hash) { // For other pages (not index.html)
-            // This handles if a non-index page (e.g., gallery.html) is loaded directly with a hash (e.g., gallery.html#sectionOnGallery)
-            window.addEventListener('load', () => {
-                const targetId = window.location.hash.substring(1);
-                if (document.getElementById(targetId)) { // Check if the target element exists on this non-index page
-                    setTimeout(() => { smoothScrollToTarget(targetId, false); }, 100); // isPageLoad=false for simpler scroll on non-index pages
-                }
-            });
-        }
+        });
+    });
+    
+    // --- 3. Handle Clicks on Nav Items (for closing menu and smooth scroll) ---
+    document.querySelectorAll('#main-nav-links a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const fullHref = this.getAttribute('href');
+            const isDropdownToggle = this.classList.contains('dropdown-toggle');
 
-        // --- 4. Click Outside to Close Mobile Menu ---
-        document.addEventListener('click', function(event) {
-            if (mainNavLinks && mainNavLinks.classList.contains('active')) {
-                const isClickInsideNav = mainNavLinks.contains(event.target);
-                const isClickOnToggleButton = menuToggleButton ? menuToggleButton.contains(event.target) : false;
-                if (!isClickInsideNav && !isClickOnToggleButton) {
+            if (isDropdownToggle && mainNavLinks.classList.contains('active')) {
+                return; 
+            }
+
+            const isIndexPage = window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/index');
+            
+            if (fullHref && fullHref.includes('index.html#') && isIndexPage) { 
+                const targetId = fullHref.split('#')[1];
+                if (targetId && document.getElementById(targetId)) {
+                    e.preventDefault();
+                    smoothScrollToTarget(targetId);
                     closeMobileMenu();
+                } else { 
+                    if(mainNavLinks.classList.contains('active')) closeMobileMenu();
+                }
+            } else if (fullHref && fullHref.startsWith('#')) { 
+                const targetId = fullHref.substring(1);
+                 // For gallery.html, the back-to-top button might target #gallery-page-top
+                if (targetId === "gallery-page-top" || (targetId && document.getElementById(targetId))) {
+                     e.preventDefault();
+                     smoothScrollToTarget(targetId);
+                     closeMobileMenu();
+                } else {
+                    if(mainNavLinks.classList.contains('active')) closeMobileMenu();
+                }
+            } else { 
+                if(mainNavLinks.classList.contains('active')) {
+                     closeMobileMenu(); 
                 }
             }
         });
+    });
+    
+    // Smooth Scroll Function
+    function smoothScrollToTarget(targetId, isPageLoad = false) {
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+            const navElement = document.querySelector('nav');
+            const navHeight = navElement ? navElement.offsetHeight : 0;
+            let targetElementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
 
-        // --- Gallery Specific JavaScript ---
-        const allPhotosContainer = document.getElementById('all-photos-grid');
-        const allVideosContainer = document.getElementById('all-videos-grid');
-        const galleryPageTabs = document.querySelectorAll('.gallery-section .gallery-tab-button'); // Be specific to this page's tabs
+            if (isPageLoad && (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/index'))) { 
+                let elem = targetElement; let top = 0;
+                while(elem) { top += elem.offsetTop; elem = elem.offsetParent; }
+                targetElementPosition = top;
+            }
+            const offsetPosition = targetElementPosition - navHeight;
+            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+            return true;
+        }
+        return false;
+    }
+    
+    // Scroll on page load if hash present
+    if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/index')) {
+        window.addEventListener('load', () => {
+            if (window.location.hash && window.location.hash !== "#hero") {
+                const targetId = window.location.hash.substring(1);
+                setTimeout(() => { smoothScrollToTarget(targetId, true); }, 100);
+            }
+        });
+    } else if (window.location.hash) { 
+        window.addEventListener('load', () => {
+            // For gallery.html, ensure #gallery-page-top doesn't cause an unnecessary scroll unless specifically linked.
+            const targetId = window.location.hash.substring(1);
+            if (targetId && targetId !== "gallery-page-top" && document.getElementById(targetId)) {
+                setTimeout(() => { smoothScrollToTarget(targetId, false); }, 100);
+            } else if (targetId === "gallery-page-top" && window.pageYOffset > 0) { // Only scroll to top if already scrolled down
+                 setTimeout(() => { smoothScrollToTarget(targetId, false); }, 100);
+            }
+        });
+    }
 
-        // Lightbox elements
-        const lightbox = document.getElementById('lightbox-modal');
-        const lightboxImage = document.getElementById('lightbox-image');
-        const lightboxVideo = document.getElementById('lightbox-video');
-        const lightboxCaption = document.getElementById('lightbox-caption');
-        const lightboxClose = document.querySelector('.lightbox-close');
-        const lightboxPrev = document.querySelector('.lightbox-prev');
-        const lightboxNext = document.querySelector('.lightbox-next');
-        let currentItems = [];
-        let currentIndex = 0;
-        let currentType = 'photos'; // 'photos' or 'videos'
-
-        async function loadAllGalleryContent() {
-            try {
-                const response = await fetch('media-content.json');
-                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                const data = await response.json();
-
-                if (allPhotosContainer) renderAllGalleryItems(data.gallery.photos, allPhotosContainer, 'photo');
-                if (allVideosContainer) renderAllGalleryItems(data.gallery.videos, allVideosContainer, 'video');
-
-            } catch (error) {
-                console.error("Gagal memuat konten galeri lengkap:", error);
-                if (allPhotosContainer) allPhotosContainer.innerHTML = '<p class="error-message">Gagal memuat foto.</p>';
-                if (allVideosContainer) allVideosContainer.innerHTML = '<p class="error-message">Gagal memuat video.</p>';
+    // --- 4. Click Outside to Close Mobile Menu ---
+    document.addEventListener('click', function(event) {
+        if (mainNavLinks && mainNavLinks.classList.contains('active')) {
+            const isClickInsideNav = mainNavLinks.contains(event.target);
+            const isClickOnToggleButton = menuToggleButton ? menuToggleButton.contains(event.target) : false;
+            if (!isClickInsideNav && !isClickOnToggleButton) {
+                closeMobileMenu();
             }
         }
+    });
 
-        function renderAllGalleryItems(items, container, type) {
-            if (!items || items.length === 0) {
-                container.innerHTML = `<p>Belum ada ${type === 'photo' ? 'foto' : 'video'} untuk ditampilkan.</p>`;
-                return;
-            }
-            container.innerHTML = ''; // Clear loading message
+    // --- Gallery Specific JavaScript ---
+    const allPhotosContainer = document.getElementById('all-photos-grid');
+    const allVideosContainer = document.getElementById('all-videos-grid');
+    const galleryPageTabs = document.querySelectorAll('.gallery-section .gallery-tab-button');
 
-            items.forEach((item, index) => {
-                const galleryItemDiv = document.createElement('div');
-                galleryItemDiv.classList.add('gallery-item', type);
-                galleryItemDiv.setAttribute('data-aos', 'zoom-in-up');
-                galleryItemDiv.innerHTML = `
-                    <img src="${item.thumbnailUrl}" alt="${item.title}" onerror="this.src='https://placehold.co/300x300/e0e0e0/757575?text=Error&font=montserrat';">
-                    <div class="gallery-item-overlay">
-                        <i class="fas ${type === 'photo' ? 'fa-search-plus' : 'fa-play-circle'}"></i>
-                        <span>${item.title} ${item.year ? '('+item.year+')' : ''}</span>
-                    </div>
-                `;
-                galleryItemDiv.addEventListener('click', () => openLightbox(items, index, type));
-                container.appendChild(galleryItemDiv);
-            });
+    // Lightbox elements
+    const lightbox = document.getElementById('lightbox-modal');
+    const lightboxImage = document.getElementById('lightbox-image');
+    const lightboxVideo = document.getElementById('lightbox-video');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const lightboxClose = document.querySelector('.lightbox-close');
+    const lightboxPrev = document.querySelector('.lightbox-prev');
+    const lightboxNext = document.querySelector('.lightbox-next');
+    let currentLightboxItems = []; // Stores the items for the currently active lightbox session
+    let currentLightboxIndex = 0;
+    // Removed 'currentType' global variable as it will be determined per openLightbox call
+
+    async function loadAllGalleryContent() {
+        try {
+            const response = await fetch('media-content.json');
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            const data = await response.json();
+
+            if (allPhotosContainer) renderAllGalleryItems(data.gallery.photos, allPhotosContainer, 'photo', data.gallery.photos);
+            if (allVideosContainer) renderAllGalleryItems(data.gallery.videos, allVideosContainer, 'video', data.gallery.videos);
+
+        } catch (error) {
+            console.error("Gagal memuat konten galeri lengkap:", error);
+            if (allPhotosContainer) allPhotosContainer.innerHTML = '<p class="error-message">Gagal memuat foto.</p>';
+            if (allVideosContainer) allVideosContainer.innerHTML = '<p class="error-message">Gagal memuat video.</p>';
         }
+    }
 
-        // Tab Switching for Gallery Page
-        if (galleryPageTabs.length > 0) {
-            galleryPageTabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    galleryPageTabs.forEach(t => t.classList.remove('active'));
-                    tab.classList.add('active');
-                    document.querySelectorAll('.gallery-section .gallery-grid').forEach(content => {
-                        content.classList.remove('active-gallery-content');
-                    });
-                    const targetContentClass = tab.dataset.tab; // e.g., "photos-all" or "videos-all"
-                    const newActiveContent = document.querySelector(`.gallery-section .gallery-grid.${targetContentClass}`);
-                    if (newActiveContent) {
-                        newActiveContent.classList.add('active-gallery-content');
-                    }
+    function renderAllGalleryItems(itemsToRender, container, itemType, sourceCollection) {
+        // itemsToRender: the array of items to actually render in this specific grid
+        // container: the DOM element for the grid
+        // itemType: 'photo' or 'video'
+        // sourceCollection: the full collection (e.g., all photos or all videos) for the lightbox
+        if (!itemsToRender || itemsToRender.length === 0) {
+            container.innerHTML = `<p>Belum ada ${itemType === 'photo' ? 'foto' : 'video'} untuk ditampilkan.</p>`;
+            return;
+        }
+        container.innerHTML = ''; 
+
+        itemsToRender.forEach((item, index) => {
+            const galleryItemDiv = document.createElement('div');
+            galleryItemDiv.classList.add('gallery-item', itemType);
+            galleryItemDiv.setAttribute('data-aos', 'zoom-in-up');
+            galleryItemDiv.setAttribute('data-item-id', item.id); 
+
+            galleryItemDiv.innerHTML = `
+                <img src="${item.thumbnailUrl}" alt="${item.title}" onerror="this.src='https://placehold.co/300x300/e0e0e0/757575?text=Error&font=montserrat';">
+                <div class="gallery-item-overlay">
+                    <i class="fas ${itemType === 'photo' ? 'fa-search-plus' : 'fa-play-circle'}"></i>
+                    <span>${item.title} ${item.year ? '('+item.year+')' : ''}</span>
+                </div>
+            `;
+            // When an item is clicked, open lightbox with the correct sourceCollection and index
+            galleryItemDiv.addEventListener('click', () => openLightbox(sourceCollection, sourceCollection.indexOf(item), itemType));
+            container.appendChild(galleryItemDiv);
+        });
+    }
+
+    if (galleryPageTabs.length > 0) {
+        galleryPageTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                galleryPageTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                document.querySelectorAll('.gallery-section .gallery-grid').forEach(content => {
+                    content.classList.remove('active-gallery-content');
                 });
+                const targetContentClass = tab.dataset.tab; 
+                const newActiveContent = document.querySelector(`.gallery-section .gallery-grid.${targetContentClass}`);
+                if (newActiveContent) {
+                    newActiveContent.classList.add('active-gallery-content');
+                }
             });
+        });
+    }
+    
+    function openLightbox(items, index, type) {
+        currentLightboxItems = items; // Set the collection for current lightbox session
+        currentLightboxIndex = index;
+        // 'type' is passed to determine if it's a photo or video from the clicked item
+        updateLightboxContent(type); // Pass type to updateLightboxContent
+        if (lightbox) lightbox.style.display = 'flex'; 
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        if (lightbox) lightbox.style.display = 'none';
+        if (lightboxImage) lightboxImage.style.display = 'none';
+        if (lightboxVideo) {
+            lightboxVideo.style.display = 'none';
+            lightboxVideo.src = ""; 
+        }
+        document.body.style.overflow = 'auto';
+    }
+
+    function updateLightboxContent(itemType) { // itemType is now a parameter
+        if (!currentLightboxItems || currentLightboxItems.length === 0) return;
+        const item = currentLightboxItems[currentLightboxIndex];
+        if (!item) return;
+
+        if (lightboxImage) lightboxImage.style.display = 'none';
+        if (lightboxVideo) {
+            lightboxVideo.style.display = 'none';
+            lightboxVideo.src = ""; 
         }
         
-        // Lightbox Functions
-        function openLightbox(items, index, type) {
-            currentItems = items;
-            currentIndex = index;
-            currentType = type;
-            updateLightboxContent();
-            lightbox.style.display = 'flex'; // Use flex for centering
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
-        }
-
-        function closeLightbox() {
-            lightbox.style.display = 'none';
-            lightboxImage.style.display = 'none';
-            lightboxVideo.style.display = 'none';
-            lightboxVideo.src = ""; // Stop video
-            document.body.style.overflow = 'auto';
-        }
-
-        function updateLightboxContent() {
-            const item = currentItems[currentIndex];
-            lightboxImage.style.display = 'none';
-            lightboxVideo.style.display = 'none';
-            lightboxVideo.src = ""; // Stop previous video
-
-            if (currentType === 'photo') {
-                lightboxImage.src = item.fullUrl || item.thumbnailUrl; // Fallback to thumb if fullUrl is missing
+        if (itemType === 'photo') { // Use the passed itemType
+            if (lightboxImage) {
+                lightboxImage.src = item.fullUrl || item.thumbnailUrl;
                 lightboxImage.alt = item.title;
                 lightboxImage.style.display = 'block';
-            } else if (currentType === 'video') {
-                // Assuming YouTube embeddable URLs are in item.videoUrl
-                // Basic conversion for YouTube: "watch?v=" to "embed/"
+            }
+        } else if (itemType === 'video') { // Use the passed itemType
+            if (lightboxVideo && item.videoUrl) {
                 let videoEmbedUrl = item.videoUrl;
-                if (videoEmbedUrl.includes("youtube.com/watch?v=")) {
+                if (videoEmbedUrl.includes("youtube.com/watch?v=")) { // More robust check
                     videoEmbedUrl = videoEmbedUrl.replace("watch?v=", "embed/");
                 } else if (videoEmbedUrl.includes("youtu.be/")) {
-                    videoEmbedUrl = videoEmbedUrl.replace("youtu.be/", "youtube.com/embed/");
+                     videoEmbedUrl = videoEmbedUrl.replace("youtu.be/", "youtube.com/embed/");
                 }
-                // Add other providers if needed
+                // Add more provider checks if necessary (e.g., Vimeo)
                 lightboxVideo.src = videoEmbedUrl;
                 lightboxVideo.style.display = 'block';
             }
-            lightboxCaption.textContent = item.title + (item.description ? ` - ${item.description}` : '');
-            
-            lightboxPrev.style.display = currentItems.length > 1 ? 'block' : 'none';
-            lightboxNext.style.display = currentItems.length > 1 ? 'block' : 'none';
         }
-
-        function showPrevItem() {
-            currentIndex = (currentIndex - 1 + currentItems.length) % currentItems.length;
-            updateLightboxContent();
-        }
-
-        function showNextItem() {
-            currentIndex = (currentIndex + 1) % currentItems.length;
-            updateLightboxContent();
-        }
-
-        lightboxClose.addEventListener('click', closeLightbox);
-        lightboxPrev.addEventListener('click', showPrevItem);
-        lightboxNext.addEventListener('click', showNextItem);
+        if (lightboxCaption) lightboxCaption.textContent = item.title + (item.description ? ` - ${item.description}` : '');
         
-        // Close lightbox on escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && lightbox.style.display === 'flex') {
-                closeLightbox();
-            }
-            if (lightbox.style.display === 'flex' && currentItems.length > 1) {
+        if(lightboxPrev) lightboxPrev.style.display = currentLightboxItems.length > 1 ? 'block' : 'none';
+        if(lightboxNext) lightboxNext.style.display = currentLightboxItems.length > 1 ? 'block' : 'none';
+    }
+
+    function showPrevItem() {
+        currentLightboxIndex = (currentLightboxIndex - 1 + currentLightboxItems.length) % currentLightboxItems.length;
+        // Determine type from the new current item or assume it's the same as the collection type
+        const itemType = currentLightboxItems[currentLightboxIndex].videoUrl ? 'video' : 'photo';
+        updateLightboxContent(itemType);
+    }
+
+    function showNextItem() {
+        currentLightboxIndex = (currentLightboxIndex + 1) % currentLightboxItems.length;
+        const itemType = currentLightboxItems[currentLightboxIndex].videoUrl ? 'video' : 'photo';
+        updateLightboxContent(itemType);
+    }
+
+    if(lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+    if(lightboxPrev) lightboxPrev.addEventListener('click', showPrevItem);
+    if(lightboxNext) lightboxNext.addEventListener('click', showNextItem);
+    
+    document.addEventListener('keydown', (e) => {
+        if (lightbox && lightbox.style.display === 'flex') {
+            if (e.key === 'Escape') closeLightbox();
+            if (currentLightboxItems.length > 1) {
                 if (e.key === 'ArrowLeft') showPrevItem();
                 if (e.key === 'ArrowRight') showNextItem();
             }
-        });
-        
-        // Close lightbox on outside click
+        }
+    });
+    
+    if(lightbox) {
         lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) { // Clicked on the modal backdrop
+            if (e.target === lightbox) {
                 closeLightbox();
             }
         });
+    }
 
-
-        // Load initial content
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', loadAllGalleryContent);
-        } else {
-            loadAllGalleryContent();
-        }
-    </script>
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadAllGalleryContent);
+    } else {
+        loadAllGalleryContent();
+    }
+</script>
 </body>
 </html>

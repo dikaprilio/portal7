@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Artikel</title> <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css"> <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Optional: Specific styles for blog-detail page can go here or in style.css */
+        .blog-detail-hero {
+            padding: 3rem 2rem;
+            text-align: center;
+            background-color: var(--navbar-bg); /* Or a specific color/gradient */
+            color: var(--secondary-color);
+        }
+        .blog-detail-hero .article-title-main {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+        .blog-detail-hero .article-meta-main {
+            font-size: 0.9rem;
+            color: #b0b8c4;
+            margin-bottom: 1.5rem;
+        }
+        .article-featured-image-wrapper {
+            max-height: 500px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            background-color: #2f3542; /* Fallback if image doesn't load */
+        }
+        .article-featured-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .article-content-container {
+            max-width: 800px; /* Typical reading width */
+            margin: 0 auto;
+            padding: 2rem 1rem; /* Padding around content */
+            background-color: var(--navbar-bg); /* Or a lighter bg for content area */
+            color: var(--secondary-color);
+        }
+        .article-body {
+            line-height: 1.8;
+            font-size: 1.05rem;
+            color: #d1d5db; /* Main text color */
+        }
+        .article-body h2, .article-body h3 {
+            color: var(--secondary-color); /* Headings within article */
+            margin-top: 2em;
+            margin-bottom: 0.8em;
+        }
+        .article-body p {
+            margin-bottom: 1.2em;
+        }
+        .article-body img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 1.5em 0;
+            display: block; /* Center block images if needed */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .article-body figcaption {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #9ca3af;
+            margin-top: -1em;
+            margin-bottom: 1.5em;
+        }
+        .back-to-blog-link {
+            display: inline-block;
+            margin-top: 3rem;
+            margin-bottom: 2rem;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--blue-accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        .back-to-blog-link:hover {
+            background-color: var(--pink-accent);
+        }
+        .loading-article, .article-not-found {
+            text-align: center;
+            padding: 5rem 1rem;
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="img/Portal_Logo.png" alt="Logo Portal 7" onerror="this.onerror=null;this.src='https://placehold.co/120x30/cccccc/ffffff?text=P7+Logo';">
+            </a>
+            <div class="nav-links" id="main-nav-links">
+                <a class="nav-a" href="index.html#hero">Beranda</a>
+                <div class="nav-item dropdown">
+                    <a class="nav-a dropdown-toggle" href="#">Tentang Portal <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="index.html#tentang">Tentang Kami</a>
+                        <a class="dropdown-item" href="index.html#highlight">Highlights</a>
+                        <a class="dropdown-item" href="index.html#sdg-commitment">Komitmen SDG</a>
+                        <a class="dropdown-item" href="index.html#linimasa">Linimasa</a>
+                        <a class="dropdown-item" href="index.html#guest-stars">Guest Star</a>
+                        <a class="dropdown-item" href="index.html#peserta">Siapa Peserta?</a>
+                        <a class="dropdown-item" href="index.html#faq">FAQ</a>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a class="nav-a dropdown-toggle" href="#">Event <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="competition-hub.html">Kompetisi</a>
+                        <a class="dropdown-item" href="seminar.html">Seminar</a>
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a class="nav-a dropdown-toggle" href="#">Media <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="blog.html">Blog</a>
+                        <a class="dropdown-item" href="gallery.html">Gallery</a>
+                    </div>
+                </div>
+                <a class="nav-a" href="index.html#kontak">Kontak Kami</a>
+                <a class="nav-a nav-cta-button" href="index.html#pendaftaran">Pendaftaran</a>
+            </div>
+            <button id="mobile-menu-toggle" class="mobile-menu-button" aria-label="Toggle menu" aria-expanded="false">
+                <i class="far fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <div id="article-detail-wrapper">
+            <div class="loading-article">
+                <p>Memuat artikel...</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-logo-area">
+                    <a href="index.html#hero"> <img src="img/Portal_Logo.png" alt="Logo Mini Portal 7" class="portal-logo footer-logo-img"></a>
+                    <p class="footer-event-name">Portal 7: Empower Digital</p>
+                </div>
+                <div class="footer-quick-links">
+                    <h4>Navigasi Cepat</h4>
+                    <a href="index.html#tentang">Tentang Kami</a>
+                    <a href="competition-hub.html">Kompetisi</a>
+                    <a href="seminar.html">Seminar</a>
+                    <a href="index.html#sdg-commitment">Komitmen SDG</a>
+                    <a href="index.html#linimasa">Linimasa</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="gallery.html">Galeri</a>
+                    <a href="index.html#faq">FAQ</a>
+                </div>
+                <div class="footer-contact-social">
+                    <h4>Terhubung Dengan Kami</h4>
+                    <div class="footer-contact-item">
+                        <i class="far fa-envelope"></i> <a href="mailto:portalbemsvipb@gmail.com">portalbemsvipb@gmail.com</a>
+                    </div>
+                    <div class="footer-social-links">
+                        <a href="https://instagram.com/portal_ipb" target="_blank" class="social-icon ig" aria-label="Instagram Portal IPB"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank" class="social-icon tw" aria-label="X/Twitter Portal IPB"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank" class="social-icon yt" aria-label="YouTube Portal IPB"><i class="fab fa-youtube"></i></a>
+                        <a href="#" target="_blank" class="social-icon tk" aria-label="TikTok Portal IPB"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <p>© 2025 Badan Eksekutif Mahasiswa Sekolah Vokasi IPB University. All rights reserved.</p>
+                    <p>Empowered by Inspiration, Driven by Innovation.</p>
+                </div>
+                <a href="#hero" class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
+            </div>
+        </div>
+    </footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 800,
+        once: true,
+    });
+
+    // Mobile Navigation Script (copy from your index.html)
+    const menuToggleButton = document.getElementById('mobile-menu-toggle');
+    const mainNavLinks = document.getElementById('main-nav-links');
+    let menuIcon = menuToggleButton ? menuToggleButton.querySelector('i') : null;
+
+    function closeMobileMenu() {
+        // ... (full closeMobileMenu function)
+        if (mainNavLinks && mainNavLinks.classList.contains('active')) {
+            mainNavLinks.classList.remove('active');
+            if (menuToggleButton) menuToggleButton.setAttribute('aria-expanded', 'false');
+            if (menuIcon) {
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            }
+            document.querySelectorAll('.nav-links .nav-item.dropdown.open').forEach(openDropdown => {
+                openDropdown.classList.remove('open');
+            });
+        }
+    }
+    if (menuToggleButton) {
+        menuToggleButton.addEventListener('click', (e) => {
+            // ... (full menu toggle click listener)
+            e.stopPropagation();
+            const isActive = mainNavLinks.classList.toggle('active');
+            menuToggleButton.setAttribute('aria-expanded', isActive);
+            if (menuIcon) {
+                menuIcon.className = isActive ? 'fas fa-times' : 'fas fa-bars';
+            }
+            if (!isActive) {
+                document.querySelectorAll('.nav-links .nav-item.dropdown.open').forEach(openDropdown => {
+                    openDropdown.classList.remove('open');
+                });
+            }
+        });
+    }
+    document.querySelectorAll('.nav-links .dropdown-toggle').forEach(toggle => {
+        toggle.addEventListener('click', function(e) {
+            // ... (full dropdown toggle listener for mobile)
+            if (mainNavLinks && mainNavLinks.classList.contains('active')) {
+                if (this.getAttribute('href') === '#') {
+                    e.preventDefault();
+                }
+                const parentDropdown = this.closest('.nav-item.dropdown');
+                if (!parentDropdown) return;
+                const currentlyOpen = parentDropdown.classList.contains('open');
+                parentDropdown.classList.toggle('open', !currentlyOpen);
+                e.stopPropagation();
+            }
+        });
+    });
+    document.querySelectorAll('#main-nav-links a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            // ... (full nav link click listener for mobile menu close)
+            const fullHref = this.getAttribute('href');
+            const isDropdownToggle = this.classList.contains('dropdown-toggle');
+            if (isDropdownToggle && mainNavLinks.classList.contains('active')) { return; }
+            if (mainNavLinks.classList.contains('active') && fullHref && fullHref !== '#') {
+                 if (!fullHref.includes('index.html#') || !window.location.pathname.endsWith('index.html')) {
+                    closeMobileMenu();
+                }
+            }
+        });
+    });
+    document.addEventListener('click', function(event) {
+        // ... (full click outside listener for mobile menu close)
+        if (mainNavLinks && mainNavLinks.classList.contains('active')) {
+            const isClickInsideNav = mainNavLinks.contains(event.target);
+            const isClickOnToggleButton = menuToggleButton ? menuToggleButton.contains(event.target) : false;
+            if (!isClickInsideNav && !isClickOnToggleButton) {
+                closeMobileMenu();
+            }
+        }
+    });
+
+    // --- Load Specific Blog Article ---
+    document.addEventListener('DOMContentLoaded', async () => {
+        const articleDetailWrapper = document.getElementById('article-detail-wrapper');
+
+        // Get article ID from URL
+        const params = new URLSearchParams(window.location.search);
+        const articleId = params.get('id');
+
+        if (!articleId) {
+            articleDetailWrapper.innerHTML = '<div class="article-not-found"><p>Artikel tidak ditemukan. ID artikel tidak disertakan.</p><a href="blog.html" class="back-to-blog-link">Kembali ke Blog</a></div>';
+            return;
+        }
+
+        try {
+            const response = await fetch('media-content.json');
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            const data = await response.json();
+            
+            const article = data.blogArticles.find(post => post.id === articleId);
+
+            if (article) {
+                document.title = article.title + " - Portal 7"; // Update page title
+
+                let articleHTML = `
+                    <section class="blog-detail-hero">
+                        <h1 class="article-title-main" data-aos="fade-up">${article.title}</h1>
+                        <p class="article-meta-main" data-aos="fade-up" data-aos-delay="100">
+                            <i class="fas fa-calendar-alt"></i> ${article.date} | <i class="fas fa-user"></i> Oleh: ${article.author}
+                        </p>
+                    </section>
+                `;
+
+                if (article.image) {
+                    articleHTML += `
+                        <div class="article-featured-image-wrapper" data-aos="zoom-in" data-aos-delay="200">
+                            <img src="${article.image}" alt="${article.title}" class="article-featured-image">
+                        </div>
+                    `;
+                }
+                
+                articleHTML += `
+                    <div class="article-content-container">
+                        <article class="article-body" data-aos="fade-up" data-aos-delay="300">
+                            ${article.fullContentHTML || '<p>Konten lengkap tidak tersedia.</p>'}
+                        </article>
+                        <div style="text-align: center;">
+                           <a href="blog.html" class="back-to-blog-link"><i class="fas fa-arrow-left"></i> Kembali ke Semua Artikel</a>
+                        </div>
+                    </div>
+                `;
+                articleDetailWrapper.innerHTML = articleHTML;
+                 // Re-initialize AOS after content is loaded to apply animations
+                AOS.init({
+                    duration: 800,
+                    once: true,
+                });
+            } else {
+                articleDetailWrapper.innerHTML = '<div class="article-not-found"><p>Artikel tidak ditemukan.</p><a href="blog.html" class="back-to-blog-link">Kembali ke Blog</a></div>';
+            }
+
+        } catch (error) {
+            console.error("Gagal memuat artikel:", error);
+            articleDetailWrapper.innerHTML = '<div class="article-not-found"><p>Gagal memuat artikel. Silakan coba lagi nanti.</p><a href="blog.html" class="back-to-blog-link">Kembali ke Blog</a></div>';
+        }
+    });
+</script>
+</body>
+</html> 
