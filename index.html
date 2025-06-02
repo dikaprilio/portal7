@@ -1,15 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing Page</title>
+    <title>Portal 7 - Empower Digital</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">  
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Basic styling for the language toggle */
+        .lang-toggle-button {
+            background-color: var(--pink-accent);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-left: 1rem; /* Adjust as needed */
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .lang-toggle-button:hover {
+            background-color: var(--blue-accent);
+            transform: scale(1.05);
+        }
+        /* Ensure dropdowns don't hide the toggle if it's last */
+        .nav-links {
+            align-items: center;
+        }
+    </style>
 </head>
 <body>
 
@@ -19,34 +42,36 @@
                 <img src="img/Portal_Logo.png" alt="Logo Portal 7" onerror="this.onerror=null;this.src='https://placehold.co/120x30/cccccc/ffffff?text=P7+Logo';">
             </a>
             <div class="nav-links" id="main-nav-links">
-                <a class="nav-a" href="index.html#hero">Beranda</a> <div class="nav-item dropdown">
-                    <a class="nav-a dropdown-toggle" href="#">Tentang Portal <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                <a class="nav-a" href="index.html#hero" data-translate-key="nav_beranda">Beranda</a>
+                <div class="nav-item dropdown">
+                    <a class="nav-a dropdown-toggle" href="#" data-translate-key="nav_tentang_portal">Tentang Portal <i class="fas fa-chevron-down dropdown-icon"></i></a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="index.html#tentang">Tentang Kami</a>
-                        <a class="dropdown-item" href="index.html#highlight">Highlights</a>
-                        <a class="dropdown-item" href="index.html#linimasa">Linimasa</a>
-                        <a class="dropdown-item" href="index.html#guest-stars">Guest Star</a>
-                        <a class="dropdown-item" href="index.html#peserta">Siapa Peserta?</a>
-                        <a class="dropdown-item" href="index.html#faq">FAQ</a>
+                        <a class="dropdown-item" href="index.html#tentang" data-translate-key="nav_tentang_kami">Tentang Kami</a>
+                        <a class="dropdown-item" href="index.html#highlight" data-translate-key="nav_highlight">Highlights</a>
+                        <a class="dropdown-item" href="index.html#linimasa" data-translate-key="nav_linimasa">Linimasa</a>
+                        <a class="dropdown-item" href="index.html#guest-stars" data-translate-key="nav_guest_stars">Guest Star</a>
+                        <a class="dropdown-item" href="index.html#peserta" data-translate-key="nav_peserta">Siapa Peserta?</a>
+                        <a class="dropdown-item" href="index.html#faq" data-translate-key="nav_faq">FAQ</a>
                     </div>
                 </div>
 
                 <div class="nav-item dropdown">
-                    <a class="nav-a dropdown-toggle" href="#"">Event <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                    <a class="nav-a dropdown-toggle" href="#" data-translate-key="nav_event">Event <i class="fas fa-chevron-down dropdown-icon"></i></a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="competition-hub.html">Kompetisi</a>
-                        <a class="dropdown-item" href="seminar.html">Seminar</a>
+                        <a class="dropdown-item" href="competition-hub.html" data-translate-key="nav_kompetisi">Kompetisi</a>
+                        <a class="dropdown-item" href="seminar.html" data-translate-key="nav_seminar">Seminar</a>
                     </div>
                 </div>
                 <div class="nav-item dropdown">
-                    <a class="nav-a dropdown-toggle" href="#">Media <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                    <a class="nav-a dropdown-toggle" href="#" data-translate-key="nav_media">Media <i class="fas fa-chevron-down dropdown-icon"></i></a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="blog.html">Blog</a>
-                        <a class="dropdown-item" href="gallery.html">Gallery</a>
+                        <a class="dropdown-item" href="blog.html" data-translate-key="nav_blog">Blog</a>
+                        <a class="dropdown-item" href="gallery.html" data-translate-key="nav_gallery">Gallery</a>
                     </div>
                 </div>
-                <a class="nav-a" href="index.html#kontak">Kontak Kami</a>
-                <a class="nav-a nav-cta-button" href="index.html#pendaftaran">Pendaftaran</a>
+                <a class="nav-a" href="index.html#kontak" data-translate-key="nav_kontak_kami">Kontak Kami</a>
+                <a class="nav-a nav-cta-button" href="index.html#pendaftaran" data-translate-key="nav_pendaftaran">Pendaftaran</a>
+                <button id="lang-toggle" class="lang-toggle-button" data-translate-key="lang_toggle">EN</button>
             </div>
             <button id="mobile-menu-toggle" class="mobile-menu-button" aria-label="Toggle menu" aria-expanded="false">
                 <i class="fa fa-bars"></i>
@@ -56,24 +81,13 @@
 
     <main>
         <section class="hero-section section-padding" id="hero" >
-
             <div class="portal-background-effect"></div>
+            <div class="floating-cloud cloud-1"><img src="img/cloud_pink.png" alt="Floating pink cloud"></div>
+            <div class="floating-cloud cloud-2"><img src="img/cloud_blue.png" alt="Floating blue cloud"></div>
+            <div class="floating-cloud cloud-3"><img src="img/cloud_yellow.png" alt="Floating yellow cloud"></div>
+            <div class="floating-cloud cloud-4"><img src="img/cloud_orange.png" alt="Floating orange cloud"></div>
+            <div class="floating-cloud cloud-5"><img src="img/cloud_blue.png" alt="Another floating blue cloud"></div>
 
-            <div class="floating-cloud cloud-1">
-                <img src="img/cloud_pink.png" alt="Floating pink cloud">
-            </div>
-            <div class="floating-cloud cloud-2">
-                <img src="img/cloud_blue.png" alt="Floating blue cloud">
-            </div>
-            <div class="floating-cloud cloud-3">
-                <img src="img/cloud_yellow.png" alt="Floating yellow cloud">
-            </div>
-            <div class="floating-cloud cloud-4">
-                <img src="img/cloud_orange.png" alt="Floating orange cloud">
-            </div>
-            <div class="floating-cloud cloud-5">
-                <img src="img/cloud_blue.png" alt="Another floating blue cloud">
-            </div>
             <div class="hero-content" data-aos="zoom-out-up">
                 <div class="hero-left">
                     <img src="img/Portal_Logo.png" alt="Logo Besar Portal 7" class="portal-logo hero-logo-entry">
@@ -86,16 +100,16 @@
                         </span>
                         <span class="hero-title-seven">7</span>
                     </h1>
-                    <p class="tagline">Embrace Your Potential: Empowered by Inspiration, Driven by Innovation</p>
+                    <p class="tagline" data-translate-key="hero_tagline">Embrace Your Potential: Empowered by Inspiration, Driven by Innovation</p>
                     <div id="countdown-timer" class="countdown-timer">
-                        <span><span id="days">00</span><small>Hari</small></span>
-                        <span><span id="hours">00</span><small>Jam</small></span>
-                        <span><span id="minutes">00</span><small>Menit</small></span>
-                        <span><span id="seconds">00</span><small>Detik</small></span>
+                        <span><span id="days">00</span><small data-translate-key="hero_countdown_hari">Hari</small></span>
+                        <span><span id="hours">00</span><small data-translate-key="hero_countdown_jam">Jam</small></span>
+                        <span><span id="minutes">00</span><small data-translate-key="hero_countdown_menit">Menit</small></span>
+                        <span><span id="seconds">00</span><small data-translate-key="hero_countdown_detik">Detik</small></span>
                     </div>
                     <div class="hero-buttons">
-                        <a href="#pendaftaran" class="hero-button button-main-cta">Daftar Sekarang</a>
-                        <a href="#tentang" class="hero-button button-main-cta-b">What is Portal?</a>
+                        <a href="#pendaftaran" class="hero-button button-main-cta" data-translate-key="hero_button_daftar">Daftar Sekarang</a>
+                        <a href="#tentang" class="hero-button button-main-cta-b" data-translate-key="hero_button_what_is">What is Portal?</a>
                     </div>
                 </div>
             </div>
@@ -105,93 +119,81 @@
             <img src="img/Asset 18@4x.png" alt="Geometric Deco Top" class="about-deco about-deco-top" data-aos="fade-down-right" data-aos-delay="400">
             <img src="img/abstract_star-yellow.png" alt="Geometric Star" class="about-deco about-deco-star" data-aos="zoom-in" data-aos-delay="500">
 
-            <h2 class="section-title" data-aos="zoom-in-out">Tentang Portal 7</h2>
-            <div class="about-content" data-aos="fade-up"> <div class="about-text">
-                    <h3>Apa itu Portal 7?</h3>
-                    <p>Portal 7 adalah ajang kreatif teknologi tingkat internasional yang diselenggarakan oleh mahasiswa IPB University. Acara ini memadukan kompetisi digital dan seminar inspiratif untuk memberdayakan generasi muda dalam menciptakan karya berdampak melalui desain, komunikasi visual, dan storytelling digital.</p>
-                    <p>Portal 7 mengajak peserta untuk berinovasi, berkolaborasi, dan menyuarakan isu global melalui kreativitas yang inklusif dan berkelanjutan.</p>
+            <h2 class="section-title" data-aos="zoom-in-out" data-translate-key="about_title">Tentang Portal 7</h2>
+            <div class="about-content" data-aos="fade-up">
+                <div class="about-text">
+                    <h3 data-translate-key="about_what_is_portal_title">Apa itu Portal 7?</h3>
+                    <p data-translate-key="about_what_is_portal_p1">Portal 7 adalah ajang kreatif teknologi tingkat internasional yang diselenggarakan oleh mahasiswa IPB University. Acara ini memadukan kompetisi digital dan seminar inspiratif untuk memberdayakan generasi muda dalam menciptakan karya berdampak melalui desain, komunikasi visual, dan storytelling digital.</p>
+                    <p data-translate-key="about_what_is_portal_p2">Portal 7 mengajak peserta untuk berinovasi, berkolaborasi, dan menyuarakan isu global melalui kreativitas yang inklusif dan berkelanjutan.</p>
                 </div>
                 <div class="about-illustration">
                     <img src="img/seminar-kevin.png" alt="Ilustrasi Portal 7">
                 </div>
             </div>
 
-            <div class="inspire-framework-container" data-aos="fade-up" data-aos-delay="300"> <h3 class="framework-title">INSPIRE Framework: Landasan Visi & Misi Kami</h3>
+            <div class="inspire-framework-container" data-aos="fade-up" data-aos-delay="300">
+                <h3 class="framework-title" data-translate-key="inspire_framework_title">INSPIRE Framework: Landasan Visi & Misi Kami</h3>
                 <div class="framework-grid">
                     <div class="framework-item">
-                        <div class="framework-letter-wrapper">
-                            <span class="framework-letter">I</span>
-                        </div>
+                        <div class="framework-letter-wrapper"><span class="framework-letter">I</span></div>
                         <div class="framework-meaning">
-                            <h4>Inspirasi</h4>
-                            <p>Memicu ide-ide baru dan semangat berkarya tanpa batas.</p>
+                            <h4 data-translate-key="inspire_i1">Inspirasi</h4>
+                            <p data-translate-key="inspire_i1_desc">Memicu ide-ide baru dan semangat berkarya tanpa batas.</p>
                         </div>
                     </div>
                     <div class="framework-item">
-                        <div class="framework-letter-wrapper">
-                            <span class="framework-letter">N</span>
-                        </div>
+                        <div class="framework-letter-wrapper"><span class="framework-letter">N</span></div>
                         <div class="framework-meaning">
-                            <h4>Networking</h4>
-                            <p>Membangun koneksi dan kolaborasi yang kuat dan berkelanjutan.</p>
+                            <h4 data-translate-key="inspire_n">Networking</h4>
+                            <p data-translate-key="inspire_n_desc">Membangun koneksi dan kolaborasi yang kuat dan berkelanjutan.</p>
                         </div>
                     </div>
                     <div class="framework-item">
-                        <div class="framework-letter-wrapper">
-                            <span class="framework-letter">S</span>
-                        </div>
+                        <div class="framework-letter-wrapper"><span class="framework-letter">S</span></div>
                         <div class="framework-meaning">
-                            <h4>Solusi</h4>
-                            <p>Mendorong penciptaan solusi kreatif untuk tantangan nyata.</p>
+                            <h4 data-translate-key="inspire_s">Solusi</h4>
+                            <p data-translate-key="inspire_s_desc">Mendorong penciptaan solusi kreatif untuk tantangan nyata.</p>
                         </div>
                     </div>
                     <div class="framework-item">
-                        <div class="framework-letter-wrapper">
-                            <span class="framework-letter">P</span>
-                        </div>
+                        <div class="framework-letter-wrapper"><span class="framework-letter">P</span></div>
                         <div class="framework-meaning">
-                            <h4>Potensi</h4>
-                            <p>Menggali dan memaksimalkan potensi unik setiap individu.</p>
+                            <h4 data-translate-key="inspire_p">Potensi</h4>
+                            <p data-translate-key="inspire_p_desc">Menggali dan memaksimalkan potensi unik setiap individu.</p>
                         </div>
                     </div>
                     <div class="framework-item">
-                        <div class="framework-letter-wrapper">
-                            <span class="framework-letter">I</span>
-                        </div>
+                        <div class="framework-letter-wrapper"><span class="framework-letter">I</span></div>
                         <div class="framework-meaning">
-                            <h4>Inovasi</h4>
-                            <p>Menghadirkan terobosan baru dalam teknologi dan kreativitas digital.</p>
+                            <h4 data-translate-key="inspire_i2">Inovasi</h4>
+                            <p data-translate-key="inspire_i2_desc">Menghadirkan terobosan baru dalam teknologi dan kreativitas digital.</p>
                         </div>
                     </div>
                     <div class="framework-item">
-                        <div class="framework-letter-wrapper">
-                            <span class="framework-letter">R</span>
-                        </div>
+                        <div class="framework-letter-wrapper"><span class="framework-letter">R</span></div>
                         <div class="framework-meaning">
-                            <h4>Relevansi</h4>
-                            <p>Menghubungkan pembelajaran dengan kebutuhan industri dan masyarakat.</p>
+                            <h4 data-translate-key="inspire_r">Relevansi</h4>
+                            <p data-translate-key="inspire_r_desc">Menghubungkan pembelajaran dengan kebutuhan industri dan masyarakat.</p>
                         </div>
                     </div>
                     <div class="framework-item">
-                        <div class="framework-letter-wrapper">
-                            <span class="framework-letter">E</span>
-                        </div>
+                        <div class="framework-letter-wrapper"><span class="framework-letter">E</span></div>
                         <div class="framework-meaning">
-                            <h4>Empowerment</h4>
-                            <p>Memberdayakan generasi muda untuk mengambil peran dan menciptakan dampak positif.</p>
+                            <h4 data-translate-key="inspire_e">Empowerment</h4>
+                            <p data-translate-key="inspire_e_desc">Memberdayakan generasi muda untuk mengambil peran dan menciptakan dampak positif.</p>
                         </div>
                     </div>
                 </div>
             </div>
             <img src="img/Asset 16@4x.png" alt="Geometric Deco Bottom" class="about-deco about-deco-bottom" data-aos="fade-up-left" data-aos-delay="400">
-
         </section>
+
         <section class="sdg-section section-padding" id="sdg-commitment">
             <img src="img/Asset 16@4x.png" alt="Geometric Accent" class="sdg-geometric-deco deco-top-left" data-aos="fade-down-right" data-aos-delay="300">
             <img src="img/Asset 18@4x.png" alt="Geometric Accent" class="sdg-geometric-deco deco-bottom-right" data-aos="fade-up-left" data-aos-delay="300">
 
-            <h2 class="section-title" data-aos="zoom-in-up"><span>Our Commitment</span> to Global Goals</h2>
-            <p class="section-subtitle" data-aos="zoom-in-up" data-aos-delay="100">Portal 7 actively champions the Sustainable Development Goals through digital innovation and youth empowerment.</p>
+            <h2 class="section-title" data-aos="zoom-in-up"><span data-translate-key="sdg_commitment_title_span">Our Commitment</span> <span data-translate-key="sdg_commitment_title_main">to Global Goals</span></h2>
+            <p class="section-subtitle" data-aos="zoom-in-up" data-aos-delay="100" data-translate-key="sdg_commitment_subtitle">Portal 7 actively champions the Sustainable Development Goals through digital innovation and youth empowerment.</p>
             
             <div class="sdg-container">
                 <div class="sdg-item" data-aos="fade-up" data-aos-delay="200">
@@ -199,12 +201,12 @@
                         <img src="img/sdg_zero-hunger.png" alt="SDG 2: Zero Hunger" class="sdg-icon">
                         <div class="sdg-title-number">
                             <span class="sdg-number">SDG 2</span>
-                            <h3>Zero</h3>
-                            <h3>Hunger</h3>
+                            <h3 data-translate-key="sdg_2_title_1">Zero</h3>
+                            <h3 data-translate-key="sdg_2_title_2">Hunger</h3>
                         </div>
                     </div>
                     <div class="sdg-item-body">
-                        <p>Fostering digital solutions and awareness campaigns that contribute to food security, sustainable agriculture, and improved nutrition through innovative projects.</p>
+                        <p data-translate-key="sdg_2_desc">Fostering digital solutions and awareness campaigns that contribute to food security, sustainable agriculture, and improved nutrition through innovative projects.</p>
                     </div>
                     <div class="sdg-item-deco-line"></div>
                 </div>
@@ -214,11 +216,11 @@
                         <img src="img/sdg_quality-edu.png" alt="SDG 4: Quality Education" class="sdg-icon">
                         <div class="sdg-title-number">
                             <span class="sdg-number">SDG 4</span>
-                            <h3>Quality Education</h3>
+                            <h3 data-translate-key="sdg_4_title">Quality Education</h3>
                         </div>
                     </div>
                     <div class="sdg-item-body">
-                        <p>Providing accessible digital skills training, insightful seminars, and competitive platforms that enhance learning opportunities and promote lifelong education for all.</p>
+                        <p data-translate-key="sdg_4_desc">Providing accessible digital skills training, insightful seminars, and competitive platforms that enhance learning opportunities and promote lifelong education for all.</p>
                     </div>
                     <div class="sdg-item-deco-line"></div>
                 </div>
@@ -228,498 +230,531 @@
                         <img src="img/sdg_clean-energy.png" alt="SDG 7: Affordable and Clean Energy" class="sdg-icon">
                          <div class="sdg-title-number">
                             <span class="sdg-number">SDG 7</span>
-                            <h3>Affordable & Clean Energy</h3>
+                            <h3 data-translate-key="sdg_7_title">Affordable & Clean Energy</h3>
                         </div>
                     </div>
                     <div class="sdg-item-body">
-                        <p>Encouraging projects and discussions on leveraging technology for sustainable energy solutions, promoting awareness, and inspiring innovation in clean energy adoption.</p>
+                        <p data-translate-key="sdg_7_desc">Encouraging projects and discussions on leveraging technology for sustainable energy solutions, promoting awareness, and inspiring innovation in clean energy adoption.</p>
                     </div>
                     <div class="sdg-item-deco-line"></div>
                 </div>
             </div>
             <img src="img/abstract_star-yellow.png" alt="Abstract Star" class="sdg-star-deco wow-guest-deco" data-aos="zoom-in-out" data-aos-delay="600">
         </section>
-    <section class="wow-guest-stars-section section-padding" id="wow-guest-stars-2025">
-        <img src="img/Asset 18@4x.png" alt="Geometric Deco Left" class="wow-guest-deco deco-left" data-aos="fade-right" data-aos-delay="500">
-        <img src="img/abstract_star-yellow.png" alt="Geometric Deco Star" class="wow-guest-deco deco-star-top" data-aos="zoom-in" data-aos-delay="700">
 
-        <h2 class="section-title">This Year's <span class="wow-accent">WOW!</span> Guest Star</h2>
-        <p class="section-subtitle">Get ready to be inspired by a leading voice and innovator of 2025!</p>
-        
-        <div class="wow-guest-stars-grid single-guest"> <div class="wow-guest-star-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="wow-guest-star-image-wrapper">
-                    <img src="https://placehold.co/400x500/E040FB/FFFFFF?text=Guest+Spotlight&font=montserrat" alt="Guest Star 2025">
-                    <div class="wow-guest-star-image-overlay">
-                        <span class="overlay-year">2025</span>
+        <section class="wow-guest-stars-section section-padding" id="wow-guest-stars-2025">
+            <h2 class="section-title"><span data-translate-key="wow_guest_star_title_part1">This Year's</span> <span class="wow-accent" data-translate-key="wow_guest_star_title_wow">WOW!</span> <span data-translate-key="wow_guest_star_title_part2">Guest Star</span></h2>
+            <p class="section-subtitle" data-translate-key="wow_guest_star_subtitle">Get ready to be inspired by a leading voice and innovator of 2025!</p>
+            <div class="wow-guest-stars-grid single-guest">
+                <div class="wow-guest-star-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="wow-guest-star-image-wrapper">
+                        <img src="https://placehold.co/400x500/E040FB/FFFFFF?text=Guest+Spotlight&font=montserrat" alt="Guest Star 2025">
+                        <div class="wow-guest-star-image-overlay"><span class="overlay-year">2025</span></div>
                     </div>
+                    <div class="wow-guest-star-info">
+                        <h4>Joko Anwar</h4>
+                        <p class="wow-guest-title" data-translate-key="joko_anwar_title">Acclaimed Movie Director</p>
+                        <p class="wow-guest-teaser" data-translate-key="joko_anwar_teaser">Exploring the frontiers of responsible SIGMA and its impact on society. A truly unmissable session!</p>
+                    </div>
+                    <div class="wow-guest-card-flare"></div>
                 </div>
-                <div class="wow-guest-star-info">
-                    <h4>Joko Anwar</h4>
-                    <p class="wow-guest-title">Acclaimed Movie Director</p>
-                    <p class="wow-guest-teaser">Exploring the frontiers of responsible SIGMA and its impact on society. A truly unmissable session!</p>
-                </div>
-                <div class="wow-guest-card-flare"></div>
             </div>
-
-            </div>
-        <img src="img/Asset 16@4x.png" alt="Geometric Deco Right" class="wow-guest-deco deco-right" data-aos="fade-left" data-aos-delay="500">
-    </section>
-    <section class="guest-stars-section section-padding" id="">
         </section>
+
         <section class="highlight-section section-padding" id="highlight">
-            <h2 class="section-title" data-aos="fade-down"><span>Unlock</span> Your Digital Superpowers</h2>
-            <p class="section-subtitle" data-aos="fade-down" data-aos-delay="100">This is where creativity ignites and innovation takes flight. Choose your arena, sharpen your skills.</p>
+            <h2 class="section-title" data-aos="fade-down"><span data-translate-key="highlight_title_span">Unlock</span> <span data-translate-key="highlight_title_main">Your Digital Superpowers</span></h2>
+            <p class="section-subtitle" data-aos="fade-down" data-aos-delay="100" data-translate-key="highlight_subtitle">This is where creativity ignites and innovation takes flight. Choose your arena, sharpen your skills.</p>
             <div class="highlight-grid">
                 <div class="competition-highlight portal-card" data-aos="zoom-in-right">
                     <div class="card-header">
                         <i class="fas fa-trophy card-icon"></i>
-                        <h3 class="highlight-title">The Arena: <span class="title-accent">Compete & Conquer</span></h3>
+                        <h3 class="highlight-title"><span data-translate-key="highlight_arena_title_main">The Arena:</span> <span class="title-accent" data-translate-key="highlight_arena_title_accent">Compete & Conquer</span></h3>
                     </div>
-                    <p class="card-intro">Forge your legend. Showcase your talent. The ultimate digital battleground awaits your genius.</p>
-                    
+                    <p class="card-intro" data-translate-key="highlight_arena_intro">Forge your legend. Showcase your talent. The ultimate digital battleground awaits your genius.</p>
                     <div class="competition-item">
-                        <h4><i class="fas fa-object-group item-icon"></i> UI/UX Design</h4>
-                        <p>Sculpt intuitive digital experiences that captivate and convert. Design the future, today.</p>
-                    </div>
-                    <div class="competition-item">
-                        <h4><i class="fas fa-paint-brush item-icon"></i> Digital Poster</h4>
-                        <p>Unleash visual symphonies. Craft posters that don't just speak, they roar your message.</p>
+                        <h4><i class="fas fa-object-group item-icon"></i> <span data-translate-key="highlight_uiux_title">UI/UX Design</span></h4>
+                        <p data-translate-key="highlight_uiux_desc">Sculpt intuitive digital experiences that captivate and convert. Design the future, today.</p>
                     </div>
                     <div class="competition-item">
-                        <h4><i class="fas fa-film item-icon"></i> Short Movie</h4>
-                        <p>Tell world-changing stories in minutes. Direct your vision, captivate hearts, inspire action.</p>
+                        <h4><i class="fas fa-paint-brush item-icon"></i> <span data-translate-key="highlight_poster_title">Digital Poster</span></h4>
+                        <p data-translate-key="highlight_poster_desc">Unleash visual symphonies. Craft posters that don't just speak, they roar your message.</p>
                     </div>
-                    
+                    <div class="competition-item">
+                        <h4><i class="fas fa-film item-icon"></i> <span data-translate-key="highlight_movie_title">Short Movie</span></h4>
+                        <p data-translate-key="highlight_movie_desc">Tell world-changing stories in minutes. Direct your vision, captivate hearts, inspire action.</p>
+                    </div>
                     <div class="total-prize-container">
-                        <span class="prize-label">REBUT TOTAL HADIAH SPECTAKULER</span>
-                        <div class="prize-amount-wrapper">
-                            <span class="prize-value" data-value="14600000">Rp14.600.000</span>
-                        </div>
-                        <span class="prize-details">*Plus bragging rights & eternal glory!</span>
+                        <span class="prize-label" data-translate-key="highlight_prize_label">REBUT TOTAL HADIAH SPECTAKULER</span>
+                        <div class="prize-amount-wrapper"><span class="prize-value" data-value="14600000">Rp14.600.000</span></div>
+                        <span class="prize-details" data-translate-key="highlight_prize_details">*Plus bragging rights & eternal glory!</span>
                     </div>
-
-                    <a href="competition-hub.html" class="button-view-more portal-button">Explore Challenges <i class="fas fa-arrow-right btn-icon"></i></a>
+                    <a href="competition-hub.html" class="button-view-more portal-button" data-translate-key="highlight_button_explore">Explore Challenges <i class="fas fa-arrow-right btn-icon"></i></a>
                 </div>
-                
                 <div class="seminar-highlight portal-card" data-aos="zoom-in-left">
                     <div class="card-header">
                         <i class="fas fa-microphone-alt card-icon"></i>
-                        <h3 class="highlight-title">The Knowledge Hub: <span class="title-accent">Learn & Elevate</span></h3>
+                        <h3 class="highlight-title"><span data-translate-key="highlight_knowledge_title_main">The Knowledge Hub:</span> <span class="title-accent" data-translate-key="highlight_knowledge_title_accent">Learn & Elevate</span></h3>
                     </div>
-                    <p class="card-intro">Ignite your curiosity. Absorb game-changing insights from the masters of digital craft.</p>
-                    
+                    <p class="card-intro" data-translate-key="highlight_knowledge_intro">Ignite your curiosity. Absorb game-changing insights from the masters of digital craft.</p>
                     <ul class="seminar-list">
-                        <li><i class="fas fa-chalkboard-teacher list-icon"></i> <span>Exclusive Mentorship:</span> Top 10 Finalists Coached by Pros</li>
-                        <li><i class="fas fa-bullhorn list-icon"></i> <span>Pitch Day Powerhouse:</span> Spotlight Your Groundbreaking Vision</li>
-                        <li><i class="fas fa-award list-icon"></i> <span>The Grand Awarding:</span> Celebrate Victory & Witness Brilliance</li>
-                        <li><i class="fas fa-comments list-icon"></i> <span>Future Forward Talks:</span> Decode Trends with Industry Titans</li>
+                        <li><i class="fas fa-chalkboard-teacher list-icon"></i> <span data-translate-key="highlight_mentorship_span">Exclusive Mentorship:</span> <span data-translate-key="highlight_mentorship_text">Top 10 Finalists Coached by Pros</span></li>
+                        <li><i class="fas fa-bullhorn list-icon"></i> <span data-translate-key="highlight_pitch_day_span">Pitch Day Powerhouse:</span> <span data-translate-key="highlight_pitch_day_text">Spotlight Your Groundbreaking Vision</span></li>
+                        <li><i class="fas fa-award list-icon"></i> <span data-translate-key="highlight_awarding_span">The Grand Awarding:</span> <span data-translate-key="highlight_awarding_text">Celebrate Victory & Witness Brilliance</span></li>
+                        <li><i class="fas fa-comments list-icon"></i> <span data-translate-key="highlight_future_talks_span">Future Forward Talks:</span> <span data-translate-key="highlight_future_talks_text">Decode Trends with Industry Titans</span></li>
                     </ul>
-                    <a href="seminar.html" class="button-view-more portal-button">Discover the Lineup <i class="fas fa-arrow-right btn-icon"></i></a>
+                    <a href="seminar.html" class="button-view-more portal-button" data-translate-key="highlight_button_discover">Discover the Lineup <i class="fas fa-arrow-right btn-icon"></i></a>
                 </div>
             </div>
         </section>
 
+        <section class="timeline-section section-padding" id="linimasa">
+            <h2 class="section-title" data-aos="fade-up" data-translate-key="timeline_title">Linimasa Kegiatan</h2>
+            <div class="timeline-container" data-aos="fade-up" data-aos-delay="200">
+                <div class="timeline-entry">
+                    <div class="timeline-icon-dot"><i class="far fa-calendar-alt"></i></div>
+                    <div class="timeline-label">
+                        <p class="timeline-date" data-translate-key="timeline_batch1_date">10 Juni – 10 Juli 2025</p>
+                        <p class="timeline-event" data-translate-key="timeline_batch1_event">Pendaftaran Batch 1</p>
+                    </div>
+                </div>
+                <div class="timeline-entry">
+                    <div class="timeline-icon-dot"><i class="far fa-calendar-alt"></i></div>
+                    <div class="timeline-label">
+                        <p class="timeline-date" data-translate-key="timeline_batch2_date">11 Juli – 10 Agustus 2025</p>
+                        <p class="timeline-event" data-translate-key="timeline_batch2_event">Pendaftaran Batch 2</p>
+                    </div>
+                </div>
+                <div class="timeline-entry">
+                    <div class="timeline-icon-dot"><i class="far fa-calendar-alt"></i></div>
+                    <div class="timeline-label">
+                        <p class="timeline-date" data-translate-key="timeline_batch3_date">11 Agustus – 25 Agustus 2025</p>
+                        <p class="timeline-event" data-translate-key="timeline_batch3_event">Pendaftaran Batch 3</p>
+                    </div>
+                </div>
+                <div class="timeline-entry">
+                    <div class="timeline-icon-dot"><i class="fas fa-upload"></i></div>
+                    <div class="timeline-label">
+                        <p class="timeline-date" data-translate-key="timeline_submission_deadline_event">Batas Akhir Pengumpulan Karya</p>
+                        <p class="timeline-event" data-translate-key="timeline_submission_deadline_date">Minggu ke-4 Agustus 2025 (Contoh, sesuaikan tanggal pasti)</p>
+                    </div>
+                </div>
+                <div class="timeline-entry">
+                    <div class="timeline-icon-dot"><i class="fas fa-bullhorn"></i></div>
+                    <div class="timeline-label">
+                        <p class="timeline-date" data-translate-key="timeline_finalist_announcement_event">Pengumuman Finalis</p>
+                        <p class="timeline-event" data-translate-key="timeline_finalist_announcement_date">Pertengahan September 2025 (Contoh, sesuaikan tanggal pasti)</p>
+                    </div>
+                </div>
+                <div class="timeline-entry">
+                    <div class="timeline-icon-dot"><i class="fas fa-users"></i></div>
+                    <div class="timeline-label">
+                        <p class="timeline-date" data-translate-key="timeline_coaching_pitching_event">Coaching & Final Pitching</p>
+                        <p class="timeline-event" data-translate-key="timeline_coaching_pitching_date">Akhir September 2025 (Contoh, sesuaikan tanggal pasti)</p>
+                    </div>
+                </div>
+                <div class="timeline-entry">
+                    <div class="timeline-icon-dot"><i class="fas fa-award"></i></div>
+                    <div class="timeline-label">
+                        <p class="timeline-date" data-translate-key="timeline_seminar_awarding_date">11 Oktober 2025</p>
+                        <p class="timeline-event" data-translate-key="timeline_seminar_awarding_event">Seminar & Awarding Day</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <section class="timeline-section section-padding" id="linimasa">
-        <h2 class="section-title" data-aos="fade-up">Linimasa Kegiatan</h2>
-        <div class="timeline-container" data-aos="fade-up" data-aos-delay="200">
-            <div class="timeline-entry">
-                <div class="timeline-icon-dot">
-                    <i class="far fa-calendar-alt"></i>
-                </div>
-                <div class="timeline-label">
-                    <p class="timeline-date">10 Juni – 10 Juli 2025</p>
-                    <p class="timeline-event">Pendaftaran Batch 1</p>
-                </div>
-            </div>
-            <div class="timeline-entry">
-                <div class="timeline-icon-dot">
-                    <i class="far fa-calendar-alt"></i>
-                </div>
-                <div class="timeline-label">
-                    <p class="timeline-date">11 Juli – 10 Agustus 2025</p>
-                    <p class="timeline-event">Pendaftaran Batch 2</p>
-                </div>
-            </div>
-            <div class="timeline-entry">
-                <div class="timeline-icon-dot">
-                    <i class="far fa-calendar-alt"></i>
-                </div>
-                <div class="timeline-label">
-                    <p class="timeline-date">11 Agustus – 25 Agustus 2025</p>
-                    <p class="timeline-event">Pendaftaran Batch 3</p>
-                </div>
-            </div>
-            <div class="timeline-entry"> <div class="timeline-icon-dot">
-                    <i class="fas fa-upload"></i>
-                </div>
-                <div class="timeline-label">
-                    <p class="timeline-date">Batas Akhir Pengumpulan Karya</p>
-                    <p class="timeline-event">Minggu ke-4 Agustus 2025 (Contoh, sesuaikan tanggal pasti)</p>
-                </div>
-            </div>
-            <div class="timeline-entry">
-                <div class="timeline-icon-dot">
-                    <i class="fas fa-bullhorn"></i>
-                </div>
-                <div class="timeline-label">
-                    <p class="timeline-date">Pengumuman Finalis</p> <p class="timeline-event">Pertengahan September 2025 (Contoh, sesuaikan tanggal pasti)</p>
-                </div>
-            </div>
-            <div class="timeline-entry">
-                <div class="timeline-icon-dot">
-                    <i class="fas fa-users"></i>
-                </div>
-                <div class="timeline-label">
-                    <p class="timeline-date">Coaching & Final Pitching</p>
-                    <p class="timeline-event">Akhir September 2025 (Contoh, sesuaikan tanggal pasti)</p>
-                </div>
-            </div>
-            <div class="timeline-entry">
-                <div class="timeline-icon-dot">
-                    <i class="fas fa-award"></i> </div>
-                <div class="timeline-label">
-                    <p class="timeline-date">11 Oktober 2025</p>
-                    <p class="timeline-event">Seminar & Awarding Day</p>
-                </div>
-            </div>
-        </div>
-    </section>
-                <section class="guest-stars-section section-padding" id="past-guest-stars">
-            <h2 class="section-title" id="guest-stars">Past Guest Stars</h2>
-            <p class="section-subtitle">Kami telah menghadirkan para kreator digital inspiratif:</p>
+        <section class="guest-stars-section section-padding" id="past-guest-stars">
+            <h2 class="section-title" id="guest-stars" data-translate-key="past_guest_stars_title">Past Guest Stars</h2>
+            <p class="section-subtitle" data-translate-key="past_guest_stars_subtitle">Kami telah menghadirkan para kreator digital inspiratif:</p>
             <div class="guest-stars-grid">
                 <div class="guest-star-card" data-aos="fade-up">
                     <img src="img/kevin.jpg" alt="Foto Kevin Anggara">
                     <div class="guest-star-info">
                         <h4>🎬 Kevin Anggara</h4>
-                        <p>Penulis, YouTuber</p>
+                        <p data-translate-key="kevin_anggara_role">Penulis, YouTuber</p>
                     </div>
                 </div>
                 <div class="guest-star-card" data-aos="fade-up" data-aos-delay="100">
                     <img src="img/aulion.jpg" alt="Foto Aulion">
                     <div class="guest-star-info">
                         <h4>🎨 Aulion</h4>
-                        <p>Visual artist & content creator</p>
+                        <p data-translate-key="aulion_role">Visual artist & content creator</p>
                     </div>
                 </div>
                 <div class="guest-star-card" data-aos="fade-up" data-aos-delay="200">
                     <img src="img/jovial.jpeg" alt="Foto Jovial da Lopez">
                     <div class="guest-star-info">
                         <h4>🎥 Jovial da Lopez</h4>
-                        <p>Filmmaker, Cameo Project</p>
+                        <p data-translate-key="jovial_da_lopez_role">Filmmaker, Cameo Project</p>
                     </div>
                 </div>
                 <div class="guest-star-card" data-aos="fade-up" data-aos-delay="0">
                     <img src="img/benazio.png" height="400" alt="Foto Benazio Putra (Bena Kribo)">
                     <div class="guest-star-info">
                         <h4>🧠 Benazio Putra (Bena Kribo)</h4>
-                        <p>Entrepreneur & kreator konten edukatif</p>
+                        <p data-translate-key="benazio_putra_role">Entrepreneur & kreator konten edukatif</p>
                     </div>
                 </div>
             </div>
         </section>
     
         <section class="registration-section section-padding" id="pendaftaran" data-aos="fade-up">
-        <h2 class="section-title"><span>Daftar</span> Sekarang!</h2>
-        <p class="section-subtitle">Jangan lewatkan kesempatan emas untuk menjadi bagian dari Portal 7! Pilih batch pendaftaranmu dan bersiaplah untuk berinovasi.</p>
-
-        <div class="registration-content">
-            <div class="registration-batches" data-aos="fade-right" data-aos-delay="200">
-                <h3>Alur <span class="title-accent-stroke">Registrasi</span> 2025</h3>
-                <ul class="batch-list">
-                    <li> 
-                        <div class="batch-item-content">
-                            <span class="batch-number">01</span>
-                            <div class="batch-info">
-                                <h4>Batch 1</h4>
-                                <p class="batch-dates">10 Juni – 10 Juli</p>
-                                <span class="batch-status status-soon">Segera Dibuka</span>
+            <h2 class="section-title"><span data-translate-key="registration_title_span">Daftar</span> <span data-translate-key="registration_title_main">Sekarang!</span></h2>
+            <p class="section-subtitle" data-translate-key="registration_subtitle">Jangan lewatkan kesempatan emas untuk menjadi bagian dari Portal 7! Pilih batch pendaftaranmu dan bersiaplah untuk berinovasi.</p>
+            <div class="registration-content">
+                <div class="registration-batches" data-aos="fade-right" data-aos-delay="200">
+                    <h3><span class="title-accent-stroke" data-translate-key="registration_flow_title">Alur Registrasi</span> 2025</h3>
+                    <ul class="batch-list">
+                        <li> 
+                            <div class="batch-item-content">
+                                <span class="batch-number">01</span>
+                                <div class="batch-info">
+                                    <h4 data-translate-key="registration_batch1_title">Batch 1</h4>
+                                    <p class="batch-dates" data-translate-key="registration_batch1_dates">10 Juni – 10 Juli</p>
+                                    <span class="batch-status status-soon" data-translate-key="registration_batch_status_soon">Segera Dibuka</span>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="batch-item-content">
-                            <span class="batch-number">02</span>
-                            <div class="batch-info">
-                                <h4>Batch 2</h4>
-                                <p class="batch-dates">11 Juli – 10 Agustus</p>
-                                <span class="batch-status status-upcoming">Akan Datang</span>
+                        </li>
+                        <li>
+                            <div class="batch-item-content">
+                                <span class="batch-number">02</span>
+                                <div class="batch-info">
+                                    <h4 data-translate-key="registration_batch2_title">Batch 2</h4>
+                                    <p class="batch-dates" data-translate-key="registration_batch2_dates">11 Juli – 10 Agustus</p>
+                                    <span class="batch-status status-upcoming" data-translate-key="registration_batch_status_upcoming">Akan Datang</span>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="batch-item-content">
-                            <span class="batch-number">03</span>
-                            <div class="batch-info">
-                                <h4>Batch 3</h4>
-                                <p class="batch-dates">11 Agustus – 25 Agustus</p>
-                                <span class="batch-status status-upcoming">Akan Datang</span>
+                        </li>
+                        <li>
+                            <div class="batch-item-content">
+                                <span class="batch-number">03</span>
+                                <div class="batch-info">
+                                    <h4 data-translate-key="registration_batch3_title">Batch 3</h4>
+                                    <p class="batch-dates" data-translate-key="registration_batch3_dates">11 Agustus – 25 Agustus</p>
+                                    <span class="batch-status status-upcoming" data-translate-key="registration_batch_status_upcoming">Akan Datang</span>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                </ul>
-                <p class="batch-note">Link pendaftaran akan aktif sesuai jadwal. Pastikan kamu tidak ketinggalan!</p>
-            </div>
-
-            <div class="registration-form-area" data-aos="fade-left" data-aos-delay="400">
-                <div class="form-status-card">
-                    <div class="form-status-header">
-                        <i class="fas fa-hourglass-start kapow-icon"></i>
-                        <h3 class="status-title">Pendaftaran Belum Dibuka</h3>
-                    </div>
-                    <p class="status-message">Portal pendaftaran akan terbuka sesuai jadwal batch. Saatnya persiapkan dirimu!</p>
-                    <div class="status-timer-placeholder">
-                        <p>Nantikan pembukaan Batch 1!</p>
-                    </div>
-                    <a href="#link-to-guidebook-placeholder" class="guidebook-button portal-button">
-                        <i class="fas fa-book-open"></i> Baca Guidebook Sekarang!
-                    </a>
+                        </li>
+                    </ul>
+                    <p class="batch-note" data-translate-key="registration_batch_note">Link pendaftaran akan aktif sesuai jadwal. Pastikan kamu tidak ketinggalan!</p>
                 </div>
-
-                <div class="registration-details-box">
-                    <h4>Proses Pendaftaran & Pengumpulan Karya</h4>
-                    <p>Pendaftaran dilakukan online melalui link yang akan muncul di sini. Detail lengkap pengumpulan karya dan dokumen akan ada di guidebook dan formulir.</p>
+                <div class="registration-form-area" data-aos="fade-left" data-aos-delay="400">
+                    <div class="form-status-card">
+                        <div class="form-status-header">
+                            <i class="fas fa-hourglass-start kapow-icon"></i>
+                            <h3 class="status-title" data-translate-key="registration_form_status_title">Pendaftaran Belum Dibuka</h3>
+                        </div>
+                        <p class="status-message" data-translate-key="registration_form_status_message">Portal pendaftaran akan terbuka sesuai jadwal batch. Saatnya persiapkan dirimu!</p>
+                        <div class="status-timer-placeholder">
+                            <p data-translate-key="registration_form_status_timer">Nantikan pembukaan Batch 1!</p>
+                        </div>
+                        <a href="#link-to-guidebook-placeholder" class="guidebook-button portal-button" data-translate-key="registration_guidebook_button">
+                            <i class="fas fa-book-open"></i> Baca Guidebook Sekarang!
+                        </a>
+                    </div>
+                    <div class="registration-details-box">
+                        <h4 data-translate-key="registration_process_title">Proses Pendaftaran & Pengumpulan Karya</h4>
+                        <p data-translate-key="registration_process_desc">Pendaftaran dilakukan online melalui link yang akan muncul di sini. Detail lengkap pengumpulan karya dan dokumen akan ada di guidebook dan formulir.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <img src="img/Asset 30@4x.png" alt="Geometric Deco" class="registration-deco-1">
-        <img src="img/abstract_star-yellow.png" alt="Geometric Deco Star" class="registration-deco-2">
-    </section>
+        </section>
+
         <section class="faq-section section-padding" id="faq">
-            <h2 class="section-title">FAQ – Pertanyaan Umum</h2>
+            <h2 class="section-title" data-translate-key="faq_title">FAQ – Pertanyaan Umum</h2>
             <div class="faq-container">
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h4>Apakah kompetisinya berbayar?</h4>
-                        <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                        <h4 data-translate-key="faq_q1">Apakah kompetisinya berbayar?</h4><span class="faq-icon"><i class="fas fa-plus"></i></span>
                     </div>
-                    <div class="faq-answer">
-                        <p>Ya, terdapat biaya registrasi yang tertera dalam guidebook.</p>
-                    </div>
+                    <div class="faq-answer"><p data-translate-key="faq_a1">Ya, terdapat biaya registrasi yang tertera dalam guidebook.</p></div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h4>Apakah peserta bisa mendaftar lebih dari satu cabang lomba?</h4>
-                        <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                        <h4 data-translate-key="faq_q2">Apakah peserta bisa mendaftar lebih dari satu cabang lomba?</h4><span class="faq-icon"><i class="fas fa-plus"></i></span>
                     </div>
-                    <div class="faq-answer">
-                        <p>Bisa, asalkan sesuai ketentuan dan mengisi formulir untuk masing-masing cabang.</p>
-                    </div>
+                    <div class="faq-answer"><p data-translate-key="faq_a2">Bisa, asalkan sesuai ketentuan dan mengisi formulir untuk masing-masing cabang.</p></div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h4>Apakah harus berasal dari IPB?</h4>
-                        <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                        <h4 data-translate-key="faq_q3">Apakah harus berasal dari IPB?</h4><span class="faq-icon"><i class="fas fa-plus"></i></span>
                     </div>
-                    <div class="faq-answer">
-                        <p>Tidak. Portal 7 terbuka untuk peserta dari seluruh Indonesia dan internasional.</p>
-                    </div>
+                    <div class="faq-answer"><p data-translate-key="faq_a3">Tidak. Portal 7 terbuka untuk peserta dari seluruh Indonesia dan internasional.</p></div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h4>Apakah semua peserta akan mendapat sertifikat?</h4>
-                        <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                        <h4 data-translate-key="faq_q4">Apakah semua peserta akan mendapat sertifikat?</h4><span class="faq-icon"><i class="fas fa-plus"></i></span>
                     </div>
-                    <div class="faq-answer">
-                        <p>Ya, semua peserta yang memenuhi ketentuan akan mendapatkan e-sertifikat.</p>
-                    </div>
+                    <div class="faq-answer"><p data-translate-key="faq_a4">Ya, semua peserta yang memenuhi ketentuan akan mendapatkan e-sertifikat.</p></div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
-                        <h4>Bagaimana cara mengakses platform pengumpulan karya?</h4>
-                        <span class="faq-icon"><i class="fas fa-plus"></i></span>
+                        <h4 data-translate-key="faq_q5">Bagaimana cara mengakses platform pengumpulan karya?</h4><span class="faq-icon"><i class="fas fa-plus"></i></span>
                     </div>
-                    <div class="faq-answer">
-                        <p>Detail dan link pengumpulan akan diberikan setelah peserta menyelesaikan registrasi.</p>
-                    </div>
+                    <div class="faq-answer"><p data-translate-key="faq_a5">Detail dan link pengumpulan akan diberikan setelah peserta menyelesaikan registrasi.</p></div>
                 </div>
             </div>
         </section>
 
         <section class="who-can-join-section section-padding" id="peserta">
-            <h2 class="section-title">Siapa Saja yang Bisa Ikut?</h2>
+            <h2 class="section-title" data-translate-key="who_can_join_title">Siapa Saja yang Bisa Ikut?</h2>
             <div class="who-can-join-content">
-                <p class="section-subtitle">Terbuka untuk semua kalangan dengan minat di dunia kreatif digital!</p>
+                <p class="section-subtitle" data-translate-key="who_can_join_subtitle">Terbuka untuk semua kalangan dengan minat di dunia kreatif digital!</p>
                 <ul class="who-can-join-list">
-                    <li><i class="fas fa-university"></i> Mahasiswa D3/D4/S1 dari seluruh Indonesia & internasional</li>
+                    <li data-translate-key="who_can_join_list_item1"><i class="fas fa-university"></i> Mahasiswa D3/D4/S1 dari seluruh Indonesia & internasional</li>
                 </ul>
-                <p class="team-info">Peserta dapat mendaftar sebagai individu atau tim (. Tidak memerlukan pengalaman sebelumnya, hanya kreativitas!</p>
-                </div>
+                <p class="team-info" data-translate-key="who_can_join_team_info">Peserta dapat mendaftar sebagai individu atau tim. Tidak memerlukan pengalaman sebelumnya, hanya kreativitas!</p>
+            </div>
         </section>
 
         <section class="cta-bottom-section section-padding" id="cta-bottom">
             <div class="cta-bottom-content">
-                <h2>Siap untuk mencipta, berkompetisi, dan terhubung?</h2>
-                <p>Gabung sekarang dan wujudkan visimu melalui karya digital bersama Portal 7.</p>
+                <h2 data-translate-key="cta_bottom_title">Siap untuk mencipta, berkompetisi, dan terhubung?</h2>
+                <p data-translate-key="cta_bottom_subtitle">Gabung sekarang dan wujudkan visimu melalui karya digital bersama Portal 7.</p>
                 <div class="cta-buttons">
-                    <a href="#form-pendaftaran" class="hero-button button-main-cta">Daftar Sekarang</a>
-                    <a href="#link-guidebook" class="hero-button button-secondary-cta">Unduh Guidebook</a>
-                </div>
-                 <div style="margin-top: 2rem; display:flex; justify-content:center; gap:1rem; opacity:0.7;">
-                    <i class="fas fa-camera fa-2x"></i>
-                    <i class="fas fa-mouse-pointer fa-2x"></i>
-                    <i class="far fa-comments fa-2x"></i>
+                    <a href="#pendaftaran" class="hero-button button-main-cta" data-translate-key="cta_bottom_button_register">Daftar Sekarang</a>
+                    <a href="#link-guidebook" class="hero-button button-secondary-cta" data-translate-key="cta_bottom_button_guidebook">Unduh Guidebook</a>
                 </div>
             </div>
         </section>
 
         <section class="media-section section-padding" id="media" data-aos="fade-up">
-        <h2 class="section-title">Berita & Media Portal 7</h2>
-        <p class="section-subtitle">Ikuti perkembangan terbaru, dapatkan insight kreatif, dan lihat kembali momen-momen tak terlupakan dari Portal 7!</p>
-
-        <div class="media-subsection" id="blog-articles-container" data-aos="fade-up" data-aos-delay="100">
-            <h3><i class="fas fa-newspaper"></i> Artikel & Insight</h3>
-            <div class="articles-grid">
-                <p class="loading-message">Memuat artikel...</p>
+            <h2 class="section-title" data-translate-key="media_section_title">Berita & Media Portal 7</h2>
+            <p class="section-subtitle" data-translate-key="media_section_subtitle">Ikuti perkembangan terbaru, dapatkan insight kreatif, dan lihat kembali momen-momen tak terlupakan dari Portal 7!</p>
+            <div class="media-subsection" id="blog-articles-container" data-aos="fade-up" data-aos-delay="100">
+                <h3><i class="fas fa-newspaper"></i> <span data-translate-key="media_articles_title">Artikel & Insight</span></h3>
+                <div class="articles-grid"><p class="loading-message" data-translate-key="media_articles_loading">Memuat artikel...</p></div>
+                <div class="view-all-container"><a href="blog.html" class="button-view-more-media" data-translate-key="media_articles_view_all">Lihat Semua Artikel</a></div>
             </div>
-            <div class="view-all-container">
-                <a href="blog.html" class="button-view-more-media">Lihat Semua Artikel</a>
-            </div>
-        </div>
-
-        <div class="media-subsection" id="gallery-container" data-aos="fade-up" data-aos-delay="200">
-            <h3><i class="fas fa-photo-video"></i> Galeri Foto & Video</h3>
-            <div class="gallery-tabs">
-                <button class="gallery-tab-button active" data-tab="photos">Foto Dokumentasi</button>
-                <button class="gallery-tab-button" data-tab="videos">Video Highlights</button>
-            </div>
-            <div class="gallery-grid-wrapper">
-                <div class="gallery-grid photos active-gallery-content">
-                    <p class="loading-message">Memuat foto...</p>
+            <div class="media-subsection" id="gallery-container" data-aos="fade-up" data-aos-delay="200">
+                <h3><i class="fas fa-photo-video"></i> <span data-translate-key="media_gallery_title">Galeri Foto & Video</span></h3>
+                <div class="gallery-tabs">
+                    <button class="gallery-tab-button active" data-tab="photos" data-translate-key="media_gallery_tab_photos">Foto Dokumentasi</button>
+                    <button class="gallery-tab-button" data-tab="videos" data-translate-key="media_gallery_tab_videos">Video Highlights</button>
                 </div>
-                <div class="gallery-grid videos">
-                    <p class="loading-message">Memuat video...</p>
+                <div class="gallery-grid-wrapper">
+                    <div class="gallery-grid photos active-gallery-content"><p class="loading-message" data-translate-key="media_gallery_photos_loading">Memuat foto...</p></div>
+                    <div class="gallery-grid videos"><p class="loading-message" data-translate-key="media_gallery_videos_loading">Memuat video...</p></div>
                 </div>
+                <div class="view-all-container"><a href="gallery.html" class="button-view-more-media" data-translate-key="media_gallery_view_all">Buka Galeri Lengkap</a></div>
             </div>
-            <div class="view-all-container">
-                <a href="gallery.html" class="button-view-more-media">Buka Galeri Lengkap</a>
+            <div class="media-subsection" id="partners-sponsors-container" data-aos="fade-up" data-aos-delay="300">
+                <h3><i class="fas fa-handshake"></i> <span data-translate-key="media_partners_title">Didukung Oleh</span></h3>
+                <div class="partners-grid"><p class="loading-message" data-translate-key="media_partners_loading">Memuat mitra & sponsor...</p></div>
             </div>
-        </div>
+        </section>
 
-        <div class="media-subsection" id="partners-sponsors-container" data-aos="fade-up" data-aos-delay="300">
-            <h3><i class="fas fa-handshake"></i> Didukung Oleh</h3>
-            <div class="partners-grid">
-                <p class="loading-message">Memuat mitra & sponsor...</p>
+        <section class="contact-section section-padding" id="kontak" data-aos="zoom-in-up">
+            <div class="contact-header">
+                <h2 class="section-title quirky-title"><span data-translate-key="contact_title">Ada Pertanyaan?</span></h2>
+                <p class="section-subtitle quirky-subtitle" data-translate-key="contact_subtitle">Kami siap mendengar ide brilian atau menjawab kebingunganmu. Yuk, hubungi kami!</p>
             </div>
-        </div>
-    </section>
-    <section class="contact-section section-padding" id="kontak" data-aos="zoom-in-up"> <div class="contact-header">
-            <h2 class="section-title quirky-title"><span>Ada Pertanyaan?</span></h2>
-            <p class="section-subtitle quirky-subtitle">Kami siap mendengar ide brilian atau menjawab kebingunganmu. Yuk, hubungi kami!</p>
-        </div>
-
-        <div class="contact-content-wrapper">
-            <div class="contact-info-form-container">
-                <div class="contact-direct-info" data-aos="fade-up" data-aos-delay="100">
-                    <h3><i class="far fa-comments quirky-icon-header"></i> Ngobrol Langsung</h3>
-                    <div class="info-item">
-                        <i class="fab fa-whatsapp accent-icon orange"></i>
-                        <div>
-                            <p><strong>PIC Portal 7 (WhatsApp):</strong></p>
-                            <p><a href="https://wa.me/6281234567890" target="_blank">+62 812-3456-7890</a> (Contoh)</p>
+            <div class="contact-content-wrapper">
+                <div class="contact-info-form-container">
+                    <div class="contact-direct-info" data-aos="fade-up" data-aos-delay="100">
+                        <h3><i class="far fa-comments quirky-icon-header"></i> <span data-translate-key="contact_direct_chat_title">Ngobrol Langsung</span></h3>
+                        <div class="info-item">
+                            <i class="fab fa-whatsapp accent-icon orange"></i>
+                            <div><p><strong data-translate-key="contact_pic_whatsapp">PIC Portal 7 (WhatsApp):</strong></p><p><a href="https://wa.me/6281234567890" target="_blank">+62 812-3456-7890</a> (Contoh)</p></div>
+                        </div>
+                        <div class="info-item">
+                            <i class="far fa-envelope-open-text accent-icon pink"></i>
+                            <div><p><strong data-translate-key="contact_official_email">Email Resmi:</strong></p><p><a href="mailto:portalbemsvipb@gmail.com">portalbemsvipb@gmail.com</a></p></div>
+                        </div>
+                        <h3 class="social-title"><i class="fa fa-share-alt quirky-icon-header"></i> <span data-translate-key="contact_follow_us_title">Ikuti Jejak Digital Kami</span></h3>
+                        <div class="contact-social-links">
+                            <a href="https://instagram.com/portal_ipb" target="_blank" class="social-icon ig" aria-label="Instagram Portal IPB"><i class="fab fa-instagram"></i></a>
+                            <a href="#" target="_blank" class="social-icon tw" aria-label="X/Twitter Portal IPB"><i class="fab fa-twitter"></i></a>
+                            <a href="#" target="_blank" class="social-icon yt" aria-label="YouTube Portal IPB"><i class="fab fa-youtube"></i></a>
+                            <a href="#" target="_blank" class="social-icon tk" aria-label="TikTok Portal IPB"><i class="fab fa-tiktok"></i></a>
                         </div>
                     </div>
-                    <div class="info-item">
-                        <i class="far fa-envelope-open-text accent-icon pink"></i>
-                        <div>
-                            <p><strong>Email Resmi:</strong></p>
-                            <p><a href="mailto:portalbemsvipb@gmail.com">portalbemsvipb@gmail.com</a></p>
-                        </div>
+                    <div class="contact-form-container" data-aos="fade-left" data-aos-delay="300">
+                        <h3><i class="far fa-paper-plane quirky-icon-header"></i> <span data-translate-key="contact_send_message_title">Kirim Pesanmu</span></h3>
+                        <form action="https://formspree.io/f/mvgrogko" method="POST" class="contact-form" id="main-contact-form">
+                            <div class="form-group">
+                                <input type="text" id="contact-name" name="name" required placeholder=" ">
+                                <label for="contact-name" data-translate-key="contact_form_name_label">Nama Lengkap Kamu</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="contact-email" name="_replyto" required placeholder=" ">
+                                <label for="contact-email" data-translate-key="contact_form_email_label">Alamat Email Aktif</label>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="contact-message" name="message" rows="5" required placeholder=" "></textarea>
+                                <label for="contact-message" data-translate-key="contact_form_message_label">Isi Pesanmu Disini...</label>
+                            </div>
+                            <input type="hidden" name="_subject" value="Pesan Baru dari Website Portal 7!">
+                            <button type="submit" class="hero-button button-main-cta quirky-submit" data-translate-key="contact_form_button_send">Wuzzz, Kirim!</button>
+                        </form>
                     </div>
+                </div>
+                <div class="contact-map-container" data-aos="zoom-in-up" data-aos-delay="400">
+                    <h3><i class="fas fa-map-marked-alt quirky-icon-header"></i> <span data-translate-key="contact_map_title">Lokasi Kami (Jika Ada Acara Offline)</span></h3>
+                    <div class="map-placeholder">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.0090270000003!2d106.80206801477108!3d-6.59518679520247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69c5d2e6955913%3A0x7883a24f16139d06!2sInstitut%20Pertanian%20Bogor%20(IPB)!5e0!3m2!1sen!2sid!4v1622277880000!5m2!1sen!2sid" width="100%" height="380" style="border:0; border-radius: 10px;" allowfullscreen="" loading="eager" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-                    <h3 class="social-title"><i class="fa fa-share-alt quirky-icon-header"></i> Ikuti Jejak Digital Kami</h3>
-                    <div class="contact-social-links">
+    <footer>
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-logo-area">
+                    <a href="index.html#hero"><img src="img/Portal_Logo.png" alt="Logo Mini Portal 7" class="portal-logo footer-logo-img"></a>
+                    <p class="footer-event-name">Portal 7: Empower Digital</p>
+                </div>
+                <div class="footer-quick-links">
+                    <h4 data-translate-key="footer_nav_cepat">Navigasi Cepat</h4>
+                    <a href="index.html#tentang" data-translate-key="nav_tentang_kami">Tentang Kami</a>
+                    <a href="competition-hub.html" data-translate-key="nav_kompetisi">Kompetisi</a>
+                    <a href="seminar.html" data-translate-key="nav_seminar">Seminar</a>
+                    <a href="index.html#linimasa" data-translate-key="nav_linimasa">Linimasa</a>
+                    <a href="blog.html" data-translate-key="nav_blog">Blog</a>
+                    <a href="gallery.html" data-translate-key="nav_gallery">Galeri</a>
+                    <a href="index.html#faq" data-translate-key="nav_faq">FAQ</a>
+                </div>
+                <div class="footer-contact-social">
+                    <h4 data-translate-key="footer_hubungi_kami">Terhubung Dengan Kami</h4>
+                    <div class="footer-contact-item"><i class="far fa-envelope"></i> <a href="mailto:portalbemsvipb@gmail.com">portalbemsvipb@gmail.com</a></div>
+                    <div class="footer-social-links">
                         <a href="https://instagram.com/portal_ipb" target="_blank" class="social-icon ig" aria-label="Instagram Portal IPB"><i class="fab fa-instagram"></i></a>
                         <a href="#" target="_blank" class="social-icon tw" aria-label="X/Twitter Portal IPB"><i class="fab fa-twitter"></i></a>
                         <a href="#" target="_blank" class="social-icon yt" aria-label="YouTube Portal IPB"><i class="fab fa-youtube"></i></a>
                         <a href="#" target="_blank" class="social-icon tk" aria-label="TikTok Portal IPB"><i class="fab fa-tiktok"></i></a>
                     </div>
                 </div>
-
-                <div class="contact-form-container" data-aos="fade-left" data-aos-delay="300">
-                    <h3><i class="far fa-paper-plane quirky-icon-header"></i> Kirim Pesanmu</h3>
-                    <form action="https://formspree.io/f/mvgrogko" method="POST" class="contact-form" id="main-contact-form">
-                        <div class="form-group">
-                            <input type="text" id="contact-name" name="name" required placeholder=" ">
-                            <label for="contact-name">Nama Lengkap Kamu</label>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" id="contact-email" name="_replyto" required placeholder=" ">
-                            <label for="contact-email">Alamat Email Aktif</label>
-                        </div>
-                        <div class="form-group">
-                            <textarea id="contact-message" name="message" rows="5" required placeholder=" "></textarea>
-                            <label for="contact-message">Isi Pesanmu Disini...</label>
-                        </div>
-                        <input type="hidden" name="_subject" value="Pesan Baru dari Website Portal 7!">
-
-                        <button type="submit" class="hero-button button-main-cta quirky-submit">Wuzzz, Kirim!</button>
-                    </form>
-                </div>
             </div>
-
-            <div class="contact-map-container" data-aos="zoom-in-up" data-aos-delay="400">
-                <h3><i class="fas fa-map-marked-alt quirky-icon-header"></i> Lokasi Kami (Jika Ada Acara Offline)</h3>
-                <div class="map-placeholder">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.0090270000003!2d106.80206801477108!3d-6.59518679520247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69c5d2e6955913%3A0x7883a24f16139d06!2sInstitut%20Pertanian%20Bogor%20(IPB)!5e0!3m2!1sen!2sid!4v1622277880000!5m2!1sen!2sid"
-                        width="100%" height="380" style="border:0; border-radius: 10px;" allowfullscreen="" loading="eager" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <p data-translate-key="footer_copyright_line1">© 2025 Badan Eksekutif Mahasiswa Sekolah Vokasi IPB University. All rights reserved.</p>
+                    <p data-translate-key="footer_copyright_line2">Empowered by Inspiration, Driven by Innovation.</p>
                 </div>
+                <a href="#hero" class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
             </div>
         </div>
-    </section>
-    </main>
-<footer>
-    <div class="footer-container"> <div class="footer-top">
-            <div class="footer-logo-area">
-                <a href="index.html#hero"> <img src="img/Portal_Logo.png" alt="Logo Mini Portal 7" class="portal-logo footer-logo-img">
-                </a>
-                <p class="footer-event-name">Portal 7: Empower Digital</p>
-            </div>
-
-            <div class="footer-quick-links">
-                <h4>Navigasi Cepat</h4>
-                <a href="index.html#tentang">Tentang Kami</a>
-                <a href="competition-hub.html">Kompetisi</a>
-                <a href="seminar.html">Seminar</a>
-                <a href="index.html#linimasa">Linimasa</a>
-                <a href="blog.html">Blog</a>
-                <a href="gallery.html">Galeri</a>
-                <a href="index.html#faq">FAQ</a>
-            </div>
-
-            <div class="footer-contact-social">
-                <h4>Terhubung Dengan Kami</h4>
-                <div class="footer-contact-item">
-                    <i class="far fa-envelope"></i> <a href="mailto:portalbemsvipb@gmail.com">portalbemsvipb@gmail.com</a>
-                </div>
-                <div class="footer-social-links">
-                    <a href="https://instagram.com/portal_ipb" target="_blank" class="social-icon ig" aria-label="Instagram Portal IPB"><i class="fab fa-instagram"></i></a>
-                    <a href="#" target="_blank" class="social-icon tw" aria-label="X/Twitter Portal IPB"><i class="fab fa-twitter"></i></a>
-                    <a href="#" target="_blank" class="social-icon yt" aria-label="YouTube Portal IPB"><i class="fab fa-youtube"></i></a>
-                    <a href="#" target="_blank" class="social-icon tk" aria-label="TikTok Portal IPB"><i class="fab fa-tiktok"></i></a>
-                    </div>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <div class="footer-copyright">
-                <p>&copy; 2025 Badan Eksekutif Mahasiswa Sekolah Vokasi IPB University. All rights reserved.</p>
-                <p>Empowered by Inspiration, Driven by Innovation.</p>
-            </div>
-            <a href="#hero" class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
-        </div>
-    </div>
-</footer>
+    </footer>
     
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         // --- AOS Initialization ---
         AOS.init({
             duration: 800,
             once: true,
         });
+
+        // --- Language Toggle ---
+        const langToggleButton = document.getElementById('lang-toggle');
+        let currentLang = localStorage.getItem('lang') || 'id'; // Default to Indonesian
+        let translations = {};
+
+        // Function to fetch translations
+        async function fetchTranslations() {
+            try {
+                const response = await fetch('translations.json'); // Make sure this path is correct
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                translations = await response.json();
+                setLanguage(currentLang);
+            } catch (error) {
+                console.error("Could not load translations:", error);
+                // Fallback or error display logic here
+            }
+        }
+
+        // Function to set the language
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('lang', lang);
+            document.documentElement.lang = lang; // Update HTML lang attribute
+
+            if (langToggleButton) {
+                 // Update button text based on the *other* language
+                langToggleButton.textContent = lang === 'id' ? translations.id.lang_toggle : translations.en.lang_toggle;
+            }
+
+            const elementsToTranslate = document.querySelectorAll('[data-translate-key]');
+            elementsToTranslate.forEach(el => {
+                const key = el.dataset.translateKey;
+                if (translations[lang] && translations[lang][key]) {
+                    // Preserve child elements like <i> for icons
+                    if (el.children.length > 0 && el.childNodes.length > el.children.length) {
+                        // Element has text nodes mixed with child elements
+                        let newHTML = translations[lang][key];
+                        // Append existing child HTML to the translated string
+                        // This is a simple approach; complex structures might need more specific handling
+                        Array.from(el.children).forEach(child => {
+                            if (newHTML.includes(`%CHILD_${child.tagName}%`)) { // Placeholder for specific children
+                                newHTML = newHTML.replace(`%CHILD_${child.tagName}%`, child.outerHTML);
+                            } else if (child.classList.contains('dropdown-icon')) { // Specific for dropdown icons
+                                 // The key in translations.json should include a placeholder like <i...></i>
+                                 // For example: "nav_tentang_portal": "About Portal %ICON%"
+                                 // Then replace %ICON% with the actual icon HTML.
+                                 // Or, more simply, the translation key should already contain the icon if it's static.
+                                 // For now, if the key is for a dropdown, we assume the translation includes the icon.
+                                 // A more robust solution would be to not translate the icon part.
+                            }
+                        });
+                         // A common case: text node then icon.
+                        if (el.firstChild && el.firstChild.nodeType === Node.TEXT_NODE && el.querySelector('i.dropdown-icon')) {
+                            el.firstChild.textContent = translations[lang][key].replace(/<i.*<\/i>/, '').trim();
+                        } else {
+                             el.innerHTML = translations[lang][key]; // Fallback if complex
+                        }
+
+                    } else if (el.children.length > 0 && !el.textContent.trim().split('\n').map(s => s.trim()).filter(Boolean).some(textPart => translations[lang][key].includes(textPart))) {
+                        // If the element only contains other elements (e.g., a div with only icons), don't overwrite its innerHTML
+                        // unless the key is specifically for an attribute like aria-label.
+                        // This part is tricky and depends on how you structure your keys.
+                        // For now, we assume keys are for text content.
+                        // If a key is for an attribute, handle it separately.
+                        // Example: if (el.hasAttribute('aria-label') && key === 'some_aria_label_key') el.setAttribute('aria-label', translations[lang][key]);
+                         // If it's a dropdown toggle, the key in translations.json should include the icon HTML
+                        if (el.classList.contains('dropdown-toggle') && translations[lang][key].includes('<i')) {
+                            el.innerHTML = translations[lang][key];
+                        } else if (el.children.length === 1 && el.children[0].tagName === 'I') {
+                            // If it's just an icon, don't translate its textContent
+                        }
+                        else {
+                            // Try to replace only the first text node if it exists and is not just whitespace
+                            let replaced = false;
+                            for (let i = 0; i < el.childNodes.length; i++) {
+                                if (el.childNodes[i].nodeType === Node.TEXT_NODE && el.childNodes[i].textContent.trim() !== '') {
+                                    el.childNodes[i].textContent = translations[lang][key];
+                                    replaced = true;
+                                    break;
+                                }
+                            }
+                            if (!replaced) { // Fallback if no direct text node found (e.g. text is inside a span)
+                                // This is a simplification. For deeply nested text, you might need more specific selectors or keys.
+                                const textSpan = el.querySelector('span:not([class])'); // Example: find a generic span
+                                if (textSpan) textSpan.textContent = translations[lang][key];
+                                // else el.textContent = translations[lang][key]; // Last resort, might break structure
+                            }
+                        }
+                    }
+                     else {
+                        el.textContent = translations[lang][key];
+                    }
+                } else if (translations[lang] && translations[lang][key] === "") {
+                    el.textContent = ""; // Handle empty strings if needed
+                }
+            });
+        }
+
+        // Event listener for the toggle button
+        if (langToggleButton) {
+            langToggleButton.addEventListener('click', () => {
+                const newLang = currentLang === 'id' ? 'en' : 'id';
+                setLanguage(newLang);
+            });
+        }
+
+        // Initial fetch of translations
+        fetchTranslations();
+
 
         // --- Mobile Navigation Variables ---
         const menuToggleButton = document.getElementById('mobile-menu-toggle');
@@ -744,13 +779,13 @@
         // --- 1. Toggle Main Mobile Menu (Hamburger) ---
         if (menuToggleButton) {
             menuToggleButton.addEventListener('click', (e) => {
-                e.stopPropagation(); // Important to prevent immediate close if click bubbles
+                e.stopPropagation();
                 const isActive = mainNavLinks.classList.toggle('active');
                 menuToggleButton.setAttribute('aria-expanded', isActive);
                 if (menuIcon) {
                     menuIcon.className = isActive ? 'fas fa-times' : 'fas fa-bars';
                 }
-                if (!isActive) { // If menu is being closed by toggle
+                if (!isActive) {
                     document.querySelectorAll('.nav-links .nav-item.dropdown.open').forEach(openDropdown => {
                         openDropdown.classList.remove('open');
                     });
@@ -760,92 +795,67 @@
 
         // --- 2. Toggle Dropdowns within Mobile Menu ---
         document.querySelectorAll('.nav-links .dropdown-toggle').forEach(toggle => {
-            // console.log("Attaching click listener to dropdown toggle:", toggle.textContent.trim());
             toggle.addEventListener('click', function(e) {
-                // console.log("Dropdown toggle clicked:", this.textContent.trim());
-                if (mainNavLinks && mainNavLinks.classList.contains('active')) { // Only operate if mobile menu is open
-                    // console.log("Mobile menu is active, proceeding with toggle for:", this.textContent.trim());
-                    
-                    // For dropdown toggles that are actual links (e.g., href="#some-section-if-no-js")
-                    // AND if they are just placeholders (href="#"), prevent default jump.
+                if (mainNavLinks && mainNavLinks.classList.contains('active')) { 
                     if (this.getAttribute('href') === '#') {
                         e.preventDefault();
                     }
-
                     const parentDropdown = this.closest('.nav-item.dropdown');
-                    if (!parentDropdown) {
-                        // console.error("Could not find .nav-item.dropdown parent for", this);
-                        return;
-                    }
-                    // console.log("Parent dropdown element:", parentDropdown);
+                    if (!parentDropdown) return;
+                    
                     const currentlyOpen = parentDropdown.classList.contains('open');
-                    // console.log(this.textContent.trim() + " - Currently open:", currentlyOpen);
-
-                    // // Accordion behavior: Close other open dropdowns
+                    // Optional: Accordion behavior - close other open dropdowns in mobile
                     // document.querySelectorAll('.nav-links.active .nav-item.dropdown.open').forEach(openSubDropdown => {
                     //     if (openSubDropdown !== parentDropdown) {
-                    //         // console.log("Closing other dropdown:", openSubDropdown);
                     //         openSubDropdown.classList.remove('open');
                     //     }
                     // });
-
-                    // Toggle the current one
                     parentDropdown.classList.toggle('open', !currentlyOpen);
-                    // console.log(this.textContent.trim() + " - Toggled 'open'. Now open:", parentDropdown.classList.contains('open'));
-                    e.stopPropagation(); // Prevent click from bubbling to document listener for "click outside"
-                } else {
-                    // console.log("Mobile menu NOT active. Desktop hover should handle this for:", this.textContent.trim());
+                    e.stopPropagation(); 
                 }
             });
         });
 
         // --- 3. Handle Clicks on Nav Items (for closing menu and smooth scroll) ---
-        // This listener is primarily for same-page anchor links on index.html
-        // For other pages, it ensures menu closes on navigation.
         document.querySelectorAll('#main-nav-links a').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 const fullHref = this.getAttribute('href');
                 const isDropdownToggle = this.classList.contains('dropdown-toggle');
 
-                // If it's a dropdown toggle clicked in mobile view, the specific dropdown handler above deals with it.
-                // Don't close the whole menu here for dropdown toggles.
                 if (isDropdownToggle && mainNavLinks.classList.contains('active')) {
-                    // console.log("Dropdown toggle clicked, mobile dropdown logic will handle it.");
-                    return; // Let the dedicated dropdown toggle handler work
+                    return; 
                 }
 
-                // For same-page anchor links on index.html
-                if (fullHref && fullHref.includes('index.html#') && window.location.pathname.endsWith('index.html')) {
+                const isIndexPage = window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/index');
+                
+                if (fullHref && fullHref.includes('index.html#') && isIndexPage) { 
                     const targetId = fullHref.split('#')[1];
                     if (targetId && document.getElementById(targetId)) {
                         e.preventDefault();
-                        smoothScrollToTarget(targetId); // smoothScrollToTarget should be defined
+                        smoothScrollToTarget(targetId);
                         closeMobileMenu();
-                    } else { // Hash target doesn't exist on this page
+                    } else { 
                         if(mainNavLinks.classList.contains('active')) closeMobileMenu();
                     }
-                } else if (fullHref && fullHref.startsWith('#') && document.getElementById(fullHref.substring(1))) {
-                    // Same-page anchor on the current page (could be index.html or other pages)
+                } else if (fullHref && fullHref.startsWith('#') && document.getElementById(fullHref.substring(1))) { 
                     e.preventDefault();
-                    smoothScrollToTarget(fullHref.substring(1)); // smoothScrollToTarget should be defined
+                    smoothScrollToTarget(fullHref.substring(1));
                     closeMobileMenu();
-                } else {
-                    // Link to another page or a non-scroll action
-                    if(mainNavLinks.classList.contains('active')) {
-                         closeMobileMenu();
+                } else { 
+                    if(mainNavLinks.classList.contains('active') && !isDropdownToggle) { // Close only if not a dropdown toggle itself
+                         closeMobileMenu(); 
                     }
                 }
             });
         });
         
-        // Smooth Scroll Function (ensure this is defined - from index.html)
         function smoothScrollToTarget(targetId, isPageLoad = false) {
             const targetElement = document.getElementById(targetId);
             if (targetElement) {
                 const navElement = document.querySelector('nav');
                 const navHeight = navElement ? navElement.offsetHeight : 0;
                 let targetElementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-                if (isPageLoad) { 
+                if (isPageLoad && (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/index'))) { 
                     let elem = targetElement; let top = 0;
                     while(elem) { top += elem.offsetTop; elem = elem.offsetParent; }
                     targetElementPosition = top;
@@ -857,8 +867,7 @@
             return false;
         }
         
-        // Scroll on page load if hash present (mainly for index.html)
-        if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/index')) { // Check if on index page
+        if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/index')) {
             window.addEventListener('load', () => {
                 if (window.location.hash) {
                     const targetId = window.location.hash.substring(1);
@@ -867,62 +876,79 @@
             });
         }
 
-
-        // --- 4. Click Outside to Close Mobile Menu ---
         document.addEventListener('click', function(event) {
             if (mainNavLinks && mainNavLinks.classList.contains('active')) {
                 const isClickInsideNav = mainNavLinks.contains(event.target);
                 const isClickOnToggleButton = menuToggleButton ? menuToggleButton.contains(event.target) : false;
                 if (!isClickInsideNav && !isClickOnToggleButton) {
-                    // console.log("Click outside detected, closing mobile menu.");
                     closeMobileMenu();
                 }
             }
         });
 
         // --- FAQ Accordion ---
-        // ... (Your existing FAQ script - it's good) ...
         document.querySelectorAll('.faq-question').forEach((question) => {
             question.addEventListener('click', () => {
                 const currentItem = question.parentElement;
-                document.querySelectorAll('.faq-item').forEach((item) => {
-                    if (item !== currentItem) {
-                        item.classList.remove('active');
-                        const otherIcon = item.querySelector('.faq-question .faq-icon i');
-                        if (otherIcon) { otherIcon.classList.remove('fa-minus'); otherIcon.classList.add('fa-plus'); }
-                    }
-                });
-                currentItem.classList.toggle('active');
+                const isActive = currentItem.classList.contains('active');
+                
+                // Optional: Close all other items
+                // document.querySelectorAll('.faq-item.active').forEach((item) => {
+                //     if (item !== currentItem) {
+                //         item.classList.remove('active');
+                //         const otherIcon = item.querySelector('.faq-question .faq-icon i');
+                //         if (otherIcon) { otherIcon.className = 'fas fa-plus'; }
+                //     }
+                // });
+
+                currentItem.classList.toggle('active', !isActive);
                 const currentIcon = question.querySelector('.faq-question .faq-icon i');
                 if (currentIcon) {
-                    if (currentItem.classList.contains('active')) { currentIcon.classList.remove('fa-plus'); currentIcon.classList.add('fa-minus'); }
-                    else { currentIcon.classList.remove('fa-minus'); currentIcon.classList.add('fa-plus'); }
+                    currentIcon.className = currentItem.classList.contains('active') ? 'fas fa-minus' : 'fas fa-plus';
                 }
             });
         });
 
         // --- Countdown Timer Script ---
-        // ... (Your existing Countdown script - it's good) ...
         function startCountdown() {
             const countdownDate = new Date("October 11, 2025 00:00:00").getTime();
-            const daysEl = document.getElementById("days"); const hoursEl = document.getElementById("hours");
-            const minutesEl = document.getElementById("minutes"); const secondsEl = document.getElementById("seconds");
+            const daysEl = document.getElementById("days"); 
+            const hoursEl = document.getElementById("hours");
+            const minutesEl = document.getElementById("minutes"); 
+            const secondsEl = document.getElementById("seconds");
             const timerEl = document.getElementById("countdown-timer");
             if (!daysEl || !hoursEl || !minutesEl || !secondsEl || !timerEl) return;
+
             const countdownFunction = setInterval(function() {
-                const now = new Date().getTime(); const distance = countdownDate - now;
-                const days = Math.floor(distance / (1000*60*60*24)); const hours = Math.floor((distance % (1000*60*60*24))/(1000*60*60));
-                const minutes = Math.floor((distance % (1000*60*60))/(1000*60)); const seconds = Math.floor((distance % (1000*60))/1000);
-                daysEl.innerText = days < 10 ? "0"+days : days; hoursEl.innerText = hours < 10 ? "0"+hours : hours;
-                minutesEl.innerText = minutes < 10 ? "0"+minutes : minutes; secondsEl.innerText = seconds < 10 ? "0"+seconds : seconds;
-                if (distance < 0) { clearInterval(countdownFunction); timerEl.innerHTML = "EVENT TELAH DIMULAI!"; timerEl.style.fontSize="1.5rem"; timerEl.style.fontWeight="bold";}
+                const now = new Date().getTime(); 
+                const distance = countdownDate - now;
+                const days = Math.floor(distance / (1000*60*60*24)); 
+                const hours = Math.floor((distance % (1000*60*60*24))/(1000*60*60));
+                const minutes = Math.floor((distance % (1000*60*60))/(1000*60)); 
+                const seconds = Math.floor((distance % (1000*60))/1000);
+                
+                daysEl.innerText = days < 10 ? "0"+days : days; 
+                hoursEl.innerText = hours < 10 ? "0"+hours : hours;
+                minutesEl.innerText = minutes < 10 ? "0"+minutes : minutes; 
+                secondsEl.innerText = seconds < 10 ? "0"+seconds : seconds;
+                
+                if (distance < 0) { 
+                    clearInterval(countdownFunction); 
+                    timerEl.innerHTML = "<span data-translate-key='event_started'>EVENT TELAH DIMULAI!</span>"; // Added key for translation
+                    timerEl.style.fontSize="1.5rem"; 
+                    timerEl.style.fontWeight="bold";
+                    // Re-translate if language changes after timer ends
+                    if (translations[currentLang] && translations[currentLang]['event_started']) {
+                         timerEl.innerHTML = translations[currentLang]['event_started'];
+                    }
+                }
             }, 1000);
         }
-        if (document.getElementById("countdown-timer")) { document.addEventListener('DOMContentLoaded', startCountdown); }
-
+        if (document.getElementById("countdown-timer")) { 
+            document.addEventListener('DOMContentLoaded', startCountdown); 
+        }
 
         // --- Logo Animation Sequencing ---
-        // ... (Your existing Logo Animation script - it's good) ...
         document.addEventListener('DOMContentLoaded', () => {
             const heroLogo = document.querySelector('.hero-left img.portal-logo.hero-logo-entry');
             if (heroLogo) {
@@ -937,12 +963,11 @@
         });
 
         // --- Berita & Media Section Script (JSON Loader) ---
-        // ... (Your existing Media Loader script - it's good, just ensure functions are defined or pasted here) ...
         const blogArticlesContainer = document.querySelector('#blog-articles-container .articles-grid');
         const galleryPhotosContainer = document.querySelector('#gallery-container .gallery-grid.photos');
         const galleryVideosContainer = document.querySelector('#gallery-container .gallery-grid.videos');
         const partnersSponsorsContainer = document.querySelector('#partners-sponsors-container .partners-grid');
-        const galleryTabs = document.querySelectorAll('#media .gallery-tab-button'); // More specific selector for homepage tabs
+        const galleryTabs = document.querySelectorAll('#media .gallery-tab-button');
 
         async function loadMediaContent() {
             try {
@@ -954,23 +979,49 @@
                 if (galleryVideosContainer) renderGalleryVideos(data.gallery.videos);
                 if (partnersSponsorsContainer) renderPartnersSponsors(data.partnersSponsors);
             } catch (error) {
-                // console.error("Gagal memuat konten media:", error);
-                if (blogArticlesContainer) blogArticlesContainer.innerHTML = '<p class="error-message">Gagal memuat artikel.</p>';
-                if (galleryPhotosContainer) galleryPhotosContainer.innerHTML = '<p class="error-message">Gagal memuat foto.</p>';
-                if (galleryVideosContainer) galleryVideosContainer.innerHTML = '<p class="error-message">Gagal memuat video.</p>';
-                if (partnersSponsorsContainer) partnersSponsorsContainer.innerHTML = '<p class="error-message">Gagal memuat mitra.</p>';
+                console.error("Gagal memuat konten media:", error);
+                if (blogArticlesContainer) blogArticlesContainer.innerHTML = `<p class="error-message" data-translate-key="error_load_articles">Gagal memuat artikel.</p>`;
+                if (galleryPhotosContainer) galleryPhotosContainer.innerHTML = `<p class="error-message" data-translate-key="error_load_photos">Gagal memuat foto.</p>`;
+                if (galleryVideosContainer) galleryVideosContainer.innerHTML = `<p class="error-message" data-translate-key="error_load_videos">Gagal memuat video.</p>`;
+                if (partnersSponsorsContainer) partnersSponsorsContainer.innerHTML = `<p class="error-message" data-translate-key="error_load_partners">Gagal memuat mitra.</p>`;
+                setLanguage(currentLang); // Re-translate error messages
             }
         }
         function renderBlogArticles(articles) { 
-            if (!blogArticlesContainer || !articles || articles.length === 0) { if(blogArticlesContainer) blogArticlesContainer.innerHTML = '<p>Belum ada artikel.</p>'; return; }
+            if (!blogArticlesContainer || !articles || articles.length === 0) { 
+                if(blogArticlesContainer) blogArticlesContainer.innerHTML = `<p data-translate-key="no_articles">Belum ada artikel.</p>`; 
+                setLanguage(currentLang); // Translate "no articles" message
+                return; 
+            }
             blogArticlesContainer.innerHTML = ''; 
             articles.slice(0, 3).forEach(article => {
-                const articleCardHTML = `<div class="article-card" data-aos="fade-up" data-aos-anchor="#blog-articles-container"><a href="${article.link}" class="article-card-link"><div class="article-image-wrapper"><img src="${article.image}" alt="${article.title}" class="article-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"><div class="article-image-fallback" style="display: none;"><i class="fas fa-image fa-3x"></i></div></div><div class="article-content"><h4 class="article-title">${article.title}</h4><p class="article-meta">${article.date} | Oleh: ${article.author}</p><p class="article-summary">${article.summary}</p><span class="article-link-text">Baca Selengkapnya <i class="fas fa-arrow-right"></i></span></div></a></div>`;
+                // For dynamic content like this, you'd typically have separate translation keys for title, summary, etc.
+                // Or, your media-content.json would need to be structured with language variations.
+                // For simplicity here, I'm assuming the content in media-content.json is in the default language (ID)
+                // and won't be translated by this script unless you add specific keys for them.
+                const articleCardHTML = `<div class="article-card" data-aos="fade-up" data-aos-anchor="#blog-articles-container">
+                    <a href="${article.link}" class="article-card-link">
+                        <div class="article-image-wrapper">
+                            <img src="${article.image}" alt="${article.title}" class="article-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="article-image-fallback" style="display: none;"><i class="fas fa-image fa-3x"></i></div>
+                        </div>
+                        <div class="article-content">
+                            <h4 class="article-title">${article.title}</h4>
+                            <p class="article-meta">${article.date} | <span data-translate-key="article_author_prefix">Oleh:</span> ${article.author}</p>
+                            <p class="article-summary">${article.summary}</p>
+                            <span class="article-link-text" data-translate-key="article_read_more">Baca Selengkapnya <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </a>
+                </div>`;
                 blogArticlesContainer.insertAdjacentHTML('beforeend', articleCardHTML);
             });
+            setLanguage(currentLang); // Re-translate any static parts like "Oleh" or "Baca Selengkapnya"
         }
+        // Similar logic for renderGalleryPhotos, renderGalleryVideos, renderPartnersSponsors
+        // You'll need to decide if the content within media-content.json itself needs translation
+        // or if only static surrounding text needs keys.
         function renderGalleryPhotos(photos) { 
-            if (!galleryPhotosContainer || !photos || photos.length === 0) { if(galleryPhotosContainer) galleryPhotosContainer.innerHTML = '<p>Belum ada foto.</p>'; return; }
+            if (!galleryPhotosContainer || !photos || photos.length === 0) { if(galleryPhotosContainer) galleryPhotosContainer.innerHTML = `<p data-translate-key="no_photos">Belum ada foto.</p>`; setLanguage(currentLang); return; }
             galleryPhotosContainer.innerHTML = '';
             photos.slice(0, 6).forEach(photo => {
                 const photoItem = `<div class="gallery-item photo" data-aos="zoom-in-up" data-aos-anchor="#gallery-container"><img src="${photo.thumbnailUrl}" alt="${photo.title}" onerror="this.src='https://placehold.co/300x300/e0e0e0/757575?text=Error&font=montserrat';"><div class="gallery-item-overlay"><i class="fas fa-search-plus"></i><span>${photo.title} (${photo.year || ''})</span></div></div>`;
@@ -978,7 +1029,7 @@
             });
         }
         function renderGalleryVideos(videos) { 
-            if (!galleryVideosContainer || !videos || videos.length === 0) { if(galleryVideosContainer) galleryVideosContainer.innerHTML = '<p>Belum ada video.</p>'; return; }
+            if (!galleryVideosContainer || !videos || videos.length === 0) { if(galleryVideosContainer) galleryVideosContainer.innerHTML = `<p data-translate-key="no_videos">Belum ada video.</p>`; setLanguage(currentLang); return; }
             galleryVideosContainer.innerHTML = '';
             videos.slice(0, 3).forEach(video => {
                 const videoItem = `<div class="gallery-item video" data-aos="zoom-in-up" data-aos-anchor="#gallery-container"><img src="${video.thumbnailUrl}" alt="${video.title}" onerror="this.src='https://placehold.co/300x200/e0e0e0/757575?text=Error&font=montserrat';"><div class="gallery-item-overlay"><i class="fas fa-play-circle"></i><span>${video.title}</span></div></div>`;
@@ -986,19 +1037,20 @@
             });
         }
         function renderPartnersSponsors(items) { 
-            if (!partnersSponsorsContainer || !items || items.length === 0) { if(partnersSponsorsContainer) partnersSponsorsContainer.innerHTML = '<p>Mitra akan segera tampil.</p>'; return; }
+            if (!partnersSponsorsContainer || !items || items.length === 0) { if(partnersSponsorsContainer) partnersSponsorsContainer.innerHTML = `<p data-translate-key="no_partners">Mitra akan segera tampil.</p>`; setLanguage(currentLang); return; }
             partnersSponsorsContainer.innerHTML = '';
             items.forEach(item => {
                 const partnerItem = `<div class="partner-item" data-aos="fade-up" data-aos-anchor="#partners-sponsors-container"><a href="${item.websiteUrl}" target="_blank" rel="noopener noreferrer" title="${item.name} (${item.type})"><img src="${item.logoUrl}" alt="${item.name}" onerror="this.parentElement.innerHTML = '<span class=\\'partner-name-fallback\\'>${item.name}</span>';"></a></div>`;
                 partnersSponsorsContainer.insertAdjacentHTML('beforeend', partnerItem);
             });
         }
+
         if (galleryTabs.length > 0) {
             galleryTabs.forEach(tab => {
                 tab.addEventListener('click', () => {
                     galleryTabs.forEach(t => t.classList.remove('active'));
                     tab.classList.add('active');
-                    document.querySelectorAll('#media .gallery-grid').forEach(content => { // Specific to #media section
+                    document.querySelectorAll('#media .gallery-grid').forEach(content => {
                         content.classList.remove('active-gallery-content');
                     });
                     const targetContentClass = tab.dataset.tab;
