@@ -5,11 +5,11 @@ html {
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; 
 }
 
 :root {
-    --primary-color: #243124; /* Hijau Tua */
+    --primary-color: #23272f; /* Hijau Tua */
     --secondary-color: #f0f0f0; /* Abu-abu Muda - Good for text on dark backgrounds */
     --text-color: #333; /* Abu-abu Tua untuk teks (original) */
     --pink-accent: #EC4899; /* Warna pink dari gambar asli */
@@ -49,9 +49,23 @@ body {
     line-height: 1.6;
     position: relative;
     overflow-y: visible;
-    
+    background-color: #23273f;
 }
-
+/* === FOOTER REVAMP === */
+footer {
+    background-color: var(--navbar-bg); /* Consistent dark background */
+    color: var(--secondary-color);
+    padding: 4rem 2rem 2rem; /* Adjusted padding */
+    text-align: left; /* Change default alignment */
+    position: relative; /* For pseudo-elements or absolute positioned items if needed */
+    border-top: 3px solid transparent; /* Prepare for gradient border */
+    border-image: linear-gradient(to right, var(--pink-accent), var(--blue-accent), var(--yellow-accent)) 1 stretch;
+    background-image: 
+        linear-gradient(-45deg, rgba(var(--blue-accent-rgb), 0.03) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, rgba(var(--blue-accent-rgb), 0.03) 75%),
+        linear-gradient(-45deg, transparent 75%, rgba(var(--blue-accent-rgb), 0.03) 75%);
+    background-size: 20px 20px;
+}
 /* --- NAVBAR STYLES START --- */
 nav {
     background-color: var(--navbar-bg); /* Dark background for the navbar */
@@ -721,7 +735,6 @@ nav::after {
     padding: 1.25rem;
     background-color: var(--section-bg-light); /* Light background for each item card */
     border-radius: 8px;
-    border: 1px solid #e7e7e7; /* Subtle border for items */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -769,6 +782,159 @@ nav::after {
     font-size: 0.9rem;
     color: #4B5563; /* Darker gray for better readability */
     line-height: 1.6;
+}
+.sdg-section {
+    background-color: var(--navbar-bg); /* Dark background consistent with portal theme */
+    position: relative; /* For positioning decorative elements */
+    overflow: hidden; /* Contain decorative elements */
+}
+
+.sdg-section .section-title {
+    color: var(--secondary-color);
+    font-size: 2.8rem; /* Consistent with highlight section */
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+    text-shadow: 0 0 10px rgba(var(--blue-accent-rgb), 0.3);
+}
+.sdg-section .section-title span { /* For "Our Commitment" */
+    color: var(--pink-accent);
+    font-style: italic;
+}
+
+.sdg-section .section-subtitle {
+    color: #b0b8c4;
+    margin-bottom: 3.5rem;
+}
+
+.sdg-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem; /* Spacing between SDG cards */
+    max-width: 1100px; /* Consistent width */
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.sdg-item {
+    background: rgba(35, 39, 47, 0.7); /* Dark semi-transparent card background */
+    backdrop-filter: blur(8px) saturate(110%);
+    -webkit-backdrop-filter: blur(8px) saturate(110%);
+    border-radius: 15px; /* Moderately rounded corners */
+    padding: 2rem 1.5rem;
+    border: 1px solid rgba(var(--blue-accent-rgb), 0.25);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.35), 
+                inset 0 0 0 1px rgba(var(--secondary-color-rgb, 240, 240, 240), 0.05);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                box-shadow 0.35s ease,
+                border-color 0.35s ease;
+    position: relative;
+    overflow: hidden; /* For pseudo-elements and deco lines */
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%); /* Geometric cut corner */
+}
+
+.sdg-item:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: rgba(var(--pink-accent-rgb), 0.6);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.45), /* Stronger shadow */
+                0 0 25px rgba(var(--pink-accent-rgb), 0.25); /* Themed glow */
+}
+
+.sdg-item-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.sdg-icon {
+    width: 70px; /* Adjust size as needed */
+    height: 70px;
+    object-fit: contain;
+    border-radius: 8px; /* Slightly rounded icon */
+    background-color: rgba(var(--secondary-color-rgb, 240,240,240), 0.1); /* Subtle bg for icon */
+    padding: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.sdg-title-number {
+    flex-grow: 1;
+}
+
+.sdg-number {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--yellow-accent); /* Accent color for SDG number */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.15rem;
+}
+
+.sdg-item h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin-bottom: 0;
+    line-height: 1.3;
+}
+
+.sdg-item-body p {
+    font-size: 0.9rem;
+    color: #a9b3c1; /* Lighter text */
+    line-height: 1.65;
+    margin-bottom: 0; /* Spacing handled by padding or margin-top of deco line */
+    flex-grow: 1; /* Allows description to take available space */
+}
+
+.sdg-item-deco-line {
+    width: 70%;
+    height: 3px;
+    background: linear-gradient(to right, var(--pink-accent), var(--blue-accent), transparent);
+    margin-top: 1.5rem; /* Space above the line */
+    align-self: flex-start; /* Align to the left */
+    border-radius: 3px;
+    opacity: 0.7;
+    transition: width 0.4s ease, opacity 0.4s ease;
+}
+
+.sdg-item:hover .sdg-item-deco-line {
+    width: 90%;
+    opacity: 1;
+}
+
+/* Geometric Decorative Elements for SDG Section */
+.sdg-geometric-deco {
+    position: absolute;
+    opacity: 0.15; /* Subtle opacity */
+    z-index: 0;
+    pointer-events: none; /* So they don't interfere with clicks */
+    filter: blur(1px);
+}
+.deco-top-left {
+    top: -20px;
+    left: -30px;
+    width: 180px; /* Adjust size as needed */
+    transform: rotate(-15deg);
+}
+.deco-bottom-right {
+    bottom: -40px;
+    right: -50px;
+    width: 220px; /* Adjust size as needed */
+    transform: rotate(25deg);
+}
+
+.sdg-star-deco {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) rotate(15deg);
+    width: 80px; /* Adjust size */
+    opacity: 0.2;
+    z-index: 0;
+    pointer-events: none;
 }
 /* === NEW: Highlight Kompetisi & Seminar - Artistic "Portal" Overhaul === */
 
@@ -1188,7 +1354,7 @@ nav::after {
     bottom: 0;
     left: 50%;
     width: 4px; 
-    background-color: var(--primary-color); 
+    background-color: var(--secondary-color); 
     transform: translateX(-50%);
     z-index: 0;
 }
@@ -1337,148 +1503,391 @@ nav::after {
     font-size: 0.9rem;
     color: #555;
 }
-/* Registration Section Styles - Refined */
+/* ========== REGISTRATION SECTION REVAMP (Cleaner Batches, More PNGs) ========== */
 .registration-section {
-    background-color: #fff; /* Change from section-bg-light for more contrast if desired */
-    border-top: 1px solid #e7e7e7; /* Optional: subtle top border */
-    border-bottom: 1px solid #e7e7e7; /* Optional: subtle bottom border */
+    background-color: var(--navbar-bg);
+    position: relative;
+    overflow: hidden; /* Important to contain absolute positioned deco elements */
+}
+
+.registration-section .section-title {
+    color: var(--secondary-color);
+    text-shadow: 0 0 10px rgba(var(--pink-accent-rgb), 0.4);
+    position: relative; /* For z-index if needed */
+    z-index: 2;
+}
+.registration-section .section-title span {
+    color: var(--yellow-accent);
+    font-style: italic;
+    text-shadow: 0 0 8px rgba(var(--yellow-accent-rgb), 0.7);
+}
+.registration-section .section-subtitle {
+    color: #c0c8d4;
+    font-size: 1.15rem;
+    position: relative;
+    z-index: 2;
 }
 
 .registration-content {
     display: flex;
     flex-wrap: wrap;
-    gap: 2.5rem; /* Increased gap slightly */
+    gap: 3rem; /* Increased gap slightly for a more premium feel */
     max-width: 1100px;
     margin: 0 auto;
-    background-color: transparent; /* Remove inner card background if section has bg */
-    padding: 0; /* Remove padding if section has it */
-    box-shadow: none; /* Remove inner card shadow if section has bg */
-    /* If .registration-section remains var(--section-bg-light),
-       then .registration-content can keep its #fff background and shadow.
-       Adjust based on your preferred overall section look.
-    */
+    position: relative;
+    z-index: 1; /* Above background decos */
 }
 
 .registration-batches,
 .registration-form-area {
     flex: 1;
-    min-width: 320px; /* Adjust min-width for better wrapping */
-    padding: 1.5rem; /* Add padding to individual columns if .registration-content padding is removed */
-    background-color: #fff; /* Give individual columns a card look */
-    border-radius: 12px;
-    box-shadow: 0 5px 25px rgba(0,0,0,0.07);
+    min-width: 300px;
+    position: relative; /* For z-index stacking context if needed */
+    z-index: 1;
 }
 
-.registration-batches h3,
-.registration-form-area h3 {
-    font-size: 1.6rem; /* Slightly larger title for columns */
-    color: var(--primary-color);
-    margin-bottom: 1.25rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--pink-accent); /* Use a Portal accent color */
-    display: inline-block; /* To make border only as wide as text */
+/* Batches Styling - Cleaned up, border-radius focus, subtle PNG use */
+.registration-batches h3 {
+    font-size: 1.9rem;
+    color: var(--secondary-color);
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.registration-batches h3 .title-accent-stroke {
+    color: var(--pink-accent);
+    padding: 0.2em 0.4em;
+    background-color: rgba(var(--pink-accent-rgb),0.15);
+    border-radius: 6px;
 }
 
-.registration-batches ul {
+.batch-list {
     list-style: none;
     padding: 0;
-    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem; /* Slightly more space between cards */
 }
 
-.registration-batches ul li {
-    font-size: 1rem;
-    margin-bottom: 0.75rem;
-    padding: 0.75rem 1rem;
-    background-color: var(--section-bg-light); /* Subtle background for each batch */
-    border-left: 5px solid; /* Placeholder for cycling colors */
-    border-radius: 6px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.registration-batches ul li:hover {
-    transform: translateX(5px);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-}
-
-/* Cycle through Portal accent colors for batch list items */
-.registration-batches ul li:nth-child(3n+1) { border-left-color: var(--orange-accent); }
-.registration-batches ul li:nth-child(3n+2) { border-left-color: var(--pink-accent); }
-.registration-batches ul li:nth-child(3n+3) { border-left-color: var(--blue-accent); } /* Or yellow-accent */
-
-.registration-batches ul li strong {
-    color: var(--primary-color); /* Make batch number darker */
-    font-weight: 600;
-}
-
-.batch-note {
-    font-size: 0.9rem;
-    color: #555;
-    /* font-style: italic; /* Optional */
-    margin-top: 1rem;
-    line-height: 1.5;
-}
-.batch-note a {
-    color: var(--blue-accent);
-    font-weight: 600;
-}
-
-.registration-form-area .form-status-placeholder { /* Renamed from form-placeholder */
-    margin-top: 1rem;
+.batch-list li {
+    background-color: rgba(40, 45, 55, 0.8); /* Solid, slightly transparent background */
+    /* Optional: Subtle background pattern using one of your assets */
+    /* background-image: url('img/Asset_16@4x.png'); /* Choose a subtle one */
+    /* background-size: cover; /* Or 'contain', 'auto', depending on asset */
+    /* background-blend-mode: overlay; /* Or 'soft-light' */
+    /* background-position: center; */
     padding: 1.5rem;
-    background-color: var(--section-bg-light); /* Using a theme light color */
-    border: 2px dashed var(--blue-accent); /* Use an accent color for the border */
-    border-radius: 8px;
+    border-radius: 16px; /* <<< CLEAR AND VISIBLE BORDER RADIUS */
+    border: 1px solid rgba(var(--blue-accent-rgb), 0.25);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+    position: relative; /* For the ::before accent line */
+    overflow: hidden; /* To contain the accent line and rounded corners properly */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.batch-list li::before { /* Accent line on the left */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 100%;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+/* Cycling accent colors for the left border */
+.batch-list li:nth-child(3n+1)::before { background: linear-gradient(180deg, var(--orange-accent), var(--yellow-accent)); }
+.batch-list li:nth-child(3n+2)::before { background: linear-gradient(180deg, var(--pink-accent), var(--blue-accent)); }
+.batch-list li:nth-child(3n+3)::before { background: linear-gradient(180deg, var(--hero-seven-color), var(--hero-empower-color)); } /* Using other defined accents */
+
+.batch-list li:hover {
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 0 10px 30px rgba(var(--pink-accent-rgb),0.25);
+    border-color: rgba(var(--pink-accent-rgb), 0.5);
+}
+.batch-list li:hover::before {
+    width: 12px; /* Accent line thickens on hover */
+}
+
+
+.batch-item-content {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem; /* Maintained gap */
+    margin-left: 10px; /* Space from the accent line */
+}
+
+.batch-number {
+    font-size: 2.5rem; /* Slightly reduced for cleaner look */
+    font-weight: 800;
+    color: var(--secondary-color); /* Light color for number */
+    line-height: 1;
+    background-color: rgba(var(--navbar-bg-rgb), 0.4); /* Match section bg but darker */
+    padding: 0.5rem 0.8rem; /* Adjusted padding */
+    border-radius: 10px; /* Rounded bg for number */
+    min-width: 55px;
     text-align: center;
-    min-height: 100px;
+    border: 1px solid; /* Border color set below */
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Cycling colors for batch numbers */
+.batch-list li:nth-child(3n+1) .batch-number { border-color: var(--orange-accent); color:var(--orange-accent); }
+.batch-list li:nth-child(3n+2) .batch-number { border-color: var(--pink-accent); color:var(--pink-accent); }
+.batch-list li:nth-child(3n+3) .batch-number { border-color: var(--blue-accent); color:var(--blue-accent); }
+
+.batch-list li:hover .batch-number {
+    background-color: rgba(var(--secondary-color-rgb),0.1);
+    color: var(--secondary-color); /* Brightens on hover */
+}
+
+
+.batch-info {
+    flex-grow: 1;
+}
+.batch-info h4 {
+    font-size: 1.25rem; /* Adjusted size */
+    font-weight: 600; /* Slightly less bold than number */
+    color: var(--secondary-color);
+    margin-bottom: 0.3rem;
+}
+.batch-info .batch-dates {
+    font-size: 0.85rem;
+    color: #b0b8c4;
+    margin-bottom: 0.6rem;
+    display: block;
+}
+.batch-status { /* Style remains largely the same, was good */
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.4rem 1rem;
+    border-radius: 20px; /* Pill shape */
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.batch-status.status-soon {
+    background: linear-gradient(45deg, var(--orange-accent), var(--yellow-accent));
+    color: white;
+    border: none;
+}
+.batch-status.status-upcoming {
+    background: linear-gradient(45deg, var(--blue-accent), var(--pink-accent));
+    color: white;
+    border: none;
+}
+
+.registration-batches .batch-note {
+    font-size: 0.9rem;
+    color: #a0aec0;
+    text-align: center;
+    margin-top: 2.5rem;
+    line-height: 1.6;
+    padding: 1rem;
+    background-color: rgba(var(--secondary-color-rgb, 255,255,255), 0.03);
+    border-radius: 8px;
+    border-top: 2px solid rgba(var(--blue-accent-rgb),0.4);
+}
+
+/* Form Status Area - Styles from previous response for this part are generally good.
+   Ensure .form-status-card has its intended geometric look via clip-path or adjust if needed.
+   The clip-path is what gives it non-rounded, geometric corners. If true rounded corners are desired,
+   the clip-path should be removed.
+*/
+.form-status-card {
+    background: linear-gradient(135deg, rgba(var(--pink-accent-rgb), 0.15), rgba(var(--blue-accent-rgb), 0.25));
+    border: 1px solid rgba(var(--pink-accent-rgb), 0.3);
+    border-radius: 15px; /* This applies before clip-path. */
+    padding: 2.5rem 2rem;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3), inset 0 0 15px rgba(var(--pink-accent-rgb),0.1);
+    position: relative;
+    overflow: hidden; /* Essential for ::before pseudo-element & clip-path */
+    /* The clip-path creates the geometric, non-rounded corners. This is intentional. */
+    clip-path: polygon(0 15px, 15px 0, calc(100% - 15px) 0, 100% 15px, 100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 0 calc(100% - 15px));
+}
+/* ... (rest of existing .form-status-card styles: ::before, header, icon, title, message, button, etc.) ... */
+.form-status-card::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(var(--yellow-accent-rgb), 0.15) 0%, transparent 40%);
+    animation: subtleShine 10s infinite linear alternate;
+    z-index: 0;
+}
+.form-status-header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+    position: relative;
+    z-index: 1;
 }
-
-.form-status-placeholder .status-title {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--primary-color);
+.form-status-header .kapow-icon {
+    font-size: 3rem;
+    color: var(--yellow-accent);
+    text-shadow: 0 0 15px rgba(var(--yellow-accent-rgb), 0.6);
     margin-bottom: 0.5rem;
+    animation: iconPulse 2s infinite ease-in-out;
 }
+.form-status-card .status-title {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    letter-spacing: 0.5px;
+}
+.form-status-card .status-message {
+    font-size: 1rem;
+    color: #c0c8d4;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+.status-timer-placeholder {
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    color: #b0b8c4;
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+}
+.guidebook-button {
+    padding: 0.9rem 2rem;
+    font-size: 1rem;
+    font-weight: 700;
+    background: linear-gradient(45deg, var(--orange-accent), var(--yellow-accent));
+    box-shadow: 0 4px 15px rgba(var(--orange-accent-rgb),0.3);
+    margin: 0 auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    position: relative;
+    z-index: 1;
+}
+.guidebook-button:hover {
+    background: linear-gradient(45deg, var(--yellow-accent), var(--orange-accent));
+    box-shadow: 0 6px 20px rgba(var(--yellow-accent-rgb),0.4);
+}
+.guidebook-button i { font-size: 1.1em; }
 
-.form-status-placeholder .status-message {
-    font-size: 0.95rem;
-    color: #555;
-    line-height: 1.5;
+.registration-details-box {
+    background: rgba(30, 33, 41, 0.6);
+    border: 1px solid rgba(var(--blue-accent-rgb), 0.15);
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+    margin-top: 1.5rem; /* Added margin if it's separate from form-status-card */
 }
-
-/* Hide the old button placeholder if using the status box */
-.registration-form-area .form-placeholder a.hero-button {
-    /* display: none; */ /* Or restyle if you keep it as a non-button notice */
-    background-color: #ccc; /* Visually disable it */
-    color: #777;
-    cursor: not-allowed;
-    margin-top: 1rem;
-    pointer-events: none; /* Make it non-clickable */
-}
-.registration-form-area .form-placeholder a.hero-button:hover {
-    background-color: #ccc; /* No hover effect */
-    transform: none;
-}
-
-
-.submission-info {
-    margin-top: 2.5rem; /* Increased space */
-    padding-top: 1.5rem;
-    border-top: 1px solid #e0e0e0; /* Lighter, more subtle separator */
-}
-.submission-info h4 {
-    font-size: 1.3rem; /* Slightly larger */
-    color: var(--primary-color);
+.registration-details-box h4 {
+    font-size: 1.2rem;
+    color: var(--blue-accent);
     margin-bottom: 0.75rem;
+    font-weight: 600;
 }
-.submission-info p {
-    font-size: 0.95rem;
-    color: #555;
+.registration-details-box p {
+    font-size: 0.9rem;
+    color: #b0b8c4;
     line-height: 1.6;
 }
 
+
+/* MORE PNG Integration as Decorative Elements */
+.registration-section::before { /* Large, blurred background asset */
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-image: url('img/Asset 16@4x.png'); /* Example: a larger, simpler asset */
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover; /* Or contain, depending on asset */
+    opacity: 0.03; /* Very faint */
+    filter: blur(5px);
+    z-index: 0;
+}
+
+.registration-deco-1, .registration-deco-2, .registration-deco-3 {
+    position: absolute;
+    pointer-events: none;
+    z-index: 0; /* Below content, above section::before if layered */
+    opacity: 0.15; /* Default opacity, can be adjusted */
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+}
+.registration-section:hover .registration-deco-1,
+.registration-section:hover .registration-deco-2,
+.registration-section:hover .registration-deco-3 {
+    transform: scale(1.1) rotate(5deg); /* Example hover effect */
+    opacity: 0.2;
+}
+
+.registration-deco-1 { /* Asset 30@4x.png (Pink checker) */
+    bottom: -30px;
+    left: -20px;
+    width: 150px;
+    transform: rotate(-25deg);
+    opacity: 0.1; /* More subtle */
+}
+.registration-deco-2 { /* abstract_star-yellow.png */
+    top: 10%;
+    right: 5%;
+    width: 100px;
+    transform: rotate(20deg);
+    opacity: 0.12;
+}
+.registration-deco-3 { /* New: Using Asset 21@4x - Copy.png (Blue cross/puzzle) */
+    top: 50%;
+    left: 5%;
+    width: 80px;
+    transform: translateY(-50%) rotate(10deg);
+    opacity: 0.08;
+}
+
+
+/* Responsive adjustments for Registration Section (KEEP AND VERIFY) */
+@media (max-width: 991px) {
+    .registration-content { flex-direction: column; }
+    .registration-batches h3 { font-size: 1.7rem; margin-bottom: 1.5rem; }
+    .batch-list li { border-radius: 14px; } /* Consistent radius */
+    .form-status-card { padding: 2rem 1.5rem; }
+    .form-status-card .status-title { font-size: 1.5rem; }
+    .registration-deco-1 { width: 120px; bottom: -20px; left: -15px; }
+    .registration-deco-2 { width: 80px; top: 5%; right: 2%;}
+    .registration-deco-3 { width: 60px; top: 40%;}
+}
+
+@media (max-width: 767px) {
+    .registration-section .section-title { font-size: 1.8rem; }
+    .registration-section .section-subtitle { font-size: 1rem; }
+    .registration-content { gap: 2rem; }
+    .registration-batches h3 { font-size: 1.5rem; }
+    .batch-list li { padding: 1.2rem; border-radius: 12px; }
+    .batch-item-content { margin-left: 5px; gap: 1rem; }
+    .batch-number { font-size: 2.2rem; padding: 0.4rem 0.6rem; min-width: 50px;}
+    .batch-info h4 { font-size: 1.1rem; }
+    .batch-info .batch-dates, .batch-status { font-size: 0.75rem; }
+    .batch-status { padding: 0.3rem 0.8rem; }
+    .form-status-card {
+        padding: 1.5rem 1rem;
+        clip-path: polygon(0 10px, 10px 0, calc(100% - 10px) 0, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px));
+        border-radius: 10px; /* Match smaller clip-path */
+    }
+    .form-status-header .kapow-icon { font-size: 2.5rem; }
+    .form-status-card .status-title { font-size: 1.3rem; }
+    .form-status-card .status-message { font-size: 0.9rem; }
+    .guidebook-button { padding: 0.8rem 1.5rem; font-size: 0.9rem; }
+    .registration-details-box { padding: 1.25rem; }
+    .registration-details-box h4 { font-size: 1.1rem; }
+    .registration-deco-1 { width: 100px; bottom: -15px; left: -10px; opacity: 0.08;}
+    .registration-deco-2, .registration-deco-3 { display: none; } /* Hide more decos on small mobile */
+}
+/* ========== END REGISTRATION SECTION REVAMP ========== */
 /* === Gaya Bagian FAQ BARU === */
 .faq-section {
     background-color: var(--section-bg-light);
@@ -1501,7 +1910,6 @@ nav::after {
     padding: 1.25rem 1.5rem;
     cursor: pointer;
     background-color: #fff; 
-    border-bottom: 1px solid var(--secondary-color); 
 }
 .faq-item:last-child .faq-question { /* Remove border from last item if it's not active */
     /* border-bottom: none; */ /* Better to keep it for consistency or manage with .active */
@@ -1574,18 +1982,166 @@ nav::after {
 
 
 /* Gaya Footer */
-footer {
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    padding: 3rem 1rem 1.5rem; 
-    text-align: center;
+.footer-container {
+    max-width: 1100px; /* Consistent with other content */
+    margin: 0 auto;
 }
-.footer-logo img { height: 40px; margin-bottom: 1rem; opacity: 0.8; }
-.footer-contact, .footer-social { margin-bottom: 1rem; }
-.footer-contact p, .footer-social a { color: #D1D5DB; text-decoration: none; margin: 0 0.5rem; transition: color 0.3s ease;}
-.footer-social a:hover { color: white; }
-.footer-copyright { font-size: 0.875rem; color: #9CA3AF; margin-top: 1.5rem; }
 
+.footer-top {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    justify-content: space-between;
+    gap: 2rem; /* Gap between columns */
+    margin-bottom: 3rem; /* Space before copyright */
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(var(--secondary-color), 0.15); /* Subtle separator */
+}
+
+.footer-logo-area,
+.footer-quick-links,
+.footer-contact-social {
+    flex: 1; /* Distribute space */
+    min-width: 250px; /* Minimum width before wrapping */
+    margin-bottom: 1.5rem; /* Space when items stack */
+}
+
+.footer-logo-area .footer-logo-img {
+    height: 45px; /* Slightly larger logo */
+    margin-bottom: 0.75rem;
+    opacity: 0.9;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.footer-logo-area .footer-logo-img:hover {
+    opacity: 1;
+    transform: scale(1.05);
+}
+.footer-event-name {
+    font-size: 0.9rem;
+    color: #b0b8c4; /* Lighter grey */
+    margin-top: 0.5rem;
+}
+
+.footer-quick-links h4,
+.footer-contact-social h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--secondary-color);
+    margin-bottom: 1.25rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+.footer-quick-links h4::after,
+.footer-contact-social h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(to right, var(--pink-accent), var(--yellow-accent));
+}
+
+.footer-quick-links a,
+.footer-contact-item a {
+    display: block;
+    color: #b0b8c4; /* Lighter grey for links */
+    text-decoration: none;
+    margin-bottom: 0.6rem;
+    transition: color 0.3s ease, padding-left 0.3s ease;
+    font-size: 0.95rem;
+}
+.footer-quick-links a:hover,
+.footer-contact-item a:hover {
+    color: var(--yellow-accent); /* Bright hover color */
+    padding-left: 5px; /* Slight indent on hover */
+}
+
+.footer-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+    color: #b0b8c4;
+}
+.footer-contact-item i {
+    color: var(--blue-accent); /* Or another accent */
+    font-size: 1.1rem;
+}
+
+.footer-social-links {
+    display: flex;
+    gap: 1rem; /* Gap between social icons */
+    margin-top: 1rem;
+    flex-wrap: wrap; /* Allow icons to wrap */
+}
+
+/* Reusing social icon styles from contact section but prefixing for footer */
+.footer-social-links .social-icon {
+    font-size: 1.5rem; /* Slightly smaller for footer */
+    color: white;
+    width: 40px; /* Smaller */
+    height: 40px; /* Smaller */
+    border-radius: 8px 15px 8px 15px; /* Adjusted quirky shape */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55), box-shadow 0.3s ease, background-color 0.3s ease;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+.footer-social-links .social-icon:hover {
+    transform: translateY(-4px) rotate(8deg) scale(1.15);
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.4);
+}
+.footer-social-links .social-icon.ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%); }
+.footer-social-links .social-icon.tw { background-color: #000000; }
+.footer-social-links .social-icon.yt { background-color: #FF0000; }
+.footer-social-links .social-icon.tk { background-color: #000000; }
+/* Add other social brand colors if needed */
+
+
+.footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1.5rem; /* Space after separator */
+    gap: 1rem;
+}
+
+.footer-copyright {
+    font-size: 0.85rem;
+    color: #9CA3AF; /* Subdued copyright text */
+    text-align: left; /* Align left on desktop */
+    flex-grow: 1;
+}
+.footer-copyright p:last-child {
+    font-style: italic;
+    opacity: 0.7;
+    margin-top: 0.25rem;
+}
+
+
+.back-to-top {
+    display: inline-flex; /* Use flex for icon centering */
+    align-items: center;
+    justify-content: center;
+    background-color: var(--pink-accent);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+.back-to-top i {
+    font-size: 1rem;
+}
+.back-to-top:hover {
+    background-color: var(--yellow-accent);
+    transform: translateY(-3px) scale(1.1);
+}
 /* Page-specific styles for competition-hub, can be moved to style.css later */
 .competition-hub-hero {
     background-color: var(--primary-color); /* Using primary color for hero background */
@@ -1880,7 +2436,6 @@ footer {
     justify-content: center;
     margin-bottom: 2rem; /* Increased space */
     gap: 1rem;
-    border-bottom: 2px solid #e0e0e0;
     overflow: hidden;
 }
 .gallery-tab-button {
@@ -2607,11 +3162,417 @@ footer {
     margin: 0 auto;
     padding: 0 1rem; /* Horizontal padding for content within container */
 }
+/* Standard Content Container Width */
+.container, /* Jika Anda menggunakan .container secara umum */
+.hero-content,
+.about-content,
+.inspire-framework-container, /* Perlu disesuaikan dari 900px jika mau standar baru */
+.highlight-grid, /* Untuk .highlight-grid, max-width ini mungkin sudah ada */
+.timeline-container,
+.guest-stars-grid,
+.registration-content,
+.faq-container,
+.who-can-join-content,
+.cta-bottom-content,
+.media-subsection, /* Mungkin perlu dipertimbangkan, karena ada beberapa di satu section */
+.contact-content-wrapper,
+#seminar-details > .container, /* Untuk seminar.html */
+.blog-listing-section > .container /* Untuk blog.html */ {
+    max-width: 1100px; /* Atau 1200px, pilih salah satu */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Khusus untuk .inspire-framework-container jika ingin sama: */
+.inspire-framework-container {
+    /* ... (properti yang sudah ada) ... */
+    max-width: 1100px; /* Samakan dengan standar baru */
+    /* margin-left: auto; (sudah dicover di atas jika digabung) */
+    /* margin-right: auto; (sudah dicover di atas jika digabung) */
+}
+
+/* Untuk media-section, mungkin lebih baik .media-subsection tetap di dalam .container section induk */
+/* .media-section > .container { max-width: 1100px; margin: 0 auto; } */
+/* Lalu .media-subsection tidak perlu max-width sendiri, ia akan mengikuti .container */
 
 /* Penyesuaian Responsif */
+/* Ganti background section yang terang */
+section,
+.media-section,
+.faq-question,
+.framework-item,
+.about-section,
+.timeline-section,
+.guest-stars-section,
+.registration-section,
+.faq-section,
+.who-can-join-section,
+.media-subsection, /* Ini di dalam .media-section */
+.contact-section,
+.blog-listing-section { /* Untuk blog.html */
+    background-color: var(--navbar-bg); /* Atau #0c0a1f, atau variasi gelap lain */
+    /* Jika sebelumnya var(--section-bg-light), ganti ke warna gelap */
+}
+
+/* Jika ada card di dalamnya yang tadinya putih/terang, sesuaikan juga */
+.inspire-framework-container,
+.timeline-label,
+.guest-star-card,
+.registration-batches, .registration-form-area,
+.faq-item,
+.who-can-join-list li,
+.article-card, /* Untuk blog dan media */
+.seminar-event-card, /* Untuk seminar.html */
+.contact-direct-info, .contact-form-container, .contact-map-container {
+    background-color: #23272f; /* Warna card gelap yang sedikit lebih terang dari bg section */
+    /* Atau: background: rgba(35, 39, 47, 0.6); backdrop-filter: blur(10px); seperti .portal-card */
+    border: 1px solid rgba(var(--blue-accent-rgb), 0.2); /* Tambahkan border agar tidak flat */
+}
+/* Sesuaikan warna teks untuk section yang digelapkan */
+.about-section, .about-section .section-title, .about-section .about-text h3, .about-section .about-text p,
+.inspire-framework-container .framework-title, .inspire-framework-container .framework-meaning h4, .inspire-framework-container .framework-meaning p,
+.timeline-section .section-title, .timeline-label .timeline-date, .timeline-label .timeline-event,
+.guest-stars-section .section-title, .guest-stars-section .section-subtitle, .guest-star-info h4, .guest-star-info p,
+.registration-section .section-title, .registration-section .section-subtitle, .registration-batches h3, .registration-form-area h3, .registration-batches ul li, .registration-form-area p, .form-status-placeholder .status-title, .form-status-placeholder .status-message, .submission-info h4, .submission-info p,
+.faq-section .section-title, .faq-question h4, .faq-answer p,
+.who-can-join-section .section-title, .who-can-join-section .section-subtitle, .who-can-join-list li, .team-info,
+.media-subsection h3, .article-title, .article-meta, .article-summary, /* Untuk blog & media */
+.contact-section .section-title, .contact-section .section-subtitle, .contact-direct-info h3, .contact-form-container h3, .contact-map-container h3, .info-item p strong, .info-item p, .contact-form label,
+.seminar-event-details h3, .seminar-event-details .event-date, .seminar-event-details p, .seminar-event-details h4, .seminar-event-details ul li, /* Untuk seminar.html */
+.blog-listing-section .section-title  { /* Untuk blog.html */
+    color: var(--secondary-color); /* Warna teks terang */
+}
+
+/* Teks yang lebih redup atau sub-judul */
+.about-section .about-text p,
+.inspire-framework-container .framework-meaning p,
+.timeline-label .timeline-event,
+.guest-star-info p,
+.registration-section .section-subtitle, .registration-batches ul li, .registration-form-area p, .form-status-placeholder .status-message, .submission-info p,
+.faq-answer p,
+.team-info,
+.article-meta, .article-summary,
+.info-item p,
+.seminar-event-details p, .seminar-event-details .event-date,
+.blog-listing-section .section-subtitle /* jika ada */ {
+    color: #b0b8c4; /* Abu-abu terang */
+}
+
+/* Warna Link juga perlu disesuaikan di section gelap */
+.dark-section-context a { /* Buat kelas umum atau targetkan spesifik */
+    color: var(--blue-accent); /* Atau var(--pink-accent) */
+}
+.dark-section-context a:hover {
+    color: var(--yellow-accent);
+}
+/* Contoh penerapan:
+.registration-form-area p a { color: var(--blue-accent); }
+*/
+
+/* Warna border pada item-item, misal .framework-item */
+.framework-item, .registration-batches ul li /*dan card lainnya*/ {
+    border-color: rgba(var(--hero-empower-color), 0.15); /* Border terang tipis */
+}
+.hero-title-empower,
+.hero-title-digital span { /* Targetkan span pembungkus "Digital" atau setiap karakternya */
+    /* text-shadow yang sudah ada: 0 0 8px currentColor, 0 0 15px rgba(255,255,255,0.5); */
+    /* Tingkatkan untuk glow yang lebih "keterangan" (deskriptif/jelas) */
+    text-shadow:
+        0 0 5px currentColor, /* Inner glow tipis warna teks */
+        0 0 2px rgba(var(--hero-empower-color-rgb, 239, 68, 68), 0.7), /* Untuk Empower, gunakan warna empower */
+        /* Untuk Digital, setiap karakter punya warna sendiri, jadi currentColor lebih aman,
+           atau kita bisa coba glow putih/netral yang lebih soft untuk menyatukan */
+        0 0 30px rgba(255, 255, 255, 0.3); /* Glow putih yang lebih menyebar */
+}
+
+/* Jika ingin glow spesifik untuk "Digital" yang berwarna-warni: */
+.hero-title-digital { /* Glow untuk keseluruhan kata "Digital" */
+    /* Ini akan sulit jika setiap huruf punya text-shadow sendiri.
+       Alternatif: beri sedikit filter drop-shadow pada span .hero-title-digital */
+    /* filter: drop-shadow(0 0 8px rgba(var(--blue-accent-rgb), 0.5)); */
+    /* Atau, jika ingin glow pada masing-masing huruf, tambahkan text-shadow yang lebih kuat pada kelas .char-X nya */
+}
+
+/* Jika --hero-empower-color-rgb belum ada, tambahkan di :root */
+/* :root { --hero-empower-color-rgb: 239, 68, 68; } */
+.nav-a::after { /* "Portal" Glow/Aura effect on hover */
+    /* background: var(--navbar-link-hover-glow); */ /* ASLI */
+    background: rgba(255, 255, 255, 0.15); /* BARU: Glow putih tipis */
+    /* ... properti lain ... */
+}
+
+.nav-a:hover {
+    color: white;
+    /* text-shadow: 0 0 8px rgba(255,255,255,0.7), 0 0 15px var(--navbar-link-hover-glow); /* ASLI */
+    text-shadow: 0 0 8px rgba(255,255,255,0.7), 0 0 15px rgba(255, 255, 255, 0.2); /* BARU */
+}
+/* Dalam @media (max-width: 767px) jika masalahnya di mobile */
+.seminar-event-card {
+    /* flex-direction: column; */ /* Sudah ada */
+    /* align-items: center; */ /* Ini mungkin membuat text block jadi center */
+    align-items: flex-start; /* Ubah ke flex-start agar konten text block rata kiri */
+    text-align: left; /* Default text align untuk semua anak jadi kiri */
+}
+
+.seminar-event-details { /* Tambahkan jika perlu */
+    width: 100%; /* Pastikan details mengambil lebar penuh saat di stack */
+    text-align: left;
+}
+
+.seminar-event-details ul {
+    /* display: inline-block; Hapus ini jika parent sudah text-align: left */
+    text-align: left; /* Ini sudah ada dan bagus */
+}
+
+/* Pastikan paragraf juga rata kiri */
+.seminar-event-details p {
+    text-align: left; /* Eksplisit */
+}
+/* --- DARK MODE CONSISTENCY --- */
+
+/* Apply dark background to these sections if they are currently light */
+.faq-section,
+.media-section { /* The parent container for blog/gallery previews on index.html */
+    background-color: var(--navbar-bg); /* Or your preferred dark section background, e.g., #0c0a1f */
+    /* If they had var(--section-bg-light), change it */
+}
+
+/* Adjust text colors within these sections for readability on dark backgrounds */
+.faq-section .section-title,
+.media-section .section-title,
+.media-section .section-subtitle {
+    color: var(--secondary-color); /* Light text */
+}
+
+.media-section .media-subsection h3 { /* Titles like "Artikel & Insight", "Galeri Foto & Video" */
+    color: var(--secondary-color); /* Light text */
+}
+.media-section .media-subsection h3 i {
+    color: var(--orange-accent); /* Keep accent or choose a bright one */
+}
+
+/* FAQ Items */
+.faq-item {
+    background-color: #23272f; /* Darker card background */
+    /* Or: background: rgba(35, 39, 47, 0.6); backdrop-filter: blur(10px); */
+    border: 1px solid rgba(var(--blue-accent-rgb), 0.2); /* Subtle border */
+    /* box-shadow: 0 2px 8px rgba(0,0,0,0.2); /* Darker shadow for dark theme */
+}
+.faq-question {
+    background-color: transparent; /* Make it inherit from .faq-item */
+    border-bottom-color: rgba(var(--secondary-color), 0.1); /* Lighter separator */
+}
+.faq-item.active .faq-question {
+     border-bottom-color: transparent;
+}
+.faq-question:hover {
+    background-color: rgba(var(--blue-accent-rgb), 0.1); /* Hover for question */
+}
+.faq-question h4 {
+    color: var(--secondary-color); /* Light text for question */
+}
+.faq-question .faq-icon {
+    color: var(--blue-accent); /* Keep icon color or adjust for dark theme */
+}
+.faq-answer {
+    background-color: transparent; /* Make it inherit from .faq-item */
+    color: #b0b8c4; /* Lighter grey for answer text */
+}
+
+/* Article Cards (Preview on index.html, and for blog.html) */
+.article-card {
+    background-color: #23272f; /* Darker card background */
+    /* Or: background: rgba(35, 39, 47, 0.6); backdrop-filter: blur(10px); */
+    border: 1px solid rgba(var(--blue-accent-rgb), 0.2);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25); /* Darker shadow */
+}
+.article-title {
+    color: var(--secondary-color); /* Light title */
+}
+.article-meta {
+    color: #8a94a2; /* Lighter meta text */
+}
+.article-summary {
+    color: #b0b8c4; /* Lighter summary text */
+}
+.article-link-text {
+    color: var(--blue-accent);
+}
+.article-card-link:hover .article-link-text {
+    color: var(--pink-accent);
+}
+.article-image-fallback {
+    background-color: #2c313a; /* Darker fallback background */
+}
+.article-image-fallback i {
+    color: #565f73; /* Dimmer icon color for fallback */
+}
 
 
+/* Gallery Tabs and Items (Preview on index.html, and for gallery.html) */
+.gallery-tabs {
+    border-bottom: 2px solid rgba(var(--secondary-color), 0.2); /* Lighter border */
+}
+.gallery-tab-button {
+    color: var(--secondary-color); /* Light tab text */
+}
+.gallery-tab-button.active,
+.gallery-tab-button:hover {
+    color: var(--pink-accent);
+    border-bottom-color: var(--pink-accent);
+}
+
+.gallery-item {
+    /* background-color: #2c313a; /* Darker background for items if image fails */
+    box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+}
+/* The .gallery-item-overlay text is already white, which is good for dark theme */
+
+/* Partners & Sponsors (if this section also needs to be dark) */
+/* .partners-grid on index.html is inside .media-subsection which will be dark */
+/* Ensure partner logos are suitable for dark backgrounds or add a light container for them */
+.partner-item img {
+    /* If logos are dark and disappear on dark background, you might need to: */
+    /* filter: grayscale(0%) opacity(1) drop-shadow(0 0 3px white); */
+    /* Or ensure logos have transparent backgrounds and are light-colored,
+       or place them on a very slightly lighter dark card background */
+    filter: brightness(1.5) grayscale(30%) opacity(0.8); /* Try to make dark logos more visible */
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+.partner-item a:hover img {
+    filter: brightness(1) grayscale(0%) opacity(1);
+    transform: scale(1.1);
+}
+.partner-name-fallback {
+    color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+
+/* View All Buttons in Media Section */
+.button-view-more-media {
+    /* Style is likely okay, but ensure good contrast if section bg changed dramatically */
+}
+
+/* Remember to adjust the .loading-message and .error-message text colors too */
+.loading-message, .error-message,
+#blog-articles-container .articles-grid > p,
+#gallery-container .gallery-grid > p,
+#partners-sponsors-container .partners-grid > p {
+    color: #a0a8b4; /* Lighter italic text */
+    background-color: rgba(var(--secondary-color), 0.03); /* Very subtle dark bg */
+}
+.error-message { /* Keep error distinct */
+    color: var(--hero-empower-color);
+}
+.competition-hub-hero {
+    /* Already has a dark background (var(--primary-color)), text is white. This is good. */
+    /* You can enhance it further if desired, e.g., with portal effect or image */
+    /* background-color: var(--navbar-bg); /* Align with other dark sections */
+}
+.competition-hub-hero h1 span {
+    /* Style is okay, but consider if background color of pill needs adjustment on new hero bg */
+}
+
+#competition-details > .container { /* Assuming this is the main content wrapper */
+    /* No specific background, so it will inherit from body or a dark section parent */
+}
+
+.competition-category { /* These are the cards for each competition type */
+    background-color: #23272f; /* Dark card background */
+    border: 1px solid rgba(var(--blue-accent-rgb), 0.2);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.25); /* Darker shadow */
+}
+
+.competition-category-details h3 {
+    color: var(--secondary-color); /* Light text */
+}
+.competition-category-details .description {
+    color: #b0b8c4; /* Lighter text */
+}
+.competition-category-details h4 {
+    color: var(--blue-accent); /* Accent color, should be fine */
+}
+.competition-category-details ul li {
+    color: #b0b8c4; /* Light text for list items */
+}
+.competition-category-details ul li::before {
+    /* Icon color (var(--orange-accent)) should be fine */
+}
+.example-link {
+    /* Color (var(--pink-accent)) should be fine */
+}
+/* In style.css */
+.seminar-hero { /* This reuses .competition-hub-hero styles if not overridden */
+    /* background-color: var(--navbar-bg); /* Ensure dark background */
+}
+
+#seminar-details > .container {
+    /* No specific background, will inherit */
+}
+
+.seminar-event-card {
+    background-color: #23272f; /* Dark card background */
+    border: 1px solid rgba(var(--blue-accent-rgb), 0.2);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25); /* Darker shadow */
+}
+
+.seminar-event-icon i {
+    /* Color (var(--pink-accent)) should be fine */
+}
+.seminar-event-details h3 {
+    color: var(--secondary-color); /* Light text */
+}
+.seminar-event-details .event-date {
+    color: #8a94a2; /* Lighter meta text */
+}
+.seminar-event-details p {
+    color: #b0b8c4; /* Lighter text */
+}
+.seminar-event-details h4 {
+    color: var(--blue-accent); /* Accent, should be fine */
+}
+.seminar-event-details ul li {
+    color: #b0b8c4;
+}
+.seminar-event-details ul li::before {
+    /* Icon color (var(--orange-accent)) should be fine */
+}
+
+.registration-cta { /* CTA at the bottom of seminar page */
+    background-color: #1f232c; /* Darker subsection background */
+    border-top: 1px solid rgba(var(--secondary-color), 0.1);
+}
+.registration-cta .section-title {
+    color: var(--secondary-color);
+}
+.registration-cta .section-subtitle {
+    color: #b0b8c4;
+}
+
+/* Buttons inside .registration-cta should already be styled well from .hero-button */
 @media (max-width: 991.98px) {
+        .sdg-section .section-title {
+        font-size: 2.5rem;
+    }
+    .sdg-container {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+    .sdg-item {
+        padding: 1.5rem;
+         clip-path: polygon(0 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%); /* Smaller cut */
+    }
+    .sdg-icon {
+        width: 60px;
+        height: 60px;
+    }
+    .sdg-item h3 {
+        font-size: 1.25rem;
+    }
+    .deco-top-left { width: 150px; top: -10px; left: -20px; }
+    .deco-bottom-right { width: 180px; bottom: -20px; right: -30px; }
+    .sdg-star-deco { width: 60px; }
     .competition-hub-hero h1 {
         font-size: 2.5rem; /* Adjust title size for tablets */
     }
@@ -2649,6 +3610,7 @@ footer {
     .contact-form-container {
         transform: rotate(0deg) translateY(0px); /* Straighten cards on tablet */
     }
+    
 }
 
 /* Extra small devices (portrait phones, less than 576px) */
@@ -2702,6 +3664,32 @@ footer {
 }
 
 @media (max-width: 767px) {
+    .sdg-section .section-padding { /* Already applied but can adjust if needed */
+        padding: 3rem 1rem;
+    }
+     .sdg-section .section-title {
+        font-size: 2rem;
+    }
+    .sdg-section .section-subtitle {
+        margin-bottom: 2.5rem;
+    }
+    .sdg-container {
+        grid-template-columns: 1fr; /* Stack cards on mobile */
+        gap: 1.5rem;
+    }
+    .sdg-item {
+        padding: 1.5rem 1.25rem;
+        clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%); /* Even smaller cut */
+    }
+     .sdg-item-body p {
+        font-size: 0.85rem;
+    }
+    .sdg-item-deco-line {
+        margin-top: 1rem;
+    }
+    .deco-top-left { display: none; } /* Hide some decorations on small screens to reduce clutter */
+    .deco-bottom-right { width: 150px; bottom: -30px; right: -25px; opacity: 0.1; }
+    .sdg-star-deco { width: 50px; bottom: 10px; opacity: 0.15;}
     .lightbox-content img,
     .lightbox-content iframe {
         max-height: calc(80vh - 50px); /* Smaller max height on mobile */
@@ -3083,7 +4071,6 @@ footer {
         text-align: left;
         color: var(--navbar-text) !important; /* LIGHT TEXT for dark sidebar (using !important to ensure override) */
         font-weight: 500;
-        border-bottom: 1px solid rgba(var(--secondary-color), 0.1); /* Subtle separator */
         transition: background-color 0.2s ease, color 0.2s ease;
     }
     /* Remove ::before and ::after pseudo-elements for mobile links if they cause issues */
@@ -3172,7 +4159,49 @@ footer {
 
     /* Other mobile styles for sections like hero, timeline etc. should follow */
     /* ... (your existing other mobile styles from 767px query) ... */
-
+        footer {
+        padding: 3rem 1.5rem 1.5rem;
+        text-align: center; /* Center align text for stacked items */
+    }
+    .footer-top {
+        flex-direction: column; /* Stack columns on mobile */
+        align-items: center; /* Center items in column */
+        gap: 1.5rem;
+        padding-bottom: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    .footer-logo-area,
+    .footer-quick-links,
+    .footer-contact-social {
+        flex-basis: 100%; /* Each takes full width when stacked */
+        min-width: auto;
+        text-align: center;
+    }
+    .footer-quick-links h4::after,
+    .footer-contact-social h4::after {
+        left: 50%;
+        transform: translateX(-50%); /* Center the underline */
+    }
+    .footer-quick-links a {
+        text-align: center;
+    }
+    .footer-contact-item {
+        justify-content: center; /* Center contact items */
+    }
+    .footer-social-links {
+        justify-content: center; /* Center social icons */
+    }
+    .footer-bottom {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    .footer-copyright {
+        text-align: center; /* Center copyright on mobile */
+        order: 2; /* Put copyright below back-to-top button */
+    }
+    .back-to-top {
+        order: 1; /* Put back-to-top button above copyright */
+    }
     /* Fix for the hero section text alignment and button stacking on mobile */
     .hero-content {
         flex-direction: column;
@@ -3187,7 +4216,9 @@ footer {
         justify-content: center; /* Center buttons */
         flex-direction: column; /* Stack buttons */
     }
-
+    .prize-value{
+        font-size: 2.4rem;
+    }
     /* Make sure timeline is correctly aligned on mobile */
     .timeline-container::before {
         left: 20px; /* Garis agak ke kiri */
