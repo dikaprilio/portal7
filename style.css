@@ -3582,6 +3582,7 @@ nav::after {
 /* --- Seminar Hub Hero Section --- */
 .seminar-hero { /* Reuses .competition-hub-hero styles but can have overrides */
     min-height: 60vh; /* Or adjust as needed */
+    margin-top: -3rem; /* Pulls hero up to overlap navbar */    
     /* Backgrounds and portal effects are inherited if .competition-hub-hero is styled globally */
 }
 
@@ -5181,6 +5182,79 @@ section,
 }
 
 @media (max-width: 767px) { /* Mobile */
+        .competition-hub-hero {
+        min-height: 40vh; /* Further reduce for mobile */
+        padding: 3rem 1rem;
+    }
+    .competition-hub-title {
+        font-size: 1.8rem; /* Smaller base for title */
+        line-height: 1.3;
+    }
+    .competition-hub-title .title-main-word {
+        font-size: 2.4rem; /* Smaller main word */
+        letter-spacing: 1px;
+    }
+    .competition-hub-title .title-accent-char {
+        letter-spacing: 1;
+        /* Font size for these might be okay if base title is smaller */
+        /* If they break, reduce font-size or padding here */
+    }
+    .competition-hub-subtitle {
+        font-size: 0.95rem;
+    }
+
+    /* Decorative clouds in hero - adjust or hide */
+    .competition-hub-hero .floating-cloud.cloud-1 { width: 100px; top: 5%; left: 2%; }
+    .competition-hub-hero .floating-cloud.cloud-2 { width: 80px; bottom: 5%; right: 5%; }
+
+
+    .competition-listing-section .section-title {
+        font-size: 1.8rem; /* Match other mobile section titles */
+    }
+
+    .portal-card-comp {
+        flex-direction: column !important; /* Ensure stacking, override desktop */
+        margin-bottom: 2rem;
+        /* clip-path remains from base .sdg-item if that's intended, otherwise remove/reset */
+    }
+    .portal-card-comp .competition-category-img-wrapper {
+        height: 220px; /* Image height when stacked */
+        max-width: 100%; /* Full width for image wrapper in stack */
+        /* clip-path: none; /* Reset clip-path if it was on the wrapper from .sdg-item style */
+    }
+    .portal-card-comp .competition-category-details {
+        padding: 1.5rem 1.25rem;
+        max-width: 100%;
+    }
+    .card-header-comp h3 { /* Title inside card */
+        font-size: 1.4rem;
+    }
+    .card-header-comp .card-icon-comp {
+        font-size: 1.6rem;
+    }
+    .competition-category-details .description {
+        font-size: 0.85rem;
+    }
+    .accordion-toggle { /* For criteria */
+        font-size: 0.9rem;
+        padding: 0.8rem 1rem; /* Slightly more padding for touch */
+    }
+    .accordion-content ul li {
+        font-size: 0.8rem;
+        padding: 0.25rem 0 0.25rem 1rem;
+    }
+    .accordion-content ul li::before { /* Check icon in criteria */
+        top: 0.3rem; /* Adjust alignment if needed */
+    }
+    .comp-template-info {
+        font-size: 0.75rem;
+    }
+    .comp-action-button.portal-button {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.9rem;
+        width: auto; /* Let content define width */
+        max-width: 90%; /* Prevent it from being overly wide */
+    }
     .wow-guest-stars-grid.single-guest {
         grid-template-columns: minmax(260px, 1fr); /* Allow card to take more width within padding */
         padding-left: 1rem;

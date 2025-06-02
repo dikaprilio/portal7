@@ -14,9 +14,9 @@
 <body>
 
     <nav>
-        <div class="nav-container">
+        <div class="nav-container" >
             <a href="index.html" class="logo">
-                <img src="img/Portal_Logo.png" alt="Logo Portal 7" onerror="this.onerror=null;this.src='https://placehold.co/120x30/cccccc/ffffff?text=P7+Logo';">
+                <img src="img/Portal_Logo.png" alt="Logo Portal 7" onerror="this.onerror=null;this.src='https:/ /placehold.co/120x30/cccccc/ffffff?text=P7+Logo';">
             </a>
             <div class="nav-links" id="main-nav-links">
                 <a class="nav-a" href="index.html#hero">Beranda</a>
@@ -55,14 +55,14 @@
     </nav>
 
     <main>
-        <section class="competition-hub-hero section-padding"> 
+        <section class="competition-hub-hero section-padding" id="hero" > 
             <div class="portal-background-effect"></div>
             <div class="floating-cloud cloud-1"><img src="img/cloud_pink.png" alt=""></div>
             <div class="floating-cloud cloud-2"><img src="img/cloud_blue.png" alt=""></div>
 
             <div class="hero-content-comp-hub" data-aos="zoom-in-up"> 
                 <h1 class="competition-hub-title">
-                    <span class="title-accent-char">O</span><span class="title-accent-char">U</span><span class="title-accent-char">R</span>
+                    <span class="title-accent-char">OUR</span>
                     <span class="title-main-word">COMPETITIONS!</span>
                 </h1>
                 <p class="competition-hub-subtitle">Discover the arena that ignites your passion. Whether it's design, storytelling, or strategy, find your challenge and unleash your potential.</p>
@@ -208,6 +208,7 @@
     </footer>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
     // --- AOS Initialization ---
     AOS.init({
@@ -215,77 +216,204 @@
         once: true,
     });
 
-    // --- Mobile Navigation (Copied from index.html, ensure it works here too) ---
+    // --- Mobile Navigation Variables ---
     const menuToggleButton = document.getElementById('mobile-menu-toggle');
     const mainNavLinks = document.getElementById('main-nav-links');
     let menuIcon = menuToggleButton ? menuToggleButton.querySelector('i') : null;
 
-    function closeMobileMenu() { /* ... same as index.html ... */ }
-    if (menuToggleButton) { /* ... same as index.html ... */ }
-    document.querySelectorAll('.nav-links .dropdown-toggle').forEach(toggle => { /* ... same as index.html ... */ });
-    document.querySelectorAll('#main-nav-links a').forEach(anchor => { /* ... modified slightly for non-index pages ... */
+    // --- Central Function to Close Mobile Menu ---
+    function closeMobileMenu() {
+        if (mainNavLinks && mainNavLinks.classList.contains('active')) {
+            mainNavLinks.classList.remove('active');
+            if (menuToggleButton) menuToggleButton.setAttribute('aria-expanded', 'false');
+            if (menuIcon) {
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            }
+            document.querySelectorAll('.nav-links .nav-item.dropdown.open').forEach(openDropdown => {
+                openDropdown.classList.remove('open');
+            });
+        }
+    }
+
+    // --- 1. Toggle Main Mobile Menu (Hamburger) ---
+    if (menuToggleButton) {
+        menuToggleButton.addEventListener('click', (e) => {
+            e.stopPropagation(); // Important to prevent immediate close if click bubbles
+            const isActive = mainNavLinks.classList.toggle('active');
+            menuToggleButton.setAttribute('aria-expanded', isActive);
+            if (menuIcon) {
+                menuIcon.className = isActive ? 'fas fa-times' : 'fas fa-bars';
+            }
+            if (!isActive) { // If menu is being closed by toggle
+                document.querySelectorAll('.nav-links .nav-item.dropdown.open').forEach(openDropdown => {
+                    openDropdown.classList.remove('open');
+                });
+            }
+        });
+    }
+
+    // --- 2. Toggle Dropdowns within Mobile Menu ---
+    document.querySelectorAll('.nav-links .dropdown-toggle').forEach(toggle => {
+        toggle.addEventListener('click', function(e) {
+            if (mainNavLinks && mainNavLinks.classList.contains('active')) { 
+                if (this.getAttribute('href') === '#') { // Prevent jump for placeholder links
+                    e.preventDefault();
+                }
+                const parentDropdown = this.closest('.nav-item.dropdown');
+                if (!parentDropdown) {
+                    return;
+                }
+                const currentlyOpen = parentDropdown.classList.contains('open');
+                parentDropdown.classList.toggle('open', !currentlyOpen); // Toggle current one
+                e.stopPropagation(); // Prevent click from bubbling to document listener
+            }
+        });
+    });
+
+    // --- 3. Handle Clicks on Nav Items (for closing menu and smooth scroll) ---
+    document.querySelectorAll('#main-nav-links a').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const fullHref = this.getAttribute('href');
             const isDropdownToggle = this.classList.contains('dropdown-toggle');
 
             if (isDropdownToggle && mainNavLinks.classList.contains('active')) {
-                return; 
+                return; // Let the dedicated dropdown toggle handler work
             }
 
-            if (fullHref && fullHref.startsWith('#') && document.getElementById(fullHref.substring(1))) { 
-                e.preventDefault();
-                smoothScrollToTarget(fullHref.substring(1));
-                closeMobileMenu();
-            } else if (fullHref && fullHref.includes('index.html#')) {
-                // If linking to an index.html section from another page, just navigate.
-                // The scroll on index.html will be handled by its own 'load' event listener.
-                if(mainNavLinks.classList.contains('active')) closeMobileMenu();
+            const isIndexPage = window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/index');
+            
+            if (fullHref && fullHref.includes('index.html#') && isIndexPage) { 
+                const targetId = fullHref.split('#')[1];
+                if (targetId && document.getElementById(targetId)) {
+                    e.preventDefault();
+                    smoothScrollToTarget(targetId);
+                    closeMobileMenu();
+                } else { 
+                    if(mainNavLinks.classList.contains('active')) closeMobileMenu();
+                }
+            } else if (fullHref && fullHref.startsWith('#')) { 
+                const targetId = fullHref.substring(1);
+                // For competition-hub.html, back-to-top might point to "#hero" (or top of its own page)
+                // For seminar.html, back-to-top might point to "#seminar-top"
+                let pageTopAnchorId = 'hero'; // Default for competition-hub
+                if (window.location.pathname.includes('seminar.html')) {
+                    pageTopAnchorId = 'seminar-top';
+                }
+
+                if (targetId === pageTopAnchorId && !isIndexPage) {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: 'smooth' }); // Simplified top scroll for these pages
+                    closeMobileMenu();
+                } else if (targetId && document.getElementById(targetId)) { // For other on-page anchors
+                     e.preventDefault();
+                     smoothScrollToTarget(targetId);
+                     closeMobileMenu();
+                } else {
+                    // Link is just "#" or target doesn't exist on current page
+                    if(mainNavLinks.classList.contains('active')) closeMobileMenu();
+                }
             } else { 
-                if(mainNavLinks.classList.contains('active')) closeMobileMenu();
+                // Link to another page or a non-scroll action
+                if(mainNavLinks.classList.contains('active')) {
+                     closeMobileMenu(); 
+                }
             }
         });
     });
-    function smoothScrollToTarget(targetId) { /* ... same as index.html, but without isPageLoad logic needed here for simplicity ... */
+    
+    // Smooth Scroll Function
+    function smoothScrollToTarget(targetId, isPageLoad = false) {
         const targetElement = document.getElementById(targetId);
-            if (targetElement) {
-                const navElement = document.querySelector('nav');
-                const navHeight = navElement ? navElement.offsetHeight : 0;
-                const targetElementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-                const offsetPosition = targetElementPosition - navHeight;
-                window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-                return true;
+        if (targetElement) {
+            const navElement = document.querySelector('nav');
+            const navHeight = navElement ? navElement.offsetHeight : 0;
+            let targetElementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+
+            // This specific offset calculation for 'isPageLoad' is more critical for index.html's initial scroll.
+            if (isPageLoad && (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/index'))) { 
+                let elem = targetElement; let top = 0;
+                while(elem) { top += elem.offsetTop; elem = elem.offsetParent; }
+                targetElementPosition = top;
             }
-            return false;
+            const offsetPosition = targetElementPosition - navHeight;
+            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+            return true;
+        }
+        return false;
     }
-    // Scroll to hash if present on this page (e.g., competition-hub.html#ui-ux)
-    window.addEventListener('load', () => {
-        if (window.location.hash) {
+    
+    // Scroll on page load if hash present (handles index.html#section from other pages, or refreshing index.html#section)
+    if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/index')) {
+        window.addEventListener('load', () => {
+            if (window.location.hash && window.location.hash !== "#hero") { // Avoid scrolling to #hero on initial index load unless specifically linked
+                const targetId = window.location.hash.substring(1);
+                setTimeout(() => { smoothScrollToTarget(targetId, true); }, 100);
+            }
+        });
+    } else if (window.location.hash) { // For other pages (not index.html)
+        window.addEventListener('load', () => {
             const targetId = window.location.hash.substring(1);
-            if (document.getElementById(targetId)) {
-                 setTimeout(() => { smoothScrollToTarget(targetId); }, 100);
+            // Avoid scrolling to generic #hero if on a subpage and it's likely from back-to-top default
+            let pageTopAnchorId = 'hero'; 
+            if (window.location.pathname.includes('seminar.html')) pageTopAnchorId = 'seminar-top';
+            
+            if (targetId && targetId !== pageTopAnchorId && document.getElementById(targetId)) {
+                setTimeout(() => { smoothScrollToTarget(targetId, false); }, 100);
+            } else if (targetId === pageTopAnchorId && window.pageYOffset > 0) {
+                 setTimeout(() => { smoothScrollToTarget(targetId, false); }, 100);
+            }
+        });
+    }
+
+    // --- 4. Click Outside to Close Mobile Menu ---
+    document.addEventListener('click', function(event) {
+        if (mainNavLinks && mainNavLinks.classList.contains('active')) {
+            const isClickInsideNav = mainNavLinks.contains(event.target);
+            const isClickOnToggleButton = menuToggleButton ? menuToggleButton.contains(event.target) : false;
+            if (!isClickInsideNav && !isClickOnToggleButton) {
+                closeMobileMenu();
             }
         }
     });
-    document.addEventListener('click', function(event) { /* ... same as index.html ... */ });
 
-    // --- Accordion for Competition Criteria ---
-    document.querySelectorAll('.accordion-toggle').forEach(button => {
-        button.addEventListener('click', () => {
-            const accordionContent = button.nextElementSibling;
-            const icon = button.querySelector('.accordion-icon');
-            
-            button.classList.toggle('active');
-            if (accordionContent.style.maxHeight) {
-                accordionContent.style.maxHeight = null;
-                icon.classList.remove('fa-chevron-up');
-                icon.classList.add('fa-chevron-down');
-            } else {
-                accordionContent.style.maxHeight = accordionContent.scrollHeight + "px";
-                icon.classList.remove('fa-chevron-down');
-                icon.classList.add('fa-chevron-up');
-            }
+    // --- Accordion for Competition Criteria (competition-hub.html) ---
+    if (document.querySelector('.criteria-accordion')) { // Check if on competition-hub page
+        document.querySelectorAll('.accordion-toggle').forEach(button => {
+            button.addEventListener('click', () => {
+                const accordionContent = button.nextElementSibling;
+                const icon = button.querySelector('.accordion-icon');
+                
+                button.classList.toggle('active');
+                if (accordionContent.style.maxHeight) {
+                    accordionContent.style.maxHeight = null;
+                    if(icon) { icon.classList.remove('fa-chevron-up'); icon.classList.add('fa-chevron-down'); }
+                } else {
+                    accordionContent.style.maxHeight = accordionContent.scrollHeight + "px";
+                    if(icon) { icon.classList.remove('fa-chevron-down'); icon.classList.add('fa-chevron-up'); }
+                }
+            });
         });
-    });
+    }
+
+    // --- Accordion for Seminar Details (seminar.html) ---
+    if (document.querySelector('.accordion-seminar')) { // Check if on seminar page
+        document.querySelectorAll('.accordion-seminar-toggle').forEach(button => {
+            button.addEventListener('click', () => {
+                const accordionContent = button.nextElementSibling;
+                const icon = button.querySelector('.accordion-icon');
+                
+                button.classList.toggle('active');
+                if (accordionContent.style.maxHeight) {
+                    accordionContent.style.maxHeight = null;
+                    if(icon) { icon.classList.remove('fa-chevron-up'); icon.classList.add('fa-chevron-down'); }
+                } else {
+                    accordionContent.style.maxHeight = accordionContent.scrollHeight + "px";
+                     if(icon) { icon.classList.remove('fa-chevron-down'); icon.classList.add('fa-chevron-up'); }
+                }
+            });
+        });
+    }
 </script>
 
 </body>
