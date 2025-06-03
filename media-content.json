@@ -85,16 +85,16 @@
         "id": "foto-2",
         "title": "Awarding Night Portal 6",
         "year": "2024",
-        "thumbnailUrl": "img/gallery/thumbs/awarding_2024_thumb.jpg",
-        "fullUrl": "img/gallery/full/awarding_2024_full.jpg",
+        "thumbnailUrl": "img/awarding_2024_thumb.jpg",
+        "fullUrl": "img/awarding_2024_full.jpg",
         "description": "Momen penghargaan untuk para pemenang kompetisi UI/UX."
       },
       {
         "id": "foto-3",
         "title": "Workshop Desain Grafis",
         "year": "2024",
-        "thumbnailUrl": "img/gallery/thumbs/workshop_desain_thumb.jpg",
-        "fullUrl": "img/gallery/full/workshop_desain_full.jpg",
+        "thumbnailUrl": "img/workshop_desain_thumb.jpg",
+        "fullUrl": "img/workshop_desain_full.jpg",
         "description": "Peserta aktif dalam sesi praktik workshop."
       },
       {
@@ -151,8 +151,8 @@
         "id": "video-1",
         "title": "Company Profile Portal 7 (User)",
         "type": "company-profile",
-        "thumbnailUrl": "img/winnerd.png",
-        "videoUrl": "youtube.com/watch?v=6",
+        "thumbnailUrl": "https://i.ytimg.com/vi/gwOYv7uwp1U/hqdefault.jpg",
+        "videoUrl": "https://www.youtube.com/watch?v=gwOYv7uwp1U",
         "description": "Kenali lebih dekat Portal 7: Visi, Misi, dan Semangat Kami! (User version)"
       },
       {
@@ -160,7 +160,7 @@
         "title": "Aftermovie Portal 6 (2024) (User)",
         "type": "documentation",
         "year": "2024",
-        "thumbnailUrl": "img/gallery/thumbs/aftermovie_portal6_thumb.jpg",  
+        "thumbnailUrl": "img/rickroll.jpg",  
         "videoUrl": "youtube.com/watch?v=7",
         "description": "Kilas balik semua keseruan dan momen tak terlupakan di Portal 6. (User version)"
       },
@@ -168,7 +168,7 @@
         "id": "video-3",
         "title": "Portal 7 - Official Hype Trailer (AI)",
         "type": "trailer",
-        "thumbnailUrl": "youtube.com/watch?v=8",
+        "thumbnailUrl": "img/rickroll.jpg",
         "videoUrl": "youtube.com/watch?v=9", 
         "description": "Get ready for the most epic digital event of the year! (Sound on!)"
       },
@@ -177,7 +177,7 @@
         "title": "Portal 6 (2024) - Aftermovie Madness (AI)",
         "type": "documentation",
         "year": "2024",
-        "thumbnailUrl": "youtu.be/0", 
+        "thumbnailUrl": "img/rickroll.jpg", 
         "videoUrl": "youtu.be/1", 
         "description": "Relive the best moments from last year's Portal event!"
       },
@@ -185,7 +185,7 @@
         "id": "video-5",
         "title": "Speaker Sneak Peek: Dr. Codesalot (AI)",
         "type": "speaker-intro",
-        "thumbnailUrl": "youtu.be/2", 
+        "thumbnailUrl": "img/rickroll.jpg", 
         "videoUrl": "youtu.be/3",
         "description": "A quick word from one of our amazing upcoming speakers!"
       }
