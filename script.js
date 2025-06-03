@@ -5,6 +5,9 @@ const langToggleButton = document.getElementById('lang-toggle');
 const mainNavLinks = document.getElementById('main-nav-links');
 const menuToggleButton = document.getElementById('mobile-menu-toggle');
 let menuIcon = menuToggleButton ? menuToggleButton.querySelector('i') : null;
+// Store the title element once for efficient access in applyTranslations
+let pageTitleElement = null;
+
 
 // --- Language Toggle Functionality ---
 async function fetchTranslations() {
@@ -13,7 +16,7 @@ async function fetchTranslations() {
         if (!response.ok) {
             console.error(`HTTP error! status: ${response.status} while fetching translations.json`);
             // Display a user-friendly error message on the page if feasible
-            const errorKey = 'error_loading_translations';
+            const errorKey = 'error_loading_translations'; // Make sure this key exists in translations.json
             const errorElements = document.querySelectorAll(`[data-translate-key="${errorKey}"]`);
             errorElements.forEach(el => el.textContent = "Error loading translations. Please try again later.");
             return; // Stop further execution if translations can't be loaded
@@ -23,7 +26,8 @@ async function fetchTranslations() {
             console.error("Translations file loaded but is empty or invalid JSON.");
             return;
         }
-        applyTranslations(currentLang);
+        // Apply initial translation after translations are fetched
+        applyTranslations(currentLang); 
     } catch (error) {
         console.error("Could not load or parse translations:", error);
     }
@@ -66,22 +70,17 @@ function applyTranslations(lang) {
                      el.innerHTML = translations[lang][key];
                 } else if (!replaced) {
                     // Fallback for elements where text might be wrapped in other simple tags not caught above
-                    // This is a basic attempt, might need refinement for very complex structures
                     const firstTextChild = Array.from(el.childNodes).find(node => node.nodeType === Node.TEXT_NODE && node.textContent.trim());
                     if (firstTextChild) {
-                        firstTextChild.textContent = translations[lang][key];
+                        if (translations[lang][key].includes("<i")) { // Check again if translation is HTML
+                            el.innerHTML = translations[lang][key];
+                        } else {
+                            firstTextChild.textContent = translations[lang][key];
+                        }
                     } else {
-                         // If the element has children but the translation key is for the parent's text content
-                         // and the translation does not contain HTML, set textContent.
-                         // This is a fallback and might clear children if not handled carefully.
-                         // A better approach is to have specific keys for text nodes.
-                         if (!translations[lang][key].includes("<")) {
-                            el.textContent = translations[lang][key];
-                         } else {
-                            // If translation contains HTML and we couldn't find a text node,
-                            // it's safer to not blindly set innerHTML unless the key is known to be safe.
-                            // console.warn(`Skipping translation for key '${key}' on element with children due to complex structure.`);
-                         }
+                        // If translation contains HTML and we couldn't find a text node,
+                        // it's safer to not blindly set innerHTML unless the key is known to be safe.
+                        // console.warn(`Skipping translation for key '${key}' on element with children due to complex structure.`);
                     }
                 }
             } else { // Element has no children or only text content
@@ -94,28 +93,15 @@ function applyTranslations(lang) {
         }
     });
 
-    // Special handling for page title if a data-translate-key is set on the <title> tag
-    const titleElement = document.querySelector('title[data-translate-key]');
-    if (titleElement) {
-        const titleKey = titleElement.dataset.translateKey;
+    // Update page title using the globally stored pageTitleElement
+    if (pageTitleElement) {
+        const titleKey = pageTitleElement.dataset.translateKey;
         if (translations[lang] && translations[lang][titleKey]) {
             document.title = translations[lang][titleKey];
         }
     }
-    // Re-translate dynamic content if page-specific functions are called after this
-    // (e.g., re-render blog articles with new language)
-    if (typeof loadAllBlogArticles === 'function' && document.getElementById('full-articles-grid')) {
-        loadAllBlogArticles(); // This function should now use currentLang
-    }
-    if (typeof loadSpecificBlogArticle === 'function' && document.getElementById('article-detail-wrapper')) {
-        loadSpecificBlogArticle();
-    }
-    if (typeof loadAllGalleryContent === 'function' && document.getElementById('all-photos-grid')) {
-        loadAllGalleryContent();
-    }
-    if (typeof loadMediaContent === 'function' && document.getElementById('media')) {
-        loadMediaContent(); // For index page media previews
-    }
+    // Calls to load dynamic content (loadAllBlogArticles, etc.)
+    // should NOT be here. They are called once on DOMContentLoaded.
 }
 
 
@@ -192,24 +178,21 @@ function setupMobileNavigation() {
 
             if (fullHref && fullHref.includes('#') && targetId) {
                 if ((isIndexPage && fullHref.startsWith('index.html#')) || (!isIndexPage && fullHref.startsWith('#'))) {
-                     // Check if target is on the current page
                     if (document.getElementById(targetId)) {
                         e.preventDefault();
                         smoothScrollToTarget(targetId);
                         closeMobileMenu();
                     } else if (isIndexPage && !fullHref.startsWith('index.html#')) {
-                        // Link to a section on index.html from another page (handled by browser)
                         closeMobileMenu();
                     } else {
                          if (mainNavLinks && mainNavLinks.classList.contains('active')) closeMobileMenu();
                     }
                 } else if (!isIndexPage && fullHref.includes('index.html#')) {
-                     // Link from a subpage to index.html#section - let browser handle, just close menu
                     closeMobileMenu();
                 } else {
                      if (mainNavLinks && mainNavLinks.classList.contains('active')) closeMobileMenu();
                 }
-            } else { // Link to another page or a non-scroll action
+            } else { 
                 if (mainNavLinks && mainNavLinks.classList.contains('active')) {
                     closeMobileMenu();
                 }
@@ -252,13 +235,11 @@ function handlePageLoadAnchors() {
         const targetId = window.location.hash.substring(1);
         const isIndexPage = window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/index');
         
-        let pageTopAnchorId = 'hero'; // Default for most pages
+        let pageTopAnchorId = 'hero'; 
         if (window.location.pathname.includes('blog.html')) pageTopAnchorId = 'blog-top';
         else if (window.location.pathname.includes('seminar.html')) pageTopAnchorId = 'seminar-top';
         else if (window.location.pathname.includes('gallery.html')) pageTopAnchorId = 'gallery-page-top';
-        // Add more else if for other pages with specific top anchors
-
-        // Avoid scrolling to default top anchor unless specifically linked or already scrolled
+        
         if (targetId && targetId !== pageTopAnchorId && document.getElementById(targetId)) {
             setTimeout(() => { smoothScrollToTarget(targetId, isIndexPage); }, 100);
         } else if (targetId === pageTopAnchorId && window.pageYOffset > 0 && document.getElementById(targetId)) {
@@ -315,10 +296,15 @@ function startCountdown() {
 
         if (distance < 0) {
             clearInterval(countdownFunction);
-            const eventStartedKey = 'event_started_message'; // Define a key for this
+            const eventStartedKey = 'event_started_message'; 
             countdownTimerEl.innerHTML = `<span data-translate-key="${eventStartedKey}">${(translations[currentLang] && translations[currentLang][eventStartedKey]) || "EVENT TELAH DIMULAI!"}</span>`;
             countdownTimerEl.style.fontSize="1.5rem";
             countdownTimerEl.style.fontWeight="bold";
+            // Re-apply translation to this specific element if it was just updated
+            if (translations[currentLang] && translations[currentLang][eventStartedKey]) {
+                const spanElement = countdownTimerEl.querySelector(`[data-translate-key="${eventStartedKey}"]`);
+                if(spanElement) spanElement.textContent = translations[currentLang][eventStartedKey];
+            }
         }
     }, 1000);
 }
@@ -337,7 +323,7 @@ function setupLogoAnimation() {
     }
 }
 
-// --- Media Content Loading (Index Page) ---
+// --- Media Content Loading (Index Page Previews) ---
 async function loadMediaContent() {
     const mediaSection = document.getElementById('media');
     if (!mediaSection) return;
@@ -349,7 +335,7 @@ async function loadMediaContent() {
     const galleryTabs = mediaSection.querySelectorAll('#media .gallery-tab-button');
 
     try {
-        const response = await fetch('media-content.json'); // Ensure this path is correct
+        const response = await fetch('media-content.json');
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const data = await response.json();
 
@@ -372,25 +358,26 @@ async function loadMediaContent() {
                 });
             });
         }
-        applyTranslations(currentLang); // Re-apply translations to newly added content
+        applyTranslations(currentLang); 
+        if (typeof AOS !== 'undefined') AOS.refresh();
     } catch (error) {
-        console.error("Gagal memuat konten media:", error);
+        console.error("Gagal memuat konten media (index):", error);
         if (blogArticlesContainer) blogArticlesContainer.innerHTML = `<p class="error-message" data-translate-key="error_load_articles">Gagal memuat artikel.</p>`;
-        // ... other error messages for gallery, partners
-        applyTranslations(currentLang); // Translate error messages
+        if (galleryPhotosContainer) galleryPhotosContainer.innerHTML = `<p class="error-message" data-translate-key="error_load_photos">Gagal memuat foto.</p>`;
+        if (galleryVideosContainer) galleryVideosContainer.innerHTML = `<p class="error-message" data-translate-key="error_load_videos">Gagal memuat video.</p>`;
+        if (partnersSponsorsContainer) partnersSponsorsContainer.innerHTML = `<p class="error-message" data-translate-key="error_load_partners">Gagal memuat mitra.</p>`;
+        applyTranslations(currentLang); 
     }
 }
 
 function renderBlogArticlesPreview(articles, container) {
-    if (!container || !articles || articles.length === 0) {
-        if(container) container.innerHTML = `<p data-translate-key="no_articles">Belum ada artikel.</p>`;
+    if (!container) return;
+    if (!articles || articles.length === 0) {
+        container.innerHTML = `<p data-translate-key="no_articles">Belum ada artikel.</p>`;
         return;
     }
     container.innerHTML = '';
     articles.slice(0, 3).forEach(article => {
-        // Assuming article.title, article.summary etc. are either language-agnostic or will be handled
-        // by making media-content.json multilingual as discussed.
-        // For static text like "Oleh:" or "Baca Selengkapnya", use data-translate-key.
         const articleCardHTML = `
             <div class="article-card" data-aos="fade-up" data-aos-anchor="#blog-articles-container">
                 <a href="${article.link}" class="article-card-link">
@@ -411,8 +398,9 @@ function renderBlogArticlesPreview(articles, container) {
 }
 
 function renderGalleryPhotosPreview(photos, container) {
-    if (!container || !photos || photos.length === 0) {
-        if(container) container.innerHTML = `<p data-translate-key="no_photos">Belum ada foto.</p>`;
+    if (!container) return;
+    if (!photos || photos.length === 0) {
+        container.innerHTML = `<p data-translate-key="no_photos">Belum ada foto.</p>`;
         return;
     }
     container.innerHTML = '';
@@ -430,8 +418,9 @@ function renderGalleryPhotosPreview(photos, container) {
 }
 
 function renderGalleryVideosPreview(videos, container) {
-     if (!container || !videos || videos.length === 0) {
-        if(container) container.innerHTML = `<p data-translate-key="no_videos">Belum ada video.</p>`;
+     if (!container) return;
+    if (!videos || videos.length === 0) {
+        container.innerHTML = `<p data-translate-key="no_videos">Belum ada video.</p>`;
         return;
     }
     container.innerHTML = '';
@@ -449,8 +438,9 @@ function renderGalleryVideosPreview(videos, container) {
 }
 
 function renderPartnersSponsors(items, container) {
-    if (!container || !items || items.length === 0) {
-        if(container) container.innerHTML = `<p data-translate-key="no_partners">Mitra akan segera tampil.</p>`;
+    if (!container) return;
+    if (!items || items.length === 0) {
+        container.innerHTML = `<p data-translate-key="no_partners">Mitra akan segera tampil.</p>`;
         return;
     }
     container.innerHTML = '';
@@ -481,6 +471,7 @@ async function loadAllBlogArticles() {
             fullArticlesGrid.innerHTML = `<p class="error-message" data-translate-key="error_no_articles_found">No articles found in data.</p>`;
         }
         applyTranslations(currentLang);
+        if (typeof AOS !== 'undefined') AOS.refresh();
     } catch (error) {
         console.error("Gagal memuat semua artikel blog:", error);
         fullArticlesGrid.innerHTML = `<p class="error-message" data-translate-key="error_load_articles_full">Gagal memuat artikel. Silakan coba lagi nanti.</p>`;
@@ -489,11 +480,12 @@ async function loadAllBlogArticles() {
 }
 
 function renderFullBlogArticles(articles, container) {
-    if (!container || !articles || articles.length === 0) {
-        if(container) container.innerHTML = `<p data-translate-key="no_articles_available">Belum ada artikel untuk ditampilkan.</p>`;
+    if (!container) return;
+    if (!articles || articles.length === 0) {
+        container.innerHTML = `<p data-translate-key="no_articles_available">Belum ada artikel untuk ditampilkan.</p>`;
         return;
     }
-    container.innerHTML = ''; // Clear loading message
+    container.innerHTML = ''; 
     articles.forEach(article => {
         const articleCardHTML = `
             <div class="article-card" data-aos="fade-up">
@@ -520,7 +512,7 @@ async function loadSpecificBlogArticle() {
     if (!articleDetailWrapper) return;
 
     articleDetailWrapper.innerHTML = `<div class="loading-article"><p data-translate-key="blog_detail_loading">Memuat artikel...</p></div>`;
-    applyTranslations(currentLang); // Translate loading message
+    applyTranslations(currentLang); 
 
     const params = new URLSearchParams(window.location.search);
     const articleId = params.get('id');
@@ -541,15 +533,14 @@ async function loadSpecificBlogArticle() {
         const article = data.blogArticles.find(post => post.id === articleId);
 
         if (article) {
-            // For translating title, meta, and fullContentHTML, you'd ideally have these in multiple languages
-            // in your media-content.json or use specific keys if parts are static.
-            // Example: if article.title is an object like {en: "Title", id: "Judul"}
-            // const titleText = article.title[currentLang] || article.title['id']; // Fallback to default
-            const titleText = article.title; // Assuming title is not yet multilingual in JSON
+            const titleText = article.title; 
             const authorText = article.author;
-            const fullContent = article.fullContentHTML; // Assuming this is not yet multilingual
+            const fullContent = article.fullContentHTML; 
 
-            document.title = titleText + " - Portal 7";
+            if (pageTitleElement) { // Set document title using the article's title
+                 document.title = titleText + " - Portal 7";
+            }
+
 
             let articleHTML = `
                 <section class="blog-detail-hero">
@@ -575,8 +566,8 @@ async function loadSpecificBlogArticle() {
                     </div>
                 </div>`;
             articleDetailWrapper.innerHTML = articleHTML;
-            if (typeof AOS !== 'undefined') AOS.refresh(); // Re-init AOS for new content
-            applyTranslations(currentLang); // Translate static parts like "Oleh:", "Kembali ke..."
+            if (typeof AOS !== 'undefined') AOS.refresh(); 
+            applyTranslations(currentLang); 
         } else {
             articleDetailWrapper.innerHTML = `<div class="article-not-found">
                                                 <p data-translate-key="blog_detail_not_found">Artikel tidak ditemukan.</p>
@@ -604,7 +595,7 @@ let currentLightboxIndex = 0;
 async function loadAllGalleryContent() {
     const allPhotosContainer = document.getElementById('all-photos-grid');
     const allVideosContainer = document.getElementById('all-videos-grid');
-    if (!allPhotosContainer && !allVideosContainer) return; // Not on gallery page
+    if (!allPhotosContainer && !allVideosContainer) return; 
 
     try {
         const response = await fetch('media-content.json');
@@ -617,6 +608,7 @@ async function loadAllGalleryContent() {
         if (allPhotosContainer) renderGalleryItems(allGalleryPhotos, allPhotosContainer, 'photo');
         if (allVideosContainer) renderGalleryItems(allGalleryVideos, allVideosContainer, 'video');
         applyTranslations(currentLang);
+        if (typeof AOS !== 'undefined') AOS.refresh();
 
     } catch (error) {
         console.error("Gagal memuat konten galeri lengkap:", error);
@@ -627,6 +619,7 @@ async function loadAllGalleryContent() {
 }
 
 function renderGalleryItems(itemsToRender, container, itemType) {
+    if (!container) return;
     if (!itemsToRender || itemsToRender.length === 0) {
         const noItemKey = itemType === 'photo' ? 'no_photos_available' : 'no_videos_available';
         container.innerHTML = `<p data-translate-key="${noItemKey}">Belum ada ${itemType === 'photo' ? 'foto' : 'video'} untuk ditampilkan.</p>`;
@@ -679,11 +672,9 @@ function openLightbox(items, index, type) {
     lightbox.style.display = 'flex';
     document.body.style.overflow = 'hidden';
 }
-// Function to open lightbox when clicking from index.html preview
-// It needs to know which collection (photos or videos) the item belongs to.
+
 async function openLightboxFromPreview(itemId, itemType) {
     if (allGalleryPhotos.length === 0 && allGalleryVideos.length === 0) {
-        // Fetch gallery data if not already loaded (e.g., if user directly lands on index)
         try {
             const response = await fetch('media-content.json');
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
@@ -717,7 +708,7 @@ function closeLightbox() {
     if (lightboxImage) lightboxImage.style.display = 'none';
     if (lightboxVideo) {
         lightboxVideo.style.display = 'none';
-        lightboxVideo.src = ""; // Stop video
+        lightboxVideo.src = ""; 
     }
     document.body.style.overflow = 'auto';
 }
@@ -743,13 +734,18 @@ function updateLightboxContent(itemType) {
         lightboxImage.style.display = 'block';
     } else if (itemType === 'video' && item.videoUrl) {
         let videoEmbedUrl = item.videoUrl;
-        // Basic YouTube embed URL fix (can be expanded)
-        if (videoEmbedUrl.includes("youtube.com/watch?v=")) {
+        if (videoEmbedUrl.includes("youtube.com/watch?v=")) { // Standard YouTube URL
             videoEmbedUrl = videoEmbedUrl.replace("watch?v=", "embed/");
-        } else if (videoEmbedUrl.includes("youtu.be/")) {
-            videoEmbedUrl = videoEmbedUrl.replace("youtu.be/", "www.youtube.com/embed/");
+        } else if (videoEmbedUrl.match(/googleusercontent\.com\/youtube\.com\/\d+/)) { // Your specific pattern
+             // Assuming the number is the video ID, construct embed URL
+             // This might need adjustment based on actual video IDs
+            const videoIdMatch = videoEmbedUrl.match(/googleusercontent\.com\/youtube\.com\/(\w+)/);
+            if (videoIdMatch && videoIdMatch[1]) {
+                 videoEmbedUrl = `https://www.youtube.com/embed/${videoIdMatch[1]}`;
+            } else {
+                console.warn("Could not parse YouTube video ID from googleusercontent URL:", item.videoUrl);
+            }
         }
-        // Add more provider checks if necessary (e.g., Vimeo)
         lightboxVideo.src = videoEmbedUrl;
         lightboxVideo.style.display = 'block';
     }
@@ -783,7 +779,7 @@ function setupLightboxControls() {
 
     if(lightboxModal) {
         lightboxModal.addEventListener('click', (e) => {
-            if (e.target === lightboxModal) { // Click on backdrop
+            if (e.target === lightboxModal) { 
                 closeLightbox();
             }
         });
@@ -823,17 +819,20 @@ function setupAccordions(accordionSelector, toggleSelector) {
 
 
 // --- DOMContentLoaded Event Listener ---
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     // Initialize AOS
     initializeAOS();
 
     // Setup navigation
     setupMobileNavigation();
-    handlePageLoadAnchors(); // Handle smooth scroll for #links on page load
+    handlePageLoadAnchors(); 
+
+    // Store the title element once for efficient access in applyTranslations
+    pageTitleElement = document.querySelector('title[data-translate-key]');
 
     // Fetch translations and set initial language
-    // This will also trigger initial translation of static content
-    fetchTranslations(); 
+    // applyTranslations will be called inside fetchTranslations after loading
+    await fetchTranslations(); 
 
     // Setup FAQ if on a page with FAQs
     setupFAQAccordion();
@@ -849,14 +848,14 @@ document.addEventListener('DOMContentLoaded', () => {
         loadMediaContent();
     }
     if (document.getElementById('full-articles-grid')) { // Blog page
-        // loadAllBlogArticles(); // fetchTranslations will call this after translations are loaded
+        loadAllBlogArticles(); 
     }
     if (document.getElementById('article-detail-wrapper')) { // Blog detail page
-        // loadSpecificBlogArticle(); // fetchTranslations will call this
+        loadSpecificBlogArticle(); 
     }
     if (document.getElementById('all-photos-grid') || document.getElementById('all-videos-grid')) { // Gallery page
         setupGalleryTabs();
-        // loadAllGalleryContent(); // fetchTranslations will call this
+        loadAllGalleryContent(); 
         setupLightboxControls();
     }
     if (document.querySelector('.criteria-accordion')) { // Competition hub page
@@ -873,7 +872,4 @@ document.addEventListener('DOMContentLoaded', () => {
             applyTranslations(newLang); // This will re-translate everything
         });
     }
-    
-    // Store the title element once for efficient access in setLanguage
-    document.titleElement = document.querySelector('title[data-translate-key]');
 });
