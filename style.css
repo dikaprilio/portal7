@@ -100,7 +100,27 @@ nav::after {
     opacity: 1;
     filter: blur(1px); /* Softens the gradient line slightly */
 }
-
+/* Basic styling for the language toggle */
+.lang-toggle-button {
+    background-color: var(--pink-accent);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-left: 1rem; /* Adjust as needed */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.lang-toggle-button:hover {
+    background-color: var(--blue-accent);
+    transform: scale(1.05);
+}
+/* Ensure dropdowns don't hide the toggle if it's last */
+.nav-links {
+    align-items: center;
+}
 .nav-container {
     display: flex;
     align-items: center;
@@ -5055,7 +5075,137 @@ section,
         background-color: rgba(var(--blue-accent-rgb), 0.1); /* Slight highlight for open parent toggle */
     }
 
+        /* Add or modify these styles in your style.css within the mobile breakpoint */
 
+    /* --- Mobile Sidebar Navigation Styles (Portal Theme) --- */
+    .nav-links.active { /* This IS the sidebar when active */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 280px; /* Or your preferred width */
+        height: 100vh;
+        background-color: var(--navbar-bg);
+        box-shadow: 3px 0px 15px rgba(0, 0, 0, 0.25);
+        padding-top: 60px; /* Increased padding for more space at the top */
+        display: flex;
+        flex-direction: column;
+        align-items: stretch; /* Links take full width */
+        gap: 0;
+        transform: translateX(0); /* Ensure it's visible when active */
+        transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+        z-index: 1050;
+        overflow-y: auto;
+    }
+
+    /* Styling for main links within the mobile sidebar */
+    .nav-links.active .nav-a {
+        width: 100%;
+        padding: 0.9rem 2rem; /* Adjusted padding: more vertical, more horizontal */
+        text-align: left;
+        color: var(--navbar-text) !important;
+        font-weight: 500;
+        font-size: 1rem; /* Slightly larger font for better readability */
+        border-bottom: 1px solid rgba(var(--secondary-color), 0.1); /* Subtle separator */
+        transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .nav-links.active .nav-a:last-of-type {
+        border-bottom: none; /* Remove border from the last direct link if it's not a CTA */
+    }
+
+
+    /* Hover state for regular links (not CTA button) */
+    .nav-links.active .nav-a:hover:not(.nav-cta-button) {
+        background-color: rgba(var(--pink-accent-rgb), 0.15);
+        color: white !important;
+    }
+
+    /* Specific styling for CTA button ("Pendaftaran") inside mobile menu */
+    .nav-links.active .nav-a.nav-cta-button {
+        margin: 2rem auto 1.5rem auto; /* More top/bottom margin, auto left/right for centering */
+        width: calc(100% - 4rem); /* Takes full width minus padding */
+        max-width: 220px; /* Max width for the button */
+        padding: 0.9rem 1.5rem; /* Adjusted padding for CTA */
+        text-align: center;
+        border-bottom: none;
+        color: white !important;
+        border-radius: 50px; /* Ensure pill shape */
+        /* Other CTA styles like background gradient are inherited */
+    }
+
+    /* Language Toggle Button in Mobile Menu */
+    .nav-links.active #lang-toggle {
+        margin: 1.5rem auto 2rem auto; /* Centered with more vertical space */
+        padding: 0.6rem 1.2rem; /* Slightly adjusted padding */
+        font-size: 0.9rem;
+        width: fit-content; /* Button width based on its content */
+        display: block; /* To allow margin auto to center */
+        /* Other .lang-toggle-button styles are inherited */
+    }
+
+
+    /* --- Mobile Dropdown Menu Styles (Dark Theme) --- */
+    .nav-links.active .nav-item.dropdown .dropdown-menu {
+        display: none;
+        box-shadow: none;
+        border-radius: 0;
+        background-color: rgba(var(--navbar-dropdown-bg-rgb, 35, 39, 47), 0.5); /* Slightly more transparent or different shade */
+        width: 100%;
+        padding-left: 0; /* Remove left padding, items will have their own */
+        border-top: 1px solid rgba(var(--secondary-color), 0.1);
+    }
+
+    .nav-links.active .nav-item.dropdown.open .dropdown-menu {
+        display: block;
+    }
+
+    /* Dropdown items */
+    .nav-links.active .nav-item.dropdown.open .dropdown-menu .dropdown-item {
+        display: block;
+        padding: 0.8rem 2.5rem; /* Indent dropdown items more */
+        text-decoration: none;
+        color: var(--navbar-text) !important;
+        font-weight: 500;
+        font-size: 0.9rem; /* Slightly smaller for hierarchy */
+        white-space: nowrap;
+        transition: background-color 0.2s ease, color 0.2s ease;
+        border-bottom: 1px solid rgba(var(--secondary-color), 0.08);
+        background-color: transparent;
+    }
+
+    .nav-links.active .nav-item.dropdown.open .dropdown-menu .dropdown-item:last-child {
+        border-bottom: none;
+    }
+
+    .nav-links.active .nav-item.dropdown.open .dropdown-menu .dropdown-item:hover {
+        background-color: rgba(var(--pink-accent-rgb), 0.25);
+        color: white !important;
+    }
+
+    /* Dropdown toggle itself when its menu is open */
+    .nav-links.active .nav-item.dropdown.open > .nav-a.dropdown-toggle {
+        background-color: rgba(var(--blue-accent-rgb), 0.1);
+        font-weight: 600; /* Make parent toggle slightly bolder when open */
+    }
+
+    /* Dropdown icon in mobile menu */
+    .nav-links.active .dropdown-toggle .dropdown-icon {
+        transition: transform 0.3s ease;
+        margin-left: auto; /* Push icon to the right */
+        padding-left: 10px; /* Space between text and icon */
+        display: inline-block; /* Needed for transform */
+    }
+
+    .nav-links.active .nav-item.dropdown.open > .nav-a.dropdown-toggle .dropdown-icon {
+        transform: rotate(180deg);
+    }
+
+    /* Ensure the main toggle link and icon are aligned nicely */
+    .nav-links.active .nav-a.dropdown-toggle {
+        display: flex; /* Use flex to align text and icon */
+        justify-content: space-between; /* Pushes icon to the end */
+        align-items: center;
+    }
     /* Hamburger Button */
     .mobile-menu-button {
         display: block; /* Show the button */

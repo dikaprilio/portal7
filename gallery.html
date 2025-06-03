@@ -1,15 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galeri Portal 7 - Momen & Karya</title>
+    <title data-translate-key="gallery_page_title_meta">Galeri Portal 7 - Momen & Karya</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .lang-toggle-button {
+            background-color: var(--pink-accent);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-left: 1rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .lang-toggle-button:hover {
+            background-color: var(--blue-accent);
+            transform: scale(1.05);
+        }
+        .nav-links {
+            align-items: center;
+        }
+    </style>
 </head>
 <body>
     <nav>
@@ -18,34 +39,36 @@
                 <img src="img/Portal_Logo.png" alt="Logo Portal 7" onerror="this.onerror=null;this.src='https://placehold.co/120x30/cccccc/ffffff?text=P7+Logo';">
             </a>
             <div class="nav-links" id="main-nav-links">
-                <a class="nav-a" href="index.html#hero">Beranda</a>
+                <a class="nav-a" href="index.html#hero" data-translate-key="nav_beranda">Beranda</a>
                 <div class="nav-item dropdown">
-                    <a class="nav-a dropdown-toggle" href="#">Tentang Portal <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                    <a class="nav-a dropdown-toggle" href="#" data-translate-key="nav_tentang_portal">Tentang Portal <i class="fas fa-chevron-down dropdown-icon"></i></a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="index.html#tentang">Tentang Kami</a>
-                        <a class="dropdown-item" href="index.html#highlight">Highlights</a>
-                        <a class="dropdown-item" href="index.html#linimasa">Linimasa</a>
-                        <a class="dropdown-item" href="index.html#guest-stars">Guest Star</a>
-                        <a class="dropdown-item" href="index.html#peserta">Siapa Peserta?</a>
-                        <a class="dropdown-item" href="index.html#faq">FAQ</a>
+                        <a class="dropdown-item" href="index.html#tentang" data-translate-key="nav_tentang_kami">Tentang Kami</a>
+                        <a class="dropdown-item" href="index.html#highlight" data-translate-key="nav_highlight">Highlights</a>
+                        <a class="dropdown-item" href="index.html#sdg-commitment" data-translate-key="nav_sdg_commitment">Komitmen SDG</a>
+                        <a class="dropdown-item" href="index.html#linimasa" data-translate-key="nav_linimasa">Linimasa</a>
+                        <a class="dropdown-item" href="index.html#guest-stars" data-translate-key="nav_guest_stars">Guest Star</a>
+                        <a class="dropdown-item" href="index.html#peserta" data-translate-key="nav_peserta">Siapa Peserta?</a>
+                        <a class="dropdown-item" href="index.html#faq" data-translate-key="nav_faq">FAQ</a>
                     </div>
                 </div>
                 <div class="nav-item dropdown">
-                    <a class="nav-a dropdown-toggle" href="#">Event <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                    <a class="nav-a dropdown-toggle" href="#" data-translate-key="nav_event">Event <i class="fas fa-chevron-down dropdown-icon"></i></a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="competition-hub.html">Kompetisi</a>
-                        <a class="dropdown-item" href="seminar.html">Seminar</a>
+                        <a class="dropdown-item" href="competition-hub.html" data-translate-key="nav_kompetisi">Kompetisi</a>
+                        <a class="dropdown-item" href="seminar.html" data-translate-key="nav_seminar">Seminar</a>
                     </div>
                 </div>
                 <div class="nav-item dropdown">
-                    <a class="nav-a dropdown-toggle" href="#">Media <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                    <a class="nav-a dropdown-toggle" href="#" data-translate-key="nav_media">Media <i class="fas fa-chevron-down dropdown-icon"></i></a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="blog.html">Blog</a>
-                        <a class="dropdown-item" href="gallery.html">Gallery</a>
+                        <a class="dropdown-item" href="blog.html" data-translate-key="nav_blog">Blog</a>
+                        <a class="dropdown-item" href="gallery.html" data-translate-key="nav_gallery">Gallery</a>
                     </div>
                 </div>
-                <a class="nav-a" href="index.html#kontak">Kontak Kami</a>
-                <a class="nav-a nav-cta-button" href="index.html#pendaftaran">Pendaftaran</a>
+                <a class="nav-a" href="index.html#kontak" data-translate-key="nav_kontak_kami">Kontak Kami</a>
+                <a class="nav-a nav-cta-button" href="index.html#pendaftaran" data-translate-key="nav_pendaftaran">Pendaftaran</a>
+                <button id="lang-toggle" class="lang-toggle-button" data-translate-key="lang_toggle">EN</button>
             </div>
             <button id="mobile-menu-toggle" class="mobile-menu-button" aria-label="Toggle menu" aria-expanded="false">
                 <i class="fas fa-bars"></i>
@@ -56,29 +79,32 @@
     <main>
         <section class="gallery-page-hero section-padding" id="gallery-page-top">
             <div class="portal-background-effect"></div>
-            <div class="floating-cloud cloud-2"><img src="img/cloud_blue.png" alt="Blue cloud"></div>
-            <div class="floating-cloud cloud-5"><img src="img/cloud_pink.png" alt="Pink cloud"></div>
+            <div class="floating-cloud cloud-2"><img src="img/cloud_blue.png" alt="Awan biru melayang"></div>
+            <div class="floating-cloud cloud-5"><img src="img/cloud_pink.png" alt="Awan merah muda melayang"></div>
             
             <div class="container">
-                <h1 class="gallery-page-main-title" data-aos="fade-up">Gallery <span class="title-accent-highlight">Portal 7</span></h1>
-                <p class="gallery-page-main-subtitle" data-aos="fade-up" data-aos-delay="100">Jelajahi momen tak terlupakan dan karya-karya inspiratif dari rangkaian acara Portal 7.</p>
+                <h1 class="gallery-page-main-title" data-aos="fade-up">
+                    <span data-translate-key="gallery_page_hero_title">Galeri</span>
+                    <span class="title-accent-highlight" data-translate-key="gallery_page_hero_title_accent">Portal 7</span>
+                </h1>
+                <p class="gallery-page-main-subtitle" data-aos="fade-up" data-aos-delay="100" data-translate-key="gallery_page_hero_subtitle">Jelajahi momen tak terlupakan dan karya-karya inspiratif dari rangkaian acara Portal 7.</p>
             </div>
         </section>
 
         <section class="gallery-section section-padding">
             <div class="container">
                 <div class="gallery-tabs" data-aos="fade-up">
-                    <button class="gallery-tab-button active" data-tab="photos-all">Foto Dokumentasi</button>
-                    <button class="gallery-tab-button" data-tab="videos-all">Video Highlights</button>
+                    <button class="gallery-tab-button active" data-tab="photos-all" data-translate-key="gallery_tab_photos_all">Foto Dokumentasi</button>
+                    <button class="gallery-tab-button" data-tab="videos-all" data-translate-key="gallery_tab_videos_all">Video Highlights</button>
                 </div>
 
                 <div class="gallery-grid-wrapper">
                     <div class="gallery-grid photos-all active-gallery-content" id="all-photos-grid" data-aos="fade-up" data-aos-delay="200">
-                        <p class="loading-message">Memuat semua foto...</p>
-                    </div>
+                        <p class="loading-message" data-translate-key="gallery_loading_photos_all">Memuat semua foto...</p>
+                        </div>
                     <div class="gallery-grid videos-all" id="all-videos-grid" data-aos="fade-up" data-aos-delay="200">
-                        <p class="loading-message">Memuat semua video...</p>
-                    </div>
+                        <p class="loading-message" data-translate-key="gallery_loading_videos_all">Memuat semua video...</p>
+                        </div>
                 </div>
             </div>
         </section>
@@ -94,17 +120,17 @@
                     <p class="footer-event-name">Portal 7: Empower Digital</p>
                 </div>
                 <div class="footer-quick-links">
-                    <h4>Navigasi Cepat</h4>
-                    <a href="index.html#tentang">Tentang Kami</a>
-                    <a href="competition-hub.html">Kompetisi</a>
-                    <a href="seminar.html">Seminar</a>
-                    <a href="index.html#linimasa">Linimasa</a>
-                    <a href="blog.html">Blog</a>
-                    <a href="gallery.html">Galeri</a>
-                    <a href="index.html#faq">FAQ</a>
+                    <h4 data-translate-key="footer_nav_cepat">Navigasi Cepat</h4>
+                    <a href="index.html#tentang" data-translate-key="nav_tentang_kami">Tentang Kami</a>
+                    <a href="competition-hub.html" data-translate-key="nav_kompetisi">Kompetisi</a>
+                    <a href="seminar.html" data-translate-key="nav_seminar">Seminar</a>
+                    <a href="index.html#linimasa" data-translate-key="nav_linimasa">Linimasa</a>
+                    <a href="blog.html" data-translate-key="nav_blog">Blog</a>
+                    <a href="gallery.html" data-translate-key="nav_gallery">Galeri</a>
+                    <a href="index.html#faq" data-translate-key="nav_faq">FAQ</a>
                 </div>
                 <div class="footer-contact-social">
-                    <h4>Terhubung Dengan Kami</h4>
+                    <h4 data-translate-key="footer_hubungi_kami">Terhubung Dengan Kami</h4>
                     <div class="footer-contact-item">
                         <i class="far fa-envelope"></i> <a href="mailto:portalbemsvipb@gmail.com">portalbemsvipb@gmail.com</a>
                     </div>
@@ -118,8 +144,8 @@
             </div>
             <div class="footer-bottom">
                 <div class="footer-copyright">
-                    <p>&copy; 2025 Badan Eksekutif Mahasiswa Sekolah Vokasi IPB University. All rights reserved.</p>
-                    <p>Empowered by Inspiration, Driven by Innovation.</p>
+                    <p data-translate-key="footer_copyright_line1">&copy; 2025 Badan Eksekutif Mahasiswa Sekolah Vokasi IPB University. Hak cipta dilindungi.</p>
+                    <p data-translate-key="footer_copyright_line2">Diberdayakan oleh Inspirasi, Didorong oleh Inovasi.</p>
                 </div>
                 <a href="#gallery-page-top" class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
             </div>
@@ -127,342 +153,17 @@
     </footer>
     
     <div id="lightbox-modal" class="lightbox-modal">
-        <span class="lightbox-close">×</span>
+        <span class="lightbox-close">&times;</span>
         <div class="lightbox-content">
             <img id="lightbox-image" src="#" alt="Lightbox Image">
             <iframe id="lightbox-video" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             <div id="lightbox-caption" class="lightbox-caption"></div>
         </div>
-        <a class="lightbox-prev" aria-label="Previous image">❮</a>
-        <a class="lightbox-next" aria-label="Next image">❯</a>
+        <a class="lightbox-prev" aria-label="Previous image">&#10094;</a>
+        <a class="lightbox-next" aria-label="Next image">&#10095;</a>
     </div>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-    // --- AOS Initialization ---
-    AOS.init({
-        duration: 800,
-        once: true,
-    });
-
-    // --- Mobile Navigation Variables ---
-    const menuToggleButton = document.getElementById('mobile-menu-toggle');
-    const mainNavLinks = document.getElementById('main-nav-links');
-    let menuIcon = menuToggleButton ? menuToggleButton.querySelector('i') : null;
-
-    // --- Central Function to Close Mobile Menu ---
-    function closeMobileMenu() {
-        if (mainNavLinks && mainNavLinks.classList.contains('active')) {
-            mainNavLinks.classList.remove('active');
-            if (menuToggleButton) menuToggleButton.setAttribute('aria-expanded', 'false');
-            if (menuIcon) {
-                menuIcon.classList.remove('fa-times');
-                menuIcon.classList.add('fa-bars');
-            }
-            document.querySelectorAll('.nav-links .nav-item.dropdown.open').forEach(openDropdown => {
-                openDropdown.classList.remove('open');
-            });
-        }
-    }
-
-    // --- 1. Toggle Main Mobile Menu (Hamburger) ---
-    if (menuToggleButton) {
-        menuToggleButton.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const isActive = mainNavLinks.classList.toggle('active');
-            menuToggleButton.setAttribute('aria-expanded', isActive);
-            if (menuIcon) {
-                menuIcon.className = isActive ? 'fas fa-times' : 'fas fa-bars';
-            }
-            if (!isActive) {
-                document.querySelectorAll('.nav-links .nav-item.dropdown.open').forEach(openDropdown => {
-                    openDropdown.classList.remove('open');
-                });
-            }
-        });
-    }
-
-    // --- 2. Toggle Dropdowns within Mobile Menu ---
-    document.querySelectorAll('.nav-links .dropdown-toggle').forEach(toggle => {
-        toggle.addEventListener('click', function(e) {
-            if (mainNavLinks && mainNavLinks.classList.contains('active')) { 
-                if (this.getAttribute('href') === '#') {
-                    e.preventDefault();
-                }
-                const parentDropdown = this.closest('.nav-item.dropdown');
-                if (!parentDropdown) return;
-                const currentlyOpen = parentDropdown.classList.contains('open');
-                parentDropdown.classList.toggle('open', !currentlyOpen);
-                e.stopPropagation();
-            }
-        });
-    });
-    
-    // --- 3. Handle Clicks on Nav Items (for closing menu and smooth scroll) ---
-    document.querySelectorAll('#main-nav-links a').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const fullHref = this.getAttribute('href');
-            const isDropdownToggle = this.classList.contains('dropdown-toggle');
-
-            if (isDropdownToggle && mainNavLinks.classList.contains('active')) {
-                return; 
-            }
-
-            const isIndexPage = window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/index');
-            
-            if (fullHref && fullHref.includes('index.html#') && isIndexPage) { 
-                const targetId = fullHref.split('#')[1];
-                if (targetId && document.getElementById(targetId)) {
-                    e.preventDefault();
-                    smoothScrollToTarget(targetId);
-                    closeMobileMenu();
-                } else { 
-                    if(mainNavLinks.classList.contains('active')) closeMobileMenu();
-                }
-            } else if (fullHref && fullHref.startsWith('#')) { 
-                const targetId = fullHref.substring(1);
-                 // For gallery.html, the back-to-top button might target #gallery-page-top
-                if (targetId === "gallery-page-top" || (targetId && document.getElementById(targetId))) {
-                     e.preventDefault();
-                     smoothScrollToTarget(targetId);
-                     closeMobileMenu();
-                } else {
-                    if(mainNavLinks.classList.contains('active')) closeMobileMenu();
-                }
-            } else { 
-                if(mainNavLinks.classList.contains('active')) {
-                     closeMobileMenu(); 
-                }
-            }
-        });
-    });
-    
-    // Smooth Scroll Function
-    function smoothScrollToTarget(targetId, isPageLoad = false) {
-        const targetElement = document.getElementById(targetId);
-        if (targetElement) {
-            const navElement = document.querySelector('nav');
-            const navHeight = navElement ? navElement.offsetHeight : 0;
-            let targetElementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-
-            if (isPageLoad && (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/index'))) { 
-                let elem = targetElement; let top = 0;
-                while(elem) { top += elem.offsetTop; elem = elem.offsetParent; }
-                targetElementPosition = top;
-            }
-            const offsetPosition = targetElementPosition - navHeight;
-            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-            return true;
-        }
-        return false;
-    }
-    
-    // Scroll on page load if hash present
-    if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/index')) {
-        window.addEventListener('load', () => {
-            if (window.location.hash && window.location.hash !== "#hero") {
-                const targetId = window.location.hash.substring(1);
-                setTimeout(() => { smoothScrollToTarget(targetId, true); }, 100);
-            }
-        });
-    } else if (window.location.hash) { 
-        window.addEventListener('load', () => {
-            // For gallery.html, ensure #gallery-page-top doesn't cause an unnecessary scroll unless specifically linked.
-            const targetId = window.location.hash.substring(1);
-            if (targetId && targetId !== "gallery-page-top" && document.getElementById(targetId)) {
-                setTimeout(() => { smoothScrollToTarget(targetId, false); }, 100);
-            } else if (targetId === "gallery-page-top" && window.pageYOffset > 0) { // Only scroll to top if already scrolled down
-                 setTimeout(() => { smoothScrollToTarget(targetId, false); }, 100);
-            }
-        });
-    }
-
-    // --- 4. Click Outside to Close Mobile Menu ---
-    document.addEventListener('click', function(event) {
-        if (mainNavLinks && mainNavLinks.classList.contains('active')) {
-            const isClickInsideNav = mainNavLinks.contains(event.target);
-            const isClickOnToggleButton = menuToggleButton ? menuToggleButton.contains(event.target) : false;
-            if (!isClickInsideNav && !isClickOnToggleButton) {
-                closeMobileMenu();
-            }
-        }
-    });
-
-    // --- Gallery Specific JavaScript ---
-    const allPhotosContainer = document.getElementById('all-photos-grid');
-    const allVideosContainer = document.getElementById('all-videos-grid');
-    const galleryPageTabs = document.querySelectorAll('.gallery-section .gallery-tab-button');
-
-    // Lightbox elements
-    const lightbox = document.getElementById('lightbox-modal');
-    const lightboxImage = document.getElementById('lightbox-image');
-    const lightboxVideo = document.getElementById('lightbox-video');
-    const lightboxCaption = document.getElementById('lightbox-caption');
-    const lightboxClose = document.querySelector('.lightbox-close');
-    const lightboxPrev = document.querySelector('.lightbox-prev');
-    const lightboxNext = document.querySelector('.lightbox-next');
-    let currentLightboxItems = []; // Stores the items for the currently active lightbox session
-    let currentLightboxIndex = 0;
-    // Removed 'currentType' global variable as it will be determined per openLightbox call
-
-    async function loadAllGalleryContent() {
-        try {
-            const response = await fetch('media-content.json');
-            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-            const data = await response.json();
-
-            if (allPhotosContainer) renderAllGalleryItems(data.gallery.photos, allPhotosContainer, 'photo', data.gallery.photos);
-            if (allVideosContainer) renderAllGalleryItems(data.gallery.videos, allVideosContainer, 'video', data.gallery.videos);
-
-        } catch (error) {
-            console.error("Gagal memuat konten galeri lengkap:", error);
-            if (allPhotosContainer) allPhotosContainer.innerHTML = '<p class="error-message">Gagal memuat foto.</p>';
-            if (allVideosContainer) allVideosContainer.innerHTML = '<p class="error-message">Gagal memuat video.</p>';
-        }
-    }
-
-    function renderAllGalleryItems(itemsToRender, container, itemType, sourceCollection) {
-        // itemsToRender: the array of items to actually render in this specific grid
-        // container: the DOM element for the grid
-        // itemType: 'photo' or 'video'
-        // sourceCollection: the full collection (e.g., all photos or all videos) for the lightbox
-        if (!itemsToRender || itemsToRender.length === 0) {
-            container.innerHTML = `<p>Belum ada ${itemType === 'photo' ? 'foto' : 'video'} untuk ditampilkan.</p>`;
-            return;
-        }
-        container.innerHTML = ''; 
-
-        itemsToRender.forEach((item, index) => {
-            const galleryItemDiv = document.createElement('div');
-            galleryItemDiv.classList.add('gallery-item', itemType);
-            galleryItemDiv.setAttribute('data-aos', 'zoom-in-up');
-            galleryItemDiv.setAttribute('data-item-id', item.id); 
-
-            galleryItemDiv.innerHTML = `
-                <img src="${item.thumbnailUrl}" alt="${item.title}" onerror="this.src='https://placehold.co/300x300/e0e0e0/757575?text=Error&font=montserrat';">
-                <div class="gallery-item-overlay">
-                    <i class="fas ${itemType === 'photo' ? 'fa-search-plus' : 'fa-play-circle'}"></i>
-                    <span>${item.title} ${item.year ? '('+item.year+')' : ''}</span>
-                </div>
-            `;
-            // When an item is clicked, open lightbox with the correct sourceCollection and index
-            galleryItemDiv.addEventListener('click', () => openLightbox(sourceCollection, sourceCollection.indexOf(item), itemType));
-            container.appendChild(galleryItemDiv);
-        });
-    }
-
-    if (galleryPageTabs.length > 0) {
-        galleryPageTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                galleryPageTabs.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                document.querySelectorAll('.gallery-section .gallery-grid').forEach(content => {
-                    content.classList.remove('active-gallery-content');
-                });
-                const targetContentClass = tab.dataset.tab; 
-                const newActiveContent = document.querySelector(`.gallery-section .gallery-grid.${targetContentClass}`);
-                if (newActiveContent) {
-                    newActiveContent.classList.add('active-gallery-content');
-                }
-            });
-        });
-    }
-    
-    function openLightbox(items, index, type) {
-        currentLightboxItems = items; // Set the collection for current lightbox session
-        currentLightboxIndex = index;
-        // 'type' is passed to determine if it's a photo or video from the clicked item
-        updateLightboxContent(type); // Pass type to updateLightboxContent
-        if (lightbox) lightbox.style.display = 'flex'; 
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeLightbox() {
-        if (lightbox) lightbox.style.display = 'none';
-        if (lightboxImage) lightboxImage.style.display = 'none';
-        if (lightboxVideo) {
-            lightboxVideo.style.display = 'none';
-            lightboxVideo.src = ""; 
-        }
-        document.body.style.overflow = 'auto';
-    }
-
-    function updateLightboxContent(itemType) { // itemType is now a parameter
-        if (!currentLightboxItems || currentLightboxItems.length === 0) return;
-        const item = currentLightboxItems[currentLightboxIndex];
-        if (!item) return;
-
-        if (lightboxImage) lightboxImage.style.display = 'none';
-        if (lightboxVideo) {
-            lightboxVideo.style.display = 'none';
-            lightboxVideo.src = ""; 
-        }
-        
-        if (itemType === 'photo') { // Use the passed itemType
-            if (lightboxImage) {
-                lightboxImage.src = item.fullUrl || item.thumbnailUrl;
-                lightboxImage.alt = item.title;
-                lightboxImage.style.display = 'block';
-            }
-        } else if (itemType === 'video') { // Use the passed itemType
-            if (lightboxVideo && item.videoUrl) {
-                let videoEmbedUrl = item.videoUrl;
-                if (videoEmbedUrl.includes("youtube.com/watch?v=")) { // More robust check
-                    videoEmbedUrl = videoEmbedUrl.replace("watch?v=", "embed/");
-                } else if (videoEmbedUrl.includes("youtu.be/")) {
-                     videoEmbedUrl = videoEmbedUrl.replace("youtu.be/", "youtube.com/embed/");
-                }
-                // Add more provider checks if necessary (e.g., Vimeo)
-                lightboxVideo.src = videoEmbedUrl;
-                lightboxVideo.style.display = 'block';
-            }
-        }
-        if (lightboxCaption) lightboxCaption.textContent = item.title + (item.description ? ` - ${item.description}` : '');
-        
-        if(lightboxPrev) lightboxPrev.style.display = currentLightboxItems.length > 1 ? 'block' : 'none';
-        if(lightboxNext) lightboxNext.style.display = currentLightboxItems.length > 1 ? 'block' : 'none';
-    }
-
-    function showPrevItem() {
-        currentLightboxIndex = (currentLightboxIndex - 1 + currentLightboxItems.length) % currentLightboxItems.length;
-        // Determine type from the new current item or assume it's the same as the collection type
-        const itemType = currentLightboxItems[currentLightboxIndex].videoUrl ? 'video' : 'photo';
-        updateLightboxContent(itemType);
-    }
-
-    function showNextItem() {
-        currentLightboxIndex = (currentLightboxIndex + 1) % currentLightboxItems.length;
-        const itemType = currentLightboxItems[currentLightboxIndex].videoUrl ? 'video' : 'photo';
-        updateLightboxContent(itemType);
-    }
-
-    if(lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
-    if(lightboxPrev) lightboxPrev.addEventListener('click', showPrevItem);
-    if(lightboxNext) lightboxNext.addEventListener('click', showNextItem);
-    
-    document.addEventListener('keydown', (e) => {
-        if (lightbox && lightbox.style.display === 'flex') {
-            if (e.key === 'Escape') closeLightbox();
-            if (currentLightboxItems.length > 1) {
-                if (e.key === 'ArrowLeft') showPrevItem();
-                if (e.key === 'ArrowRight') showNextItem();
-            }
-        }
-    });
-    
-    if(lightbox) {
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) {
-                closeLightbox();
-            }
-        });
-    }
-
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', loadAllGalleryContent);
-    } else {
-        loadAllGalleryContent();
-    }
-</script>
+<script src="script.js" defer></script>
 </body>
 </html>

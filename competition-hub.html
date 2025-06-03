@@ -1,52 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Competition Hub - Portal 7</title>
+    <title data-translate-key="competition_hub_page_title_meta">Pusat Kompetisi - Tantangan Portal 7</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .lang-toggle-button {
+            background-color: var(--pink-accent);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-left: 1rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .lang-toggle-button:hover {
+            background-color: var(--blue-accent);
+            transform: scale(1.05);
+        }
+        .nav-links {
+            align-items: center;
+        }
+    </style>
 </head>
 <body>
 
     <nav>
         <div class="nav-container" >
             <a href="index.html" class="logo">
-                <img src="img/Portal_Logo.png" alt="Logo Portal 7" onerror="this.onerror=null;this.src='https:/ /placehold.co/120x30/cccccc/ffffff?text=P7+Logo';">
+                <img src="img/Portal_Logo.png" alt="Logo Portal 7" onerror="this.onerror=null;this.src='https://placehold.co/120x30/cccccc/ffffff?text=P7+Logo';">
             </a>
             <div class="nav-links" id="main-nav-links">
-                <a class="nav-a" href="index.html#hero">Beranda</a>
+                <a class="nav-a" href="index.html#hero" data-translate-key="nav_beranda">Beranda</a>
                 <div class="nav-item dropdown">
-                    <a class="nav-a dropdown-toggle" href="#">Tentang Portal <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                    <a class="nav-a dropdown-toggle" href="#" data-translate-key="nav_tentang_portal">Tentang Portal <i class="fas fa-chevron-down dropdown-icon"></i></a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="index.html#tentang">Tentang Kami</a>
-                        <a class="dropdown-item" href="index.html#highlight">Highlights</a>
-                        <a class="dropdown-item" href="index.html#linimasa">Linimasa</a>
-                        <a class="dropdown-item" href="index.html#guest-stars">Guest Star</a>
-                        <a class="dropdown-item" href="index.html#peserta">Siapa Peserta?</a>
-                        <a class="dropdown-item" href="index.html#faq">FAQ</a>
+                        <a class="dropdown-item" href="index.html#tentang" data-translate-key="nav_tentang_kami">Tentang Kami</a>
+                        <a class="dropdown-item" href="index.html#highlight" data-translate-key="nav_highlight">Highlights</a>
+                        <a class="dropdown-item" href="index.html#sdg-commitment" data-translate-key="nav_sdg_commitment">Komitmen SDG</a>
+                        <a class="dropdown-item" href="index.html#linimasa" data-translate-key="nav_linimasa">Linimasa</a>
+                        <a class="dropdown-item" href="index.html#guest-stars" data-translate-key="nav_guest_stars">Guest Star</a>
+                        <a class="dropdown-item" href="index.html#peserta" data-translate-key="nav_peserta">Siapa Peserta?</a>
+                        <a class="dropdown-item" href="index.html#faq" data-translate-key="nav_faq">FAQ</a>
                     </div>
                 </div>
                 <div class="nav-item dropdown">
-                    <a class="nav-a dropdown-toggle" href="#">Event <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                    <a class="nav-a dropdown-toggle" href="#" data-translate-key="nav_event">Event <i class="fas fa-chevron-down dropdown-icon"></i></a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="competition-hub.html">Kompetisi</a>
-                        <a class="dropdown-item" href="seminar.html">Seminar</a>
+                        <a class="dropdown-item" href="competition-hub.html" data-translate-key="nav_kompetisi">Kompetisi</a>
+                        <a class="dropdown-item" href="seminar.html" data-translate-key="nav_seminar">Seminar</a>
                     </div>
                 </div>
                 <div class="nav-item dropdown">
-                    <a class="nav-a dropdown-toggle" href="#">Media <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                    <a class="nav-a dropdown-toggle" href="#" data-translate-key="nav_media">Media <i class="fas fa-chevron-down dropdown-icon"></i></a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="blog.html">Blog</a>
-                        <a class="dropdown-item" href="gallery.html">Gallery</a>
+                        <a class="dropdown-item" href="blog.html" data-translate-key="nav_blog">Blog</a>
+                        <a class="dropdown-item" href="gallery.html" data-translate-key="nav_gallery">Gallery</a>
                     </div>
                 </div>
-                <a class="nav-a" href="index.html#kontak">Kontak Kami</a>
-                <a class="nav-a nav-cta-button" href="index.html#pendaftaran">Pendaftaran</a>
+                <a class="nav-a" href="index.html#kontak" data-translate-key="nav_kontak_kami">Kontak Kami</a>
+                <a class="nav-a nav-cta-button" href="index.html#pendaftaran" data-translate-key="nav_pendaftaran">Pendaftaran</a>
+                <button id="lang-toggle" class="lang-toggle-button" data-translate-key="lang_toggle">EN</button>
             </div>
             <button id="mobile-menu-toggle" class="mobile-menu-button" aria-label="Toggle menu" aria-expanded="false">
                 <i class="fas fa-bars"></i>
@@ -57,15 +80,15 @@
     <main>
         <section class="competition-hub-hero section-padding" id="hero" > 
             <div class="portal-background-effect"></div>
-            <div class="floating-cloud cloud-1"><img src="img/cloud_pink.png" alt=""></div>
-            <div class="floating-cloud cloud-2"><img src="img/cloud_blue.png" alt=""></div>
+            <div class="floating-cloud cloud-1"><img src="img/cloud_pink.png" alt="Awan merah muda melayang"></div>
+            <div class="floating-cloud cloud-2"><img src="img/cloud_blue.png" alt="Awan biru melayang"></div>
 
             <div class="hero-content-comp-hub" data-aos="zoom-in-up"> 
                 <h1 class="competition-hub-title">
-                    <span class="title-accent-char">OUR</span>
-                    <span class="title-main-word">COMPETITIONS!</span>
+                    <span class="title-accent-char" data-translate-key="competition_hub_hero_title_our">KOMPETISI</span>
+                    <span class="title-main-word" data-translate-key="competition_hub_hero_title_competitions">KAMI!</span>
                 </h1>
-                <p class="competition-hub-subtitle">Discover the arena that ignites your passion. Whether it's design, storytelling, or strategy, find your challenge and unleash your potential.</p>
+                <p class="competition-hub-subtitle" data-translate-key="competition_hub_hero_subtitle">Temukan arena yang menyulut semangatmu. Baik itu desain, bercerita, atau strategi, temukan tantanganmu dan lepaskan potensimu.</p>
             </div>
         </section>
 
@@ -73,91 +96,91 @@
             <div class="container">
                 <article class="competition-category portal-card-comp" id="short-video" data-aos="fade-up" data-aos-delay="100">
                     <div class="competition-category-img-wrapper"> 
-                        <img src="img/short-movie.png" alt="Illustrative image for Short Video competition">
-                        <div class="comp-img-overlay">Short Video</div>
+                        <img src="img/short-movie.png" alt="Ilustrasi untuk kompetisi Video Pendek">
+                        <div class="comp-img-overlay" data-translate-key="nav_movie">Video Pendek</div>
                     </div>
                     <div class="competition-category-details">
                         <div class="card-header-comp">
                             <i class="fas fa-film card-icon-comp"></i>
-                            <h3>Short Video Challenge</h3>
+                            <h3 data-translate-key="competition_short_video_title">Tantangan Video Pendek</h3>
                         </div>
-                        <p class="description">Tell powerful stories that inspire change and captivate audiences in minutes. Bring your vision to life through the art of filmmaking.</p>
+                        <p class="description" data-translate-key="competition_short_video_desc">Ceritakan kisah-kisah kuat yang menginspirasi perubahan dan memikat audiens dalam hitungan menit. Hidupkan visimu melalui seni pembuatan film.</p>
                         <div class="criteria-accordion">
-                            <button class="accordion-toggle">
+                            <button class="accordion-toggle" data-translate-key="competition_criteria_button">
                                 Kriteria Penilaian <i class="fas fa-chevron-down accordion-icon"></i>
                             </button>
                             <div class="accordion-content">
                                 <ul>
-                                    <li>Originalitas Ide (25%)</li>
-                                    <li>Kualitas Sinematografi (20%)</li>
-                                    <li>Kekuatan Narasi & Storytelling (30%)</li>
-                                    <li>Relevansi dengan Tema (15%)</li>
-                                    <li>Teknik Editing & Audio (10%)</li>
+                                    <li data-translate-key="competition_short_video_c1">Orisinalitas Ide (25%)</li>
+                                    <li data-translate-key="competition_short_video_c2">Kualitas Sinematografi (20%)</li>
+                                    <li data-translate-key="competition_short_video_c3">Kekuatan Narasi & Penceritaan (30%)</li>
+                                    <li data-translate-key="competition_short_video_c4">Relevansi dengan Tema (15%)</li>
+                                    <li data-translate-key="competition_short_video_c5">Teknik Penyuntingan & Audio (10%)</li>
                                 </ul>
                             </div>
                         </div>
-                        <p class="comp-template-info">Templates & examples: Refer to the guidebook.</p>
-                        <a href="#" class="portal-button comp-action-button">Details & Guidebook <i class="fas fa-arrow-right"></i></a>
+                        <p class="comp-template-info" data-translate-key="competition_template_guidebook">Template & contoh: Lihat guidebook.</p>
+                        <a href="#" class="portal-button comp-action-button" data-translate-key="competition_details_guidebook_button">Detail & Guidebook <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </article>
 
                 <article class="competition-category portal-card-comp" id="poster" data-aos="fade-up" data-aos-delay="200">
                     <div class="competition-category-img-wrapper">
-                        <img src="img/poster.png" alt="Illustrative image for Poster competition">
-                        <div class="comp-img-overlay">Digital Poster</div>
+                        <img src="img/poster.png" alt="Ilustrasi untuk kompetisi Poster Digital">
+                        <div class="comp-img-overlay" data-translate-key="nav_poster">Poster Digital</div>
                     </div>
                     <div class="competition-category-details">
                          <div class="card-header-comp">
                             <i class="fas fa-paint-brush card-icon-comp"></i>
-                            <h3>Digital Poster Design</h3>
+                            <h3 data-translate-key="competition_poster_title">Desain Poster Digital</h3>
                         </div>
-                        <p class="description">Create visuals that spark dialogue and action. Design impactful posters that communicate compelling messages with artistic flair.</p>
+                        <p class="description" data-translate-key="competition_poster_desc">Ciptakan visual yang memicu dialog dan aksi. Rancang poster berdampak yang mengomunikasikan pesan menarik dengan sentuhan artistik.</p>
                         <div class="criteria-accordion">
-                            <button class="accordion-toggle">
+                            <button class="accordion-toggle" data-translate-key="competition_criteria_button">
                                 Kriteria Penilaian <i class="fas fa-chevron-down accordion-icon"></i>
                             </button>
                             <div class="accordion-content">
                                 <ul>
-                                    <li>Desain Visual & Estetika (30%)</li>
-                                    <li>Efektivitas Komunikasi Pesan (30%)</li>
-                                    <li>Originalitas Konsep (20%)</li>
-                                    <li>Teknik & Komposisi (10%)</li>
-                                    <li>Relevansi dengan Tema (10%)</li>
+                                    <li data-translate-key="competition_poster_c1">Desain Visual & Estetika (30%)</li>
+                                    <li data-translate-key="competition_poster_c2">Efektivitas Komunikasi Pesan (30%)</li>
+                                    <li data-translate-key="competition_poster_c3">Orisinalitas Konsep (20%)</li>
+                                    <li data-translate-key="competition_poster_c4">Teknik & Komposisi (10%)</li>
+                                    <li data-translate-key="competition_poster_c5">Relevansi dengan Tema (10%)</li>
                                 </ul>
                             </div>
                         </div>
-                        <p class="comp-template-info">Visual inspiration: Check the guidebook.</p>
-                        <a href="#" class="portal-button comp-action-button">Details & Guidebook <i class="fas fa-arrow-right"></i></a>
+                        <p class="comp-template-info" data-translate-key="competition_poster_visual_inspiration">Inspirasi visual: Cek guidebook.</p>
+                        <a href="#" class="portal-button comp-action-button" data-translate-key="competition_details_guidebook_button">Detail & Guidebook <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </article>
 
                 <article class="competition-category portal-card-comp" id="ui-ux" data-aos="zoom-in-out" data-aos-delay="300">
                     <div class="competition-category-img-wrapper">
-                        <img src="img/ui-ux.png" alt="Illustrative image for UI/UX competition">
-                        <div class="comp-img-overlay">UI/UX Design</div>
+                        <img src="img/ui-ux.png" alt="Ilustrasi untuk kompetisi UI/UX">
+                        <div class="comp-img-overlay" data-translate-key="nav_uiux">Desain UI/UX</div>
                     </div>
                     <div class="competition-category-details">
                         <div class="card-header-comp">
                             <i class="fas fa-object-group card-icon-comp"></i>
-                            <h3>UI/UX Interface Innovation</h3>
+                            <h3 data-translate-key="competition_uiux_title">Inovasi Antarmuka UI/UX</h3>
                         </div>
-                        <p class="description">Build user-friendly digital solutions to real-world problems. Craft intuitive and beautiful interfaces that enhance user experience.</p>
+                        <p class="description" data-translate-key="competition_uiux_desc">Bangun solusi digital yang ramah pengguna untuk masalah dunia nyata. Ciptakan antarmuka yang intuitif dan indah yang meningkatkan pengalaman pengguna.</p>
                         <div class="criteria-accordion">
-                            <button class="accordion-toggle">
+                            <button class="accordion-toggle" data-translate-key="competition_criteria_button">
                                 Kriteria Penilaian <i class="fas fa-chevron-down accordion-icon"></i>
                             </button>
                             <div class="accordion-content">
                                 <ul>
-                                    <li>Problem Understanding & Solution Fit (25%)</li>
-                                    <li>User Experience (UX) & Usability (30%)</li>
-                                    <li>User Interface (UI) Design & Estetika (25%)</li>
-                                    <li>Inovasi & Originalitas (10%)</li>
-                                    <li>Presentasi & Prototype (10%)</li>
+                                    <li data-translate-key="competition_uiux_c1">Pemahaman Masalah & Kesesuaian Solusi (25%)</li>
+                                    <li data-translate-key="competition_uiux_c2">Pengalaman Pengguna (UX) & Kegunaan (30%)</li>
+                                    <li data-translate-key="competition_uiux_c3">Desain Antarmuka Pengguna (UI) & Estetika (25%)</li>
+                                    <li data-translate-key="competition_uiux_c4">Inovasi & Orisinalitas (10%)</li>
+                                    <li data-translate-key="competition_uiux_c5">Presentasi & Prototipe (10%)</li>
                                 </ul>
                             </div>
                         </div>
-                        <p class="comp-template-info">Design kits & examples in guidebook.</p>
-                        <a href="#" class="portal-button comp-action-button">Details & Guidebook <i class="fas fa-arrow-right"></i></a>
+                        <p class="comp-template-info" data-translate-key="competition_uiux_design_kits">Kit desain & contoh di guidebook.</p>
+                        <a href="#" class="portal-button comp-action-button" data-translate-key="competition_details_guidebook_button">Detail & Guidebook <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </article>
 
@@ -175,17 +198,17 @@
                     <p class="footer-event-name">Portal 7: Empower Digital</p>
                 </div>
                 <div class="footer-quick-links">
-                    <h4>Navigasi Cepat</h4>
-                    <a href="index.html#tentang">Tentang Kami</a>
-                    <a href="competition-hub.html">Kompetisi</a>
-                    <a href="seminar.html">Seminar</a>
-                    <a href="index.html#linimasa">Linimasa</a>
-                    <a href="blog.html">Blog</a>
-                    <a href="gallery.html">Galeri</a>
-                    <a href="index.html#faq">FAQ</a>
+                    <h4 data-translate-key="footer_nav_cepat">Navigasi Cepat</h4>
+                    <a href="index.html#tentang" data-translate-key="nav_tentang_kami">Tentang Kami</a>
+                    <a href="competition-hub.html" data-translate-key="nav_kompetisi">Kompetisi</a>
+                    <a href="seminar.html" data-translate-key="nav_seminar">Seminar</a>
+                    <a href="index.html#linimasa" data-translate-key="nav_linimasa">Linimasa</a>
+                    <a href="blog.html" data-translate-key="nav_blog">Blog</a>
+                    <a href="gallery.html" data-translate-key="nav_gallery">Galeri</a>
+                    <a href="index.html#faq" data-translate-key="nav_faq">FAQ</a>
                 </div>
                 <div class="footer-contact-social">
-                    <h4>Terhubung Dengan Kami</h4>
+                    <h4 data-translate-key="footer_hubungi_kami">Terhubung Dengan Kami</h4>
                     <div class="footer-contact-item">
                         <i class="far fa-envelope"></i> <a href="mailto:portalbemsvipb@gmail.com">portalbemsvipb@gmail.com</a>
                     </div>
@@ -199,8 +222,8 @@
             </div>
             <div class="footer-bottom">
                 <div class="footer-copyright">
-                    <p>&copy; 2025 Badan Eksekutif Mahasiswa Sekolah Vokasi IPB University. All rights reserved.</p>
-                    <p>Empowered by Inspiration, Driven by Innovation.</p>
+                    <p data-translate-key="footer_copyright_line1">&copy; 2025 Badan Eksekutif Mahasiswa Sekolah Vokasi IPB University. Hak cipta dilindungi.</p>
+                    <p data-translate-key="footer_copyright_line2">Diberdayakan oleh Inspirasi, Didorong oleh Inovasi.</p>
                 </div>
                 <a href="#hero" class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
             </div>
@@ -208,213 +231,7 @@
     </footer>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-    // --- AOS Initialization ---
-    AOS.init({
-        duration: 800,
-        once: true,
-    });
-
-    // --- Mobile Navigation Variables ---
-    const menuToggleButton = document.getElementById('mobile-menu-toggle');
-    const mainNavLinks = document.getElementById('main-nav-links');
-    let menuIcon = menuToggleButton ? menuToggleButton.querySelector('i') : null;
-
-    // --- Central Function to Close Mobile Menu ---
-    function closeMobileMenu() {
-        if (mainNavLinks && mainNavLinks.classList.contains('active')) {
-            mainNavLinks.classList.remove('active');
-            if (menuToggleButton) menuToggleButton.setAttribute('aria-expanded', 'false');
-            if (menuIcon) {
-                menuIcon.classList.remove('fa-times');
-                menuIcon.classList.add('fa-bars');
-            }
-            document.querySelectorAll('.nav-links .nav-item.dropdown.open').forEach(openDropdown => {
-                openDropdown.classList.remove('open');
-            });
-        }
-    }
-
-    // --- 1. Toggle Main Mobile Menu (Hamburger) ---
-    if (menuToggleButton) {
-        menuToggleButton.addEventListener('click', (e) => {
-            e.stopPropagation(); // Important to prevent immediate close if click bubbles
-            const isActive = mainNavLinks.classList.toggle('active');
-            menuToggleButton.setAttribute('aria-expanded', isActive);
-            if (menuIcon) {
-                menuIcon.className = isActive ? 'fas fa-times' : 'fas fa-bars';
-            }
-            if (!isActive) { // If menu is being closed by toggle
-                document.querySelectorAll('.nav-links .nav-item.dropdown.open').forEach(openDropdown => {
-                    openDropdown.classList.remove('open');
-                });
-            }
-        });
-    }
-
-    // --- 2. Toggle Dropdowns within Mobile Menu ---
-    document.querySelectorAll('.nav-links .dropdown-toggle').forEach(toggle => {
-        toggle.addEventListener('click', function(e) {
-            if (mainNavLinks && mainNavLinks.classList.contains('active')) { 
-                if (this.getAttribute('href') === '#') { // Prevent jump for placeholder links
-                    e.preventDefault();
-                }
-                const parentDropdown = this.closest('.nav-item.dropdown');
-                if (!parentDropdown) {
-                    return;
-                }
-                const currentlyOpen = parentDropdown.classList.contains('open');
-                parentDropdown.classList.toggle('open', !currentlyOpen); // Toggle current one
-                e.stopPropagation(); // Prevent click from bubbling to document listener
-            }
-        });
-    });
-
-    // --- 3. Handle Clicks on Nav Items (for closing menu and smooth scroll) ---
-    document.querySelectorAll('#main-nav-links a').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const fullHref = this.getAttribute('href');
-            const isDropdownToggle = this.classList.contains('dropdown-toggle');
-
-            if (isDropdownToggle && mainNavLinks.classList.contains('active')) {
-                return; // Let the dedicated dropdown toggle handler work
-            }
-
-            const isIndexPage = window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/index');
-            
-            if (fullHref && fullHref.includes('index.html#') && isIndexPage) { 
-                const targetId = fullHref.split('#')[1];
-                if (targetId && document.getElementById(targetId)) {
-                    e.preventDefault();
-                    smoothScrollToTarget(targetId);
-                    closeMobileMenu();
-                } else { 
-                    if(mainNavLinks.classList.contains('active')) closeMobileMenu();
-                }
-            } else if (fullHref && fullHref.startsWith('#')) { 
-                const targetId = fullHref.substring(1);
-                // For competition-hub.html, back-to-top might point to "#hero" (or top of its own page)
-                // For seminar.html, back-to-top might point to "#seminar-top"
-                let pageTopAnchorId = 'hero'; // Default for competition-hub
-                if (window.location.pathname.includes('seminar.html')) {
-                    pageTopAnchorId = 'seminar-top';
-                }
-
-                if (targetId === pageTopAnchorId && !isIndexPage) {
-                    e.preventDefault();
-                    window.scrollTo({ top: 0, behavior: 'smooth' }); // Simplified top scroll for these pages
-                    closeMobileMenu();
-                } else if (targetId && document.getElementById(targetId)) { // For other on-page anchors
-                     e.preventDefault();
-                     smoothScrollToTarget(targetId);
-                     closeMobileMenu();
-                } else {
-                    // Link is just "#" or target doesn't exist on current page
-                    if(mainNavLinks.classList.contains('active')) closeMobileMenu();
-                }
-            } else { 
-                // Link to another page or a non-scroll action
-                if(mainNavLinks.classList.contains('active')) {
-                     closeMobileMenu(); 
-                }
-            }
-        });
-    });
-    
-    // Smooth Scroll Function
-    function smoothScrollToTarget(targetId, isPageLoad = false) {
-        const targetElement = document.getElementById(targetId);
-        if (targetElement) {
-            const navElement = document.querySelector('nav');
-            const navHeight = navElement ? navElement.offsetHeight : 0;
-            let targetElementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-
-            // This specific offset calculation for 'isPageLoad' is more critical for index.html's initial scroll.
-            if (isPageLoad && (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/index'))) { 
-                let elem = targetElement; let top = 0;
-                while(elem) { top += elem.offsetTop; elem = elem.offsetParent; }
-                targetElementPosition = top;
-            }
-            const offsetPosition = targetElementPosition - navHeight;
-            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-            return true;
-        }
-        return false;
-    }
-    
-    // Scroll on page load if hash present (handles index.html#section from other pages, or refreshing index.html#section)
-    if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/index')) {
-        window.addEventListener('load', () => {
-            if (window.location.hash && window.location.hash !== "#hero") { // Avoid scrolling to #hero on initial index load unless specifically linked
-                const targetId = window.location.hash.substring(1);
-                setTimeout(() => { smoothScrollToTarget(targetId, true); }, 100);
-            }
-        });
-    } else if (window.location.hash) { // For other pages (not index.html)
-        window.addEventListener('load', () => {
-            const targetId = window.location.hash.substring(1);
-            // Avoid scrolling to generic #hero if on a subpage and it's likely from back-to-top default
-            let pageTopAnchorId = 'hero'; 
-            if (window.location.pathname.includes('seminar.html')) pageTopAnchorId = 'seminar-top';
-            
-            if (targetId && targetId !== pageTopAnchorId && document.getElementById(targetId)) {
-                setTimeout(() => { smoothScrollToTarget(targetId, false); }, 100);
-            } else if (targetId === pageTopAnchorId && window.pageYOffset > 0) {
-                 setTimeout(() => { smoothScrollToTarget(targetId, false); }, 100);
-            }
-        });
-    }
-
-    // --- 4. Click Outside to Close Mobile Menu ---
-    document.addEventListener('click', function(event) {
-        if (mainNavLinks && mainNavLinks.classList.contains('active')) {
-            const isClickInsideNav = mainNavLinks.contains(event.target);
-            const isClickOnToggleButton = menuToggleButton ? menuToggleButton.contains(event.target) : false;
-            if (!isClickInsideNav && !isClickOnToggleButton) {
-                closeMobileMenu();
-            }
-        }
-    });
-
-    // --- Accordion for Competition Criteria (competition-hub.html) ---
-    if (document.querySelector('.criteria-accordion')) { // Check if on competition-hub page
-        document.querySelectorAll('.accordion-toggle').forEach(button => {
-            button.addEventListener('click', () => {
-                const accordionContent = button.nextElementSibling;
-                const icon = button.querySelector('.accordion-icon');
-                
-                button.classList.toggle('active');
-                if (accordionContent.style.maxHeight) {
-                    accordionContent.style.maxHeight = null;
-                    if(icon) { icon.classList.remove('fa-chevron-up'); icon.classList.add('fa-chevron-down'); }
-                } else {
-                    accordionContent.style.maxHeight = accordionContent.scrollHeight + "px";
-                    if(icon) { icon.classList.remove('fa-chevron-down'); icon.classList.add('fa-chevron-up'); }
-                }
-            });
-        });
-    }
-
-    // --- Accordion for Seminar Details (seminar.html) ---
-    if (document.querySelector('.accordion-seminar')) { // Check if on seminar page
-        document.querySelectorAll('.accordion-seminar-toggle').forEach(button => {
-            button.addEventListener('click', () => {
-                const accordionContent = button.nextElementSibling;
-                const icon = button.querySelector('.accordion-icon');
-                
-                button.classList.toggle('active');
-                if (accordionContent.style.maxHeight) {
-                    accordionContent.style.maxHeight = null;
-                    if(icon) { icon.classList.remove('fa-chevron-up'); icon.classList.add('fa-chevron-down'); }
-                } else {
-                    accordionContent.style.maxHeight = accordionContent.scrollHeight + "px";
-                     if(icon) { icon.classList.remove('fa-chevron-down'); icon.classList.add('fa-chevron-up'); }
-                }
-            });
-        });
-    }
-</script>
+<script src="script.js" defer></script>
 
 </body>
 </html>

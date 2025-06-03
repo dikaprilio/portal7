@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="id">
-<head>
+<html lang="id"> <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal 7 - Empower Digital</title>
+    <title data-translate-key="index_page_title_meta">Portal 7 - Empower Digital</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -11,7 +10,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Basic styling for the language toggle */
+        /* Basic styling for the language toggle - MOVE TO style.css */
         .lang-toggle-button {
             background-color: var(--pink-accent);
             color: white;
@@ -21,15 +20,14 @@
             cursor: pointer;
             font-weight: 600;
             font-size: 0.9rem;
-            margin-left: 1rem; /* Adjust as needed */
+            margin-left: 1rem; 
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
         .lang-toggle-button:hover {
             background-color: var(--blue-accent);
             transform: scale(1.05);
         }
-        /* Ensure dropdowns don't hide the toggle if it's last */
-        .nav-links {
+        .nav-links { /* Ensure nav-links can accommodate the button */
             align-items: center;
         }
     </style>
@@ -48,6 +46,7 @@
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="index.html#tentang" data-translate-key="nav_tentang_kami">Tentang Kami</a>
                         <a class="dropdown-item" href="index.html#highlight" data-translate-key="nav_highlight">Highlights</a>
+                        <a class="dropdown-item" href="index.html#sdg-commitment" data-translate-key="nav_sdg_commitment">Komitmen SDG</a>
                         <a class="dropdown-item" href="index.html#linimasa" data-translate-key="nav_linimasa">Linimasa</a>
                         <a class="dropdown-item" href="index.html#guest-stars" data-translate-key="nav_guest_stars">Guest Star</a>
                         <a class="dropdown-item" href="index.html#peserta" data-translate-key="nav_peserta">Siapa Peserta?</a>
@@ -74,8 +73,7 @@
                 <button id="lang-toggle" class="lang-toggle-button" data-translate-key="lang_toggle">EN</button>
             </div>
             <button id="mobile-menu-toggle" class="mobile-menu-button" aria-label="Toggle menu" aria-expanded="false">
-                <i class="fa fa-bars"></i>
-            </button>
+                <i class="fa fa-bars"></i> </button>
         </div>
     </nav>
 
@@ -192,49 +190,49 @@
             <img src="img/Asset 16@4x.png" alt="Geometric Accent" class="sdg-geometric-deco deco-top-left" data-aos="fade-down-right" data-aos-delay="300">
             <img src="img/Asset 18@4x.png" alt="Geometric Accent" class="sdg-geometric-deco deco-bottom-right" data-aos="fade-up-left" data-aos-delay="300">
 
-            <h2 class="section-title" data-aos="zoom-in-up"><span data-translate-key="sdg_commitment_title_span">Our Commitment</span> <span data-translate-key="sdg_commitment_title_main">to Global Goals</span></h2>
-            <p class="section-subtitle" data-aos="zoom-in-up" data-aos-delay="100" data-translate-key="sdg_commitment_subtitle">Portal 7 actively champions the Sustainable Development Goals through digital innovation and youth empowerment.</p>
+            <h2 class="section-title" data-aos="zoom-in-up"><span data-translate-key="sdg_commitment_title_span">Komitmen Kami</span> <span data-translate-key="sdg_commitment_title_main">untuk Tujuan Global</span></h2>
+            <p class="section-subtitle" data-aos="zoom-in-up" data-aos-delay="100" data-translate-key="sdg_commitment_subtitle">Portal 7 secara aktif mendukung Tujuan Pembangunan Berkelanjutan melalui inovasi digital dan pemberdayaan pemuda.</p>
             
             <div class="sdg-container">
                 <div class="sdg-item" data-aos="fade-up" data-aos-delay="200">
                     <div class="sdg-item-header">
-                        <img src="img/sdg_zero-hunger.png" alt="SDG 2: Zero Hunger" class="sdg-icon">
+                        <img src="img/sdg_zero-hunger.png" alt="SDG 2: Tanpa Kelaparan" class="sdg-icon">
                         <div class="sdg-title-number">
                             <span class="sdg-number">SDG 2</span>
-                            <h3 data-translate-key="sdg_2_title_1">Zero</h3>
-                            <h3 data-translate-key="sdg_2_title_2">Hunger</h3>
+                            <h3 data-translate-key="sdg_2_title_1">Tanpa</h3>
+                            <h3 data-translate-key="sdg_2_title_2">Kelaparan</h3>
                         </div>
                     </div>
                     <div class="sdg-item-body">
-                        <p data-translate-key="sdg_2_desc">Fostering digital solutions and awareness campaigns that contribute to food security, sustainable agriculture, and improved nutrition through innovative projects.</p>
+                        <p data-translate-key="sdg_2_desc">Mendorong solusi digital dan kampanye kesadaran yang berkontribusi pada ketahanan pangan, pertanian berkelanjutan, dan peningkatan gizi melalui proyek inovatif.</p>
                     </div>
                     <div class="sdg-item-deco-line"></div>
                 </div>
 
                 <div class="sdg-item" data-aos="fade-up" data-aos-delay="350">
                     <div class="sdg-item-header">
-                        <img src="img/sdg_quality-edu.png" alt="SDG 4: Quality Education" class="sdg-icon">
+                        <img src="img/sdg_quality-edu.png" alt="SDG 4: Pendidikan Berkualitas" class="sdg-icon">
                         <div class="sdg-title-number">
                             <span class="sdg-number">SDG 4</span>
-                            <h3 data-translate-key="sdg_4_title">Quality Education</h3>
+                            <h3 data-translate-key="sdg_4_title">Pendidikan Berkualitas</h3>
                         </div>
                     </div>
                     <div class="sdg-item-body">
-                        <p data-translate-key="sdg_4_desc">Providing accessible digital skills training, insightful seminars, and competitive platforms that enhance learning opportunities and promote lifelong education for all.</p>
+                        <p data-translate-key="sdg_4_desc">Menyediakan pelatihan keterampilan digital yang dapat diakses, seminar yang mendalam, dan platform kompetitif yang meningkatkan peluang belajar dan mempromosikan pendidikan seumur hidup untuk semua.</p>
                     </div>
                     <div class="sdg-item-deco-line"></div>
                 </div>
 
                 <div class="sdg-item" data-aos="fade-up" data-aos-delay="500">
                     <div class="sdg-item-header">
-                        <img src="img/sdg_clean-energy.png" alt="SDG 7: Affordable and Clean Energy" class="sdg-icon">
+                        <img src="img/sdg_clean-energy.png" alt="SDG 7: Energi Bersih dan Terjangkau" class="sdg-icon">
                          <div class="sdg-title-number">
                             <span class="sdg-number">SDG 7</span>
-                            <h3 data-translate-key="sdg_7_title">Affordable & Clean Energy</h3>
+                            <h3 data-translate-key="sdg_7_title">Energi Bersih & Terjangkau</h3>
                         </div>
                     </div>
                     <div class="sdg-item-body">
-                        <p data-translate-key="sdg_7_desc">Encouraging projects and discussions on leveraging technology for sustainable energy solutions, promoting awareness, and inspiring innovation in clean energy adoption.</p>
+                        <p data-translate-key="sdg_7_desc">Mendorong proyek dan diskusi tentang pemanfaatan teknologi untuk solusi energi berkelanjutan, mempromosikan kesadaran, dan menginspirasi inovasi dalam adopsi energi bersih.</p>
                     </div>
                     <div class="sdg-item-deco-line"></div>
                 </div>
@@ -242,9 +240,8 @@
             <img src="img/abstract_star-yellow.png" alt="Abstract Star" class="sdg-star-deco wow-guest-deco" data-aos="zoom-in-out" data-aos-delay="600">
         </section>
 
-        <section class="wow-guest-stars-section section-padding" id="wow-guest-stars-2025">
-            <h2 class="section-title"><span data-translate-key="wow_guest_star_title_part1">This Year's</span> <span class="wow-accent" data-translate-key="wow_guest_star_title_wow">WOW!</span> <span data-translate-key="wow_guest_star_title_part2">Guest Star</span></h2>
-            <p class="section-subtitle" data-translate-key="wow_guest_star_subtitle">Get ready to be inspired by a leading voice and innovator of 2025!</p>
+        <section class="wow-guest-stars-section section-padding" id="guest-stars"> <h2 class="section-title"><span data-translate-key="wow_guest_star_title_part1">Guest Star</span> <span class="wow-accent" data-translate-key="wow_guest_star_title_wow">WOW!</span> <span data-translate-key="wow_guest_star_title_part2">Tahun Ini</span></h2>
+            <p class="section-subtitle" data-translate-key="wow_guest_star_subtitle">Bersiaplah untuk terinspirasi oleh suara terdepan dan inovator tahun 2025!</p>
             <div class="wow-guest-stars-grid single-guest">
                 <div class="wow-guest-star-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="wow-guest-star-image-wrapper">
@@ -252,9 +249,9 @@
                         <div class="wow-guest-star-image-overlay"><span class="overlay-year">2025</span></div>
                     </div>
                     <div class="wow-guest-star-info">
-                        <h4>Joko Anwar</h4>
-                        <p class="wow-guest-title" data-translate-key="joko_anwar_title">Acclaimed Movie Director</p>
-                        <p class="wow-guest-teaser" data-translate-key="joko_anwar_teaser">Exploring the frontiers of responsible SIGMA and its impact on society. A truly unmissable session!</p>
+                        <h4 data-translate-key="joko_anwar_name">Joko Anwar</h4>
+                        <p class="wow-guest-title" data-translate-key="joko_anwar_title">Sutradara Film Ternama</p>
+                        <p class="wow-guest-teaser" data-translate-key="joko_anwar_teaser">Menjelajahi batas-batas SIGMA yang bertanggung jawab dan dampaknya pada masyarakat. Sesi yang benar-benar tidak boleh dilewatkan!</p>
                     </div>
                     <div class="wow-guest-card-flare"></div>
                 </div>
@@ -262,47 +259,47 @@
         </section>
 
         <section class="highlight-section section-padding" id="highlight">
-            <h2 class="section-title" data-aos="fade-down"><span data-translate-key="highlight_title_span">Unlock</span> <span data-translate-key="highlight_title_main">Your Digital Superpowers</span></h2>
-            <p class="section-subtitle" data-aos="fade-down" data-aos-delay="100" data-translate-key="highlight_subtitle">This is where creativity ignites and innovation takes flight. Choose your arena, sharpen your skills.</p>
+            <h2 class="section-title" data-aos="fade-down"><span data-translate-key="highlight_title_span">Buka Potensi</span> <span data-translate-key="highlight_title_main">Superpower Digitalmu</span></h2>
+            <p class="section-subtitle" data-aos="fade-down" data-aos-delay="100" data-translate-key="highlight_subtitle">Di sinilah kreativitas menyala dan inovasi melambung tinggi. Pilih arenmu, asah kemampuanmu.</p>
             <div class="highlight-grid">
                 <div class="competition-highlight portal-card" data-aos="zoom-in-right">
                     <div class="card-header">
                         <i class="fas fa-trophy card-icon"></i>
-                        <h3 class="highlight-title"><span data-translate-key="highlight_arena_title_main">The Arena:</span> <span class="title-accent" data-translate-key="highlight_arena_title_accent">Compete & Conquer</span></h3>
+                        <h3 class="highlight-title"><span data-translate-key="highlight_arena_title_main">Arena:</span> <span class="title-accent" data-translate-key="highlight_arena_title_accent">Berkompetisi & Taklukkan</span></h3>
                     </div>
-                    <p class="card-intro" data-translate-key="highlight_arena_intro">Forge your legend. Showcase your talent. The ultimate digital battleground awaits your genius.</p>
+                    <p class="card-intro" data-translate-key="highlight_arena_intro">Ukir legendamu. Tunjukkan bakatmu. Medan pertempuran digital terhebat menanti kejeniusanmu.</p>
                     <div class="competition-item">
-                        <h4><i class="fas fa-object-group item-icon"></i> <span data-translate-key="highlight_uiux_title">UI/UX Design</span></h4>
-                        <p data-translate-key="highlight_uiux_desc">Sculpt intuitive digital experiences that captivate and convert. Design the future, today.</p>
-                    </div>
-                    <div class="competition-item">
-                        <h4><i class="fas fa-paint-brush item-icon"></i> <span data-translate-key="highlight_poster_title">Digital Poster</span></h4>
-                        <p data-translate-key="highlight_poster_desc">Unleash visual symphonies. Craft posters that don't just speak, they roar your message.</p>
+                        <h4><i class="fas fa-object-group item-icon"></i> <span data-translate-key="highlight_uiux_title">Desain UI/UX</span></h4>
+                        <p data-translate-key="highlight_uiux_desc">Ciptakan pengalaman digital intuitif yang memikat dan mengubah. Rancang masa depan, hari ini.</p>
                     </div>
                     <div class="competition-item">
-                        <h4><i class="fas fa-film item-icon"></i> <span data-translate-key="highlight_movie_title">Short Movie</span></h4>
-                        <p data-translate-key="highlight_movie_desc">Tell world-changing stories in minutes. Direct your vision, captivate hearts, inspire action.</p>
+                        <h4><i class="fas fa-paint-brush item-icon"></i> <span data-translate-key="highlight_poster_title">Poster Digital</span></h4>
+                        <p data-translate-key="highlight_poster_desc">Lepaskan simfoni visual. Buat poster yang tidak hanya berbicara, tetapi meneriakkan pesanmu.</p>
+                    </div>
+                    <div class="competition-item">
+                        <h4><i class="fas fa-film item-icon"></i> <span data-translate-key="highlight_movie_title">Film Pendek</span></h4>
+                        <p data-translate-key="highlight_movie_desc">Ceritakan kisah yang mengubah dunia dalam hitungan menit. Arahkan visimu, pikat hati, inspirasi tindakan.</p>
                     </div>
                     <div class="total-prize-container">
-                        <span class="prize-label" data-translate-key="highlight_prize_label">REBUT TOTAL HADIAH SPECTAKULER</span>
+                        <span class="prize-label" data-translate-key="highlight_prize_label">REBUT TOTAL HADIAH SPEKTAKULER</span>
                         <div class="prize-amount-wrapper"><span class="prize-value" data-value="14600000">Rp14.600.000</span></div>
-                        <span class="prize-details" data-translate-key="highlight_prize_details">*Plus bragging rights & eternal glory!</span>
+                        <span class="prize-details" data-translate-key="highlight_prize_details">*Plus hak pamer & kemuliaan abadi!</span>
                     </div>
-                    <a href="competition-hub.html" class="button-view-more portal-button" data-translate-key="highlight_button_explore">Explore Challenges <i class="fas fa-arrow-right btn-icon"></i></a>
+                    <a href="competition-hub.html" class="button-view-more portal-button" data-translate-key="highlight_button_explore">Jelajahi Tantangan <i class="fas fa-arrow-right btn-icon"></i></a>
                 </div>
                 <div class="seminar-highlight portal-card" data-aos="zoom-in-left">
                     <div class="card-header">
                         <i class="fas fa-microphone-alt card-icon"></i>
-                        <h3 class="highlight-title"><span data-translate-key="highlight_knowledge_title_main">The Knowledge Hub:</span> <span class="title-accent" data-translate-key="highlight_knowledge_title_accent">Learn & Elevate</span></h3>
+                        <h3 class="highlight-title"><span data-translate-key="highlight_knowledge_title_main">Pusat Pengetahuan:</span> <span class="title-accent" data-translate-key="highlight_knowledge_title_accent">Belajar & Tingkatkan Diri</span></h3>
                     </div>
-                    <p class="card-intro" data-translate-key="highlight_knowledge_intro">Ignite your curiosity. Absorb game-changing insights from the masters of digital craft.</p>
+                    <p class="card-intro" data-translate-key="highlight_knowledge_intro">Nyalakan rasa ingin tahumu. Serap wawasan yang mengubah permainan dari para master kerajinan digital.</p>
                     <ul class="seminar-list">
-                        <li><i class="fas fa-chalkboard-teacher list-icon"></i> <span data-translate-key="highlight_mentorship_span">Exclusive Mentorship:</span> <span data-translate-key="highlight_mentorship_text">Top 10 Finalists Coached by Pros</span></li>
-                        <li><i class="fas fa-bullhorn list-icon"></i> <span data-translate-key="highlight_pitch_day_span">Pitch Day Powerhouse:</span> <span data-translate-key="highlight_pitch_day_text">Spotlight Your Groundbreaking Vision</span></li>
-                        <li><i class="fas fa-award list-icon"></i> <span data-translate-key="highlight_awarding_span">The Grand Awarding:</span> <span data-translate-key="highlight_awarding_text">Celebrate Victory & Witness Brilliance</span></li>
-                        <li><i class="fas fa-comments list-icon"></i> <span data-translate-key="highlight_future_talks_span">Future Forward Talks:</span> <span data-translate-key="highlight_future_talks_text">Decode Trends with Industry Titans</span></li>
+                        <li><i class="fas fa-chalkboard-teacher list-icon"></i> <span data-translate-key="highlight_mentorship_span">Mentorship Eksklusif:</span> <span data-translate-key="highlight_mentorship_text">10 Finalis Terbaik Dibimbing oleh Profesional</span></li>
+                        <li><i class="fas fa-bullhorn list-icon"></i> <span data-translate-key="highlight_pitch_day_span">Pitch Day Penuh Kekuatan:</span> <span data-translate-key="highlight_pitch_day_text">Sorot Visi Terobosannmu</span></li>
+                        <li><i class="fas fa-award list-icon"></i> <span data-translate-key="highlight_awarding_span">Penganugerahan Akbar:</span> <span data-translate-key="highlight_awarding_text">Rayakan Kemenangan & Saksikan Kecemerlangan</span></li>
+                        <li><i class="fas fa-comments list-icon"></i> <span data-translate-key="highlight_future_talks_span">Obrolan Masa Depan:</span> <span data-translate-key="highlight_future_talks_text">Pecahkan Tren bersama Titan Industri</span></li>
                     </ul>
-                    <a href="seminar.html" class="button-view-more portal-button" data-translate-key="highlight_button_discover">Discover the Lineup <i class="fas fa-arrow-right btn-icon"></i></a>
+                    <a href="seminar.html" class="button-view-more portal-button" data-translate-key="highlight_button_discover">Temukan Daftar Pengisi Acara <i class="fas fa-arrow-right btn-icon"></i></a>
                 </div>
             </div>
         </section>
@@ -362,36 +359,34 @@
             </div>
         </section>
 
-        <section class="guest-stars-section section-padding" id="past-guest-stars">
-            <h2 class="section-title" id="guest-stars" data-translate-key="past_guest_stars_title">Past Guest Stars</h2>
+        <section class="guest-stars-section section-padding" id="past-guest-stars"> <h2 class="section-title" data-translate-key="past_guest_stars_title">Guest Star Sebelumnya</h2>
             <p class="section-subtitle" data-translate-key="past_guest_stars_subtitle">Kami telah menghadirkan para kreator digital inspiratif:</p>
             <div class="guest-stars-grid">
                 <div class="guest-star-card" data-aos="fade-up">
                     <img src="img/kevin.jpg" alt="Foto Kevin Anggara">
                     <div class="guest-star-info">
-                        <h4>🎬 Kevin Anggara</h4>
+                        <h4 data-translate-key="kevin_anggara_name">🎬 Kevin Anggara</h4>
                         <p data-translate-key="kevin_anggara_role">Penulis, YouTuber</p>
                     </div>
                 </div>
                 <div class="guest-star-card" data-aos="fade-up" data-aos-delay="100">
                     <img src="img/aulion.jpg" alt="Foto Aulion">
                     <div class="guest-star-info">
-                        <h4>🎨 Aulion</h4>
-                        <p data-translate-key="aulion_role">Visual artist & content creator</p>
+                        <h4 data-translate-key="aulion_name">🎨 Aulion</h4>
+                        <p data-translate-key="aulion_role">Seniman visual & kreator konten</p>
                     </div>
                 </div>
                 <div class="guest-star-card" data-aos="fade-up" data-aos-delay="200">
                     <img src="img/jovial.jpeg" alt="Foto Jovial da Lopez">
                     <div class="guest-star-info">
-                        <h4>🎥 Jovial da Lopez</h4>
-                        <p data-translate-key="jovial_da_lopez_role">Filmmaker, Cameo Project</p>
+                        <h4 data-translate-key="jovial_da_lopez_name">🎥 Jovial da Lopez</h4>
+                        <p data-translate-key="jovial_da_lopez_role">Sutradara, Cameo Project</p>
                     </div>
                 </div>
-                <div class="guest-star-card" data-aos="fade-up" data-aos-delay="0">
-                    <img src="img/benazio.png" height="400" alt="Foto Benazio Putra (Bena Kribo)">
+                <div class="guest-star-card" data-aos="fade-up" data-aos-delay="0"> <img src="img/benazio.png" height="400" alt="Foto Benazio Putra (Bena Kribo)">
                     <div class="guest-star-info">
-                        <h4>🧠 Benazio Putra (Bena Kribo)</h4>
-                        <p data-translate-key="benazio_putra_role">Entrepreneur & kreator konten edukatif</p>
+                        <h4 data-translate-key="benazio_putra_name">🧠 Benazio Putra (Bena Kribo)</h4>
+                        <p data-translate-key="benazio_putra_role">Pengusaha & kreator konten edukatif</p>
                     </div>
                 </div>
             </div>
@@ -545,7 +540,7 @@
 
         <section class="contact-section section-padding" id="kontak" data-aos="zoom-in-up">
             <div class="contact-header">
-                <h2 class="section-title quirky-title"><span data-translate-key="contact_title">Ada Pertanyaan?</span></h2>
+                <h2 class="section-title quirky-title"><span data-translate-key="contact_title_span">Ada Pertanyaan?</span></h2>
                 <p class="section-subtitle quirky-subtitle" data-translate-key="contact_subtitle">Kami siap mendengar ide brilian atau menjawab kebingunganmu. Yuk, hubungi kami!</p>
             </div>
             <div class="contact-content-wrapper">
@@ -628,8 +623,8 @@
             </div>
             <div class="footer-bottom">
                 <div class="footer-copyright">
-                    <p data-translate-key="footer_copyright_line1">© 2025 Badan Eksekutif Mahasiswa Sekolah Vokasi IPB University. All rights reserved.</p>
-                    <p data-translate-key="footer_copyright_line2">Empowered by Inspiration, Driven by Innovation.</p>
+                    <p data-translate-key="footer_copyright_line1">&copy; 2025 Badan Eksekutif Mahasiswa Sekolah Vokasi IPB University. Hak cipta dilindungi.</p>
+                    <p data-translate-key="footer_copyright_line2">Diberdayakan oleh Inspirasi, Didorong oleh Inovasi.</p>
                 </div>
                 <a href="#hero" class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
             </div>
@@ -637,433 +632,6 @@
     </footer>
     
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        // --- AOS Initialization ---
-        AOS.init({
-            duration: 800,
-            once: true,
-        });
-
-        // --- Language Toggle ---
-        const langToggleButton = document.getElementById('lang-toggle');
-        let currentLang = localStorage.getItem('lang') || 'id'; // Default to Indonesian
-        let translations = {};
-
-        // Function to fetch translations
-        async function fetchTranslations() {
-            try {
-                const response = await fetch('translations.json'); // Make sure this path is correct
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                translations = await response.json();
-                setLanguage(currentLang);
-            } catch (error) {
-                console.error("Could not load translations:", error);
-                // Fallback or error display logic here
-            }
-        }
-
-        // Function to set the language
-        function setLanguage(lang) {
-            currentLang = lang;
-            localStorage.setItem('lang', lang);
-            document.documentElement.lang = lang; // Update HTML lang attribute
-
-            if (langToggleButton) {
-                 // Update button text based on the *other* language
-                langToggleButton.textContent = lang === 'id' ? translations.id.lang_toggle : translations.en.lang_toggle;
-            }
-
-            const elementsToTranslate = document.querySelectorAll('[data-translate-key]');
-            elementsToTranslate.forEach(el => {
-                const key = el.dataset.translateKey;
-                if (translations[lang] && translations[lang][key]) {
-                    // Preserve child elements like <i> for icons
-                    if (el.children.length > 0 && el.childNodes.length > el.children.length) {
-                        // Element has text nodes mixed with child elements
-                        let newHTML = translations[lang][key];
-                        // Append existing child HTML to the translated string
-                        // This is a simple approach; complex structures might need more specific handling
-                        Array.from(el.children).forEach(child => {
-                            if (newHTML.includes(`%CHILD_${child.tagName}%`)) { // Placeholder for specific children
-                                newHTML = newHTML.replace(`%CHILD_${child.tagName}%`, child.outerHTML);
-                            } else if (child.classList.contains('dropdown-icon')) { // Specific for dropdown icons
-                                 // The key in translations.json should include a placeholder like <i...></i>
-                                 // For example: "nav_tentang_portal": "About Portal %ICON%"
-                                 // Then replace %ICON% with the actual icon HTML.
-                                 // Or, more simply, the translation key should already contain the icon if it's static.
-                                 // For now, if the key is for a dropdown, we assume the translation includes the icon.
-                                 // A more robust solution would be to not translate the icon part.
-                            }
-                        });
-                         // A common case: text node then icon.
-                        if (el.firstChild && el.firstChild.nodeType === Node.TEXT_NODE && el.querySelector('i.dropdown-icon')) {
-                            el.firstChild.textContent = translations[lang][key].replace(/<i.*<\/i>/, '').trim();
-                        } else {
-                             el.innerHTML = translations[lang][key]; // Fallback if complex
-                        }
-
-                    } else if (el.children.length > 0 && !el.textContent.trim().split('\n').map(s => s.trim()).filter(Boolean).some(textPart => translations[lang][key].includes(textPart))) {
-                        // If the element only contains other elements (e.g., a div with only icons), don't overwrite its innerHTML
-                        // unless the key is specifically for an attribute like aria-label.
-                        // This part is tricky and depends on how you structure your keys.
-                        // For now, we assume keys are for text content.
-                        // If a key is for an attribute, handle it separately.
-                        // Example: if (el.hasAttribute('aria-label') && key === 'some_aria_label_key') el.setAttribute('aria-label', translations[lang][key]);
-                         // If it's a dropdown toggle, the key in translations.json should include the icon HTML
-                        if (el.classList.contains('dropdown-toggle') && translations[lang][key].includes('<i')) {
-                            el.innerHTML = translations[lang][key];
-                        } else if (el.children.length === 1 && el.children[0].tagName === 'I') {
-                            // If it's just an icon, don't translate its textContent
-                        }
-                        else {
-                            // Try to replace only the first text node if it exists and is not just whitespace
-                            let replaced = false;
-                            for (let i = 0; i < el.childNodes.length; i++) {
-                                if (el.childNodes[i].nodeType === Node.TEXT_NODE && el.childNodes[i].textContent.trim() !== '') {
-                                    el.childNodes[i].textContent = translations[lang][key];
-                                    replaced = true;
-                                    break;
-                                }
-                            }
-                            if (!replaced) { // Fallback if no direct text node found (e.g. text is inside a span)
-                                // This is a simplification. For deeply nested text, you might need more specific selectors or keys.
-                                const textSpan = el.querySelector('span:not([class])'); // Example: find a generic span
-                                if (textSpan) textSpan.textContent = translations[lang][key];
-                                // else el.textContent = translations[lang][key]; // Last resort, might break structure
-                            }
-                        }
-                    }
-                     else {
-                        el.textContent = translations[lang][key];
-                    }
-                } else if (translations[lang] && translations[lang][key] === "") {
-                    el.textContent = ""; // Handle empty strings if needed
-                }
-            });
-        }
-
-        // Event listener for the toggle button
-        if (langToggleButton) {
-            langToggleButton.addEventListener('click', () => {
-                const newLang = currentLang === 'id' ? 'en' : 'id';
-                setLanguage(newLang);
-            });
-        }
-
-        // Initial fetch of translations
-        fetchTranslations();
-
-
-        // --- Mobile Navigation Variables ---
-        const menuToggleButton = document.getElementById('mobile-menu-toggle');
-        const mainNavLinks = document.getElementById('main-nav-links');
-        let menuIcon = menuToggleButton ? menuToggleButton.querySelector('i') : null;
-
-        // --- Central Function to Close Mobile Menu ---
-        function closeMobileMenu() {
-            if (mainNavLinks && mainNavLinks.classList.contains('active')) {
-                mainNavLinks.classList.remove('active');
-                if (menuToggleButton) menuToggleButton.setAttribute('aria-expanded', 'false');
-                if (menuIcon) {
-                    menuIcon.classList.remove('fa-times');
-                    menuIcon.classList.add('fa-bars');
-                }
-                document.querySelectorAll('.nav-links .nav-item.dropdown.open').forEach(openDropdown => {
-                    openDropdown.classList.remove('open');
-                });
-            }
-        }
-
-        // --- 1. Toggle Main Mobile Menu (Hamburger) ---
-        if (menuToggleButton) {
-            menuToggleButton.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const isActive = mainNavLinks.classList.toggle('active');
-                menuToggleButton.setAttribute('aria-expanded', isActive);
-                if (menuIcon) {
-                    menuIcon.className = isActive ? 'fas fa-times' : 'fas fa-bars';
-                }
-                if (!isActive) {
-                    document.querySelectorAll('.nav-links .nav-item.dropdown.open').forEach(openDropdown => {
-                        openDropdown.classList.remove('open');
-                    });
-                }
-            });
-        }
-
-        // --- 2. Toggle Dropdowns within Mobile Menu ---
-        document.querySelectorAll('.nav-links .dropdown-toggle').forEach(toggle => {
-            toggle.addEventListener('click', function(e) {
-                if (mainNavLinks && mainNavLinks.classList.contains('active')) { 
-                    if (this.getAttribute('href') === '#') {
-                        e.preventDefault();
-                    }
-                    const parentDropdown = this.closest('.nav-item.dropdown');
-                    if (!parentDropdown) return;
-                    
-                    const currentlyOpen = parentDropdown.classList.contains('open');
-                    // Optional: Accordion behavior - close other open dropdowns in mobile
-                    // document.querySelectorAll('.nav-links.active .nav-item.dropdown.open').forEach(openSubDropdown => {
-                    //     if (openSubDropdown !== parentDropdown) {
-                    //         openSubDropdown.classList.remove('open');
-                    //     }
-                    // });
-                    parentDropdown.classList.toggle('open', !currentlyOpen);
-                    e.stopPropagation(); 
-                }
-            });
-        });
-
-        // --- 3. Handle Clicks on Nav Items (for closing menu and smooth scroll) ---
-        document.querySelectorAll('#main-nav-links a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const fullHref = this.getAttribute('href');
-                const isDropdownToggle = this.classList.contains('dropdown-toggle');
-
-                if (isDropdownToggle && mainNavLinks.classList.contains('active')) {
-                    return; 
-                }
-
-                const isIndexPage = window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/index');
-                
-                if (fullHref && fullHref.includes('index.html#') && isIndexPage) { 
-                    const targetId = fullHref.split('#')[1];
-                    if (targetId && document.getElementById(targetId)) {
-                        e.preventDefault();
-                        smoothScrollToTarget(targetId);
-                        closeMobileMenu();
-                    } else { 
-                        if(mainNavLinks.classList.contains('active')) closeMobileMenu();
-                    }
-                } else if (fullHref && fullHref.startsWith('#') && document.getElementById(fullHref.substring(1))) { 
-                    e.preventDefault();
-                    smoothScrollToTarget(fullHref.substring(1));
-                    closeMobileMenu();
-                } else { 
-                    if(mainNavLinks.classList.contains('active') && !isDropdownToggle) { // Close only if not a dropdown toggle itself
-                         closeMobileMenu(); 
-                    }
-                }
-            });
-        });
-        
-        function smoothScrollToTarget(targetId, isPageLoad = false) {
-            const targetElement = document.getElementById(targetId);
-            if (targetElement) {
-                const navElement = document.querySelector('nav');
-                const navHeight = navElement ? navElement.offsetHeight : 0;
-                let targetElementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-                if (isPageLoad && (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/index'))) { 
-                    let elem = targetElement; let top = 0;
-                    while(elem) { top += elem.offsetTop; elem = elem.offsetParent; }
-                    targetElementPosition = top;
-                }
-                const offsetPosition = targetElementPosition - navHeight;
-                window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-                return true;
-            }
-            return false;
-        }
-        
-        if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/index')) {
-            window.addEventListener('load', () => {
-                if (window.location.hash) {
-                    const targetId = window.location.hash.substring(1);
-                    setTimeout(() => { smoothScrollToTarget(targetId, true); }, 100);
-                }
-            });
-        }
-
-        document.addEventListener('click', function(event) {
-            if (mainNavLinks && mainNavLinks.classList.contains('active')) {
-                const isClickInsideNav = mainNavLinks.contains(event.target);
-                const isClickOnToggleButton = menuToggleButton ? menuToggleButton.contains(event.target) : false;
-                if (!isClickInsideNav && !isClickOnToggleButton) {
-                    closeMobileMenu();
-                }
-            }
-        });
-
-        // --- FAQ Accordion ---
-        document.querySelectorAll('.faq-question').forEach((question) => {
-            question.addEventListener('click', () => {
-                const currentItem = question.parentElement;
-                const isActive = currentItem.classList.contains('active');
-                
-                // Optional: Close all other items
-                // document.querySelectorAll('.faq-item.active').forEach((item) => {
-                //     if (item !== currentItem) {
-                //         item.classList.remove('active');
-                //         const otherIcon = item.querySelector('.faq-question .faq-icon i');
-                //         if (otherIcon) { otherIcon.className = 'fas fa-plus'; }
-                //     }
-                // });
-
-                currentItem.classList.toggle('active', !isActive);
-                const currentIcon = question.querySelector('.faq-question .faq-icon i');
-                if (currentIcon) {
-                    currentIcon.className = currentItem.classList.contains('active') ? 'fas fa-minus' : 'fas fa-plus';
-                }
-            });
-        });
-
-        // --- Countdown Timer Script ---
-        function startCountdown() {
-            const countdownDate = new Date("October 11, 2025 00:00:00").getTime();
-            const daysEl = document.getElementById("days"); 
-            const hoursEl = document.getElementById("hours");
-            const minutesEl = document.getElementById("minutes"); 
-            const secondsEl = document.getElementById("seconds");
-            const timerEl = document.getElementById("countdown-timer");
-            if (!daysEl || !hoursEl || !minutesEl || !secondsEl || !timerEl) return;
-
-            const countdownFunction = setInterval(function() {
-                const now = new Date().getTime(); 
-                const distance = countdownDate - now;
-                const days = Math.floor(distance / (1000*60*60*24)); 
-                const hours = Math.floor((distance % (1000*60*60*24))/(1000*60*60));
-                const minutes = Math.floor((distance % (1000*60*60))/(1000*60)); 
-                const seconds = Math.floor((distance % (1000*60))/1000);
-                
-                daysEl.innerText = days < 10 ? "0"+days : days; 
-                hoursEl.innerText = hours < 10 ? "0"+hours : hours;
-                minutesEl.innerText = minutes < 10 ? "0"+minutes : minutes; 
-                secondsEl.innerText = seconds < 10 ? "0"+seconds : seconds;
-                
-                if (distance < 0) { 
-                    clearInterval(countdownFunction); 
-                    timerEl.innerHTML = "<span data-translate-key='event_started'>EVENT TELAH DIMULAI!</span>"; // Added key for translation
-                    timerEl.style.fontSize="1.5rem"; 
-                    timerEl.style.fontWeight="bold";
-                    // Re-translate if language changes after timer ends
-                    if (translations[currentLang] && translations[currentLang]['event_started']) {
-                         timerEl.innerHTML = translations[currentLang]['event_started'];
-                    }
-                }
-            }, 1000);
-        }
-        if (document.getElementById("countdown-timer")) { 
-            document.addEventListener('DOMContentLoaded', startCountdown); 
-        }
-
-        // --- Logo Animation Sequencing ---
-        document.addEventListener('DOMContentLoaded', () => {
-            const heroLogo = document.querySelector('.hero-left img.portal-logo.hero-logo-entry');
-            if (heroLogo) {
-                heroLogo.addEventListener('animationend', function handleDrawLogoEnd(event) {
-                    if (event.animationName === 'drawLogo') {
-                        heroLogo.classList.remove('hero-logo-entry');
-                        heroLogo.classList.add('hero-logo-float');
-                        heroLogo.removeEventListener('animationend', handleDrawLogoEnd);
-                    }
-                });
-            }
-        });
-
-        // --- Berita & Media Section Script (JSON Loader) ---
-        const blogArticlesContainer = document.querySelector('#blog-articles-container .articles-grid');
-        const galleryPhotosContainer = document.querySelector('#gallery-container .gallery-grid.photos');
-        const galleryVideosContainer = document.querySelector('#gallery-container .gallery-grid.videos');
-        const partnersSponsorsContainer = document.querySelector('#partners-sponsors-container .partners-grid');
-        const galleryTabs = document.querySelectorAll('#media .gallery-tab-button');
-
-        async function loadMediaContent() {
-            try {
-                const response = await fetch('media-content.json');
-                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                const data = await response.json();
-                if (blogArticlesContainer) renderBlogArticles(data.blogArticles);
-                if (galleryPhotosContainer) renderGalleryPhotos(data.gallery.photos);
-                if (galleryVideosContainer) renderGalleryVideos(data.gallery.videos);
-                if (partnersSponsorsContainer) renderPartnersSponsors(data.partnersSponsors);
-            } catch (error) {
-                console.error("Gagal memuat konten media:", error);
-                if (blogArticlesContainer) blogArticlesContainer.innerHTML = `<p class="error-message" data-translate-key="error_load_articles">Gagal memuat artikel.</p>`;
-                if (galleryPhotosContainer) galleryPhotosContainer.innerHTML = `<p class="error-message" data-translate-key="error_load_photos">Gagal memuat foto.</p>`;
-                if (galleryVideosContainer) galleryVideosContainer.innerHTML = `<p class="error-message" data-translate-key="error_load_videos">Gagal memuat video.</p>`;
-                if (partnersSponsorsContainer) partnersSponsorsContainer.innerHTML = `<p class="error-message" data-translate-key="error_load_partners">Gagal memuat mitra.</p>`;
-                setLanguage(currentLang); // Re-translate error messages
-            }
-        }
-        function renderBlogArticles(articles) { 
-            if (!blogArticlesContainer || !articles || articles.length === 0) { 
-                if(blogArticlesContainer) blogArticlesContainer.innerHTML = `<p data-translate-key="no_articles">Belum ada artikel.</p>`; 
-                setLanguage(currentLang); // Translate "no articles" message
-                return; 
-            }
-            blogArticlesContainer.innerHTML = ''; 
-            articles.slice(0, 3).forEach(article => {
-                // For dynamic content like this, you'd typically have separate translation keys for title, summary, etc.
-                // Or, your media-content.json would need to be structured with language variations.
-                // For simplicity here, I'm assuming the content in media-content.json is in the default language (ID)
-                // and won't be translated by this script unless you add specific keys for them.
-                const articleCardHTML = `<div class="article-card" data-aos="fade-up" data-aos-anchor="#blog-articles-container">
-                    <a href="${article.link}" class="article-card-link">
-                        <div class="article-image-wrapper">
-                            <img src="${article.image}" alt="${article.title}" class="article-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <div class="article-image-fallback" style="display: none;"><i class="fas fa-image fa-3x"></i></div>
-                        </div>
-                        <div class="article-content">
-                            <h4 class="article-title">${article.title}</h4>
-                            <p class="article-meta">${article.date} | <span data-translate-key="article_author_prefix">Oleh:</span> ${article.author}</p>
-                            <p class="article-summary">${article.summary}</p>
-                            <span class="article-link-text" data-translate-key="article_read_more">Baca Selengkapnya <i class="fas fa-arrow-right"></i></span>
-                        </div>
-                    </a>
-                </div>`;
-                blogArticlesContainer.insertAdjacentHTML('beforeend', articleCardHTML);
-            });
-            setLanguage(currentLang); // Re-translate any static parts like "Oleh" or "Baca Selengkapnya"
-        }
-        // Similar logic for renderGalleryPhotos, renderGalleryVideos, renderPartnersSponsors
-        // You'll need to decide if the content within media-content.json itself needs translation
-        // or if only static surrounding text needs keys.
-        function renderGalleryPhotos(photos) { 
-            if (!galleryPhotosContainer || !photos || photos.length === 0) { if(galleryPhotosContainer) galleryPhotosContainer.innerHTML = `<p data-translate-key="no_photos">Belum ada foto.</p>`; setLanguage(currentLang); return; }
-            galleryPhotosContainer.innerHTML = '';
-            photos.slice(0, 6).forEach(photo => {
-                const photoItem = `<div class="gallery-item photo" data-aos="zoom-in-up" data-aos-anchor="#gallery-container"><img src="${photo.thumbnailUrl}" alt="${photo.title}" onerror="this.src='https://placehold.co/300x300/e0e0e0/757575?text=Error&font=montserrat';"><div class="gallery-item-overlay"><i class="fas fa-search-plus"></i><span>${photo.title} (${photo.year || ''})</span></div></div>`;
-                galleryPhotosContainer.insertAdjacentHTML('beforeend', photoItem);
-            });
-        }
-        function renderGalleryVideos(videos) { 
-            if (!galleryVideosContainer || !videos || videos.length === 0) { if(galleryVideosContainer) galleryVideosContainer.innerHTML = `<p data-translate-key="no_videos">Belum ada video.</p>`; setLanguage(currentLang); return; }
-            galleryVideosContainer.innerHTML = '';
-            videos.slice(0, 3).forEach(video => {
-                const videoItem = `<div class="gallery-item video" data-aos="zoom-in-up" data-aos-anchor="#gallery-container"><img src="${video.thumbnailUrl}" alt="${video.title}" onerror="this.src='https://placehold.co/300x200/e0e0e0/757575?text=Error&font=montserrat';"><div class="gallery-item-overlay"><i class="fas fa-play-circle"></i><span>${video.title}</span></div></div>`;
-                galleryVideosContainer.insertAdjacentHTML('beforeend', videoItem);
-            });
-        }
-        function renderPartnersSponsors(items) { 
-            if (!partnersSponsorsContainer || !items || items.length === 0) { if(partnersSponsorsContainer) partnersSponsorsContainer.innerHTML = `<p data-translate-key="no_partners">Mitra akan segera tampil.</p>`; setLanguage(currentLang); return; }
-            partnersSponsorsContainer.innerHTML = '';
-            items.forEach(item => {
-                const partnerItem = `<div class="partner-item" data-aos="fade-up" data-aos-anchor="#partners-sponsors-container"><a href="${item.websiteUrl}" target="_blank" rel="noopener noreferrer" title="${item.name} (${item.type})"><img src="${item.logoUrl}" alt="${item.name}" onerror="this.parentElement.innerHTML = '<span class=\\'partner-name-fallback\\'>${item.name}</span>';"></a></div>`;
-                partnersSponsorsContainer.insertAdjacentHTML('beforeend', partnerItem);
-            });
-        }
-
-        if (galleryTabs.length > 0) {
-            galleryTabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    galleryTabs.forEach(t => t.classList.remove('active'));
-                    tab.classList.add('active');
-                    document.querySelectorAll('#media .gallery-grid').forEach(content => {
-                        content.classList.remove('active-gallery-content');
-                    });
-                    const targetContentClass = tab.dataset.tab;
-                    const newActiveContent = document.querySelector(`#media .gallery-grid.${targetContentClass}`);
-                    if (newActiveContent) newActiveContent.classList.add('active-gallery-content');
-                });
-            });
-        }
-        if (document.getElementById('media')) { 
-            if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', loadMediaContent); } 
-            else { loadMediaContent(); }
-        }
-
-    </script>
-</body>
+    <script src="script.js" defer></script>
+    </body>
 </html>
