@@ -418,7 +418,7 @@ nav::after {
     right: 8%;
     opacity: 0.8;
     animation: slowDrift 30s infinite linear;
-    z-index: 3; /* Example: This cloud could be slightly more prominent */
+    z-index: 1; /* Example: This cloud could be slightly more prominent */
 }
 
 .cloud-4 { /* Orange */

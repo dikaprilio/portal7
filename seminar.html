@@ -1,15 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seminar Portal 7 - Inspirasi & Inovasi Digital</title>
+    <title data-translate-key="seminar_page_title_meta">Seminar Portal 7 - Inspirasi & Inovasi Digital</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .lang-toggle-button {
+            background-color: var(--pink-accent);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-left: 1rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .lang-toggle-button:hover {
+            background-color: var(--blue-accent);
+            transform: scale(1.05);
+        }
+        .nav-links {
+            align-items: center;
+        }
+    </style>
 </head>
 <body>
 
@@ -19,147 +40,149 @@
                 <img src="img/Portal_Logo.png" alt="Logo Portal 7" onerror="this.onerror=null;this.src='https://placehold.co/120x30/cccccc/ffffff?text=P7+Logo';">
             </a>
             <div class="nav-links" id="main-nav-links">
-                <a class="nav-a" href="index.html#hero">Beranda</a>
+                <a class="nav-a" href="index.html#hero" data-translate-key="nav_beranda">Beranda</a>
                 <div class="nav-item dropdown">
-                    <a class="nav-a dropdown-toggle" href="#">Tentang Portal <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                    <a class="nav-a dropdown-toggle" href="#" data-translate-key="nav_tentang_portal">Tentang Portal <i class="fas fa-chevron-down dropdown-icon"></i></a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="index.html#tentang">Tentang Kami</a>
-                        <a class="dropdown-item" href="index.html#highlight">Highlights</a>
-                        <a class="dropdown-item" href="index.html#linimasa">Linimasa</a>
-                        <a class="dropdown-item" href="index.html#guest-stars">Guest Star</a>
-                        <a class="dropdown-item" href="index.html#peserta">Siapa Peserta?</a>
-                        <a class="dropdown-item" href="index.html#faq">FAQ</a>
+                        <a class="dropdown-item" href="index.html#tentang" data-translate-key="nav_tentang_kami">Tentang Kami</a>
+                        <a class="dropdown-item" href="index.html#sdg-commitment" data-translate-key="nav_sdg_commitment">Komitmen SDG</a>
+                        <a class="dropdown-item" href="index.html#wow-guest-stars-2025" data-translate-key="nav_guest_stars">Guest Star</a> 
+                        <a class="dropdown-item" href="index.html#highlight" data-translate-key="nav_highlight">Highlights</a>
+                        <a class="dropdown-item" href="index.html#linimasa" data-translate-key="nav_linimasa">Linimasa</a>
+                        <a class="dropdown-item" href="index.html#peserta" data-translate-key="nav_peserta">Siapa Peserta?</a>
+                        <a class="dropdown-item" href="index.html#faq" data-translate-key="nav_faq">FAQ</a>
+                    </div>
+                </div>
+
+                <div class="nav-item dropdown">
+                    <a class="nav-a dropdown-toggle" href="#" data-translate-key="nav_event">Event <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="competition-hub.html" data-translate-key="nav_kompetisi">Kompetisi</a>
+                        <a class="dropdown-item" href="seminar.html" data-translate-key="nav_seminar">Seminar</a>
                     </div>
                 </div>
                 <div class="nav-item dropdown">
-                    <a class="nav-a dropdown-toggle" href="#">Event <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                    <a class="nav-a dropdown-toggle" href="#" data-translate-key="nav_media">Media <i class="fas fa-chevron-down dropdown-icon"></i></a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="competition-hub.html">Kompetisi</a>
-                        <a class="dropdown-item" href="seminar.html">Seminar</a>
+                        <a class="dropdown-item" href="blog.html" data-translate-key="nav_blog">Blog</a>
+                        <a class="dropdown-item" href="gallery.html" data-translate-key="nav_gallery">Gallery</a>
                     </div>
                 </div>
-                <div class="nav-item dropdown">
-                    <a class="nav-a dropdown-toggle" href="#">Media <i class="fas fa-chevron-down dropdown-icon"></i></a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="blog.html">Blog</a>
-                        <a class="dropdown-item" href="gallery.html">Gallery</a>
-                    </div>
-                </div>
-                <a class="nav-a" href="index.html#kontak">Kontak Kami</a>
-                <a class="nav-a nav-cta-button" href="index.html#pendaftaran">Pendaftaran</a>
+                <a class="nav-a" href="index.html#kontak" data-translate-key="nav_kontak_kami">Kontak Kami</a>
+                <a class="nav-a nav-cta-button" href="index.html#pendaftaran" data-translate-key="nav_pendaftaran">Pendaftaran</a>
+                <button id="lang-toggle" class="lang-toggle-button" data-translate-key="lang_toggle">EN</button>
             </div>
             <button id="mobile-menu-toggle" class="mobile-menu-button" aria-label="Toggle menu" aria-expanded="false">
-                <i class="fas fa-bars"></i>
+                <i class="fa fa-bars"></i> 
             </button>
         </div>
     </nav>
 
     <main>
-        {/* Revamped Hero Section */}
         <section class="competition-hub-hero seminar-hero section-padding" id="seminar-top">
             <div class="portal-background-effect"></div>
-            <div class="floating-cloud cloud-1"><img src="img/cloud_pink.png" alt=""></div>
-            <div class="floating-cloud cloud-4"><img src="img/cloud_orange.png" alt=""></div>
+            <div class="floating-cloud cloud-1"><img src="img/cloud_pink.png" alt="Awan merah muda melayang"></div>
+            <div class="floating-cloud cloud-4"><img src="img/cloud_orange.png" alt="Awan oranye melayang"></div>
             <div class="hero-content-seminar-hub" data-aos="zoom-in-up">
                 <h1 class="seminar-hub-title">
-                    PORTAL <span class="seminar-title-accent">7</span> SEMINAR
+                    <span data-translate-key="seminar_hero_title_main">PORTAL</span> <span class="seminar-title-accent" data-translate-key="seminar_hero_title_accent">7</span> <span data-translate-key="seminar_hero_title_series">SEMINAR</span>
                 </h1>
-                <p class="seminar-hub-subtitle">Unlock Insights: Engaging Talkshows, Exclusive Coaching, and a Spectacular Awarding Night!</p>
+                <p class="seminar-hub-subtitle" data-translate-key="seminar_hero_subtitle">Buka Wawasan: Talkshow Menarik, Coaching Eksklusif, dan Malam Penganugerahan Spektakuler!</p>
             </div>
         </section>
 
         <section class="section-padding seminar-listing-section" id="seminar-details">
             <div class="container">
-                <h2 class="section-title" data-aos="fade-up">Seminar Series & Events</h2>
+                <h2 class="section-title" data-aos="fade-up" data-translate-key="seminar_series_events_title">Rangkaian Seminar & Acara</h2>
 
                 <article class="portal-card-seminar" data-aos="fade-up" data-aos-delay="100">
                     <div class="card-seminar-header">
                         <i class="fas fa-comments card-icon-seminar"></i>
-                        <h3>Talkshow Inspiratif: Digital Frontiers</h3>
+                        <h3 data-translate-key="seminar_talkshow_title">Talkshow Inspiratif: Batas Digital</h3>
                     </div>
                     <div class="card-seminar-body">
-                        <p class="event-date-seminar"><i class="far fa-calendar-alt"></i> Sabtu, 11 Oktober 2025 (Awarding Day)</p>
-                        <p class="description-seminar">Dive into the latest insights from digital tech, design, and creative leaders. Expand your horizons and fuel your innovative spirit.</p>
+                        <p class="event-date-seminar" data-translate-key="seminar_talkshow_date"><i class="far fa-calendar-alt"></i> Sabtu, 11 Oktober 2025 (Hari Penganugerahan)</p>
+                        <p class="description-seminar" data-translate-key="seminar_talkshow_desc">Selami wawasan terbaru dari para pemimpin teknologi digital, desain, dan kreatif. Perluas cakrawala Anda dan sulut semangat inovatif Anda.</p>
                         
                         <div class="speaker-highlight" data-aos="fade-left" data-aos-delay="150">
                             <div class="speaker-img-placeholder">
-                                <img src="https://placehold.co/100x100/E040FB/FFFFFF?text=Dr.V&font=montserrat" alt="Joko Anwar">
+                                <img src="https://placehold.co/100x100/7E57C2/FFFFFF?text=GS&font=montserrat" alt="Mysterious Guest Star">
                             </div>
                             <div class="speaker-info">
-                                <h4><span class="wow-speaker-tag">WOW! GUEST</span> Joko Anwar</h4>
-                                <p class="speaker-title">Acclaimed Film Director</p>
-                                <p class="speaker-teaser">"Exploring the frontiers of creativity and skena."</p>
+                                <h4><span class="wow-speaker-tag" data-translate-key="seminar_speaker_wow_tag">WOW! GUEST</span> <span data-translate-key="seminar_mysterious_guest_name">An Exciting & Mysterious Guest Star!</span></h4>
+                                <p class="speaker-title" data-translate-key="seminar_mysterious_guest_role">Renowned for groundbreaking work in the creative industry.</p>
+                                <p class="speaker-teaser" data-translate-key="seminar_mysterious_guest_teaser">Get ready for an unforgettable session that will spark your imagination!</p>
                             </div>
                         </div>
 
                         <div class="accordion-seminar">
-                            <button class="accordion-seminar-toggle">
+                            <button class="accordion-seminar-toggle" data-translate-key="seminar_other_speakers_button">
                                 Pembicara Unggulan Lainnya <i class="fas fa-chevron-down accordion-icon"></i>
                             </button>
                             <div class="accordion-seminar-content">
                                 <ul>
-                                    <li>Nama Pembicara 2 - Keahlian (e.g., UI/UX Lead)</li>
-                                    <li>Nama Pembicara 3 - Keahlian (e.g., Content Creator Pro)</li>
+                                    <li data-translate-key="seminar_other_speaker_1">Nama Pembicara 2 - Keahlian (mis., UI/UX Lead)</li>
+                                    <li data-translate-key="seminar_other_speaker_2">Nama Pembicara 3 - Keahlian (mis., Kreator Konten Pro)</li>
                                 </ul>
                             </div>
                         </div>
-                        <p class="seminar-note"><strong>Lokasi:</strong> [To Be Announced / Virtual Platform] <br><em>Open to public and competition participants.</em></p>
+                        <p class="seminar-note" data-translate-key="seminar_location_note"><strong>Lokasi:</strong> [Akan Diumumkan / Platform Virtual] <br><em>Terbuka untuk umum dan peserta kompetisi.</em></p>
                     </div>
                 </article>
 
                 <article class="portal-card-seminar" data-aos="fade-up" data-aos-delay="200">
                     <div class="card-seminar-header">
                         <i class="fas fa-chalkboard-teacher card-icon-seminar"></i>
-                        <h3>Coaching Clinic & Pitching Day</h3>
+                        <h3 data-translate-key="seminar_coaching_title">Coaching Clinic & Pitching Day</h3>
                     </div>
                     <div class="card-seminar-body">
-                        <p class="event-date-seminar"><i class="far fa-calendar-alt"></i> Akhir September 2025 (Exact Date TBA)</p>
-                        <p class="description-seminar">Exclusive session for Top 10 finalists. Receive direct mentorship to refine your projects and perfect your final presentations.</p>
+                        <p class="event-date-seminar" data-translate-key="seminar_coaching_date"><i class="far fa-calendar-alt"></i> Akhir September 2025 (Tanggal Pasti TBA)</p>
+                        <p class="description-seminar" data-translate-key="seminar_coaching_desc">Sesi eksklusif untuk 10 finalis terbaik. Terima bimbingan langsung untuk menyempurnakan proyek Anda dan mematangkan presentasi akhir Anda.</p>
                         <div class="accordion-seminar">
-                            <button class="accordion-seminar-toggle">
+                            <button class="accordion-seminar-toggle" data-translate-key="seminar_coaching_focus_button">
                                 Fokus Coaching <i class="fas fa-chevron-down accordion-icon"></i>
                             </button>
                             <div class="accordion-seminar-content">
                                 <ul>
-                                    <li>Idea Development & Storytelling Mastery</li>
-                                    <li>Effective Presentation & Pitching Techniques</li>
-                                    <li>Digital Product/Work Strategy</li>
+                                    <li data-translate-key="seminar_coaching_focus_1">Pengembangan Ide & Penguasaan Penceritaan</li>
+                                    <li data-translate-key="seminar_coaching_focus_2">Teknik Presentasi & Pitching Efektif</li>
+                                    <li data-translate-key="seminar_coaching_focus_3">Strategi Produk/Karya Digital</li>
                                 </ul>
                             </div>
                         </div>
-                        <p class="seminar-note"><em>Exclusive for Portal 7 Competition Finalists.</em></p>
+                        <p class="seminar-note" data-translate-key="seminar_coaching_note"><em>Eksklusif untuk Finalis Kompetisi Portal 7.</em></p>
                     </div>
                 </article>
 
                 <article class="portal-card-seminar" data-aos="fade-up" data-aos-delay="300">
                     <div class="card-seminar-header">
                         <i class="fas fa-award card-icon-seminar"></i>
-                        <h3>Grand Awarding & Networking Night</h3>
+                        <h3 data-translate-key="seminar_awarding_title">Malam Penganugerahan & Networking Akbar</h3>
                     </div>
                     <div class="card-seminar-body">
-                        <p class="event-date-seminar"><i class="far fa-calendar-alt"></i> Sabtu, 11 Oktober 2025</p>
-                        <p class="description-seminar">The pinnacle of Portal 7! Celebrate achievements, witness the crowning of champions, and connect with fellow creators and industry professionals.</p>
+                        <p class="event-date-seminar" data-translate-key="seminar_awarding_date"><i class="far fa-calendar-alt"></i> Sabtu, 11 Oktober 2025</p>
+                        <p class="description-seminar" data-translate-key="seminar_awarding_desc">Puncak Portal 7! Rayakan pencapaian, saksikan penobatan para juara, dan terhubung dengan sesama kreator dan profesional industri.</p>
                         <div class="accordion-seminar">
-                            <button class="accordion-seminar-toggle">
-                                Main Agenda <i class="fas fa-chevron-down accordion-icon"></i>
+                            <button class="accordion-seminar-toggle" data-translate-key="seminar_awarding_agenda_button">
+                                Agenda Utama <i class="fas fa-chevron-down accordion-icon"></i>
                             </button>
                             <div class="accordion-seminar-content">
                                 <ul>
-                                    <li>Announcement of Winners (All Categories)</li>
-                                    <li>Prize & Certificate Ceremony</li>
-                                    <li>Dynamic Networking Session</li>
-                                    <li>Special Entertainment</li>
+                                    <li data-translate-key="seminar_awarding_agenda_1">Pengumuman Pemenang (Semua Kategori)</li>
+                                    <li data-translate-key="seminar_awarding_agenda_2">Upacara Penyerahan Hadiah & Sertifikat</li>
+                                    <li data-translate-key="seminar_awarding_agenda_3">Sesi Networking Dinamis</li>
+                                    <li data-translate-key="seminar_awarding_agenda_4">Hiburan Spesial</li>
                                 </ul>
                             </div>
                         </div>
-                        <p class="seminar-note"><em>Attendance by finalists, judges, speakers, and invited guests.</em></p>
+                        <p class="seminar-note" data-translate-key="seminar_awarding_note"><em>Dihadiri oleh finalis, juri, pembicara, dan tamu undangan.</em></p>
                     </div>
                 </article>
 
                  <div class="registration-cta section-padding" data-aos="zoom-in-up" data-aos-delay="400">
-                    <h2 class="section-title">Ready to be Inspired?</h2> {/* Changed h3 to h2 for consistency */}
-                    <p class="section-subtitle">Seminar registration details (if separate from competition) or ticket information will be announced soon. Stay tuned to our social media!</p>
-                    <a href="index.html#pendaftaran" class="hero-button button-main-cta center-a">View Competition Registration</a>
+                    <h2 class="section-title" data-translate-key="seminar_cta_title">Siap Terinspirasi?</h2>
+                    <p class="section-subtitle" data-translate-key="seminar_cta_subtitle">Detail pendaftaran seminar (jika terpisah dari kompetisi) atau informasi tiket akan segera diumumkan. Pantau terus media sosial kami!</p>
+                    <a href="index.html#pendaftaran" class="hero-button button-main-cta center-a" data-translate-key="seminar_cta_button">Lihat Pendaftaran Kompetisi</a>
                 </div>
 
             </div>
@@ -176,17 +199,17 @@
                     <p class="footer-event-name">Portal 7: Empower Digital</p>
                 </div>
                 <div class="footer-quick-links">
-                    <h4>Navigasi Cepat</h4>
-                    <a href="index.html#tentang">Tentang Kami</a>
-                    <a href="competition-hub.html">Kompetisi</a>
-                    <a href="seminar.html">Seminar</a>
-                    <a href="index.html#linimasa">Linimasa</a>
-                    <a href="blog.html">Blog</a>
-                    <a href="gallery.html">Galeri</a>
-                    <a href="index.html#faq">FAQ</a>
+                    <h4 data-translate-key="footer_nav_cepat">Navigasi Cepat</h4>
+                    <a href="index.html#tentang" data-translate-key="nav_tentang_kami">Tentang Kami</a>
+                    <a href="competition-hub.html" data-translate-key="nav_kompetisi">Kompetisi</a>
+                    <a href="seminar.html" data-translate-key="nav_seminar">Seminar</a>
+                    <a href="index.html#linimasa" data-translate-key="nav_linimasa">Linimasa</a>
+                    <a href="blog.html" data-translate-key="nav_blog">Blog</a>
+                    <a href="gallery.html" data-translate-key="nav_gallery">Galeri</a>
+                    <a href="index.html#faq" data-translate-key="nav_faq">FAQ</a>
                 </div>
                 <div class="footer-contact-social">
-                    <h4>Terhubung Dengan Kami</h4>
+                    <h4 data-translate-key="footer_hubungi_kami">Terhubung Dengan Kami</h4>
                     <div class="footer-contact-item">
                         <i class="far fa-envelope"></i> <a href="mailto:portalbemsvipb@gmail.com">portalbemsvipb@gmail.com</a>
                     </div>
@@ -200,17 +223,16 @@
             </div>
             <div class="footer-bottom">
                 <div class="footer-copyright">
-                    <p>&copy; 2025 Badan Eksekutif Mahasiswa Sekolah Vokasi IPB University. All rights reserved.</p>
-                    <p>Empowered by Inspiration, Driven by Innovation.</p>
+                    <p data-translate-key="footer_copyright_line1">&copy; 2025 Badan Eksekutif Mahasiswa Sekolah Vokasi IPB University. Hak cipta dilindungi.</p>
+                    <p data-translate-key="footer_copyright_line2">Diberdayakan oleh Inspirasi, Didorong oleh Inovasi.</p>
                 </div>
                 <a href="#seminar-top" class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
             </div>
         </div>
     </footer>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script src="script.js"></script>
+<script src="script.js" defer></script>
 
 </body>
 </html>
