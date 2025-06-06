@@ -334,6 +334,157 @@ nav::after {
     margin-right: auto;
 }
 
+/* === UPDATED SUBTLE UPRIGHT GEOMETRIC HERO STYLES === */
+.hero-section {
+    position: relative;
+    overflow: hidden; 
+}
+
+.geometric-shapes-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden; 
+    z-index: 0; /* Behind hero-content (z-index: 2) and portal-background-effect (z-index: 1 or 0) */
+}
+
+.geo-shape { 
+    position: absolute;
+    opacity: 0.15; /* Start subtle. User can increase to 0.8 if desired. */
+    /* For 80% opacity, change above to: opacity: 0.8; */
+    will-change: transform; /* Optimize for animations */
+    object-fit: contain; /* Ensures the entire image is visible, scaled down if needed */
+    /* transform: rotate(0deg) !important; Remove all rotations */
+}
+
+/* Top strip - geometry-7.png */
+.geo-shape .geo-top-strip {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%; /* Full width */
+    height: clamp(50px, 8vh, 100px); /* Adjust height as needed */
+    object-fit: cover; /* Cover the strip area, might crop image vertically */
+    object-position: center top; /* Show the top part of geometry-7.png */
+    animation: subtlePulse 15s infinite alternate ease-in-out;
+    filter: blur(1px); /* Slight blur for background effect */
+}
+
+/* Left side accent - geometry-1.png */
+.geo-shape .geo-side-left {
+    top: 50%;
+    left: 0; /* Anchor to left edge */
+    width: clamp(150px, 18vw, 280px); /* Adjust size */
+    max-height: 70vh;
+    transform: translateY(-50%) translateX(-65%); /* Position mostly off-screen, upright */
+    animation: subtleSway 25s infinite alternate ease-in-out;
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out; /* For hover */
+}
+
+/* Top-right corner accent - geometry-2.png (or geometry-4.png) */
+.geo-shape .geo-corner-top-right {
+    top: 0;
+    right: 0;
+    width: clamp(100px, 15vw, 220px); /* Adjust size */
+    max-height: 30vh;
+    transform: translateX(60%) translateY(-30%); /* Position partially off-screen, upright */
+    animation: subtleSway 28s infinite alternate ease-in-out -2s;
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+/* Subtle hover to slightly reveal more of the side shapes */
+.hero-section:hover .geo-shape.geo-side-left {
+    transform: translateY(-50%) translateX(-55%); /* Bring it in slightly */
+    opacity: 0.25; /* Slightly more visible on hover (can be increased to 0.8 if preferred) */
+}
+.hero-section:hover .geo-shape.geo-corner-top-right {
+    transform: translateX(50%) translateY(-20%);
+    opacity: 0.25;
+}
+
+
+@keyframes subtlePulse {
+    0% { opacity: 0.1; filter: blur(2px) grayscale(20%); }
+    50% { opacity: 0.2; filter: blur(1px) grayscale(0%); }
+    100% { opacity: 0.1; filter: blur(2px) grayscale(20%); }
+}
+
+@keyframes subtleSway { /* Simplified sway, no rotation */
+    0% {
+        transform: translateY(-50%) translateX(-65%);
+    }
+    50% {
+        transform: translateY(-48%) translateX(-62%); 
+    }
+    100% {
+        transform: translateY(-50%) translateX(-65%);
+    }
+}
+/* Apply a slightly different sway for the right one to avoid perfect sync */
+@keyframes subtleSway { /* Re-declare for the right or use a different animation name */
+    0% {
+        transform: translateY(-50%) translateX(65%);
+    }
+    50% {
+        transform: translateY(-52%) translateX(62%); 
+    }
+    100% {
+        transform: translateY(-50%) translateX(65%);
+    }
+}
+
+
+.hero-content {
+    position: relative;
+    z-index: 2; 
+}
+.portal-background-effect { /* Ensure this is behind shapes if it exists */
+    position: absolute;
+    top:0; left:0; width:100%; height:100%;
+    z-index: 0; 
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .geo-shape.geo-top-strip {
+        height: clamp(40px, 6vh, 80px);
+    }
+    .geo-shape.geo-side-left {
+        width: clamp(120px, 15vw, 220px);
+        transform: translateY(-50%) translateX(-70%);
+        opacity: 0.12;
+    }
+    .geo-shape.geo-corner-top-right {
+        width: clamp(80px, 12vw, 180px);
+        transform: translateX(65%) translateY(-35%);
+        opacity: 0.12;
+    }
+}
+
+@media (max-width: 767px) {
+    .geo-shape.geo-top-strip {
+        height: clamp(30px, 5vh, 60px);
+        opacity: 0.1;
+    }
+    .geo-shape.geo-side-left {
+        width: clamp(100px, 20vw, 180px); 
+        transform: translateY(-50%) translateX(-75%); 
+        opacity: 0.1;
+    }
+    .geo-shape.geo-corner-top-right {
+        width: clamp(60px, 18vw, 150px); 
+        transform: translateX(70%) translateY(-40%);
+        opacity: 0.1;
+    }
+    .hero-section:hover .geo-shape.geo-side-left,
+    .hero-section:hover .geo-shape.geo-corner-top-right {
+        opacity: 0.15; /* Less pronounced hover opacity increase on mobile */
+    }
+}
+
 /* --- HERO SECTION REVAMP --- */
 .hero-section {
     /* New Background: Dark, "portal" inspired */
@@ -5571,5 +5722,193 @@ section,
     .gallery-grid.photos-all, .gallery-grid.videos-all {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Smaller items on mobile */
         gap: 0.75rem;
+    }
+}
+/* === NEW GEOMETRIC EDGE ACCENT HERO STYLES === */
+.hero-section {
+    position: relative;
+    overflow: hidden; 
+}
+
+.geometric-edge-decorations {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Allows clicks through */
+    z-index: 1; /* Above .portal-background-effect (if z-index 0), below .hero-content (z-index 2) */
+}
+
+.geo-shape { 
+    position: absolute;
+    opacity: 0.8; /* Fixed opacity as requested */
+    will-change: transform;
+    object-fit: contain; /* Scales down to fit if needed, preserving aspect ratio */
+    /* No rotation by default */
+}
+
+/* Top accent strip (geometry-7.png) */
+.geo-shape.geo-top-edge-accent {
+    top: 0; /* Position at the very top */
+    left: 50%;
+    transform: translateX(-50%); /* Center it horizontally */
+    width: 100%; 
+    height: clamp(60px, 10vh, 100px); /* Responsive height for the top accent */
+    object-fit: cover; /* Cover the area, may crop geometry-7 */
+    object-position: center top; /* Focus on the top part of geometry-7 */
+    z-index: -1; /* Try to place it behind the navbar if navbar has higher z-index & transparent bg */
+    /* If your navbar is sticky and opaque, this might be hidden.
+       Adjust nav's background or this element's top padding if needed. */
+    animation: subtleVerticalPulse 15s infinite alternate ease-in-out;
+}
+
+/* Bottom-Left edge accent (geometry-1.png) */
+.geo-shape.geo-bottom-left-edge-accent {
+    opacity: 0.8;
+    bottom: -20%; /* Start partially off-screen */
+    left: -30%;  /* Start partially off-screen */
+    width: clamp(300px, 60vw, 900px); /* Responsive width */
+    max-height: 85vh; /* Don't let it get too tall */
+    transform-origin: bottom left;
+    animation: subtleDriftEdge 25s infinite alternate ease-in-out;
+}
+ 
+/* Top-Right edge accent (geometry-2.png) */
+.geo-shape.geo-top-right-edge-accent {
+    top: -10%; /* Start partially off-screen */
+    right: -18%; /* Start partially off-screen */
+    width: clamp(200px, 35vw, 500px); /* Smaller than the left, but still substantial */
+    max-height: 50%;
+    opacity: 0.6 ;
+    transform-origin: top right;
+    animation: subtleDriftEdge 28s infinite alternate-reverse ease-in-out -3s; /* Different timing */
+}
+.geo-shape.geo-top-left-edge-accent {
+    top: -10%; /* Start partially off-screen */
+    left: -10%;  /* Start partially off-screen */
+    width: clamp(180px, 28vw, 400px); /* Responsive width */
+    max-height: 45%; 
+    transform-origin: top left;
+    animation: subtleLargeDrift 32s infinite alternate ease-in-out -2s;
+}
+
+/* Optional: For a fourth corner accent if you uncomment geometry-4.png */
+.geo-shape.geo-bottom-right-edge-accent {
+    bottom: -15%;
+    right: -12%;
+    width: clamp(180px, 28vw, 400px);
+    max-height: 55%;
+    transform-origin: bottom right;
+    animation: subtleDriftEdge 22s infinite alternate ease-in-out -5s;
+}
+
+
+/* Subtle Animations - NO OPACITY ANIMATION on .geo-shape base */
+@keyframes subtleVerticalPulse { /* For top strip */
+    0% { transform: translateX(-50%) translateY(-3px); }
+    50% { transform: translateX(-50%) translateY(3px); }
+    100% { transform: translateX(-50%) translateY(-3px); }
+}
+
+@keyframes subtleDriftEdge { /* For side/corner accents */
+    0% { transform: translate(0,0) scale(1); }
+    50% { transform: translate(5px, -5px) scale(1.02); } /* Very slight movement and scale */
+    100% { transform: translate(0,0) scale(1); }
+}
+
+/* Z-indexing context */
+.portal-background-effect { 
+    position: absolute;
+    top:0; left:0; width:100%; height:100%;
+    z-index: 0; /* Behind geometric shapes */
+}
+.hero-content {
+    position: relative;
+    z-index: 2; /* Hero content is above the geometric shapes */
+}
+
+/* Adjust Navbar if top accent is meant to go behind it */
+nav {
+    /* ... your existing nav styles ... */
+    position: sticky; /* Or fixed */
+    top: 0;
+    z-index: 1000; /* Ensure navbar is above all hero background elements */
+    /* If you want geo-top-edge-accent to show through a transparent/semi-transparent navbar:
+       background-color: rgba(var(--navbar-bg-rgb), 0.8); e.g.
+       Then geo-top-edge-accent z-index should be lower than nav.
+    */
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .geo-shape.geo-top-edge-strip {
+        height: clamp(50px, 8vh, 90px);
+    }
+    .geo-shape.geo-top-left-edge-accent {
+        width: clamp(150px, 44vw, 600px);
+        top: -8%; left: -8%;
+    }
+    .geo-shape.geo-bottom-left-edge-accent {
+        width: clamp(250px, 50vw, 600px);
+        bottom: -25%; left: -20%;
+    }
+    .geo-shape.geo-top-right-edge-accent {
+        width: clamp(180px, 30vw, 400px);
+        top: -10%; right: -15%;
+        display: none;
+    }
+    .geo-shape.geo-bottom-right-edge-accent {
+    
+    }
+}
+
+@media (max-width: 767px) {
+    .geo-shape.geo-top-edge-strip {
+        height: clamp(40px, 7vh, 70px);
+    }
+    .geo-shape.geo-top-left-edge-accent {
+        width: clamp(120px, 25vw, 250px);
+        top: 20%; left: -20%;
+        display: none;
+    }
+    .geo-shape.geo-bottom-left-edge-accent {
+        width: clamp(200px, 55vw, 400px); 
+        bottom: -20%; left: -25%;
+        display: none; /* Hide on smaller screens */}
+    .geo-shape.geo-top-right-edge-accent {
+        width: clamp(75px, 15vw, 280px); 
+        height: clamp(80px, 20vh, 150px);
+        top: -10%; left: 10%;
+        opacity: 0.7;
+        display: none;
+        
+    }
+    .geo-shape.geo-bottom-right-edge-accent {
+        bottom: -15%;
+        right: 80%; 
+        width: clamp(180px, 28vw, 400px);
+        max-height: 55%;
+        transform-origin: bottom right;
+        animation: subtleDriftEdge 22s infinite alternate ease-in-out -5s;
+    }
+}
+
+@media (max-width: 480px) {
+    .geo-shape.geo-top-edge-strip {
+        height: clamp(30px, 6vh, 50px);
+    }
+    .geo-shape.geo-top-left-edge-accent {
+        width: clamp(100px, 30vw, 200px);
+        top: -2%; left: -2%;
+    }
+    .geo-shape.geo-bottom-left-edge-accent {
+        width: clamp(180px, 70vw, 300px); 
+        bottom: -10%; left: -30%;
+    }
+    .geo-shape.geo-top-right-edge-accent {
+       width: clamp(120px, 40vw, 220px);
+       top: -5%; right: -20%;
     }
 }
