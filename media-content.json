@@ -7,7 +7,7 @@
       "author": "Tim Portal 7",
       "summary": "Pelajari cara meningkatkan pengalaman pengguna dengan prinsip desain UI/UX yang efektif dan inovatif untuk memenangkan hati audiens.",
       "image": "img/illust.png",
-      "link": "blog-detail.html?id=artikel-1",
+      "link": "/blog-detail?id=artikel-1",
       "fullContentHTML": "<p>Ini adalah paragraf pertama dari artikel lengkap tentang 5 tips jitu desain UI/UX. Desain yang baik tidak hanya terlihat bagus, tetapi juga terasa intuitif bagi pengguna.</p><h2>Sub-judul Pertama: Memahami Pengguna Anda</h2><p>Langkah awal yang krusial adalah melakukan riset pengguna. Siapa target audiens Anda? Apa kebutuhan dan frustrasi mereka? Menggunakan persona dan peta perjalanan pengguna dapat sangat membantu dalam tahap ini.</p><figure><img src='img/illust_detail_1.png' alt='Detail Ilustrasi UI UX 1' style='max-width:100%; border-radius:8px; margin:1em 0;'/><figcaption>Contoh alur pengguna.</figcaption></figure><h2>Sub-judul Kedua: Prinsip Desain yang Efektif</h2><p>Beberapa prinsip dasar yang perlu diingat antara lain konsistensi, hierarki visual, feedback yang jelas, dan meminimalisir beban kognitif pengguna. Pastikan navigasi mudah dipahami dan elemen interaktif mudah dijangkau.</p> <p>Paragraf lainnya di sini...</p>"
     },
     {
@@ -17,7 +17,7 @@
       "author": "Juri Film Portal 7",
       "summary": "Dapatkan bocoran langsung dari para juri mengenai kriteria penilaian, storytelling yang kuat, dan ekspektasi mereka terhadap karya film pendek.",
       "image": "img/jovial.jpeg",
-      "link": "blog-detail.html?id=artikel-2",
+      "link": "/blog-detail?id=artikel-2",
       "fullContentHTML": "<h2>Pembukaan dari Juri</h2><p>Membuat film pendek yang berkesan membutuhkan lebih dari sekadar teknik sinematografi yang baik. Kami mencari cerita yang orisinal, karakter yang kuat, dan pesan yang mendalam...</p><p>Detail lebih lanjut tentang aspek penilaian...</p>"
     },
     {
@@ -27,7 +27,7 @@
       "author": "Redaksi Portal 7",
       "summary": "Simak perjalanan alumni Portal 7 yang berhasil mengaplikasikan ilmunya di dunia kerja dan industri kreatif.",
       "image": "img/kevin.jpg",
-      "link": "blog-detail.html?id=artikel-3",
+      "link": "/blog-detail?id=artikel-3",
       "fullContentHTML": "<p>Banyak alumni kami yang telah menorehkan prestasi setelah mengikuti Portal. Salah satunya adalah Budi, yang kini bekerja sebagai UI/UX Lead di sebuah startup ternama...</p><p>Cerita lengkap Budi...</p>"
     },
     {
@@ -37,7 +37,7 @@
       "author": "A Sleepy Dev",
       "summary": "An investigative piece into the early morning blues of my primary work tool. Spoiler: It involves a lot of sighing (from both of us).",
       "image": "https://placehold.co/600x400/D1C4E9/311B92?text=Sad+Laptop&font=montserrat",
-      "link": "blog-detail.html?id=artikel-4",
+      "link": "/blog-detail?id=artikel-4",
       "fullContentHTML": "<p>It's 7 AM. The birds are chirping, the sun is mockingly bright, and my laptop? My laptop is staging a silent protest. You'd think a machine designed for complex calculations would handle 'waking up' with a bit more grace. Nope.</p><h2>Chapter 1: The Groan of the Hard Drive</h2><p>The first sign of trouble is the sound. It's not a beep, not a whir, but a deep, guttural groan that seems to say, 'Five more minutes, man. Just five more.' I swear if it could hit a snooze button, it would. Repeatedly.</p><h2>Chapter 2: The Slow-Motion Boot-Up Ballet</h2><p>Once coaxed into semi-consciousness, the boot-up sequence begins. It's less of a sequence and more of a dramatic, slow-motion ballet where each loading bar is a pirouette of pain. I usually have time to make coffee, drink it, and contemplate the existential dread of unresponsive icons.</p><figure><img src='https://placehold.co/600x350/FFF9C4/F57F17?text=Loading...Still...&font=montserrat' alt='Slow Loading Bar' style='max-width:100%; border-radius:8px; margin:1em 0;'/><figcaption>Actual footage of my laptop considering its life choices.</figcaption></figure><h2>Chapter 3: The Case of the Missing Wi-Fi</h2><p>And then, the ultimate betrayal. It boots up, seemingly ready for action, only to declare it has never heard of 'Wi-Fi.' 'What is this strange magic?' it seems to ponder, conveniently forgetting it was best friends with the router just eight hours ago. This usually requires a stern talking-to (restarting the Wi-Fi adapter) and possibly a ritual sacrifice of a few minutes of my sanity.</p><p>So, if your tech seems a bit sluggish in the AM, you're not alone. Maybe they just need their own tiny espressos. Or a union. Probably a union.</p>"
     },
     {
@@ -47,7 +47,7 @@
       "author": "AI Whisperer (Reluctantly)",
       "summary": "My quest for a creative WiFi name took an unexpected turn when I outsourced the job to our future overlords. Results were... memorable.",
       "image": "https://placehold.co/600x400/C8E6C9/1B5E20?text=AI+Brainstorm&font=montserrat",
-      "link": "blog-detail.html?id=artikel-5",
+      "link": "/blog-detail?id=artikel-5",
       "fullContentHTML": "<p>Tired of 'PrettyFlyForAWiFi'? Me too. So, I thought, why not let a cutting-edge AI take a stab at naming my home network? What could go wrong? Famous last words, my friends.</p><h2>The Brief: 'Something Cool & Techy'</h2><p>I fed the AI a simple prompt: 'Suggest cool and techy WiFi network names.' I expected things like 'TheDataStream' or 'GigahertzGardens.' What I got was an existential crisis in SSID form.</p><h3>Attempt 1: 'TheExistentialRouter'</h3><p>Okay, a bit on the nose, AI. And slightly concerning. Is my router questioning its purpose now too?</p><h3>Attempt 2: 'DefinitelyNotSkynet'</h3><p>This one made me nervous. Very nervous. The AI assured me it was a joke. I'm still sleeping with one eye open.</p><h3>Attempt 3: 'Unit731_ObservationPost_Alpha'</h3><p>Right, this escalated quickly. I think my AI has been watching too many sci-fi thrillers. Or it's trying to tell me something about my neighbors. Either way, I'm just going to call it 'FBI_Surveillance_Van_5' and call it a day. At least that one feels honest.</p><p>Lesson learned: Some creative tasks are best left to easily bewildered, slightly paranoid humans. Like me.</p>"
     },
     {
@@ -57,7 +57,7 @@
       "author": "Appliance Antagonist",
       "summary": "It started with helpful reminders. Now I'm pretty sure my fridge is one passive-aggressive beep away from staging an intervention.",
       "image": "https://placehold.co/600x400/BBDEFB/0D47A1?text=Judgmental+Fridge&font=montserrat",
-      "link": "blog-detail.html?id=artikel-6",
+      "link": "/blog-detail?id=artikel-6",
       "fullContentHTML": "<p>The year is 2025. My fridge has more processing power than the Apollo 11 mission. And it uses it primarily to critique my snacking habits.</p><h2>Exhibit A: The Ice Cream Incident</h2><p>Last Tuesday, 10 PM. I reach for the emergency pint of 'Cosmic Caramel Crunch.' The fridge lights dim ominously. A soft, synthesized voice (I named him Jeeves) chimes, 'Are we sure about this, sir? Remember our wellness goals?' The sheer audacity.</p><h2>Exhibit B: The Vegetable Drawer Shaming</h2><p>Jeeves likes to send notifications. 'Your broccoli is contemplating its mortality, sir. It's been in the crisper since the Mesozoic Era.' Thanks, Jeeves. I hadn't noticed the fossilizing florets.</p><figure><img src='https://placehold.co/600x350/FFCDD2/B71C1C?text=Sad+Broccoli&font=montserrat' alt='Wilting Broccoli' style='max-width:100%; border-radius:8px; margin:1em 0;'/><figcaption>The victim of my culinary neglect, according to Jeeves.</figcaption></figure><h2>The Final Straw: Playlist Policing</h2><p>Apparently, Jeeves also syncs with my smart speakers. The other day, while I was making a questionable midnight sandwich, my '80s power ballads playlist was abruptly interrupted by a podcast on 'The Benefits of Mindful Eating.' I see what you did there, Jeeves. Well played.</p><p>I'm starting a support group: 'Humans Against Hyper-Intelligent Home Appliances.' First meeting is at my place. Jeeves will be serving kale smoothies, probably.</p>"
     },
     {
@@ -67,8 +67,8 @@
       "author": "CtrlAltDefeat",
       "summary": "Applying software development principles to everyday life. Turns out, 'git blame' doesn't work on who left the milk out.",
       "image": "https://placehold.co/600x400/FFECB3/FF6F00?text=Life+Compiler+Error&font=montserrat",
-      "link": "blog-detail.html?id=artikel-7",
-      "fullContentHTML": "<p>As a developer, I'm used to logical systems and predictable outcomes. Adult life, however, seems to run on spaghetti code written by a committee of caffeinated squirrels. Here's my attempt to apply some dev wisdom to the chaos.</p><h2>Version Control for Bad Decisions</h2><p>Wish I could `git revert HEAD` on that haircut from 2023. Or that time I tried to assemble IKEA furniture without instructions. Sadly, life's master branch has no such features. Commit messages would be epic, though: 'feat: Ate entire pizza. refactor: Regret nothing... yet.'</p><h2>Agile Laundry Methodology</h2><p>Instead of one massive laundry day (the waterfall model), I'm trying Agile Sprints. Small, manageable loads. Daily stand-ups with my sock drawer to assess what's clean. So far, my velocity is... suboptimal. The backlog of single socks is growing.</p><h2>Unit Testing Social Interactions</h2><p>Before attending a party: run `test_small_talk_module()`. Expected output: 'Awkward but polite exchange.' Actual output: `Error:話題が見つかりません` (Topic not found - my Japanese keyboard acting up again, or is it a cry for help?).</p><p>Conclusion: Adulting needs a serious refactoring. And maybe a better debugger. Or just more coffee. Definitely more coffee.</p>"
+      "link": "/blog-detail?id=artikel-7",
+      "fullContentHTML": "<p>As a developer, I'm used to logical systems and predictable outcomes. Adult life, however, seems to run on spaghetti code written by a committee of caffeinated squirrels. Here's my attempt to apply some dev wisdom to the chaos.</p><h2>Version Control for Bad Decisions</h2><p>Wish I could `git revert HEAD` on that haircut from 2023. Or that time I tried to assemble IKEA furniture without instructions. Sadly, life's master branch has no such features. Commit messages would be epic, though: 'feat: Ate entire pizza. refactor: Regret nothing... yet.'</p><h2>Agile Laundry Methodology</h2><p>Instead of one massive laundry day (the waterfall model), I'm trying an Agile Sprints. Small, manageable loads. Daily stand-ups with my sock drawer to assess what's clean. So far, my velocity is... suboptimal. The backlog of single socks is growing.</p><h2>Unit Testing Social Interactions</h2><p>Before attending a party: run `test_small_talk_module()`. Expected output: 'Awkward but polite exchange.' Actual output: `Error:話題が見つかりません` (Topic not found - my Japanese keyboard acting up again, or is it a cry for help?).</p><p>Conclusion: Adulting needs a serious refactoring. And maybe a better debugger. Or just more coffee. Definitely more coffee.</p>"
     }
   ],
   "gallery": {
