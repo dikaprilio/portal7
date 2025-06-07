@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" type="image/png" href="img/favicon-portal.png">
     <style>
-        /* Basic styling for the language toggle - MOVE TO style.css */
         .lang-toggle-button {
             background-color: var(--pink-accent);
             color: white;
@@ -29,7 +28,7 @@
             background-color: var(--blue-accent);
             transform: scale(1.05);
         }
-        .nav-links { /* Ensure nav-links can accommodate the button */
+        .nav-links {
             align-items: center;
         }
     </style>
@@ -38,40 +37,40 @@
 
     <nav>
         <div class="nav-container">
-            <a href="index.html" class="logo">
+            <a href="/" class="logo">
                 <img src="img/Portal_Logo.png" alt="Logo Portal 7" onerror="this.onerror=null;this.src='https://placehold.co/120x30/cccccc/ffffff?text=P7+Logo';">
             </a>
             <div class="nav-links" id="main-nav-links">
-                <a class="nav-a" href="index.html#hero" data-translate-key="nav_beranda">Beranda</a>
+                <a class="nav-a" href="/#hero" data-translate-key="nav_beranda">Beranda</a>
                 <div class="nav-item dropdown">
                     <a class="nav-a dropdown-toggle" href="#" data-translate-key="nav_tentang_portal">Tentang Portal <i class="fas fa-chevron-down dropdown-icon"></i></a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="index.html#tentang" data-translate-key="nav_tentang_kami">Tentang Kami</a>
-                        <a class="dropdown-item" href="index.html#sdg-commitment" data-translate-key="nav_sdg_commitment">Komitmen SDG</a>
-                        <a class="dropdown-item" href="index.html#guest-stars" data-translate-key="nav_guest_stars">Guest Star</a> 
-                        <a class="dropdown-item" href="index.html#highlight" data-translate-key="nav_highlight">Highlights</a>
-                        <a class="dropdown-item" href="index.html#linimasa" data-translate-key="nav_linimasa">Linimasa</a>
-                        <a class="dropdown-item" href="index.html#peserta" data-translate-key="nav_peserta">Siapa Peserta?</a>
-                        <a class="dropdown-item" href="index.html#faq" data-translate-key="nav_faq">FAQ</a>
+                        <a class="dropdown-item" href="/#tentang" data-translate-key="nav_tentang_kami">Tentang Kami</a>
+                        <a class="dropdown-item" href="/#sdg-commitment" data-translate-key="nav_sdg_commitment">Komitmen SDG</a>
+                        <a class="dropdown-item" href="/#guest-stars" data-translate-key="nav_guest_stars">Guest Star</a> 
+                        <a class="dropdown-item" href="/#highlight" data-translate-key="nav_highlight">Highlights</a>
+                        <a class="dropdown-item" href="/#linimasa" data-translate-key="nav_linimasa">Linimasa</a>
+                        <a class="dropdown-item" href="/#peserta" data-translate-key="nav_peserta">Siapa Peserta?</a>
+                        <a class="dropdown-item" href="/#faq" data-translate-key="nav_faq">FAQ</a>
                     </div>
                 </div>
 
                 <div class="nav-item dropdown">
                     <a class="nav-a dropdown-toggle" href="#" data-translate-key="nav_event">Event <i class="fas fa-chevron-down dropdown-icon"></i></a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="competition-hub.html" data-translate-key="nav_kompetisi">Kompetisi</a>
-                        <a class="dropdown-item" href="seminar.html" data-translate-key="nav_seminar">Seminar</a>
+                        <a class="dropdown-item" href="/competition-hub" data-translate-key="nav_kompetisi">Kompetisi</a>
+                        <a class="dropdown-item" href="/seminar" data-translate-key="nav_seminar">Seminar</a>
                     </div>
                 </div>
                 <div class="nav-item dropdown">
                     <a class="nav-a dropdown-toggle" href="#" data-translate-key="nav_media">Media <i class="fas fa-chevron-down dropdown-icon"></i></a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="blog.html" data-translate-key="nav_blog">Blog</a>
-                        <a class="dropdown-item" href="gallery.html" data-translate-key="nav_gallery">Gallery</a>
+                        <a class="dropdown-item" href="/blog" data-translate-key="nav_blog">Blog</a>
+                        <a class="dropdown-item" href="/gallery" data-translate-key="nav_gallery">Gallery</a>
                     </div>
                 </div>
-                <a class="nav-a" href="index.html#kontak" data-translate-key="nav_kontak_kami">Kontak Kami</a>
-                <a class="nav-a nav-cta-button" href="index.html#pendaftaran" data-translate-key="nav_pendaftaran">Pendaftaran</a>
+                <a class="nav-a" href="/#kontak" data-translate-key="nav_kontak_kami">Kontak Kami</a>
+                <a class="nav-a nav-cta-button" href="/#pendaftaran" data-translate-key="nav_pendaftaran">Pendaftaran</a>
                 <button id="lang-toggle" class="lang-toggle-button" data-translate-key="lang_toggle">EN</button>
             </div>
             <button id="mobile-menu-toggle" class="mobile-menu-button" aria-label="Toggle menu" aria-expanded="false">
@@ -122,8 +121,7 @@
 
 
         <section class="about-section section-padding" id="tentang">
-            <!-- {/* ... About content ... */} -->
-            <img src="img/Asset 18@4x.png" alt="Geometric Deco Top" class="about-deco about-deco-top" data-aos="fade-down-right" data-aos-delay="400">
+            <img src="img/Asset_18@4x.png" alt="Geometric Deco Top" class="about-deco about-deco-top" data-aos="fade-down-right" data-aos-delay="400">
             <img src="img/abstract_star-yellow.png" alt="Geometric Star" class="about-deco about-deco-star" data-aos="zoom-in" data-aos-delay="500">
 
             <h2 class="section-title" data-aos="zoom-in-out" data-translate-key="about_title">Tentang Portal 7</h2>
@@ -192,13 +190,12 @@
                     </div>
                 </div>
             </div>
-            <img src="img/Asset 16@4x.png" alt="Geometric Deco Bottom" class="about-deco about-deco-bottom" data-aos="fade-up-left" data-aos-delay="400">
+            <img src="img/Asset_16@4x.png" alt="Geometric Deco Bottom" class="about-deco about-deco-bottom" data-aos="fade-up-left" data-aos-delay="400">
         </section>
 
         <section class="sdg-section section-padding" id="sdg-commitment">
-            <!-- {/* ... SDG content ... */} -->
-            <img src="img/Asset 16@4x.png" alt="Geometric Accent" class="sdg-geometric-deco deco-top-left" data-aos="fade-down-right" data-aos-delay="300">
-            <img src="img/Asset 18@4x.png" alt="Geometric Accent" class="sdg-geometric-deco deco-bottom-right" data-aos="fade-up-left" data-aos-delay="300">
+            <img src="img/Asset_16@4x.png" alt="Geometric Accent" class="sdg-geometric-deco deco-top-left" data-aos="fade-down-right" data-aos-delay="300">
+            <img src="img/Asset_18@4x.png" alt="Geometric Accent" class="sdg-geometric-deco deco-bottom-right" data-aos="fade-up-left" data-aos-delay="300">
 
             <h2 class="section-title" data-aos="zoom-in-up"><span data-translate-key="sdg_commitment_title_span">Komitmen Kami</span> <span data-translate-key="sdg_commitment_title_main">untuk Tujuan Global</span></h2>
             <p class="section-subtitle" data-aos="zoom-in-up" data-aos-delay="100" data-translate-key="sdg_commitment_subtitle">Portal 7 secara aktif mendukung Tujuan Pembangunan Berkelanjutan melalui inovasi digital dan pemberdayaan pemuda.</p>
@@ -270,7 +267,6 @@
         </section>
 
         <section class="highlight-section section-padding" id="highlight">
-            <!-- {/* ... Highlight content ... */} -->
             <h2 class="section-title" data-aos="fade-down"><span data-translate-key="highlight_title_span">Buka Potensi</span> <span data-translate-key="highlight_title_main">Superpower Digitalmu</span></h2>
             <p class="section-subtitle" data-aos="fade-down" data-aos-delay="100" data-translate-key="highlight_subtitle">Di sinilah kreativitas menyala dan inovasi melambung tinggi. Pilih arenmu, asah kemampuanmu.</p>
             <div class="highlight-grid">
@@ -297,7 +293,7 @@
                         <div class="prize-amount-wrapper"><span class="prize-value" data-value="14600000">Rp17.000.000</span></div>
                         <span class="prize-details" data-translate-key="highlight_prize_details">*Plus hak pamer & kemuliaan abadi!</span>
                     </div>
-                    <a href="competition-hub.html" class="button-view-more portal-button" data-translate-key="highlight_button_explore">Jelajahi Tantangan <i class="fas fa-arrow-right btn-icon"></i></a>
+                    <a href="/competition-hub" class="button-view-more portal-button" data-translate-key="highlight_button_explore">Jelajahi Tantangan <i class="fas fa-arrow-right btn-icon"></i></a>
                 </div>
                 <div class="seminar-highlight portal-card" data-aos="zoom-in-left">
                     <div class="card-header">
@@ -311,13 +307,12 @@
                         <li><i class="fas fa-award list-icon"></i> <span data-translate-key="highlight_awarding_span">Penganugerahan Akbar:</span> <span data-translate-key="highlight_awarding_text">Rayakan Kemenangan & Saksikan Kecemerlangan</span></li>
                         <li><i class="fas fa-comments list-icon"></i> <span data-translate-key="highlight_future_talks_span">Obrolan Masa Depan:</span> <span data-translate-key="highlight_future_talks_text">Pecahkan Tren bersama Titan Industri</span></li>
                     </ul>
-                    <a href="seminar.html" class="button-view-more portal-button" data-translate-key="highlight_button_discover">Temukan Daftar Pengisi Acara <i class="fas fa-arrow-right btn-icon"></i></a>
+                    <a href="/seminar" class="button-view-more portal-button" data-translate-key="highlight_button_discover">Temukan Daftar Pengisi Acara <i class="fas fa-arrow-right btn-icon"></i></a>
                 </div>
             </div>
         </section>
 
         <section class="timeline-section section-padding" id="linimasa">
-            <!-- {/* ... Timeline content ... */} -->
             <h2 class="section-title" data-aos="fade-up" data-translate-key="timeline_title">Linimasa Kegiatan</h2>
             <div class="timeline-container" data-aos="fade-up" data-aos-delay="200">
                 <div class="timeline-entry">
@@ -373,7 +368,6 @@
         </section>
 
         <section class="guest-stars-section section-padding" id="past-guest-stars"> 
-            <!-- {/* ... Past Guest Stars content ... */} -->
             <h2 class="section-title" data-translate-key="past_guest_stars_title">Guest Star Sebelumnya</h2>
             <p class="section-subtitle" data-translate-key="past_guest_stars_subtitle">Kami telah menghadirkan para kreator digital inspiratif:</p>
             <div class="guest-stars-grid">
@@ -409,7 +403,6 @@
         </section>
     
         <section class="registration-section section-padding" id="pendaftaran" data-aos="fade-up">
-            <!-- {/* ... Registration content ... */} -->
             <h2 class="section-title"><span data-translate-key="registration_title_span">Daftar</span> <span data-translate-key="registration_title_main">Sekarang!</span></h2>
             <p class="section-subtitle" data-translate-key="registration_subtitle">Jangan lewatkan kesempatan emas untuk menjadi bagian dari Portal 7! Pilih batch pendaftaranmu dan bersiaplah untuk berinovasi.</p>
             <div class="registration-content">
@@ -474,7 +467,6 @@
 
 
         <section class="who-can-join-section section-padding" id="peserta">
-            <!-- {/* ... Who Can Join content ... */} -->
             <h2 class="section-title" data-translate-key="who_can_join_title">Siapa Saja yang Bisa Ikut?</h2>
             <div class="who-can-join-content">
                 <p class="section-subtitle" data-translate-key="who_can_join_subtitle">Terbuka untuk semua kalangan dengan minat di dunia kreatif digital!</p>
@@ -485,7 +477,6 @@
             </div>
         </section>
         <section class="faq-section section-padding" id="faq">
-            <!-- {/* ... FAQ content ... */} -->
             <h2 class="section-title" data-translate-key="faq_title">FAQ – Pertanyaan Umum</h2>
             <div class="faq-container">
                 <div class="faq-item">
@@ -532,13 +523,12 @@
         </section>
 
         <section class="media-section section-padding" id="media" data-aos="fade-up">
-            <!-- {/* ... Media content (will be loaded by script.js) ... */} -->
             <h2 class="section-title" data-translate-key="media_section_title">Berita & Media Portal 7</h2>
             <p class="section-subtitle" data-translate-key="media_section_subtitle">Ikuti perkembangan terbaru, dapatkan insight kreatif, dan lihat kembali momen-momen tak terlupakan dari Portal 7!</p>
             <div class="media-subsection" id="blog-articles-container" data-aos="fade-up" data-aos-delay="100">
                 <h3><i class="fas fa-newspaper"></i> <span data-translate-key="media_articles_title">Artikel & Insight</span></h3>
                 <div class="articles-grid"><p class="loading-message" data-translate-key="media_articles_loading">Memuat artikel...</p></div>
-                <div class="view-all-container"><a href="blog.html" class="button-view-more-media" data-translate-key="media_articles_view_all">Lihat Semua Artikel</a></div>
+                <div class="view-all-container"><a href="/blog" class="button-view-more-media" data-translate-key="media_articles_view_all">Lihat Semua Artikel</a></div>
             </div>
             <div class="media-subsection" id="gallery-container" data-aos="fade-up" data-aos-delay="200">
                 <h3><i class="fas fa-photo-video"></i> <span data-translate-key="media_gallery_title">Galeri Foto & Video</span></h3>
@@ -550,7 +540,7 @@
                     <div class="gallery-grid photos active-gallery-content"><p class="loading-message" data-translate-key="media_gallery_photos_loading">Memuat foto...</p></div>
                     <div class="gallery-grid videos"><p class="loading-message" data-translate-key="media_gallery_videos_loading">Memuat video...</p></div>
                 </div>
-                <div class="view-all-container"><a href="gallery.html" class="button-view-more-media" data-translate-key="media_gallery_view_all">Buka Galeri Lengkap</a></div>
+                <div class="view-all-container"><a href="/gallery" class="button-view-more-media" data-translate-key="media_gallery_view_all">Buka Galeri Lengkap</a></div>
             </div>
             <div class="media-subsection" id="partners-sponsors-container" data-aos="fade-up" data-aos-delay="300">
                 <h3><i class="fas fa-handshake"></i> <span data-translate-key="media_partners_title">Didukung Oleh</span></h3>
@@ -559,7 +549,6 @@
         </section>
 
         <section class="contact-section section-padding" id="kontak" data-aos="zoom-in-up">
-            <!-- {/* ... Contact content ... */} -->
             <div class="contact-header">
                 <h2 class="section-title quirky-title"><span data-translate-key="contact_title_span">Ada Pertanyaan?</span></h2>
                 <p class="section-subtitle quirky-subtitle" data-translate-key="contact_subtitle">Kami siap mendengar ide brilian atau menjawab kebingunganmu. Yuk, hubungi kami!</p>
@@ -615,22 +604,21 @@
     </main>
 
     <footer>
-        <!-- {/* ... Footer content ... */} -->
         <div class="footer-container">
             <div class="footer-top">
                 <div class="footer-logo-area">
-                    <a href="index.html#hero"><img src="img/Portal_Logo.png" alt="Logo Mini Portal 7" class="portal-logo footer-logo-img"></a>
+                    <a href="/#hero"><img src="img/Portal_Logo.png" alt="Logo Mini Portal 7" class="portal-logo footer-logo-img"></a>
                     <p class="footer-event-name">Portal 7: Empower Digital</p>
                 </div>
                 <div class="footer-quick-links">
                     <h4 data-translate-key="footer_nav_cepat">Navigasi Cepat</h4>
-                    <a href="index.html#tentang" data-translate-key="nav_tentang_kami">Tentang Kami</a>
-                    <a href="competition-hub.html" data-translate-key="nav_kompetisi">Kompetisi</a>
-                    <a href="seminar.html" data-translate-key="nav_seminar">Seminar</a>
-                    <a href="index.html#linimasa" data-translate-key="nav_linimasa">Linimasa</a>
-                    <a href="blog.html" data-translate-key="nav_blog">Blog</a>
-                    <a href="gallery.html" data-translate-key="nav_gallery">Galeri</a>
-                    <a href="index.html#faq" data-translate-key="nav_faq">FAQ</a>
+                    <a href="/#tentang" data-translate-key="nav_tentang_kami">Tentang Kami</a>
+                    <a href="/competition-hub" data-translate-key="nav_kompetisi">Kompetisi</a>
+                    <a href="/seminar" data-translate-key="nav_seminar">Seminar</a>
+                    <a href="/#linimasa" data-translate-key="nav_linimasa">Linimasa</a>
+                    <a href="/blog" data-translate-key="nav_blog">Blog</a>
+                    <a href="/gallery" data-translate-key="nav_gallery">Galeri</a>
+                    <a href="/#faq" data-translate-key="nav_faq">FAQ</a>
                 </div>
                 <div class="footer-contact-social">
                     <h4 data-translate-key="footer_hubungi_kami">Terhubung Dengan Kami</h4>

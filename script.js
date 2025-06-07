@@ -520,7 +520,7 @@ async function loadSpecificBlogArticle() {
     if (!articleId) {
         articleDetailWrapper.innerHTML = `<div class="article-not-found">
                                             <p data-translate-key="blog_detail_no_id">Artikel tidak ditemukan. ID artikel tidak disertakan.</p>
-                                            <a href="blog.html" class="back-to-blog-link" data-translate-key="blog_detail_back_button"><i class="fas fa-arrow-left"></i> Kembali ke Blog</a>
+                                            <a href="/blog" class="back-to-blog-link" data-translate-key="blog_detail_back_button"><i class="fas fa-arrow-left"></i> Kembali ke Blog</a>
                                           </div>`;
         applyTranslations(currentLang);
         return;
@@ -562,7 +562,7 @@ async function loadSpecificBlogArticle() {
                         ${fullContent || `<p data-translate-key="blog_detail_content_unavailable">Konten lengkap tidak tersedia.</p>`}
                     </article>
                     <div style="text-align: center;">
-                       <a href="blog.html" class="back-to-blog-link" data-translate-key="blog_detail_back_all_articles"><i class="fas fa-arrow-left"></i> Kembali ke Semua Artikel</a>
+                       <a href="/blog" class="back-to-blog-link" data-translate-key="blog_detail_back_all_articles"><i class="fas fa-arrow-left"></i> Kembali ke Semua Artikel</a>
                     </div>
                 </div>`;
             articleDetailWrapper.innerHTML = articleHTML;
@@ -571,7 +571,7 @@ async function loadSpecificBlogArticle() {
         } else {
             articleDetailWrapper.innerHTML = `<div class="article-not-found">
                                                 <p data-translate-key="blog_detail_not_found">Artikel tidak ditemukan.</p>
-                                                <a href="blog.html" class="back-to-blog-link" data-translate-key="blog_detail_back_button"><i class="fas fa-arrow-left"></i> Kembali ke Blog</a>
+                                                <a href="/blog" class="back-to-blog-link" data-translate-key="blog_detail_back_button"><i class="fas fa-arrow-left"></i> Kembali ke Blog</a>
                                               </div>`;
             applyTranslations(currentLang);
         }
@@ -579,7 +579,7 @@ async function loadSpecificBlogArticle() {
         console.error("Gagal memuat artikel:", error);
         articleDetailWrapper.innerHTML = `<div class="article-not-found">
                                             <p data-translate-key="blog_detail_load_error">Gagal memuat artikel. Silakan coba lagi nanti.</p>
-                                            <a href="blog.html" class="back-to-blog-link" data-translate-key="blog_detail_back_button"><i class="fas fa-arrow-left"></i> Kembali ke Blog</a>
+                                            <a href="/blog" class="back-to-blog-link" data-translate-key="blog_detail_back_button"><i class="fas fa-arrow-left"></i> Kembali ke Blog</a>
                                           </div>`;
         applyTranslations(currentLang);
     }
