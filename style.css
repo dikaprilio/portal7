@@ -1644,6 +1644,8 @@ nav::after {
                 inset 0 0 10px rgba(0,0,0,0.2); /* Inner shadow for depth */
     position: relative; /* For pseudo elements like shimmer */
     overflow: hidden; 
+    margin: 0.5rem 0 2.5rem 0; /* Increased margin-bottom to 2.5rem */
+
 }
 
 .total-prize-container::before { /* Shimmer effect moving across */
@@ -5910,5 +5912,481 @@ nav {
     .geo-shape.geo-top-right-edge-accent {
        width: clamp(120px, 40vw, 220px);
        top: -5%; right: -20%;
+    }
+}
+/* ================================================= */
+/* == KAPOW COMPETITION HUB CAROUSEL (RESPONSIVE) == */
+/* ================================================= */
+
+/* --- General Page Setup --- */
+.competition-hub-body {
+    background-color: #0c0a1f;
+    background-image:
+        radial-gradient(ellipse at 70% 30%, rgba(var(--pink-accent-rgb), 0.25) 0%, transparent 45%),
+        radial-gradient(ellipse at 30% 70%, rgba(var(--blue-accent-rgb), 0.3) 0%, transparent 45%),
+        linear-gradient(160deg, #0c0a1f 30%, #1a1238 100%);
+    overflow-x: hidden;
+}
+
+#competition-hub-main {
+    overflow: hidden; 
+}
+
+/* --- Hero Section --- */
+.competition-hub-hero {
+    background: transparent; /* Inherits gradient from body */
+    color: var(--secondary-color);
+    text-align: center;
+    position: relative;
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 3rem 1rem;
+}
+
+.hero-content-comp-hub {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+}
+
+.competition-hub-title {
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
+    font-weight: 800;
+    color: var(--secondary-color);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    text-shadow: 0 0 10px rgba(var(--pink-accent-rgb), 0.3), 0 0 20px rgba(var(--blue-accent-rgb), 0.3);
+}
+
+.competition-hub-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.15rem);
+    color: #c0c8d4;
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.7;
+    font-style: italic;
+}
+
+/* --- Main Competition Listing Container --- */
+.competition-listing-container {
+    padding: 2rem 0 4rem 0;
+    position: relative; 
+}
+
+/* Background Geometry */
+.competition-background-geometry {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    overflow: hidden; z-index: 0; pointer-events: none;
+}
+.competition-background-geometry img { position: absolute; opacity: 0.08; filter: blur(2px); }
+.comp-deco-1 { width: 250px; top: 5%; left: 2%; transform: rotate(15deg); }
+.comp-deco-2 { width: 150px; bottom: 10%; right: 5%; transform: rotate(-20deg); }
+.comp-deco-3 { width: 200px; top: 50%; right: 10%; transform: rotate(25deg); opacity: 0.04; }
+
+/* --- DEADLINE TIMER (Fully Responsive) --- */
+.carousel-timer-section {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    padding: 0 1rem;
+    position: relative;
+    z-index: 5;
+}
+.timer-title {
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 8px rgba(var(--pink-accent-rgb), 0.4);
+}
+#submission-countdown {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: clamp(0.5rem, 1.5vw, 0.75rem);
+    justify-content: center;
+    background-color: rgba(12, 10, 31, 0.7);
+    backdrop-filter: blur(5px);
+    padding: clamp(0.5rem, 2vw, 0.75rem) clamp(0.75rem, 3vw, 1rem);
+    border-radius: 12px;
+    border: 1px solid rgba(var(--blue-accent-rgb), 0.5);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    max-width: 450px;
+    margin: 0 auto;
+}
+#submission-countdown > span {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(var(--pink-accent-rgb), 0.1);
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: 1px solid rgba(var(--pink-accent-rgb), 0.2);
+    flex-grow: 1; 
+    min-width: 60px;
+}
+#submission-countdown span span {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 700; color: #fff; line-height: 1;
+}
+#submission-countdown span small {
+    font-size: clamp(0.5rem, 1.5vw, 0.6rem);
+    text-transform: uppercase; color: #c0c8d4; margin-top: 0.25rem;
+}
+
+
+/* --- CAROUSEL STYLES --- */
+.competition-carousel-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(0.5rem, 8vw, 50px);
+}
+.carousel-slides-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(var(--secondary-color), 0.1);
+    border: 1px solid rgba(var(--secondary-color), 0.2);
+    color: var(--secondary-color);
+    width: 45px; height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.carousel-nav:hover {
+    background-color: var(--pink-accent);
+    transform: translateY(-50%) scale(1.1);
+}
+.carousel-nav.prev { left: 0; }
+.carousel-nav.next { right: 0; }
+
+.carousel-dots {
+    position: absolute;
+    bottom: -35px; /* Default for desktop */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.75rem;
+}
+.carousel-dots .dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background-color: rgba(var(--secondary-color-rgb, 240, 240, 240), 0.5); /* More visible inactive dots */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.carousel-dots .dot.active {
+    background-color: var(--pink-accent);
+    transform: scale(1.2);
+}
+
+/* --- CARD STYLES (INSIDE CAROUSEL) --- */
+.comp-card {
+    display: none;
+    background: rgba(12, 10, 31, 0.7);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(var(--blue-accent-rgb), 0.2);
+    border-radius: 20px;
+    width: 100%;
+    min-height: 900px;
+    max-width: 1000px;
+    overflow: hidden;
+    align-items: center;
+    animation: fadeIn 0.6s ease-in-out;
+}
+.comp-card.active { display: flex; }
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.comp-card.right { flex-direction: row-reverse; }
+.comp-card-image {
+    flex: 0 0 45%;
+    align-self: stretch;
+    clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+}
+.comp-card.right .comp-card-image {
+    clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+}
+.comp-card-image img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.4s ease;
+}
+.comp-card:hover .comp-card-image img { transform: scale(1.05); }
+
+.comp-card-content {
+    flex: 1 1 55%; padding: 2.5rem 3rem;
+    display: flex; flex-direction: column;
+}
+.comp-card.left .comp-card-content { padding-left: 1.5rem; }
+.comp-card.right .comp-card-content { padding-right: 1.5rem; }
+
+/* Read More & Description Styles */
+.description-wrapper {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+.comp-card-description {
+    font-size: 0.95rem; line-height: 1.7; color: #c0c8d4;
+    transition: max-height 0.5s ease-out;
+}
+.read-more-btn {
+    display: none; /* Hidden by default, shown by JS on mobile */
+    background: linear-gradient(45deg, var(--blue-accent), var(--pink-accent));
+    color: white; border: none; font-weight: 600;
+    padding: 0.4rem 1rem; border-radius: 20px;
+    cursor: pointer; margin-top: 1rem;
+    transition: background 0.3s;
+}
+.read-more-btn:hover { background: linear-gradient(45deg, var(--pink-accent), var(--blue-accent)); }
+
+/* Card Content Details */
+.comp-card-title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 800; line-height: 1.1; margin-bottom: 0.75rem;
+}
+.comp-card.left .comp-card-title { color: var(--blue-accent); }
+.comp-card.right .comp-card-title { color: var(--pink-accent); }
+.comp-card:nth-of-type(3n) .comp-card-title { color: var(--orange-accent); }
+
+.comp-card-details { display: flex; gap: 2rem; margin-bottom: 1.5rem; }
+.detail-group { flex: 1; }
+.detail-group h4 {
+    font-weight: 600; margin-bottom: 1rem; color: var(--yellow-accent);
+    text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;
+}
+.sub-theme-list, .criteria-list-kapow { list-style: none; padding: 0; font-size: 0.9rem; }
+.sub-theme-list li, .criteria-list-kapow li { color: #c0c8d4; }
+.sub-theme-list li {
+    padding: 0.3rem 0; display: flex; align-items: center; gap: 0.5rem;
+}
+.sub-theme-list i { color: rgba(var(--yellow-accent-rgb), 0.7); }
+.criteria-list-kapow li {
+    display: flex; justify-content: space-between; padding: 0.4rem 0;
+    border-bottom: 1px solid rgba(var(--secondary-color), 0.1);
+}
+.criteria-list-kapow li:last-child { border: none; }
+.criteria-list-kapow .value { font-weight: 700; color: var(--pink-accent); }
+
+/* --- PRIZE POOL --- */
+.comp-prize-pool {
+    background: linear-gradient(45deg, rgba(var(--yellow-accent-rgb),0.1), rgba(var(--orange-accent-rgb),0.1));
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    margin: 0.5rem 0 1.5rem 0;
+    text-align: center;
+    border: 1px solid rgba(var(--yellow-accent-rgb), 0.2);
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+}
+.prize-pool-label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--secondary-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.7;
+    margin-bottom: 0.5rem;
+}
+.prize-pool-amount {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--yellow-accent);
+    text-shadow: 0 0 10px rgba(var(--yellow-accent-rgb), 0.5);
+}
+
+.comp-card-actions {
+    display: flex; gap: 1rem; margin-top: auto; flex-wrap: wrap; align-items: flex-start;
+}
+.portal-button.contact-button-kapow, .portal-button.register-button-kapow {
+    flex: 1; text-decoration: none; font-weight: 700; padding: 0.8rem 1rem;
+    border-radius: 8px; transition: all 0.3s ease; display: inline-flex;
+    align-items: center; justify-content: center; gap: 0.5rem;
+    min-width: 150px; border: 1px solid transparent;
+}
+.contact-button-kapow { background-color: transparent; border-color: #25D366; color: #25D366; }
+.contact-button-kapow:hover { background-color: #25D366; color: white; transform: translateY(-2px); }
+.register-button-kapow { background: var(--pink-accent); color: white; border-color: var(--pink-accent); }
+.register-button-kapow:hover {
+    background: var(--orange-accent); border-color: var(--orange-accent); transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(var(--orange-accent-rgb), 0.3);
+}
+/* New WhatsApp-Themed Green Button */
+/* Corrected WhatsApp-Themed Green Button */
+.portal-button.contact-button-whatsapp {
+    background: transparent; /* This now correctly overrides the gradient */
+    border: 1px solid #25D366;
+    color: #25D366 !important; /* Use !important to override the white text color from the base class */
+}
+
+.portal-button.contact-button-whatsapp:hover {
+    background: #25D366; /* This correctly sets the background on hover */
+    border-color: #25D366;
+    color: white !important;
+}
+/* Pink/Orange "Kapow" Register Button */
+.portal-button.register-button-kapow {
+    background: var(--pink-accent);
+    color: white !important;
+    border-color: var(--pink-accent);
+}
+.portal-button.register-button-kapow:hover {
+    background: var(--orange-accent);
+    border-color: var(--orange-accent);
+    box-shadow: 0 5px 15px rgba(var(--orange-accent-rgb), 0.3);
+}
+/* --- Competition Card Action Buttons (Final) --- */
+
+.comp-card-actions {
+    display: flex;
+    justify-content: center; /* This centers the buttons */
+    gap: 1rem; /* This creates space between them */
+    margin-top: auto; /* This pushes them to the bottom of the card */
+    flex-wrap: wrap;
+}
+
+/* Base style for both buttons inside the card to ensure they are the same size */
+.comp-card-actions .portal-button {
+    flex: 1; /* This makes both buttons share the space equally */
+    max-width: 220px; /* Prevents them from getting too wide */
+    font-weight: 700;
+    border-radius: 8px; /* Consistent rounded corners */
+}
+
+/* RESPONSIVE STYLES */
+@media (max-width: 991px) {
+    .competition-carousel-wrapper {
+        padding: 0 1rem;
+        margin-top: 60px; /* Make space for dots */
+    }
+    .carousel-nav { display: none; } 
+    .carousel-dots {
+        top: -45px; /* Position dots ABOVE the card */
+        bottom: auto;
+    }
+    .comp-card { flex-direction: column !important; } 
+    .comp-card-image { flex-basis: 300px; width: 100%; clip-path: none !important; border-radius: 20px 20px 0 0; }
+    .comp-card-content { padding: 2rem !important; } 
+    .comp-card-details { flex-direction: column; gap: 1.5rem; }
+
+    /* -- Mobile Read More Functionality (Updated) -- */
+
+    .description-wrapper { 
+        position: relative; 
+    }
+
+    /* The new container that will collapse and expand */
+    .expandable-content {
+        max-height: 110px; /* Initial collapsed height */
+        overflow: hidden;
+        position: relative;
+        transition: max-height 0.5s ease-out;
+    }
+
+    .expandable-content.expanded {
+        max-height: 1500px; /* A large value to ensure everything fits when expanded */
+    }
+
+    /* The fade-out gradient at the bottom of the collapsed view */
+    .expandable-content:not(.expanded)::after {
+        content: '';
+        position: absolute;
+        bottom: 0; 
+        left: 0;
+        width: 100%; 
+        height: 50px;
+        background: linear-gradient(to bottom, transparent, #151820 95%);
+        pointer-events: none;
+    }
+
+    /* Reset the original description paragraph styles inside this view */
+    .comp-card-description {
+        max-height: none;
+        overflow: visible;
+        margin-bottom: 1.5rem; /* Add some space between description and the details below it */
+    }
+    .comp-card-description:not(.expanded)::after {
+        display: none; /* Remove old gradient from the paragraph */
+    }
+
+    /* Ensure the button is visible */
+    .read-more-btn { 
+        display: inline-block; 
+        margin-top: 1rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .comp-card-image { flex-basis: 250px; }
+    .comp-card-content { padding: 2rem 1.5rem !important; }
+    .comp-card-title { text-align: center; }
+    .comp-card-actions { justify-content: center; }
+    /* Add these styles inside your @media (max-width: 767px) block */
+    .comp-card-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Creates two equal columns */
+        gap: 0.75rem; /* Adds a gap between the buttons */
+        margin-top: auto; /* Ensures it stays at the bottom */
+    }
+    /* Add these styles inside your @media (max-width: 767px) block */
+
+    /* 2-Column Assessment Criteria */
+    .criteria-list-kapow {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem 1rem; /* row-gap column-gap */
+        border-bottom: none; /* Remove parent border */
+        text-align: center;
+    }
+    .criteria-list-kapow li {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.25rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid rgba(var(--secondary-color), 0.1);
+    }
+    /* Remove border from the last two items */
+    .criteria-list-kapow li:nth-last-child(-n+2) {
+        border-bottom: none;
+    }
+    /* Handle odd number of items gracefully */
+    .criteria-list-kapow li:last-child:nth-child(odd) {
+        grid-column: span 2;
+    }
+
+    /* 2-Column Buttons */
+    .comp-card-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    
+}
+
+@media (max-width: 480px) {
+    .comp-card-details { text-align: center; }
+    .criteria-list-kapow li {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.25rem;
     }
 }
