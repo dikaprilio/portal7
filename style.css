@@ -6105,7 +6105,7 @@ nav {
     border: 1px solid rgba(var(--blue-accent-rgb), 0.2);
     border-radius: 20px;
     width: 100%;
-    
+    min-height: 870px;
     max-width: 1000px;
     overflow: hidden;
     align-items: center;
@@ -6215,7 +6215,7 @@ nav {
 }
 
 .comp-card-actions {
-    display: flex; gap: 1rem; margin-top: auto; flex-wrap: wrap;
+    display: flex; gap: 1rem; margin-top: auto; flex-wrap: wrap; align-items: flex-start;
 }
 .portal-button.contact-button-kapow, .portal-button.register-button-kapow {
     flex: 1; text-decoration: none; font-weight: 700; padding: 0.8rem 1rem;
