@@ -6105,7 +6105,7 @@ nav {
     border: 1px solid rgba(var(--blue-accent-rgb), 0.2);
     border-radius: 20px;
     width: 100%;
-    min-height: 870px;
+    min-height: 900px;
     max-width: 1000px;
     overflow: hidden;
     align-items: center;
