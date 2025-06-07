@@ -100,6 +100,7 @@ function applyTranslations(lang) {
             document.title = translations[lang][titleKey];
         }
     }
+    setupReadMoreToggles(); // Reapply read more toggles after translations
     // Calls to load dynamic content (loadAllBlogArticles, etc.)
     // should NOT be here. They are called once on DOMContentLoaded.
 }
@@ -817,8 +818,115 @@ function setupAccordions(accordionSelector, toggleSelector) {
     }
 }
 
+function setupCompetitionCarousel() {
+    const wrapper = document.querySelector('.competition-carousel-wrapper');
+    if (!wrapper) return;
 
-// --- DOMContentLoaded Event Listener ---
+    const slidesContainer = wrapper.querySelector('.carousel-slides-container');
+    const slides = slidesContainer.querySelectorAll('.comp-card');
+    const prevButton = wrapper.querySelector('.carousel-nav.prev');
+    const nextButton = wrapper.querySelector('.carousel-nav.next');
+    const dotsContainer = wrapper.querySelector('.carousel-dots');
+    let currentSlide = 0;
+
+    if (slides.length <= 1) {
+        if (prevButton) prevButton.style.display = 'none';
+        if (nextButton) nextButton.style.display = 'none';
+        if (dotsContainer) dotsContainer.style.display = 'none';
+        if (slides.length === 1) slides[0].classList.add('active');
+        return;
+    }
+
+    // Create dots
+    dotsContainer.innerHTML = ''; // Clear existing dots if any
+    slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.classList.add('dot');
+        dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+        dot.addEventListener('click', () => showSlide(i));
+        dotsContainer.appendChild(dot);
+    });
+    const dots = dotsContainer.querySelectorAll('.dot');
+
+    const showSlide = (index) => {
+        currentSlide = index;
+        slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+        dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+    };
+
+    const nextSlide = () => showSlide((currentSlide + 1) % slides.length);
+    const prevSlide = () => showSlide((currentSlide - 1 + slides.length) % slides.length);
+
+    prevButton.addEventListener('click', prevSlide);
+    nextButton.addEventListener('click', nextSlide);
+
+    // Swipe functionality for mobile
+    let touchstartX = 0;
+    slidesContainer.addEventListener('touchstart', e => { touchstartX = e.changedTouches[0].screenX; }, { passive: true });
+    slidesContainer.addEventListener('touchend', e => {
+        const touchendX = e.changedTouches[0].screenX;
+        if (touchendX < touchstartX - 50) nextSlide();
+        if (touchendX > touchstartX + 50) prevSlide();
+    }, { passive: true });
+
+    showSlide(currentSlide);
+}
+
+function startSubmissionCountdown() {
+    const countdownTimerEl = document.getElementById("submission-countdown");
+    if (!countdownTimerEl) return;
+    
+    const countdownDate = new Date("September 3, 2025 23:59:59").getTime();
+    const daysEl = document.getElementById("sub-days");
+    const hoursEl = document.getElementById("sub-hours");
+    const minutesEl = document.getElementById("sub-minutes");
+    const secondsEl = document.getElementById("sub-seconds");
+
+    if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
+
+    const interval = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = countdownDate - now;
+
+        if (distance < 0) {
+            clearInterval(interval);
+            countdownTimerEl.innerHTML = `<span style="font-size: 1.5rem; font-weight: bold; color: var(--pink-accent);">SUBMISSION CLOSED</span>`;
+            return;
+        }
+
+        const format = (num) => String(num).padStart(2, '0');
+        daysEl.innerText = format(Math.floor(distance / (1000 * 60 * 60 * 24)));
+        hoursEl.innerText = format(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+        minutesEl.innerText = format(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
+        secondsEl.innerText = format(Math.floor((distance % (1000 * 60)) / 1000));
+    }, 1000);
+}
+
+// --- script.js ---
+
+// --- script.js ---
+
+function setupReadMoreToggles() {
+    // This function's only job is to add the click listener to every read more button.
+    document.querySelectorAll('.comp-card .read-more-btn').forEach(button => {
+        // Check if a listener was already added to prevent duplicates.
+        if (button.hasAttribute('data-readmore-listener')) return;
+        
+        button.setAttribute('data-readmore-listener', 'true');
+        button.addEventListener('click', () => {
+            // Find the expandable content container relative to the clicked button.
+            const expandableContent = button.closest('.description-wrapper').querySelector('.expandable-content');
+            
+            if (expandableContent) {
+                // Toggle the 'expanded' class to trigger the CSS animation.
+                const isExpanded = expandableContent.classList.toggle('expanded');
+                // Update the button's text.
+                button.textContent = isExpanded ? (button.dataset.less || 'Read Less') : (button.dataset.more || 'Read More');
+            }
+        });
+    });
+}
+// --- DOMContentLoaded Event Listener (SINGLE, CONSOLIDATED) ---
 document.addEventListener('DOMContentLoaded', async () => {
     // Initialize AOS
     initializeAOS();
@@ -831,10 +939,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     pageTitleElement = document.querySelector('title[data-translate-key]');
 
     // Fetch translations and set initial language
-    // applyTranslations will be called inside fetchTranslations after loading
     await fetchTranslations(); 
 
-    // Setup FAQ if on a page with FAQs
+    // Setup general components found on multiple pages
     setupFAQAccordion();
 
     // Page-specific initializations
@@ -858,11 +965,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         loadAllGalleryContent(); 
         setupLightboxControls();
     }
-    if (document.querySelector('.criteria-accordion')) { // Competition hub page
+    if (document.querySelector('.criteria-accordion')) { // Old Competition hub page accordion
         setupAccordions('.criteria-accordion', '.accordion-toggle');
     }
     if (document.querySelector('.accordion-seminar')) { // Seminar page
         setupAccordions('.accordion-seminar', '.accordion-seminar-toggle');
+    }
+    if (document.body.classList.contains('competition-hub-body')) {
+        setupCompetitionCarousel();
+        startSubmissionCountdown();
+        setupReadMoreToggles();
     }
 
     // Language toggle button event listener
@@ -872,4 +984,4 @@ document.addEventListener('DOMContentLoaded', async () => {
             applyTranslations(newLang); // This will re-translate everything
         });
     }
-});
+})
