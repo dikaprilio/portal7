@@ -5772,9 +5772,7 @@ section,
     left: -30%;  /* Start partially off-screen */
     width: clamp(300px, 60vw, 900px); /* Responsive width */
     max-height: 85vh; /* Don't let it get too tall */
-    transform-origin: bottom left;
-    animation: subtleDriftEdge 25s infinite alternate ease-in-out;
-}
+    transform-origin: bottom left;}
  
 /* Top-Right edge accent (geometry-2.png) */
 .geo-shape.geo-top-right-edge-accent {
@@ -5782,9 +5780,8 @@ section,
     right: -18%; /* Start partially off-screen */
     width: clamp(200px, 35vw, 500px); /* Smaller than the left, but still substantial */
     max-height: 50%;
-    opacity: 0.6 ;
+    opacity: 0.8; /* Fixed opacity */;
     transform-origin: top right;
-    animation: subtleDriftEdge 28s infinite alternate-reverse ease-in-out -3s; /* Different timing */
 }
 .geo-shape.geo-top-left-edge-accent {
     top: -10%; /* Start partially off-screen */
@@ -5802,7 +5799,7 @@ section,
     width: clamp(180px, 28vw, 400px);
     max-height: 55%;
     transform-origin: bottom right;
-    animation: subtleDriftEdge 22s infinite alternate ease-in-out -5s;
+    animation: subtleLargeDrift 22s infinite alternate ease-in-out -5s;
 }
 
 
