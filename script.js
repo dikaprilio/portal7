@@ -977,6 +977,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         setupReadMoreToggles();
     }
 
+
     // Language toggle button event listener
     if (langToggleButton) {
         langToggleButton.addEventListener('click', () => {
