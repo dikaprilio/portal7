@@ -6219,6 +6219,7 @@ nav {
     border-radius: 8px; transition: all 0.3s ease; display: inline-flex;
     align-items: center; justify-content: center; gap: 0.5rem;
     min-width: 150px; border: 1px solid transparent;
+    flex-grow: 1;
 }
 .contact-button-kapow { background-color: transparent; border-color: #25D366; color: #25D366; }
 .contact-button-kapow:hover { background-color: #25D366; color: white; transform: translateY(-2px); }
@@ -6401,4 +6402,200 @@ nav {
     transform: translate(-50%, -50%) scale(0.8);
     animation: pulsePortalEffect 15s infinite linear;
     z-index: 0;
+}
+/* --- Custom Scrollbar Styling (Modern & Themed) --- */
+
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--pink-accent) var(--navbar-bg);
+}
+
+/* Works on Chrome, Edge, and Safari */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--navbar-bg);
+  border-left: 1px solid rgba(var(--secondary-color), 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--pink-accent), var(--blue-accent), var(--yellow-accent));
+  border-radius: 20px;
+  border: 2px solid var(--navbar-bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to top, var(--pink-accent), var(--blue-accent), var(--yellow-accent));
+}
+/* --- REVAMPED REGISTRATION SECTION (Consolidated & Cleaned) --- */
+
+/* --- Main Structure & Layout --- */
+.registration-batches {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.registration-batches .batch-list {
+    width: 100%;
+    max-width: 400px;
+}
+
+.competition-reg-links-wrapper {
+    background: #23272f;
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    border: 1px solid rgba(var(--blue-accent-rgb), 0.2);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Consistent Card Title --- */
+.reg-card-title {
+    font-size: 1.9rem;
+    color: var(--secondary-color);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    display: block;
+}
+
+/* --- Left Card Content (Batch, Info, Guidebook) --- */
+.batch-status.status-open {
+    background: linear-gradient(45deg, #10B981, #34D399);
+    color: white;
+    border: none;
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+}
+
+.reg-process-info {
+    font-size: 0.9rem;
+    color: #a0aec0;
+    text-align: center;
+    line-height: 1.6;
+    margin-top: 2rem;
+    max-width: 400px;
+}
+
+.registration-batches .guidebook-button {
+    margin-top: 2.5rem;
+}
+
+/* --- Right Card Content (Competition Links) --- */
+.competition-reg-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.reg-link-card {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background-color: rgba(var(--navbar-bg-rgb, 26, 29, 36), 0.6);
+    padding: 1.25rem;
+    border-radius: 12px;
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.reg-link-card:hover {
+    transform: translateX(8px);
+    background-color: rgba(var(--pink-accent-rgb), 0.1);
+    border-color: rgba(var(--pink-accent-rgb), 0.5);
+}
+
+.reg-card-icon {
+    font-size: 2.2rem;
+    color: var(--pink-accent);
+    background-color: rgba(var(--pink-accent-rgb), 0.15);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.reg-card-text {
+    flex-grow: 1;
+}
+
+.reg-card-text h4 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin: 0 0 0.25rem 0;
+}
+
+.reg-card-text p {
+    font-size: 0.85rem;
+    color: #b0b8c4;
+    margin: 0;
+    transition: font-size 0.3s ease; /* Added for smoother responsive transition */
+}
+
+.reg-card-arrow {
+    font-size: 1.5rem;
+    color: #a0aec0;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.reg-link-card:hover .reg-card-arrow {
+    transform: scale(1.2);
+    color: var(--pink-accent);
+}
+
+/* --- Responsive Styles --- */
+
+/* Tablet and below */
+@media (max-width: 767px) {
+    .reg-card-title {
+        font-size: 1.6rem;
+    }
+    .reg-process-info {
+        font-size: 0.85rem;
+        margin-top: 1.5rem;
+    }
+    .reg-link-card {
+        padding: 1rem;
+        gap: 1rem;
+    }
+    .reg-card-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.8rem;
+    }
+    .reg-card-text h4 {
+        font-size: 1.1rem;
+    }
+    .reg-card-text p {
+        font-size: 0.75rem;
+        line-height: 1.3;
+    }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+    .reg-card-text h4 {
+        font-size: 1rem;
+    }
+    .reg-card-text p {
+        display: none;
+    }
+    .reg-link-card {
+        text-align: left;
+    }
+    .reg-card-arrow {
+        font-size: 1.2rem;
+    }
 }
