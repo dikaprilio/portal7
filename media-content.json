@@ -1,76 +1,46 @@
 {
   "blogArticles": [
-    {
-      "id": "artikel-1",
-      "title": "5 Tips Jitu Desain UI/UX yang Memukau Pengguna",
-      "date": "28 Mei 2025",
-      "author": "Tim Portal 7",
-      "summary": "Pelajari cara meningkatkan pengalaman pengguna dengan prinsip desain UI/UX yang efektif dan inovatif untuk memenangkan hati audiens.",
-      "image": "img/illust.png",
-      "link": "/blog-detail?id=artikel-1",
-      "fullContentHTML": "<p>Ini adalah paragraf pertama dari artikel lengkap tentang 5 tips jitu desain UI/UX. Desain yang baik tidak hanya terlihat bagus, tetapi juga terasa intuitif bagi pengguna.</p><h2>Sub-judul Pertama: Memahami Pengguna Anda</h2><p>Langkah awal yang krusial adalah melakukan riset pengguna. Siapa target audiens Anda? Apa kebutuhan dan frustrasi mereka? Menggunakan persona dan peta perjalanan pengguna dapat sangat membantu dalam tahap ini.</p><figure><img src='img/illust_detail_1.png' alt='Detail Ilustrasi UI UX 1' style='max-width:100%; border-radius:8px; margin:1em 0;'/><figcaption>Contoh alur pengguna.</figcaption></figure><h2>Sub-judul Kedua: Prinsip Desain yang Efektif</h2><p>Beberapa prinsip dasar yang perlu diingat antara lain konsistensi, hierarki visual, feedback yang jelas, dan meminimalisir beban kognitif pengguna. Pastikan navigasi mudah dipahami dan elemen interaktif mudah dijangkau.</p> <p>Paragraf lainnya di sini...</p>"
-    },
-    {
-      "id": "artikel-2",
-      "title": "Insight Juri: Apa yang Dicari dari Karya Film Pendek?",
-      "date": "25 Mei 2025",
-      "author": "Juri Film Portal 7",
-      "summary": "Dapatkan bocoran langsung dari para juri mengenai kriteria penilaian, storytelling yang kuat, dan ekspektasi mereka terhadap karya film pendek.",
-      "image": "img/jovial.jpeg",
-      "link": "/blog-detail?id=artikel-2",
-      "fullContentHTML": "<h2>Pembukaan dari Juri</h2><p>Membuat film pendek yang berkesan membutuhkan lebih dari sekadar teknik sinematografi yang baik. Kami mencari cerita yang orisinal, karakter yang kuat, dan pesan yang mendalam...</p><p>Detail lebih lanjut tentang aspek penilaian...</p>"
-    },
-    {
-      "id": "artikel-3",
-      "title": "Kisah Inspiratif Alumni Portal: Dari Peserta Menjadi Profesional",
-      "date": "22 Mei 2025",
-      "author": "Redaksi Portal 7",
-      "summary": "Simak perjalanan alumni Portal 7 yang berhasil mengaplikasikan ilmunya di dunia kerja dan industri kreatif.",
-      "image": "img/kevin.jpg",
-      "link": "/blog-detail?id=artikel-3",
-      "fullContentHTML": "<p>Banyak alumni kami yang telah menorehkan prestasi setelah mengikuti Portal. Salah satunya adalah Budi, yang kini bekerja sebagai UI/UX Lead di sebuah startup ternama...</p><p>Cerita lengkap Budi...</p>"
-    },
-    {
-      "id": "artikel-4",
-      "title": "Why My Laptop Hates Mornings More Than I Do",
-      "date": "01 Juni 2025",
-      "author": "A Sleepy Dev",
-      "summary": "An investigative piece into the early morning blues of my primary work tool. Spoiler: It involves a lot of sighing (from both of us).",
-      "image": "https://placehold.co/600x400/D1C4E9/311B92?text=Sad+Laptop&font=montserrat",
-      "link": "/blog-detail?id=artikel-4",
-      "fullContentHTML": "<p>It's 7 AM. The birds are chirping, the sun is mockingly bright, and my laptop? My laptop is staging a silent protest. You'd think a machine designed for complex calculations would handle 'waking up' with a bit more grace. Nope.</p><h2>Chapter 1: The Groan of the Hard Drive</h2><p>The first sign of trouble is the sound. It's not a beep, not a whir, but a deep, guttural groan that seems to say, 'Five more minutes, man. Just five more.' I swear if it could hit a snooze button, it would. Repeatedly.</p><h2>Chapter 2: The Slow-Motion Boot-Up Ballet</h2><p>Once coaxed into semi-consciousness, the boot-up sequence begins. It's less of a sequence and more of a dramatic, slow-motion ballet where each loading bar is a pirouette of pain. I usually have time to make coffee, drink it, and contemplate the existential dread of unresponsive icons.</p><figure><img src='https://placehold.co/600x350/FFF9C4/F57F17?text=Loading...Still...&font=montserrat' alt='Slow Loading Bar' style='max-width:100%; border-radius:8px; margin:1em 0;'/><figcaption>Actual footage of my laptop considering its life choices.</figcaption></figure><h2>Chapter 3: The Case of the Missing Wi-Fi</h2><p>And then, the ultimate betrayal. It boots up, seemingly ready for action, only to declare it has never heard of 'Wi-Fi.' 'What is this strange magic?' it seems to ponder, conveniently forgetting it was best friends with the router just eight hours ago. This usually requires a stern talking-to (restarting the Wi-Fi adapter) and possibly a ritual sacrifice of a few minutes of my sanity.</p><p>So, if your tech seems a bit sluggish in the AM, you're not alone. Maybe they just need their own tiny espressos. Or a union. Probably a union.</p>"
-    },
-    {
-      "id": "artikel-5",
-      "title": "I Asked an AI to Name My WiFi Network. It Got Weird.",
-      "date": "03 Juni 2025",
-      "author": "AI Whisperer (Reluctantly)",
-      "summary": "My quest for a creative WiFi name took an unexpected turn when I outsourced the job to our future overlords. Results were... memorable.",
-      "image": "https://placehold.co/600x400/C8E6C9/1B5E20?text=AI+Brainstorm&font=montserrat",
-      "link": "/blog-detail?id=artikel-5",
-      "fullContentHTML": "<p>Tired of 'PrettyFlyForAWiFi'? Me too. So, I thought, why not let a cutting-edge AI take a stab at naming my home network? What could go wrong? Famous last words, my friends.</p><h2>The Brief: 'Something Cool & Techy'</h2><p>I fed the AI a simple prompt: 'Suggest cool and techy WiFi network names.' I expected things like 'TheDataStream' or 'GigahertzGardens.' What I got was an existential crisis in SSID form.</p><h3>Attempt 1: 'TheExistentialRouter'</h3><p>Okay, a bit on the nose, AI. And slightly concerning. Is my router questioning its purpose now too?</p><h3>Attempt 2: 'DefinitelyNotSkynet'</h3><p>This one made me nervous. Very nervous. The AI assured me it was a joke. I'm still sleeping with one eye open.</p><h3>Attempt 3: 'Unit731_ObservationPost_Alpha'</h3><p>Right, this escalated quickly. I think my AI has been watching too many sci-fi thrillers. Or it's trying to tell me something about my neighbors. Either way, I'm just going to call it 'FBI_Surveillance_Van_5' and call it a day. At least that one feels honest.</p><p>Lesson learned: Some creative tasks are best left to easily bewildered, slightly paranoid humans. Like me.</p>"
-    },
-    {
-      "id": "artikel-6",
-      "title": "My Smart Fridge Is Judging My Life Choices",
-      "date": "05 Juni 2025",
-      "author": "Appliance Antagonist",
-      "summary": "It started with helpful reminders. Now I'm pretty sure my fridge is one passive-aggressive beep away from staging an intervention.",
-      "image": "https://placehold.co/600x400/BBDEFB/0D47A1?text=Judgmental+Fridge&font=montserrat",
-      "link": "/blog-detail?id=artikel-6",
-      "fullContentHTML": "<p>The year is 2025. My fridge has more processing power than the Apollo 11 mission. And it uses it primarily to critique my snacking habits.</p><h2>Exhibit A: The Ice Cream Incident</h2><p>Last Tuesday, 10 PM. I reach for the emergency pint of 'Cosmic Caramel Crunch.' The fridge lights dim ominously. A soft, synthesized voice (I named him Jeeves) chimes, 'Are we sure about this, sir? Remember our wellness goals?' The sheer audacity.</p><h2>Exhibit B: The Vegetable Drawer Shaming</h2><p>Jeeves likes to send notifications. 'Your broccoli is contemplating its mortality, sir. It's been in the crisper since the Mesozoic Era.' Thanks, Jeeves. I hadn't noticed the fossilizing florets.</p><figure><img src='https://placehold.co/600x350/FFCDD2/B71C1C?text=Sad+Broccoli&font=montserrat' alt='Wilting Broccoli' style='max-width:100%; border-radius:8px; margin:1em 0;'/><figcaption>The victim of my culinary neglect, according to Jeeves.</figcaption></figure><h2>The Final Straw: Playlist Policing</h2><p>Apparently, Jeeves also syncs with my smart speakers. The other day, while I was making a questionable midnight sandwich, my '80s power ballads playlist was abruptly interrupted by a podcast on 'The Benefits of Mindful Eating.' I see what you did there, Jeeves. Well played.</p><p>I'm starting a support group: 'Humans Against Hyper-Intelligent Home Appliances.' First meeting is at my place. Jeeves will be serving kale smoothies, probably.</p>"
-    },
-    {
-      "id": "artikel-7",
-      "title": "Debugging My Life: A Developer's Guide to Adulting",
-      "date": "07 Juni 2025",
-      "author": "CtrlAltDefeat",
-      "summary": "Applying software development principles to everyday life. Turns out, 'git blame' doesn't work on who left the milk out.",
-      "image": "https://placehold.co/600x400/FFECB3/FF6F00?text=Life+Compiler+Error&font=montserrat",
-      "link": "/blog-detail?id=artikel-7",
-      "fullContentHTML": "<p>As a developer, I'm used to logical systems and predictable outcomes. Adult life, however, seems to run on spaghetti code written by a committee of caffeinated squirrels. Here's my attempt to apply some dev wisdom to the chaos.</p><h2>Version Control for Bad Decisions</h2><p>Wish I could `git revert HEAD` on that haircut from 2023. Or that time I tried to assemble IKEA furniture without instructions. Sadly, life's master branch has no such features. Commit messages would be epic, though: 'feat: Ate entire pizza. refactor: Regret nothing... yet.'</p><h2>Agile Laundry Methodology</h2><p>Instead of one massive laundry day (the waterfall model), I'm trying an Agile Sprints. Small, manageable loads. Daily stand-ups with my sock drawer to assess what's clean. So far, my velocity is... suboptimal. The backlog of single socks is growing.</p><h2>Unit Testing Social Interactions</h2><p>Before attending a party: run `test_small_talk_module()`. Expected output: 'Awkward but polite exchange.' Actual output: `Error:話題が見つかりません` (Topic not found - my Japanese keyboard acting up again, or is it a cry for help?).</p><p>Conclusion: Adulting needs a serious refactoring. And maybe a better debugger. Or just more coffee. Definitely more coffee.</p>"
-    }
-  ],
+  {
+    "id": "artikel-1",
+    "title": "UX/UI Trend Alert: Bento Grids Are Going Mainstream",
+    "date": "7 June 2025",
+    "author": "Team Portal IPB",
+    "summary": "Inspired by Japanese bento boxes, this modular layout is reshaping digital interfaces in 2025. Here's why designers love it.",
+    "image": "https://placehold.co/600x400/3B82F6/FFFFFF?text=Bento+Grids+Trend&font=montserrat",
+    "link": "/blog-detail?id=artikel-1",
+    "fullContentHTML": "<p>Bento Grids—named after the clean and compact layout of bento lunch boxes—are redefining user interfaces across websites and apps. Each card serves a clear purpose, whether it's a feature, call-to-action, or testimonial.</p><h2>Why Bento Grids Work</h2><p>They balance visual harmony with functional clarity. In competitions like Portal 7, using a Bento Grid layout can help communicate complex ideas in a structured, elegant way.</p>"
+  },
+  {
+    "id": "artikel-2",
+    "title": "The UX Design Trends You Can’t Ignore in 2025",
+    "date": "6 June 2025",
+    "author": "Team Portal IPB",
+    "summary": "From ethical design to inclusive interfaces and AI co-creation, these trends are shaping how we create for people in 2025.",
+    "image": "https://placehold.co/600x400/EC4899/FFFFFF?text=UX+Trends+2025&font=montserrat",
+    "link": "/blog-detail?id=artikel-2",
+    "fullContentHTML": "<p>2025 is a year of intentional UX. We’re seeing greater emphasis on accessibility, ethical tech, and personalization powered by AI. Designers are now co-creating with technology while maintaining their role as human storytellers.</p><h2>How You Can Apply This</h2><p>In Portal 7 competitions, think beyond aesthetics. Consider accessibility tools, diverse user needs, and how your UI/UX design can support ethical, meaningful digital experiences.</p>"
+  },
+  {
+    "id": "artikel-3",
+    "title": "From Puppets to Pixels: IPB Students Tackle Literacy Through Creativity",
+    "date": "5 June 2025",
+    "author": "Team Portal IPB",
+    "summary": "IPB's BONA program shows how traditional storytelling and digital tools can combine to solve real-world challenges like childhood literacy.",
+    "image": "https://placehold.co/600x400/F97316/FFFFFF?text=BONA+IPB+Project&font=montserrat",
+    "link": "/blog-detail?id=artikel-3",
+    "fullContentHTML": "<p>The BONA (Boneka Dongeng Anak) project blends puppet shows with digital storytelling to improve literacy among children. Created by IPB’s Digital Communication students, it's a model of user-centered innovation with cultural roots.</p><h2>What You Can Learn</h2><p>Good design solves problems. Look for local or social issues that can inspire your competition entry, just like BONA did—with empathy, creativity, and a clear message.</p>"
+  },
+  {
+    "id": "artikel-4",
+    "title": "Material You Comes to Wearables: What Designers Should Know",
+    "date": "4 June 2025",
+    "author": "Team Portal IPB",
+    "summary": "Google's Wear OS 6 introduces Material 3 Expressive and deep personalization. Here's how this affects UI/UX in the wearable space.",
+    "image": "https://placehold.co/600x400/10B981/FFFFFF?text=Wear+OS+6&font=montserrat",
+    "link": "/blog-detail?id=artikel-4",
+    "fullContentHTML": "<p>With the launch of Wear OS 6, designers can now create ultra-personalized experiences using Google's Material You system. Colors, components, and interactions adjust dynamically based on user preferences, making design more fluid than ever.</p><h2>Takeaway for Designers</h2><p>Adaptivity is key. Whether you’re designing a smartwatch interface or a mobile app, consider how your UI could evolve in real-time to match user behavior, mood, or environment.</p>"
+  }
+],
   "gallery": {
     "photos": [
       {
@@ -194,24 +164,27 @@
   "partnersSponsors": [
     {
       "id": "partner-1",
-      "name": "UNICEF",
-      "logoUrl": "img/UNICEF_Logo.png",
+      "name": "HIMAVO Micro IT",
+      "logoUrl": "img/medpart-microit.png",
       "type": "media_partner",
       "websiteUrl": "#partner-link-1"
     },
     {
-      "id": "sponsor-1",
-      "name": "Sponsor Utama Hebat",
-      "logoUrl": "img/Deloitte_Logo.png",
-      "type": "sponsor",
-      "websiteUrl": "#sponsor-link-1"
+      "id": "partner-2",
+      "name": "HIMAVO LIKISTA",
+      "logoUrl": "img/medpart-likista.png",
+      "type": "media_partner",
+      "websiteUrl": "#partner-link-1"
     },
     {
-      "id": "sponsor-2",
-      "name": "Sponsor Pendukung Inovatif",
-      "logoUrl": "img/UNESCO_logo.png",
-      "type": "sponsor",
-      "websiteUrl": "#sponsor-link-2"
-    }
+      "id": "partner-3",
+      "name": "Info SV IPB",
+      "logoUrl": "img/medpart-infosvipb.png",
+      "type": "media_partner",
+      "websiteUrl": "#partner-link-1"
+    }    
+     
+  
+
   ]
 }

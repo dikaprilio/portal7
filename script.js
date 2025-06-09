@@ -1,5 +1,5 @@
 // --- Global Variables & Initial Setup ---
-let currentLang = localStorage.getItem('lang') || 'id'; // Default to Indonesian
+let currentLang = localStorage.getItem('lang') || 'en'; // Default to English
 let translations = {};
 const langToggleButton = document.getElementById('lang-toggle');
 const mainNavLinks = document.getElementById('main-nav-links');
@@ -15,18 +15,16 @@ async function fetchTranslations() {
         const response = await fetch('translations.json'); // Ensure this path is correct
         if (!response.ok) {
             console.error(`HTTP error! status: ${response.status} while fetching translations.json`);
-            // Display a user-friendly error message on the page if feasible
-            const errorKey = 'error_loading_translations'; // Make sure this key exists in translations.json
+            const errorKey = 'error_loading_translations';
             const errorElements = document.querySelectorAll(`[data-translate-key="${errorKey}"]`);
             errorElements.forEach(el => el.textContent = "Error loading translations. Please try again later.");
-            return; // Stop further execution if translations can't be loaded
+            return;
         }
         translations = await response.json();
         if (Object.keys(translations).length === 0) {
             console.error("Translations file loaded but is empty or invalid JSON.");
             return;
         }
-        // Apply initial translation after translations are fetched
         applyTranslations(currentLang); 
     } catch (error) {
         console.error("Could not load or parse translations:", error);
@@ -41,7 +39,6 @@ function applyTranslations(lang) {
     if (langToggleButton && translations[lang] && translations[lang].lang_toggle) {
         langToggleButton.textContent = translations[lang].lang_toggle;
     } else if (langToggleButton) {
-        // Fallback if translation key for toggle button itself is missing
         langToggleButton.textContent = lang === 'id' ? 'EN' : 'ID';
     }
 
@@ -49,15 +46,12 @@ function applyTranslations(lang) {
     elementsToTranslate.forEach(el => {
         const key = el.dataset.translateKey;
         if (translations[lang] && typeof translations[lang][key] !== 'undefined') {
-            // Preserve child elements like <i> for icons if the key is for a parent
             if (el.children.length > 0 && (el.childNodes.length > el.children.length || el.innerHTML.includes("<i"))) {
-                // Attempt to replace only the first text node if it exists and is not just whitespace
                 let replaced = false;
                 for (let i = 0; i < el.childNodes.length; i++) {
                     if (el.childNodes[i].nodeType === Node.TEXT_NODE && el.childNodes[i].textContent.trim() !== '') {
-                        // Check if the translation itself contains HTML (e.g., for icons within links)
                         if (translations[lang][key].includes("<i")) {
-                            el.innerHTML = translations[lang][key]; // Use innerHTML if translation has HTML
+                            el.innerHTML = translations[lang][key];
                         } else {
                             el.childNodes[i].textContent = translations[lang][key];
                         }
@@ -65,44 +59,22 @@ function applyTranslations(lang) {
                         break;
                     }
                 }
-                // If no direct text node found, or if the key is meant for the whole HTML (e.g. nav dropdown toggles)
                 if (!replaced && translations[lang][key].includes("<i")) {
                      el.innerHTML = translations[lang][key];
-                } else if (!replaced) {
-                    // Fallback for elements where text might be wrapped in other simple tags not caught above
-                    const firstTextChild = Array.from(el.childNodes).find(node => node.nodeType === Node.TEXT_NODE && node.textContent.trim());
-                    if (firstTextChild) {
-                        if (translations[lang][key].includes("<i")) { // Check again if translation is HTML
-                            el.innerHTML = translations[lang][key];
-                        } else {
-                            firstTextChild.textContent = translations[lang][key];
-                        }
-                    } else {
-                        // If translation contains HTML and we couldn't find a text node,
-                        // it's safer to not blindly set innerHTML unless the key is known to be safe.
-                        // console.warn(`Skipping translation for key '${key}' on element with children due to complex structure.`);
-                    }
                 }
-            } else { // Element has no children or only text content
+            } else {
                 el.textContent = translations[lang][key];
             }
-        } else if (translations[lang] && translations[lang][key] === "") {
-            el.textContent = ""; // Handle explicitly empty strings
-        } else {
-            // console.warn(`Translation key "${key}" not found for language "${lang}".`);
         }
     });
 
-    // Update page title using the globally stored pageTitleElement
     if (pageTitleElement) {
         const titleKey = pageTitleElement.dataset.translateKey;
         if (translations[lang] && translations[lang][titleKey]) {
             document.title = translations[lang][titleKey];
         }
     }
-    setupReadMoreToggles(); // Reapply read more toggles after translations
-    // Calls to load dynamic content (loadAllBlogArticles, etc.)
-    // should NOT be here. They are called once on DOMContentLoaded.
+    setupReadMoreToggles();
 }
 
 
@@ -117,6 +89,30 @@ function initializeAOS() {
         console.warn("AOS library not found.");
     }
 }
+
+// --- NEW: Accurate Smooth Scrolling Function ---
+function smoothScrollToTarget(targetId) {
+    const targetElement = document.getElementById(targetId);
+    if (targetElement) {
+        const navElement = document.querySelector('nav');
+        // Get the current height of the navigation bar
+        const navHeight = navElement ? navElement.offsetHeight : 0;
+        
+        // Calculate the position of the target element relative to the document
+        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+        
+        // Subtract the navigation bar's height to get the final scroll position
+        const offsetPosition = targetPosition - navHeight;
+
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+        });
+        return true;
+    }
+    return false;
+}
+
 
 // --- Mobile Navigation ---
 function closeMobileMenu() {
@@ -165,41 +161,23 @@ function setupMobileNavigation() {
         });
     });
 
-    document.querySelectorAll('#main-nav-links a').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const fullHref = this.getAttribute('href');
-            const isDropdownToggle = this.classList.contains('dropdown-toggle');
+    // --- UPDATED: Click handling for all same-page links ---
+    document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            const targetId = href.substring(href.indexOf('#') + 1);
 
-            if (isDropdownToggle && mainNavLinks && mainNavLinks.classList.contains('active')) {
-                return;
-            }
-
-            const isIndexPage = window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/index');
-            const targetId = fullHref ? fullHref.split('#')[1] : null;
-
-            if (fullHref && fullHref.includes('#') && targetId) {
-                if ((isIndexPage && fullHref.startsWith('index.html#')) || (!isIndexPage && fullHref.startsWith('#'))) {
-                    if (document.getElementById(targetId)) {
-                        e.preventDefault();
-                        smoothScrollToTarget(targetId);
-                        closeMobileMenu();
-                    } else if (isIndexPage && !fullHref.startsWith('index.html#')) {
-                        closeMobileMenu();
-                    } else {
-                         if (mainNavLinks && mainNavLinks.classList.contains('active')) closeMobileMenu();
-                    }
-                } else if (!isIndexPage && fullHref.includes('index.html#')) {
-                    closeMobileMenu();
-                } else {
-                     if (mainNavLinks && mainNavLinks.classList.contains('active')) closeMobileMenu();
-                }
-            } else { 
+            // Check if the link is on the current page and the target element exists
+            if (href.startsWith('#') || (window.location.pathname.endsWith('/') || window.location.pathname.endsWith('index.html')) && document.getElementById(targetId)) {
+                e.preventDefault(); // Prevent the default jump
+                smoothScrollToTarget(targetId);
                 if (mainNavLinks && mainNavLinks.classList.contains('active')) {
                     closeMobileMenu();
                 }
             }
         });
     });
+
 
     document.addEventListener('click', function(event) {
         if (mainNavLinks && mainNavLinks.classList.contains('active')) {
@@ -210,45 +188,6 @@ function setupMobileNavigation() {
             }
         }
     });
-}
-
-function smoothScrollToTarget(targetId, isPageLoad = false) {
-    const targetElement = document.getElementById(targetId);
-    if (targetElement) {
-        const navElement = document.querySelector('nav');
-        const navHeight = navElement ? navElement.offsetHeight : 0;
-        let targetElementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-
-        if (isPageLoad && (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/index'))) {
-            let elem = targetElement; let top = 0;
-            while(elem) { top += elem.offsetTop; elem = elem.offsetParent; }
-            targetElementPosition = top;
-        }
-        const offsetPosition = targetElementPosition - navHeight;
-        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-        return true;
-    }
-    return false;
-}
-
-function handlePageLoadAnchors() {
-    if (window.location.hash) {
-        const targetId = window.location.hash.substring(1);
-        const isIndexPage = window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/index');
-        
-        let pageTopAnchorId = 'hero'; 
-        if (window.location.pathname.includes('blog.html')) pageTopAnchorId = 'blog-top';
-        else if (window.location.pathname.includes('seminar.html')) pageTopAnchorId = 'seminar-top';
-        else if (window.location.pathname.includes('gallery.html')) pageTopAnchorId = 'gallery-page-top';
-        
-        if (targetId && targetId !== pageTopAnchorId && document.getElementById(targetId)) {
-            setTimeout(() => { smoothScrollToTarget(targetId, isIndexPage); }, 100);
-        } else if (targetId === pageTopAnchorId && window.pageYOffset > 0 && document.getElementById(targetId)) {
-            setTimeout(() => { smoothScrollToTarget(targetId, isIndexPage); }, 100);
-        } else if (isIndexPage && targetId && targetId !== 'hero' && document.getElementById(targetId)) {
-             setTimeout(() => { smoothScrollToTarget(targetId, true); }, 100);
-        }
-    }
 }
 
 // --- FAQ Accordion ---
@@ -298,10 +237,9 @@ function startCountdown() {
         if (distance < 0) {
             clearInterval(countdownFunction);
             const eventStartedKey = 'event_started_message'; 
-            countdownTimerEl.innerHTML = `<span data-translate-key="${eventStartedKey}">${(translations[currentLang] && translations[currentLang][eventStartedKey]) || "EVENT TELAH DIMULAI!"}</span>`;
+            countdownTimerEl.innerHTML = `<span data-translate-key="${eventStartedKey}">${(translations[currentLang] && translations[currentLang][eventStartedKey]) || "EVENT HAS STARTED!"}</span>`;
             countdownTimerEl.style.fontSize="1.5rem";
             countdownTimerEl.style.fontWeight="bold";
-            // Re-apply translation to this specific element if it was just updated
             if (translations[currentLang] && translations[currentLang][eventStartedKey]) {
                 const spanElement = countdownTimerEl.querySelector(`[data-translate-key="${eventStartedKey}"]`);
                 if(spanElement) spanElement.textContent = translations[currentLang][eventStartedKey];
@@ -538,10 +476,9 @@ async function loadSpecificBlogArticle() {
             const authorText = article.author;
             const fullContent = article.fullContentHTML; 
 
-            if (pageTitleElement) { // Set document title using the article's title
+            if (pageTitleElement) {
                  document.title = titleText + " - Portal 7";
             }
-
 
             let articleHTML = `
                 <section class="blog-detail-hero">
@@ -735,11 +672,9 @@ function updateLightboxContent(itemType) {
         lightboxImage.style.display = 'block';
     } else if (itemType === 'video' && item.videoUrl) {
         let videoEmbedUrl = item.videoUrl;
-        if (videoEmbedUrl.includes("youtube.com/watch?v=")) { // Standard YouTube URL
+        if (videoEmbedUrl.includes("youtube.com/watch?v=")) {
             videoEmbedUrl = videoEmbedUrl.replace("watch?v=", "embed/");
-        } else if (videoEmbedUrl.match(/googleusercontent\.com\/youtube\.com\/\d+/)) { // Your specific pattern
-             // Assuming the number is the video ID, construct embed URL
-             // This might need adjustment based on actual video IDs
+        } else if (videoEmbedUrl.match(/googleusercontent\.com\/youtube\.com\/\d+/)) {
             const videoIdMatch = videoEmbedUrl.match(/googleusercontent\.com\/youtube\.com\/(\w+)/);
             if (videoIdMatch && videoIdMatch[1]) {
                  videoEmbedUrl = `https://www.youtube.com/embed/${videoIdMatch[1]}`;
@@ -837,8 +772,7 @@ function setupCompetitionCarousel() {
         return;
     }
 
-    // Create dots
-    dotsContainer.innerHTML = ''; // Clear existing dots if any
+    dotsContainer.innerHTML = '';
     slides.forEach((_, i) => {
         const dot = document.createElement('button');
         dot.classList.add('dot');
@@ -860,7 +794,6 @@ function setupCompetitionCarousel() {
     prevButton.addEventListener('click', prevSlide);
     nextButton.addEventListener('click', nextSlide);
 
-    // Swipe functionality for mobile
     let touchstartX = 0;
     slidesContainer.addEventListener('touchstart', e => { touchstartX = e.changedTouches[0].screenX; }, { passive: true });
     slidesContainer.addEventListener('touchend', e => {
@@ -902,73 +835,54 @@ function startSubmissionCountdown() {
     }, 1000);
 }
 
-// --- script.js ---
-
-// --- script.js ---
-
 function setupReadMoreToggles() {
-    // This function's only job is to add the click listener to every read more button.
     document.querySelectorAll('.comp-card .read-more-btn').forEach(button => {
-        // Check if a listener was already added to prevent duplicates.
         if (button.hasAttribute('data-readmore-listener')) return;
         
         button.setAttribute('data-readmore-listener', 'true');
         button.addEventListener('click', () => {
-            // Find the expandable content container relative to the clicked button.
             const expandableContent = button.closest('.description-wrapper').querySelector('.expandable-content');
             
             if (expandableContent) {
-                // Toggle the 'expanded' class to trigger the CSS animation.
                 const isExpanded = expandableContent.classList.toggle('expanded');
-                // Update the button's text.
                 button.textContent = isExpanded ? (button.dataset.less || 'Read Less') : (button.dataset.more || 'Read More');
             }
         });
     });
 }
+
 // --- DOMContentLoaded Event Listener (SINGLE, CONSOLIDATED) ---
 document.addEventListener('DOMContentLoaded', async () => {
-    // Initialize AOS
     initializeAOS();
-
-    // Setup navigation
     setupMobileNavigation();
-    handlePageLoadAnchors(); 
-
-    // Store the title element once for efficient access in applyTranslations
     pageTitleElement = document.querySelector('title[data-translate-key]');
-
-    // Fetch translations and set initial language
     await fetchTranslations(); 
-
-    // Setup general components found on multiple pages
     setupFAQAccordion();
 
-    // Page-specific initializations
     if (document.getElementById("countdown-timer")) {
         startCountdown();
     }
     if (document.querySelector('.hero-left img.portal-logo.hero-logo-entry')) {
         setupLogoAnimation();
     }
-    if (document.getElementById('media')) { // For index page media previews
+    if (document.getElementById('media')) {
         loadMediaContent();
     }
-    if (document.getElementById('full-articles-grid')) { // Blog page
+    if (document.getElementById('full-articles-grid')) {
         loadAllBlogArticles(); 
     }
-    if (document.getElementById('article-detail-wrapper')) { // Blog detail page
+    if (document.getElementById('article-detail-wrapper')) {
         loadSpecificBlogArticle(); 
     }
-    if (document.getElementById('all-photos-grid') || document.getElementById('all-videos-grid')) { // Gallery page
+    if (document.getElementById('all-photos-grid') || document.getElementById('all-videos-grid')) {
         setupGalleryTabs();
         loadAllGalleryContent(); 
         setupLightboxControls();
     }
-    if (document.querySelector('.criteria-accordion')) { // Old Competition hub page accordion
+    if (document.querySelector('.criteria-accordion')) {
         setupAccordions('.criteria-accordion', '.accordion-toggle');
     }
-    if (document.querySelector('.accordion-seminar')) { // Seminar page
+    if (document.querySelector('.accordion-seminar')) {
         setupAccordions('.accordion-seminar', '.accordion-seminar-toggle');
     }
     if (document.body.classList.contains('competition-hub-body')) {
@@ -977,12 +891,21 @@ document.addEventListener('DOMContentLoaded', async () => {
         setupReadMoreToggles();
     }
 
-
-    // Language toggle button event listener
     if (langToggleButton) {
         langToggleButton.addEventListener('click', () => {
             const newLang = currentLang === 'id' ? 'en' : 'id';
-            applyTranslations(newLang); // This will re-translate everything
+            applyTranslations(newLang);
         });
     }
-})
+});
+
+// --- NEW: Accurate Scroll Handling on Initial Page Load ---
+// This waits for all resources (images, fonts) to load, ensuring nav height is accurate.
+window.addEventListener('load', () => {
+    if (window.location.hash) {
+        // A small timeout allows the browser to settle before we manually scroll.
+        setTimeout(() => {
+            smoothScrollToTarget(window.location.hash.substring(1));
+        }, 100);
+    }
+});
