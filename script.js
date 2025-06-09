@@ -149,7 +149,20 @@ function setupMobileNavigation() {
         }
     });
 }
-
+// Sets up the "Read More" button on the Competition Hub
+function setupReadMoreToggles() {
+    document.querySelectorAll('.comp-card .read-more-btn').forEach(button => {
+        if (button.hasAttribute('data-readmore-listener')) return;
+        button.setAttribute('data-readmore-listener', 'true');
+        button.addEventListener('click', () => {
+            const expandableContent = button.closest('.description-wrapper').querySelector('.expandable-content');
+            if (expandableContent) {
+                const isExpanded = expandableContent.classList.toggle('expanded');
+                button.textContent = isExpanded ? (button.dataset.less || 'Read Less') : (button.dataset.more || 'Read More');
+            }
+        });
+    });
+}
 function handlePageLoadAnchors() {
     if (window.location.hash) {
         // Use a timeout to ensure all content is loaded and heights are correct
