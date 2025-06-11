@@ -1,5 +1,5 @@
 // --- Global Variables & Initial Setup ---
-let currentLang = localStorage.getItem('lang') || 'id'; // Default to Indonesian
+let currentLang = localStorage.getItem('lang') || 'en'; // Default to Indonesian
 let translations = {};
 const langToggleButton = document.getElementById('lang-toggle');
 const mainNavLinks = document.getElementById('main-nav-links');
