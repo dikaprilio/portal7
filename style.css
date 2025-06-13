@@ -6600,3 +6600,93 @@ nav {
         font-size: 1.2rem;
     }
 }
+/* --- Hidden Tribute Styles --- */
+#nara-tribute-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(12, 10, 31, 0.85); /* Dark, semi-transparent overlay */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    align-items: center;
+    justify-content: center;
+}
+
+.tribute-modal {
+    background: #1a1d24;
+    padding: 2.5rem 2rem;
+    border-radius: 16px;
+    color: #ecf0f1;
+    text-align: center;
+    position: relative;
+    width: 90%;
+    max-width: 450px;
+    border: 1px solid rgba(251, 191, 36, 0.3);
+    box-shadow: 0 0 30px rgba(251, 191, 36, 0.2);
+    transform: scale(0.9);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.tribute-icon-wrapper {
+    margin-bottom: 1.5rem;
+    filter: drop-shadow(0 0 15px rgba(241, 196, 15, 0.7));
+}
+
+.tribute-sunflower {
+    width: 80px;
+    height: 80px;
+    animation: slow-spin 25s linear infinite;
+}
+
+@keyframes slow-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.tribute-modal h2 {
+    font-size: 1.5rem;
+    color: #f1c40f; /* Warm yellow */
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+}
+
+.tribute-modal .tribute-role {
+    font-size: 1rem;
+    color: #bdc3c7;
+    line-height: 1.6;
+    margin-bottom: 0.25rem;
+}
+
+.tribute-modal .tribute-identity {
+    font-size: 0.9rem;
+    color: #95a5a6;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.tribute-modal .tribute-message {
+    font-size: 1rem;
+    color: #ecf0f1;
+    font-style: italic;
+}
+
+.close-tribute {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 2rem;
+    color: #7f8c8d;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.close-tribute:hover {
+    color: #f1c40f;
+    transform: scale(1.1);
+}
