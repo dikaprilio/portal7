@@ -818,7 +818,72 @@ function startSubmissionCountdown() {
         secondsEl.innerText = format(Math.floor((distance % (1000 * 60)) / 1000));
     }, 1000);
 }
+// --- Tribute for Nara (Easy Version: Type "nara") ---
 
+document.addEventListener('DOMContentLoaded', () => {
+    // The new, simpler key sequence for the tribute
+    const tributeCode = ['n', 'a', 'r', 'a'];
+    let currentPosition = 0;
+
+    // Elements for the tribute
+    const tributeOverlay = document.getElementById('nara-tribute-overlay');
+    const closeButton = document.querySelector('.close-tribute');
+
+    // Function to show the tribute (this function remains the same)
+    function showTribute() {
+        if (tributeOverlay) {
+            tributeOverlay.style.display = 'flex';
+            setTimeout(() => {
+                tributeOverlay.style.opacity = '1';
+                tributeOverlay.querySelector('.tribute-modal').style.transform = 'scale(1)';
+            }, 10);
+        }
+    }
+
+    // Function to hide the tribute (this function remains the same)
+    function hideTribute() {
+        if (tributeOverlay) {
+            tributeOverlay.style.opacity = '0';
+            tributeOverlay.querySelector('.tribute-modal').style.transform = 'scale(0.9)';
+            setTimeout(() => {
+                tributeOverlay.style.display = 'none';
+            }, 500);
+        }
+    }
+
+    // Listen for key presses
+    document.addEventListener('keydown', function(e) {
+        // Check if the pressed key matches the next key in the sequence
+        if (e.key.toLowerCase() === tributeCode[currentPosition]) {
+            currentPosition++;
+            // If the full sequence is entered, show the tribute
+            if (currentPosition === tributeCode.length) {
+                showTribute();
+                currentPosition = 0; // Reset for next time
+            }
+        } else {
+            // If the wrong key is pressed, reset the sequence
+            currentPosition = 0;
+        }
+    });
+
+    // Add event listeners to close the tribute (this remains the same)
+    if (closeButton) {
+        closeButton.addEventListener('click', hideTribute);
+    }
+    if (tributeOverlay) {
+        tributeOverlay.addEventListener('click', function(e) {
+            if (e.target === tributeOverlay) {
+                hideTribute();
+            }
+        });
+    }
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && tributeOverlay && tributeOverlay.style.display === 'flex') {
+            hideTribute();
+        }
+    });
+});
 // --- Main DOMContentLoaded Listener ---
 document.addEventListener('DOMContentLoaded', async () => {
     initializeAOS();
