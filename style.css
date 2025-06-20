@@ -6210,7 +6210,9 @@ nav {
     color: var(--yellow-accent);
     text-shadow: 0 0 10px rgba(var(--yellow-accent-rgb), 0.5);
 }
-
+.info-item .accent-icon.green { background-color: var(--green-accent); }
+.info-item .accent-icon.blue { background-color: var(--blue-accent); }
+.info-item .accent-icon.purple { background-color: var(--purple-accent); }
 .comp-card-actions {
     display: flex; gap: 1rem; margin-top: auto; flex-wrap: wrap; align-items: flex-start;
 }
@@ -6269,7 +6271,81 @@ nav {
     font-weight: 700;
     border-radius: 8px; /* Consistent rounded corners */
 }
-
+/* === SPONSORSHIP CTA SECTION === */
+.sponsorship-cta-section {
+    background-color: #1f232c; /* Dark, slightly different from main bg */
+    border-top: 1px solid rgba(var(--secondary-color), 0.1);
+}
+.sponsorship-cta-section .section-title {
+    color: var(--secondary-color);
+}
+.sponsorship-cta-section .section-subtitle {
+    color: #b0b8c4;
+}
+.sponsorship-cta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2.5rem;
+}
+.sponsorship-card {
+    background: #23272f;
+    border: 1px solid rgba(var(--blue-accent-rgb), 0.2);
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.sponsorship-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(var(--pink-accent-rgb), 0.15);
+}
+.card-icon-sponsor {
+    font-size: 2.8rem;
+    color: var(--yellow-accent);
+    margin-bottom: 0.5rem;
+}
+.sponsorship-card h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+}
+.sponsorship-card p {
+    font-size: 0.95rem;
+    color: #b0b8c4;
+    line-height: 1.6;
+    flex-grow: 1; /* Pushes buttons to the bottom */
+}
+.sponsorship-card .portal-button {
+    text-decoration: none;
+    width: 100%;
+    max-width: 280px;
+    padding: 0.8rem 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+}
+.sponsorship-card .sponsor-button {
+    background: linear-gradient(45deg, var(--orange-accent), var(--yellow-accent));
+}
+.sponsorship-card .sponsor-button:hover {
+    background: linear-gradient(45deg, var(--yellow-accent), var(--orange-accent));
+}
+.sponsorship-card .contact-button-wa {
+    background: transparent;
+    border: 1px solid #25D366;
+    color: #25D366;
+}
+.sponsorship-card .contact-button-wa:hover {
+    background: #25D366;
+    color: white;
+}
 /* RESPONSIVE STYLES */
 @media (max-width: 991px) {
     .competition-carousel-wrapper {
