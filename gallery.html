@@ -126,134 +126,143 @@
     </script>
 
 </head>
-<body>
-    <nav>
-        <div class="nav-container">
-            <a href="/" class="logo">
-                <img src="img/Portal_Logo.png" alt="Logo Portal 7" onerror="this.onerror=null;this.src='https://placehold.co/120x30/cccccc/ffffff?text=P7+Logo';">
-            </a>
-            <div class="nav-links" id="main-nav-links">
-                <a class="nav-a" href="/#hero" data-translate-key="nav_beranda">Beranda</a>
-                <div class="nav-item dropdown">
-                    <a class="nav-a dropdown-toggle" href="#" data-translate-key="nav_tentang_portal">Tentang Portal <i class="fas fa-chevron-down dropdown-icon"></i></a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="/#tentang" data-translate-key="nav_tentang_kami">Tentang Kami</a>
-                        <a class="dropdown-item" href="/#sdg-commitment" data-translate-key="nav_sdg_commitment">Komitmen SDG</a>
-                        <a class="dropdown-item" href="/#guest-stars" data-translate-key="nav_guest_stars">Guest Star</a> 
-                        <a class="dropdown-item" href="/#highlight" data-translate-key="nav_highlight">Highlights</a>
-                        <a class="dropdown-item" href="/#linimasa" data-translate-key="nav_linimasa">Linimasa</a>
-                        <a class="dropdown-item" href="/#peserta" data-translate-key="nav_peserta">Siapa Peserta?</a>
-                        <a class="dropdown-item" href="/#faq" data-translate-key="nav_faq">FAQ</a>
-                    </div>
-                </div>
-
-                <div class="nav-item dropdown">
-                    <a class="nav-a dropdown-toggle" href="#" data-translate-key="nav_event">Event <i class="fas fa-chevron-down dropdown-icon"></i></a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="/competition-hub" data-translate-key="nav_kompetisi">Kompetisi</a>
-                        <a class="dropdown-item" href="/seminar" data-translate-key="nav_seminar">Seminar</a>
-                    </div>
-                </div>
-                <div class="nav-item dropdown">
-                    <a class="nav-a dropdown-toggle" href="#" data-translate-key="nav_media">Media <i class="fas fa-chevron-down dropdown-icon"></i></a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="/blog" data-translate-key="nav_blog">Blog</a>
-                        <a class="dropdown-item" href="/gallery" data-translate-key="nav_gallery">Gallery</a>
-                    </div>
-                </div>
-                <a class="nav-a" href="/#kontak" data-translate-key="nav_kontak_kami">Kontak Kami</a>
-                <a class="nav-a nav-cta-button" href="/#pendaftaran" data-translate-key="nav_pendaftaran">Pendaftaran</a>
-                <button id="lang-toggle" class="lang-toggle-button" data-translate-key="lang_toggle">EN</button>
-            </div>
-            <button id="mobile-menu-toggle" class="mobile-menu-button" aria-label="Toggle menu" aria-expanded="false">
-                <i class="fa fa-bars"></i> 
-            </button>
-        </div>
-    </nav>
+<body class="is-loading"> 
+    <div class="page-transition-overlay"></div>
 
 
-    <main>
-        <section class="gallery-page-hero section-padding" id="gallery-page-top">
-            <div class="portal-background-effect"></div>
-            <div class="floating-cloud cloud-2"><img src="img/cloud_blue.png" alt="Awan biru melayang"></div>
-            <div class="floating-cloud cloud-5"><img src="img/cloud_pink.png" alt="Awan merah muda melayang"></div>
-            
-            <div class="container">
-                <h1 class="gallery-page-main-title" data-aos="fade-up">
-                    <span data-translate-key="gallery_page_hero_title">Galeri</span>
-                    <span class="title-accent-highlight" data-translate-key="gallery_page_hero_title_accent">Portal 7</span>
-                </h1>
-                <p class="gallery-page-main-subtitle" data-aos="fade-up" data-aos-delay="100" data-translate-key="gallery_page_hero_subtitle">Jelajahi momen tak terlupakan dan karya-karya inspiratif dari rangkaian acara Portal 7.</p>
-            </div>
-        </section>
+    <div class="page-transition-wrapper">
 
-        <section class="gallery-section section-padding">
-            <div class="container">
-                <div class="gallery-tabs" data-aos="fade-up">
-                    <button class="gallery-tab-button active" data-tab="photos-all" data-translate-key="gallery_tab_photos_all">Foto Dokumentasi</button>
-                    <button class="gallery-tab-button" data-tab="videos-all" data-translate-key="gallery_tab_videos_all">Video Highlights</button>
-                </div>
-
-                <div class="gallery-grid-wrapper">
-                    <div class="gallery-grid photos-all active-gallery-content" id="all-photos-grid" data-aos="fade-up" data-aos-delay="200">
-                        <p class="loading-message" data-translate-key="gallery_loading_photos_all">Memuat semua foto...</p>
+        <nav>
+            <div class="nav-container">
+                <a href="/" class="logo">
+                    <img src="img/Portal_Logo.png" alt="Logo Portal 7" onerror="this.onerror=null;this.src='https://placehold.co/120x30/cccccc/ffffff?text=P7+Logo';">
+                </a>
+                <div class="nav-links" id="main-nav-links">
+                    <a class="nav-a" href="/#hero" data-translate-key="nav_beranda">Beranda</a>
+                    <div class="nav-item dropdown">
+                        <a class="nav-a dropdown-toggle" href="#" data-translate-key="nav_tentang_portal">Tentang Portal <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/#tentang" data-translate-key="nav_tentang_kami">Tentang Kami</a>
+                            <a class="dropdown-item" href="/#sdg-commitment" data-translate-key="nav_sdg_commitment">Komitmen SDG</a>
+                            <a class="dropdown-item" href="/#guest-stars" data-translate-key="nav_guest_stars">Guest Star</a> 
+                            <a class="dropdown-item" href="/#highlight" data-translate-key="nav_highlight">Highlights</a>
+                            <a class="dropdown-item" href="/#linimasa" data-translate-key="nav_linimasa">Linimasa</a>
+                            <a class="dropdown-item" href="/#peserta" data-translate-key="nav_peserta">Siapa Peserta?</a>
+                            <a class="dropdown-item" href="/#faq" data-translate-key="nav_faq">FAQ</a>
+                            <a class="dropdown-item" href="/#sponsorship" data-translate-key="nav_sponsorship">Join Partnership</a>
                         </div>
-                    <div class="gallery-grid videos-all" id="all-videos-grid" data-aos="fade-up" data-aos-delay="200">
-                        <p class="loading-message" data-translate-key="gallery_loading_videos_all">Memuat semua video...</p>
-                        </div>
-                </div>
-            </div>
-        </section>
-    </main>
+                    </div>
 
-    <footer>
-        <div class="footer-container">
-            <div class="footer-top">
-                <div class="footer-logo-area">
-                    <a href="/#hero"><img src="img/Portal_Logo.png" alt="Logo Mini Portal 7" class="portal-logo footer-logo-img"></a>
-                    <p class="footer-event-name">Portal 7: Empower Digital</p>
+                    <div class="nav-item dropdown">
+                        <a class="nav-a dropdown-toggle" href="#" data-translate-key="nav_event">Event <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/competition-hub" data-translate-key="nav_kompetisi">Kompetisi</a>
+                            <a class="dropdown-item" href="/seminar" data-translate-key="nav_seminar">Seminar</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a class="nav-a dropdown-toggle" href="#" data-translate-key="nav_media">Media <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/blog" data-translate-key="nav_blog">Blog</a>
+                            <a class="dropdown-item" href="/gallery" data-translate-key="nav_gallery">Gallery</a>
+                        </div>
+                    </div>
+                    <a class="nav-a" href="/#kontak" data-translate-key="nav_kontak_kami">Kontak Kami</a>
+                    <a class="nav-a nav-cta-button" href="/#pendaftaran" data-translate-key="nav_pendaftaran">Pendaftaran</a>
+                    
+                    <button id="lang-toggle" class="lang-toggle-button" data-translate-key="lang_toggle">ID</button>
+
                 </div>
-                <div class="footer-quick-links">
-                    <h4 data-translate-key="footer_nav_cepat">Navigasi Cepat</h4>
-                    <a href="/#tentang" data-translate-key="nav_tentang_kami">Tentang Kami</a>
-                    <a href="/competition-hub" data-translate-key="nav_kompetisi">Kompetisi</a>
-                    <a href="/seminar" data-translate-key="nav_seminar">Seminar</a>
-                    <a href="/#linimasa" data-translate-key="nav_linimasa">Linimasa</a>
-                    <a href="/blog" data-translate-key="nav_blog">Blog</a>
-                    <a href="/gallery" data-translate-key="nav_gallery">Galeri</a>
-                    <a href="/#faq" data-translate-key="nav_faq">FAQ</a>
+                <button id="mobile-menu-toggle" class="mobile-menu-button" aria-label="Toggle menu" aria-expanded="false">
+                    <i class="fas fa-bars"></i>
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </nav>
+
+
+        <main>
+            <section class="gallery-page-hero section-padding" id="gallery-page-top">
+                <div class="portal-background-effect"></div>
+                <div class="floating-cloud cloud-2"><img src="img/cloud_blue.png" alt="Awan biru melayang"></div>
+                <div class="floating-cloud cloud-5"><img src="img/cloud_pink.png" alt="Awan merah muda melayang"></div>
+                
+                <div class="container">
+                    <h1 class="gallery-page-main-title" data-aos="fade-up">
+                        <span data-translate-key="gallery_page_hero_title">Galeri</span>
+                        <span class="title-accent-highlight" data-translate-key="gallery_page_hero_title_accent">Portal 7</span>
+                    </h1>
+                    <p class="gallery-page-main-subtitle" data-aos="fade-up" data-aos-delay="100" data-translate-key="gallery_page_hero_subtitle">Jelajahi momen tak terlupakan dan karya-karya inspiratif dari rangkaian acara Portal 7.</p>
                 </div>
-                <div class="footer-contact-social">
-                    <h4 data-translate-key="footer_hubungi_kami">Terhubung Dengan Kami</h4>
-                    <div class="footer-contact-item"><i class="far fa-envelope"></i> <a href="mailto:portal.ipbuniversity@gmail.com">portal.ipbuniversity@gmail.com</a></div>
-                    <div class="footer-social-links">
-                        <a href="https://instagram.com/portal_ipb" target="_blank" class="social-icon ig" aria-label="Instagram Portal IPB"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.youtube.com/@portalipb" target="_blank" class="social-icon yt" aria-label="YouTube Portal IPB"><i class="fab fa-youtube"></i></a>
-                        <a href="https://www.tiktok.com/@portal_ipb/" target="_blank" class="social-icon tk" aria-label="TikTok Portal IPB"><i class="fab fa-tiktok"></i></a>
+            </section>
+
+            <section class="gallery-section section-padding">
+                <div class="container">
+                    <div class="gallery-tabs" data-aos="fade-up">
+                        <button class="gallery-tab-button active" data-tab="photos-all" data-translate-key="gallery_tab_photos_all">Foto Dokumentasi</button>
+                        <button class="gallery-tab-button" data-tab="videos-all" data-translate-key="gallery_tab_videos_all">Video Highlights</button>
+                    </div>
+
+                    <div class="gallery-grid-wrapper">
+                        <div class="gallery-grid photos-all active-gallery-content" id="all-photos-grid" data-aos="fade-up" data-aos-delay="200">
+                            <p class="loading-message" data-translate-key="gallery_loading_photos_all">Memuat semua foto...</p>
+                            </div>
+                        <div class="gallery-grid videos-all" id="all-videos-grid" data-aos="fade-up" data-aos-delay="200">
+                            <p class="loading-message" data-translate-key="gallery_loading_videos_all">Memuat semua video...</p>
+                            </div>
                     </div>
                 </div>
-            </div>
-            <div class="footer-bottom">
-                <div class="footer-copyright">
-                    <p data-translate-key="footer_copyright_line1">&copy; 2025 Badan Eksekutif Mahasiswa Sekolah Vokasi IPB University. Hak cipta dilindungi.</p>
-                    <p data-translate-key="footer_copyright_line2">Diberdayakan oleh Inspirasi, Didorong oleh Inovasi.</p>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-container">
+                <div class="footer-top">
+                    <div class="footer-logo-area">
+                        <a href="/#hero"><img src="img/Portal_Logo.png" alt="Logo Mini Portal 7" class="portal-logo footer-logo-img"></a>
+                        <p class="footer-event-name">Portal 7: Empower Digital</p>
+                    </div>
+                    <div class="footer-quick-links">
+                        <h4 data-translate-key="footer_nav_cepat">Navigasi Cepat</h4>
+                        <a href="/#tentang" data-translate-key="nav_tentang_kami">Tentang Kami</a>
+                        <a href="/competition-hub" data-translate-key="nav_kompetisi">Kompetisi</a>
+                        <a href="/seminar" data-translate-key="nav_seminar">Seminar</a>
+                        <a href="/#linimasa" data-translate-key="nav_linimasa">Linimasa</a>
+                        <a href="/blog" data-translate-key="nav_blog">Blog</a>
+                        <a href="/gallery" data-translate-key="nav_gallery">Galeri</a>
+                        <a href="/#faq" data-translate-key="nav_faq">FAQ</a>
+                    </div>
+                    <div class="footer-contact-social">
+                        <h4 data-translate-key="footer_hubungi_kami">Terhubung Dengan Kami</h4>
+                        <div class="footer-contact-item"><i class="far fa-envelope"></i> <a href="mailto:portal.ipbuniversity@gmail.com">portal.ipbuniversity@gmail.com</a></div>
+                        <div class="footer-social-links">
+                            <a href="https://instagram.com/portal_ipb" target="_blank" class="social-icon ig" aria-label="Instagram Portal IPB"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.youtube.com/@portalipb" target="_blank" class="social-icon yt" aria-label="YouTube Portal IPB"><i class="fab fa-youtube"></i></a>
+                            <a href="https://www.tiktok.com/@portal_ipb/" target="_blank" class="social-icon tk" aria-label="TikTok Portal IPB"><i class="fab fa-tiktok"></i></a>
+                        </div>
+                    </div>
                 </div>
-                <a href="#hero" class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
+                <div class="footer-bottom">
+                    <div class="footer-copyright">
+                        <p data-translate-key="footer_copyright_line1">&copy; 2025 Badan Eksekutif Mahasiswa Sekolah Vokasi IPB University. Hak cipta dilindungi.</p>
+                        <p data-translate-key="footer_copyright_line2">Diberdayakan oleh Inspirasi, Didorong oleh Inovasi.</p>
+                    </div>
+                    <a href="#hero" class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
+                </div>
             </div>
+        </footer>
+        
+        <div id="lightbox-modal" class="lightbox-modal">
+            <span class="lightbox-close">&times;</span>
+            <div class="lightbox-content">
+                <img id="lightbox-image" src="#" alt="Lightbox Image">
+                <iframe id="lightbox-video" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <div id="lightbox-caption" class="lightbox-caption"></div>
+            </div>
+            <a class="lightbox-prev" aria-label="Previous image">&#10094;</a>
+            <a class="lightbox-next" aria-label="Next image">&#10095;</a>
         </div>
-    </footer>
-    
-    <div id="lightbox-modal" class="lightbox-modal">
-        <span class="lightbox-close">&times;</span>
-        <div class="lightbox-content">
-            <img id="lightbox-image" src="#" alt="Lightbox Image">
-            <iframe id="lightbox-video" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-            <div id="lightbox-caption" class="lightbox-caption"></div>
-        </div>
-        <a class="lightbox-prev" aria-label="Previous image">&#10094;</a>
-        <a class="lightbox-next" aria-label="Next image">&#10095;</a>
     </div>
-
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="script.js" defer></script>
 </body>

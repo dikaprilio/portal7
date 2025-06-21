@@ -103,10 +103,11 @@ function setupMobileNavigation() {
         menuToggleButton.addEventListener('click', (e) => {
             e.stopPropagation();
             const isActive = mainNavLinks.classList.toggle('active');
+            menuToggleButton.classList.toggle('active', isActive); // This line is added
             menuToggleButton.setAttribute('aria-expanded', isActive);
-            if (menuIcon) {
-                menuIcon.className = isActive ? 'fas fa-times' : 'fas fa-bars';
-            }
+
+            // The old `menuIcon.className` logic is no longer needed as CSS handles the icon switch
+
             if (!isActive) {
                 document.querySelectorAll('.nav-links .nav-item.dropdown.open').forEach(d => d.classList.remove('open'));
             }
@@ -147,6 +148,69 @@ function setupMobileNavigation() {
                 closeMobileMenu();
             }
         }
+    });
+}
+// In script.js, replace the existing setupPageTransitions function with this one.
+
+function setupPageTransitions() {
+    const body = document.body;
+    const transitionDuration = 800; // Match your longest transition in CSS
+
+    // --- Entry Animation ---
+    window.addEventListener('load', () => {
+        body.classList.remove('is-loading');
+    });
+
+    // --- Unified & Corrected Click Handler ---
+    body.addEventListener('click', (e) => {
+        // Find the closest 'a' tag to where the user clicked.
+        const link = e.target.closest('a');
+
+        // 1. --- EXIT EARLY FOR INVALID CLICKS ---
+        // If it's not a valid link, do nothing.
+        if (!link || !link.hasAttribute('href')) {
+            return;
+        }
+        
+        const href = link.getAttribute('href');
+
+        // Ignore special protocol links (mailto, tel)
+        if (href.startsWith('mailto:') || href.startsWith('tel:')) {
+            return;
+        }
+
+        // Ignore links that are meant to open in a new tab
+        if (link.hasAttribute('target') && link.getAttribute('target') === '_blank') {
+            return;
+        }
+
+        // 2. --- CHECK IF IT'S A SAME-PAGE ANCHOR LINK ---
+        // This is the core of the fix. It robustly checks if the link points to the current page.
+        const currentPath = window.location.pathname.endsWith('/') ? window.location.pathname : window.location.pathname + '/';
+        const linkUrl = new URL(href, window.location.origin);
+        const linkPath = linkUrl.pathname.endsWith('/') ? linkUrl.pathname : linkUrl.pathname + '/';
+
+        const isSamePageAnchorLink = (href.startsWith('#')) || (linkPath === currentPath && href.includes('#'));
+
+        if (isSamePageAnchorLink) {
+            const targetId = href.substring(href.indexOf('#') + 1);
+            // Check if the target element actually exists on the page
+            if (document.getElementById(targetId)) {
+                e.preventDefault(); // Prevent the default jump
+                smoothScrollToTarget(targetId); // Use your smooth scroll function
+                closeMobileMenu(); // Close mobile menu if it's open after navigation
+            }
+            return; // IMPORTANT: Stop execution here for same-page anchors
+        }
+
+        // 3. --- IF IT'S A DIFFERENT PAGE, RUN THE TRANSITION ---
+        // If we reach here, it's a link to a different page.
+        e.preventDefault(); // Prevent immediate navigation
+        body.classList.add('is-transitioning'); // Start the exit animation
+        
+        setTimeout(() => {
+            window.location.href = href; // Navigate after the animation
+        }, transitionDuration);
     });
 }
 // Sets up the "Read More" button on the Competition Hub
@@ -265,7 +329,6 @@ async function loadMediaContent() {
         if (blogArticlesContainer) renderBlogArticlesPreview(data.blogArticles, blogArticlesContainer);
         if (galleryPhotosContainer) renderGalleryPhotosPreview(data.gallery.photos, galleryPhotosContainer);
         if (galleryVideosContainer) renderGalleryVideosPreview(data.gallery.videos, galleryVideosContainer);
-        if (partnersSponsorsContainer) renderPartnersSponsors(data.partnersSponsors, partnersSponsorsContainer);
 
         if (galleryTabs.length > 0) {
             galleryTabs.forEach(tab => {
@@ -736,7 +799,58 @@ function setupAccordions(accordionSelector, toggleSelector) {
         });
     }
 }
+// --- Function to set up the infinite partner logo scroller ---
+async function loadAndSetupPartnerScroller() {
+    const scroller = document.querySelector(".partners-scroller");
+    if (!scroller) return;
 
+    const partnersList = scroller.querySelector(".partners-list");
+    if (!partnersList) return;
+
+    try {
+        const response = await fetch('media-content.json');
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        const data = await response.json();
+        
+        if (data.partnersSponsors && data.partnersSponsors.length > 0) {
+            partnersList.innerHTML = ''; // Clear any placeholders
+            data.partnersSponsors.forEach(partner => {
+                const listItem = document.createElement('li');
+                listItem.className = 'partner-logo-item';
+                listItem.innerHTML = `
+                    <a href="${partner.websiteUrl || '#'}" target="_blank" rel="noopener noreferrer" title="${partner.name}">
+                        <img src="${partner.logoUrl}" alt="${partner.name} logo" onerror="this.style.display='none'; this.parentElement.innerHTML = '<span class=\\'partner-name-fallback\\'>${partner.name}</span>';">
+                    </a>
+                `;
+                partnersList.appendChild(listItem);
+            });
+
+            // Set up the animation after logos are loaded
+            setupAnimation(scroller);
+        } else {
+            partnersList.innerHTML = '<li>No partners to display.</li>';
+        }
+    } catch (error) {
+        console.error("Could not load partners for scroller:", error);
+        partnersList.innerHTML = '<li>Error loading partners.</li>';
+    }
+}
+
+function setupAnimation(scroller) {
+    // If a user prefers reduced motion, do not animate
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        scroller.setAttribute("data-animated", true);
+        const scrollerInner = scroller.querySelector(".partners-list");
+        const scrollerContent = Array.from(scrollerInner.children);
+
+        // Duplicate items for the seamless scroll effect
+        scrollerContent.forEach(item => {
+            const duplicatedItem = item.cloneNode(true);
+            duplicatedItem.setAttribute("aria-hidden", true);
+            scrollerInner.appendChild(duplicatedItem);
+        });
+    }
+}
 function setupCompetitionCarousel() {
     const wrapper = document.querySelector('.competition-carousel-wrapper');
     if (!wrapper) return;
@@ -818,83 +932,59 @@ function startSubmissionCountdown() {
         secondsEl.innerText = format(Math.floor((distance % (1000 * 60)) / 1000));
     }, 1000);
 }
-// --- Tribute for Nara (Easy Version: Type "nara") ---
-
-document.addEventListener('DOMContentLoaded', () => {
-    // The new, simpler key sequence for the tribute
-    const tributeCode = ['n', 'a', 'r', 'a'];
-    let currentPosition = 0;
-
-    // Elements for the tribute
-    const tributeOverlay = document.getElementById('nara-tribute-overlay');
-    const closeButton = document.querySelector('.close-tribute');
-
-    // Function to show the tribute (this function remains the same)
-    function showTribute() {
-        if (tributeOverlay) {
-            tributeOverlay.style.display = 'flex';
-            setTimeout(() => {
-                tributeOverlay.style.opacity = '1';
-                tributeOverlay.querySelector('.tribute-modal').style.transform = 'scale(1)';
-            }, 10);
-        }
-    }
-
-    // Function to hide the tribute (this function remains the same)
-    function hideTribute() {
-        if (tributeOverlay) {
-            tributeOverlay.style.opacity = '0';
-            tributeOverlay.querySelector('.tribute-modal').style.transform = 'scale(0.9)';
-            setTimeout(() => {
-                tributeOverlay.style.display = 'none';
-            }, 500);
-        }
-    }
-
-    // Listen for key presses
-    document.addEventListener('keydown', function(e) {
-        // Check if the pressed key matches the next key in the sequence
-        if (e.key.toLowerCase() === tributeCode[currentPosition]) {
-            currentPosition++;
-            // If the full sequence is entered, show the tribute
-            if (currentPosition === tributeCode.length) {
-                showTribute();
-                currentPosition = 0; // Reset for next time
-            }
-        } else {
-            // If the wrong key is pressed, reset the sequence
-            currentPosition = 0;
-        }
-    });
-
-    // Add event listeners to close the tribute (this remains the same)
-    if (closeButton) {
-        closeButton.addEventListener('click', hideTribute);
-    }
-    if (tributeOverlay) {
-        tributeOverlay.addEventListener('click', function(e) {
-            if (e.target === tributeOverlay) {
-                hideTribute();
-            }
-        });
-    }
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && tributeOverlay && tributeOverlay.style.display === 'flex') {
-            hideTribute();
-        }
-    });
-});
-// --- Main DOMContentLoaded Listener ---
+// Set the loading class on the body immediately when the script runs.
+// --- Main DOMContentLoaded Listener (Corrected & Unified) ---
 document.addEventListener('DOMContentLoaded', async () => {
+
+    // 1. Set up the page transition structure IMMEDIATELY. This is crucial.
+    setupPageTransitions();
     initializeAOS();
     setupMobileNavigation();
     handlePageLoadAnchors();
     pageTitleElement = document.querySelector('title[data-translate-key]');
+
+    // 2. Fetch translations and apply them initially
     await fetchTranslations();
     
-    // Initialize all page-specific components
-    if (document.getElementById("countdown-timer")) startCountdown();
-    if (document.getElementById('media')) loadMediaContent();
+    // 3. Setup all page-specific components
+    if (document.getElementById("countdown-timer")) {
+        startCountdown();
+    }
+    if (document.getElementById('media')) {
+        // Run the new, correct function for the media scroller
+        loadAndSetupPartnerScroller(); 
+        
+        // The functions for blog/gallery previews from the old loadMediaContent are still needed
+        const blogArticlesContainer = document.querySelector('#blog-articles-container .articles-grid');
+        const galleryPhotosContainer = document.querySelector('#gallery-container .gallery-grid.photos');
+        const galleryVideosContainer = document.querySelector('#gallery-container .gallery-grid.videos');
+        const galleryTabs = document.querySelectorAll('#media .gallery-tab-button');
+        
+        // Fetch media content to populate blog/gallery previews
+        fetch('media-content.json')
+            .then(response => response.json())
+            .then(data => {
+                if (blogArticlesContainer) renderBlogArticlesPreview(data.blogArticles, blogArticlesContainer);
+                if (galleryPhotosContainer) renderGalleryPhotosPreview(data.gallery.photos, galleryPhotosContainer);
+                if (galleryVideosContainer) renderGalleryVideosPreview(data.gallery.videos, galleryVideosContainer);
+
+                if (galleryTabs.length > 0) {
+                    galleryTabs.forEach(tab => {
+                        tab.addEventListener('click', () => {
+                            galleryTabs.forEach(t => t.classList.remove('active'));
+                            tab.classList.add('active');
+                            document.querySelectorAll('#media .gallery-grid').forEach(content => {
+                                content.classList.remove('active-gallery-content');
+                            });
+                            const targetContentClass = tab.dataset.tab;
+                            const newActiveContent = document.querySelector(`#media .gallery-grid.${targetContentClass}`);
+                            if (newActiveContent) newActiveContent.classList.add('active-gallery-content');
+                        });
+                    });
+                }
+            }).catch(error => console.error("Error loading blog/gallery previews:", error));
+    }
+
     if (document.getElementById('full-articles-grid')) loadAllBlogArticles();
     if (document.getElementById('article-detail-wrapper')) loadSpecificBlogArticle();
     if (document.getElementById('all-photos-grid')) {
@@ -908,15 +998,57 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     setupFAQAccordion();
     setupAccordions('.accordion-seminar', '.accordion-seminar-toggle');
-
+    
+    // 4. Set up the language toggle button event listener
     if (langToggleButton) {
         langToggleButton.addEventListener('click', () => {
             const newLang = currentLang === 'id' ? 'en' : 'id';
             applyTranslations(newLang);
         });
     }
-});
 
+    // 5. Set up the tribute functionality
+    const tributeCode = ['n', 'a', 'r', 'a'];
+    let currentPosition = 0;
+    const tributeOverlay = document.getElementById('nara-tribute-overlay');
+    const closeButton = document.querySelector('.close-tribute');
+
+    function showTribute() {
+        if (tributeOverlay) {
+            tributeOverlay.style.display = 'flex';
+            setTimeout(() => {
+                tributeOverlay.style.opacity = '1';
+                tributeOverlay.querySelector('.tribute-modal').style.transform = 'scale(1)';
+            }, 10);
+        }
+    }
+
+    function hideTribute() {
+        if (tributeOverlay) {
+            tributeOverlay.style.opacity = '0';
+            tributeOverlay.querySelector('.tribute-modal').style.transform = 'scale(0.9)';
+            setTimeout(() => {
+                tributeOverlay.style.display = 'none';
+            }, 500);
+        }
+    }
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key.toLowerCase() === tributeCode[currentPosition]) {
+            currentPosition++;
+            if (currentPosition === tributeCode.length) {
+                showTribute();
+                currentPosition = 0; 
+            }
+        } else {
+            currentPosition = 0;
+        }
+    });
+
+    if (closeButton) closeButton.addEventListener('click', hideTribute);
+    if (tributeOverlay) tributeOverlay.addEventListener('click', (e) => { if (e.target === tributeOverlay) hideTribute(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && tributeOverlay && tributeOverlay.style.display === 'flex') hideTribute(); });
+});
 // --- NEW: Accurate Scroll Handling on Initial Page Load ---
 // This waits for all resources (images, fonts) to load, ensuring nav height is accurate.
 window.addEventListener('load', () => {
