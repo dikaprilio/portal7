@@ -126,267 +126,274 @@
     </script>
 
 </head>
-<body class="competition-hub-body">
+<body class="competition-hub-body is-loading">
+    <div class="page-transition-overlay"></div>
+    <div class="page-transition-wrapper">
 
-    <nav>
-        <div class="nav-container">
-            <a href="/" class="logo">
-                <img src="img/Portal_Logo.png" alt="Logo Portal 7" onerror="this.onerror=null;this.src='https://placehold.co/120x30/cccccc/ffffff?text=P7+Logo';">
-            </a>
-            <div class="nav-links" id="main-nav-links">
-                <a class="nav-a" href="/#hero" data-translate-key="nav_beranda">Home</a>
-                <div class="nav-item dropdown">
-                    <a class="nav-a dropdown-toggle" href="#" data-translate-key="nav_tentang_portal">About Portal <i class="fas fa-chevron-down dropdown-icon"></i></a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="/#tentang" data-translate-key="nav_tentang_kami">About Us</a>
-                        <a class="dropdown-item" href="/#sdg-commitment" data-translate-key="nav_sdg_commitment">SDG Commitment</a>
-                        <a class="dropdown-item" href="/#guest-stars" data-translate-key="nav_guest_stars">Guest Star</a> 
-                        <a class="dropdown-item" href="/#highlight" data-translate-key="nav_highlight">Highlights</a>
-                        <a class="dropdown-item" href="/#linimasa" data-translate-key="nav_linimasa">Timeline</a>
-                        <a class="dropdown-item" href="/#peserta" data-translate-key="nav_peserta">Who Can Join?</a>
-                        <a class="dropdown-item" href="/#faq" data-translate-key="nav_faq">FAQ</a>
+        <nav>
+            <div class="nav-container">
+                <a href="/" class="logo">
+                    <img src="img/Portal_Logo.png" alt="Logo Portal 7" onerror="this.onerror=null;this.src='https://placehold.co/120x30/cccccc/ffffff?text=P7+Logo';">
+                </a>
+                <div class="nav-links" id="main-nav-links">
+                    <a class="nav-a" href="/#hero" data-translate-key="nav_beranda">Beranda</a>
+                    <div class="nav-item dropdown">
+                        <a class="nav-a dropdown-toggle" href="#" data-translate-key="nav_tentang_portal">Tentang Portal <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/#tentang" data-translate-key="nav_tentang_kami">Tentang Kami</a>
+                            <a class="dropdown-item" href="/#sdg-commitment" data-translate-key="nav_sdg_commitment">Komitmen SDG</a>
+                            <a class="dropdown-item" href="/#guest-stars" data-translate-key="nav_guest_stars">Guest Star</a> 
+                            <a class="dropdown-item" href="/#highlight" data-translate-key="nav_highlight">Highlights</a>
+                            <a class="dropdown-item" href="/#linimasa" data-translate-key="nav_linimasa">Linimasa</a>
+                            <a class="dropdown-item" href="/#peserta" data-translate-key="nav_peserta">Siapa Peserta?</a>
+                            <a class="dropdown-item" href="/#faq" data-translate-key="nav_faq">FAQ</a>
+                            <a class="dropdown-item" href="/#sponsorship" data-translate-key="nav_sponsorship">Join Partnership</a>
+                        </div>
                     </div>
-                </div>
-                <div class="nav-item dropdown">
-                    <a class="nav-a dropdown-toggle" href="#" data-translate-key="nav_event">Event <i class="fas fa-chevron-down dropdown-icon"></i></a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="/competition-hub" data-translate-key="nav_kompetisi">Competition</a>
-                        <a class="dropdown-item" href="/seminar" data-translate-key="nav_seminar">Seminar</a>
+
+                    <div class="nav-item dropdown">
+                        <a class="nav-a dropdown-toggle" href="#" data-translate-key="nav_event">Event <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/competition-hub" data-translate-key="nav_kompetisi">Kompetisi</a>
+                            <a class="dropdown-item" href="/seminar" data-translate-key="nav_seminar">Seminar</a>
+                        </div>
                     </div>
-                </div>
-                <div class="nav-item dropdown">
-                    <a class="nav-a dropdown-toggle" href="#" data-translate-key="nav_media">Media <i class="fas fa-chevron-down dropdown-icon"></i></a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="/blog" data-translate-key="nav_blog">Blog</a>
-                        <a class="dropdown-item" href="/gallery" data-translate-key="nav_gallery">Gallery</a>
+                    <div class="nav-item dropdown">
+                        <a class="nav-a dropdown-toggle" href="#" data-translate-key="nav_media">Media <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/blog" data-translate-key="nav_blog">Blog</a>
+                            <a class="dropdown-item" href="/gallery" data-translate-key="nav_gallery">Gallery</a>
+                        </div>
                     </div>
+                    <a class="nav-a" href="/#kontak" data-translate-key="nav_kontak_kami">Kontak Kami</a>
+                    <a class="nav-a nav-cta-button" href="/#pendaftaran" data-translate-key="nav_pendaftaran">Pendaftaran</a>
+                    
+                    <button id="lang-toggle" class="lang-toggle-button" data-translate-key="lang_toggle">ID</button>
+
                 </div>
-                <a class="nav-a" href="/#kontak" data-translate-key="nav_kontak_kami">Contact Us</a>
-                <a class="nav-a nav-cta-button" href="/#pendaftaran" data-translate-key="nav_pendaftaran">Registration</a>
-                <button id="lang-toggle" class="lang-toggle-button" data-translate-key="lang_toggle">ID</button>
+                <button id="mobile-menu-toggle" class="mobile-menu-button" aria-label="Toggle menu" aria-expanded="false">
+                    <i class="fas fa-bars"></i>
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
-            <button id="mobile-menu-toggle" class="mobile-menu-button" aria-label="Toggle menu" aria-expanded="false">
-                <i class="fa fa-bars"></i> 
-            </button>
-        </div>
-    </nav>
+        </nav>
 
-    <main id="competition-hub-main">
-        <section class="competition-hub-hero section-padding" id="hero">
-            <div class="floating-cloud cloud-1"><img src="img/cloud_pink.png" alt="Pink cloud"></div>
-            <div class="floating-cloud cloud-2"><img src="img/cloud_blue.png" alt="Blue cloud"></div>
-            <div class="floating-cloud cloud-3"><img src="img/cloud_yellow.png" alt="Yellow cloud"></div>
-            <div class="floating-cloud cloud-4"><img src="img/cloud_orange.png" alt="Orange cloud"></div>
-            <div class="floating-cloud cloud-5"><img src="img/cloud_blue.png" alt="Blue cloud"></div>
-            <div class="portal-background-effect"></div>
-            <div class="hero-content-comp-hub" data-aos="zoom-in-up"> 
-                <h1 class="competition-hub-title" data-translate-key="competition_hub_hero_title_main">The Arenas of Innovation</h1>
-                <p class="competition-hub-subtitle" data-translate-key="competition_hub_hero_subtitle">This is where your ideas take form and your skills are put to the test. Explore our competition branches, find your passion, and create to make an impact.</p>
-            </div>
-        </section>
-
-        <div class="competition-listing-container">
-            <div class="competition-background-geometry">
-                <img src="img/Asset_16@4x.png" alt="Geometric Accent" class="comp-deco-1">
-                <img src="img/abstract_star-yellow.png" alt="Geometric Accent" class="comp-deco-2">
-                <img src="img/Asset_18@4x.png" alt="Geometric Accent" class="comp-deco-3">
-            </div>
-
-            <div class="carousel-timer-section" data-aos="fade-up">
-                <h3 class="timer-title">Submission Deadline</h3>
-                <div id="submission-countdown" class="countdown-timer">
-                    <span><span id="sub-days">00</span><small>Days</small></span>
-                    <span><span id="sub-hours">00</span><small>Hours</small></span>
-                    <span><span id="sub-minutes">00</span><small>Minutes</small></span>
-                    <span><span id="sub-seconds">00</span><small>Seconds</small></span>
+        <main id="competition-hub-main">
+            <section class="competition-hub-hero section-padding" id="hero">
+                <div class="floating-cloud cloud-1"><img src="img/cloud_pink.png" alt="Pink cloud"></div>
+                <div class="floating-cloud cloud-2"><img src="img/cloud_blue.png" alt="Blue cloud"></div>
+                <div class="floating-cloud cloud-3"><img src="img/cloud_yellow.png" alt="Yellow cloud"></div>
+                <div class="floating-cloud cloud-4"><img src="img/cloud_orange.png" alt="Orange cloud"></div>
+                <div class="floating-cloud cloud-5"><img src="img/cloud_blue.png" alt="Blue cloud"></div>
+                <div class="portal-background-effect"></div>
+                <div class="hero-content-comp-hub" data-aos="zoom-in-up"> 
+                    <h1 class="competition-hub-title" data-translate-key="competition_hub_hero_title_main">The Arenas of Innovation</h1>
+                    <p class="competition-hub-subtitle" data-translate-key="competition_hub_hero_subtitle">This is where your ideas take form and your skills are put to the test. Explore our competition branches, find your passion, and create to make an impact.</p>
                 </div>
-            </div>
-            
-            <div class="competition-carousel-wrapper" data-aos="fade-up" data-aos-delay="200">
-                <button class="carousel-nav prev" aria-label="Previous Competition"><i class="fas fa-chevron-left"></i></button>
-                
-                <div class="carousel-slides-container">
+            </section>
 
-                    <section class="comp-card left active">
-                        <div class="comp-card-image">
-                            <img src="img/ui-ux.png" alt="A UI/UX designer working on wireframes." onerror="this.onerror=null;this.src='https://placehold.co/600x750/1a1d24/3B82F6?text=UI/UX&font=montserrat';">
-                        </div>
-                        <div class="comp-card-content">
-                            <h2 class="comp-card-title" data-translate-key="competition_uiux_title">UI/UX Design</h2>
-                            <div class="description-wrapper">
-                                <div class="expandable-content">
-                                    <p class="comp-card-description" data-translate-key="competition_uiux_desc_full">This competition challenges you to design digital solutions that address real-world problems aligned with the SDGs. Focusing on user-centric thinking and impactful execution, you will create interfaces or experiences that directly respond to challenges in food security, education, or clean energy.</p>
-                                    <div class="comp-card-details">
-                                        <div class="detail-group">
-                                            <h4 data-translate-key="sub_themes_title">Sub-Themes</h4>
-                                            <ul class="sub-theme-list">
-                                                <li><i class="fas fa-leaf"></i> <span data-translate-key="sdg_2_title_full">Feeding Fair Future (SDG 2)</span></li>
-                                                <li><i class="fas fa-book-reader"></i> <span data-translate-key="sdg_4_title_full">Learning That Listens (SDG 4)</span></li>
-                                                <li><i class="fas fa-bolt"></i> <span data-translate-key="sdg_7_title_full">Every Watt Counts (SDG 7)</span></li>
-                                            </ul>
-                                        </div>
-                                        <div class="detail-group">
-                                            <h4 data-translate-key="assessment_criteria_title">Assessment Criteria</h4>
-                                            <ul class="criteria-list-kapow">
-                                                <li><span data-translate-key="competition_uiux_c1">Problem Alignment & SDGs Impact</span> <span class="value">30%</span></li>
-                                                <li><span data-translate-key="competition_uiux_c2">Design Aesthetics</span> <span class="value">25%</span></li>
-                                                <li><span data-translate-key="competition_uiux_c3">Creativity & Innovation</span> <span class="value">20%</span></li>
-                                                <li><span data-translate-key="competition_uiux_c4">UX Flow</span> <span class="value">25%</span></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="read-more-btn" data-more="Read More" data-less="Read Less">Read More</button>
-                            </div>
-                            <div class="total-prize-container">
-                                <span class="prize-label">Prizepool</span>
-                                <div class="prize-amount-wrapper">
-                                    <span class="prize-value">Rp5.000.000</span>
-                                </div>
-                            </div>
-                            <div class="comp-card-actions">
-                                 <a href="https://wa.me/628118622805" target="_blank" class="portal-button contact-button-whatsapp"><span data-translate-key="cp_uiux_name">Contact Nadia Azaria</span></a>
-                                 <a href="https://ipb.link/portal7-uiuxdesign-competition-registration" target="_blank" class="portal-button register-button-kapow"><span data-translate-key="register_now_button_short">Register</span> <i class="fas fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </section>
+            <div class="competition-listing-container">
+                <div class="competition-background-geometry">
+                    <img src="img/Asset_16@4x.png" alt="Geometric Accent" class="comp-deco-1">
+                    <img src="img/abstract_star-yellow.png" alt="Geometric Accent" class="comp-deco-2">
+                    <img src="img/Asset_18@4x.png" alt="Geometric Accent" class="comp-deco-3">
+                </div>
 
-                    <section class="comp-card right">
-                        <div class="comp-card-image">
-                            <img src="img/poster.png" alt="A graphic designer working on a poster." onerror="this.onerror=null;this.src='https://placehold.co/600x750/1a1d24/EC4899?text=Poster&font=montserrat';">
-                        </div>
-                        <div class="comp-card-content">
-                            <h2 class="comp-card-title" data-translate-key="competition_poster_title">Digital Poster</h2>
-                             <div class="description-wrapper">
-                                <div class="expandable-content">
-                                    <p class="comp-card-description" data-translate-key="competition_poster_desc_full">This competition is designed to hone your ability to simplify ideas and information, presenting them in a visually compelling way that is easily understood. Create posters that are persuasive, educational, and inspiring, using your creativity to craft powerful visual messages.</p>
-                                    <div class="comp-card-details">
-                                        <div class="detail-group">
-                                            <h4 data-translate-key="sub_themes_title">Sub-Themes</h4>
-                                            <ul class="sub-theme-list">
-                                                <li><i class="fas fa-leaf"></i> <span data-translate-key="sdg_2_title_full">Feeding Fair Future (SDG 2)</span></li>
-                                                <li><i class="fas fa-book-reader"></i> <span data-translate-key="sdg_4_title_full">Learning That Listens (SDG 4)</span></li>
-                                                <li><i class="fas fa-bolt"></i> <span data-translate-key="sdg_7_title_full">Every Watt Counts (SDG 7)</span></li>
-                                            </ul>
-                                        </div>
-                                        <div class="detail-group">
-                                            <h4 data-translate-key="assessment_criteria_title">Assessment Criteria</h4>
-                                            <ul class="criteria-list-kapow">
-                                                <li><span data-translate-key="competition_poster_c1">Creativity</span> <span class="value">35%</span></li>
-                                                <li><span data-translate-key="competition_poster_c2">Theme & Message Alignment</span> <span class="value">30%</span></li>
-                                                <li><span data-translate-key="competition_poster_c3">Originality</span> <span class="value">20%</span></li>
-                                                <li><span data-translate-key="competition_poster_c4">Rule Compliance</span> <span class="value">15%</span></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="read-more-btn" data-more="Read More" data-less="Read Less">Read More</button>
-                            </div>
-                            <div class="total-prize-container">
-                                <span class="prize-label">Prizepool</span>
-                                <div class="prize-amount-wrapper">
-                                    <span class="prize-value">Rp5.000.000</span>
-                                </div>
-                            </div>
-                             <div class="comp-card-actions">
-                                 <a href="https://wa.me/6282231050592" target="_blank" class="portal-button contact-button-whatsapp"><span data-translate-key="cp_poster_name">Contact Earlyanda Laxmi</span></a>
-                                 <a href="https://ipb.link/portal7-digitalcampaignposter-competition-registration" target="_blank" class="portal-button register-button-kapow"><span data-translate-key="register_now_button_short">Register</span> <i class="fas fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section class="comp-card left">
-                         <div class="comp-card-image">
-                            <img src="img/short-movie.png" alt="A filmmaker operating a camera." onerror="this.onerror=null;this.src='https://placehold.co/600x750/1a1d24/F97316?text=Movie&font=montserrat';">
-                        </div>
-                        <div class="comp-card-content">
-                            <h2 class="comp-card-title" data-translate-key="competition_short_movie_title">Short Movie</h2>
-                            <div class="description-wrapper">
-                                <div class="expandable-content">
-                                    <p class="comp-card-description" data-translate-key="competition_short_movie_desc_full">This competition aims to encourage participants from diverse backgrounds to express their unique ideas, vision, and creativity in the form of a short film. Through this competition, you are expected to present a story with a compelling narrative and visuals, ensuring the underlying message is effectively conveyed to the audience.</p>
-                                    <div class="comp-card-details">
-                                        <div class="detail-group">
-                                           <h4 data-translate-key="sub_themes_title">Sub-Themes</h4>
-                                            <ul class="sub-theme-list">
-                                                <li><i class="fas fa-leaf"></i> <span data-translate-key="sdg_2_title_full">Feeding Fair Future (SDG 2)</span></li>
-                                                <li><i class="fas fa-book-reader"></i> <span data-translate-key="sdg_4_title_full">Learning That Listens (SDG 4)</span></li>
-                                                <li><i class="fas fa-bolt"></i> <span data-translate-key="sdg_7_title_full">Every Watt Counts (SDG 7)</span></li>
-                                            </ul>
-                                        </div>
-                                        <div class="detail-group">
-                                           <h4 data-translate-key="assessment_criteria_title">Assessment Criteria</h4>
-                                            <ul class="criteria-list-kapow">
-                                                <li><span data-translate-key="competition_short_movie_c1">Creativity</span> <span class="value">25%</span></li>
-                                                <li><span data-translate-key="competition_short_movie_c2">Storytelling</span> <span class="value">15%</span></li>
-                                                <li><span data-translate-key="competition_short_movie_c3">Visuals & Cinematography</span> <span class="value">20%</span></li>
-                                                <li><span data-translate-key="competition_short_movie_c4">Theme Alignment</span> <span class="value">20%</span></li>
-                                                <li><span data-translate-key="competition_short_movie_c5">Language</span> <span class="value">10%</span></li>
-                                                <li><span data-translate-key="competition_short_movie_c6">Originality</span> <span class="value">10%</span></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="read-more-btn" data-more="Read More" data-less="Read Less">Read More</button>
-                            </div>
-                            <div class="total-prize-container">
-                                <span class="prize-label">Prizepool</span>
-                                <div class="prize-amount-wrapper">
-                                    <span class="prize-value">Rp7.000.000</span>
-                                </div>
-                            </div>
-                             <div class="comp-card-actions">
-                                 <a href="https://wa.me/6289621955267" target="_blank" class="portal-button contact-button-whatsapp"><span data-translate-key="cp_movie_name">Contact Amira Hasna</span></a>
-                                 <a href="https://ipb.link/portal7-shortmovie-competition-registration" target="_blank" class="portal-button register-button-kapow"><span data-translate-key="register_now_button_short">Register</span> <i class="fas fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </section>
-
+                <div class="carousel-timer-section" data-aos="fade-up">
+                    <h3 class="timer-title">Submission Deadline</h3>
+                    <div id="submission-countdown" class="countdown-timer">
+                        <span><span id="sub-days">00</span><small>Days</small></span>
+                        <span><span id="sub-hours">00</span><small>Hours</small></span>
+                        <span><span id="sub-minutes">00</span><small>Minutes</small></span>
+                        <span><span id="sub-seconds">00</span><small>Seconds</small></span>
+                    </div>
                 </div>
                 
-                <button class="carousel-nav next" aria-label="Next Competition"><i class="fas fa-chevron-right"></i></button>
+                <div class="competition-carousel-wrapper" data-aos="fade-up" data-aos-delay="200">
+                    <button class="carousel-nav prev" aria-label="Previous Competition"><i class="fas fa-chevron-left"></i></button>
+                    
+                    <div class="carousel-slides-container">
 
-                <div class="carousel-dots"></div>
+                        <section class="comp-card left active">
+                            <div class="comp-card-image">
+                                <img src="img/ui-ux.png" alt="A UI/UX designer working on wireframes." onerror="this.onerror=null;this.src='https://placehold.co/600x750/1a1d24/3B82F6?text=UI/UX&font=montserrat';">
+                            </div>
+                            <div class="comp-card-content">
+                                <h2 class="comp-card-title" data-translate-key="competition_uiux_title">UI/UX Design</h2>
+                                <div class="description-wrapper">
+                                    <div class="expandable-content">
+                                        <p class="comp-card-description" data-translate-key="competition_uiux_desc_full">This competition challenges you to design digital solutions that address real-world problems aligned with the SDGs. Focusing on user-centric thinking and impactful execution, you will create interfaces or experiences that directly respond to challenges in food security, education, or clean energy.</p>
+                                        <div class="comp-card-details">
+                                            <div class="detail-group">
+                                                <h4 data-translate-key="sub_themes_title">Sub-Themes</h4>
+                                                <ul class="sub-theme-list">
+                                                    <li><i class="fas fa-leaf"></i> <span data-translate-key="sdg_2_title_full">Feeding Fair Future (SDG 2)</span></li>
+                                                    <li><i class="fas fa-book-reader"></i> <span data-translate-key="sdg_4_title_full">Learning That Listens (SDG 4)</span></li>
+                                                    <li><i class="fas fa-bolt"></i> <span data-translate-key="sdg_7_title_full">Every Watt Counts (SDG 7)</span></li>
+                                                </ul>
+                                            </div>
+                                            <div class="detail-group">
+                                                <h4 data-translate-key="assessment_criteria_title">Assessment Criteria</h4>
+                                                <ul class="criteria-list-kapow">
+                                                    <li><span data-translate-key="competition_uiux_c1">Problem Alignment & SDGs Impact</span> <span class="value">30%</span></li>
+                                                    <li><span data-translate-key="competition_uiux_c2">Design Aesthetics</span> <span class="value">25%</span></li>
+                                                    <li><span data-translate-key="competition_uiux_c3">Creativity & Innovation</span> <span class="value">20%</span></li>
+                                                    <li><span data-translate-key="competition_uiux_c4">UX Flow</span> <span class="value">25%</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="read-more-btn" data-more="Read More" data-less="Read Less">Read More</button>
+                                </div>
+                                <div class="total-prize-container">
+                                    <span class="prize-label">Prizepool</span>
+                                    <div class="prize-amount-wrapper">
+                                        <span class="prize-value">Rp5.000.000</span>
+                                    </div>
+                                </div>
+                                <div class="comp-card-actions">
+                                    <a href="https://wa.me/628118622805" target="_blank" class="portal-button contact-button-whatsapp"><span data-translate-key="cp_uiux_name">Contact Nadia Azaria</span></a>
+                                    <a href="https://ipb.link/portal7-uiuxdesign-competition-registration" target="_blank" class="portal-button register-button-kapow"><span data-translate-key="register_now_button_short">Register</span> <i class="fas fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="comp-card right">
+                            <div class="comp-card-image">
+                                <img src="img/poster.png" alt="A graphic designer working on a poster." onerror="this.onerror=null;this.src='https://placehold.co/600x750/1a1d24/EC4899?text=Poster&font=montserrat';">
+                            </div>
+                            <div class="comp-card-content">
+                                <h2 class="comp-card-title" data-translate-key="competition_poster_title">Digital Poster</h2>
+                                <div class="description-wrapper">
+                                    <div class="expandable-content">
+                                        <p class="comp-card-description" data-translate-key="competition_poster_desc_full">This competition is designed to hone your ability to simplify ideas and information, presenting them in a visually compelling way that is easily understood. Create posters that are persuasive, educational, and inspiring, using your creativity to craft powerful visual messages.</p>
+                                        <div class="comp-card-details">
+                                            <div class="detail-group">
+                                                <h4 data-translate-key="sub_themes_title">Sub-Themes</h4>
+                                                <ul class="sub-theme-list">
+                                                    <li><i class="fas fa-leaf"></i> <span data-translate-key="sdg_2_title_full">Feeding Fair Future (SDG 2)</span></li>
+                                                    <li><i class="fas fa-book-reader"></i> <span data-translate-key="sdg_4_title_full">Learning That Listens (SDG 4)</span></li>
+                                                    <li><i class="fas fa-bolt"></i> <span data-translate-key="sdg_7_title_full">Every Watt Counts (SDG 7)</span></li>
+                                                </ul>
+                                            </div>
+                                            <div class="detail-group">
+                                                <h4 data-translate-key="assessment_criteria_title">Assessment Criteria</h4>
+                                                <ul class="criteria-list-kapow">
+                                                    <li><span data-translate-key="competition_poster_c1">Creativity</span> <span class="value">35%</span></li>
+                                                    <li><span data-translate-key="competition_poster_c2">Theme & Message Alignment</span> <span class="value">30%</span></li>
+                                                    <li><span data-translate-key="competition_poster_c3">Originality</span> <span class="value">20%</span></li>
+                                                    <li><span data-translate-key="competition_poster_c4">Rule Compliance</span> <span class="value">15%</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="read-more-btn" data-more="Read More" data-less="Read Less">Read More</button>
+                                </div>
+                                <div class="total-prize-container">
+                                    <span class="prize-label">Prizepool</span>
+                                    <div class="prize-amount-wrapper">
+                                        <span class="prize-value">Rp5.000.000</span>
+                                    </div>
+                                </div>
+                                <div class="comp-card-actions">
+                                    <a href="https://wa.me/6282231050592" target="_blank" class="portal-button contact-button-whatsapp"><span data-translate-key="cp_poster_name">Contact Earlyanda Laxmi</span></a>
+                                    <a href="https://ipb.link/portal7-digitalcampaignposter-competition-registration" target="_blank" class="portal-button register-button-kapow"><span data-translate-key="register_now_button_short">Register</span> <i class="fas fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="comp-card left">
+                            <div class="comp-card-image">
+                                <img src="img/short-movie.png" alt="A filmmaker operating a camera." onerror="this.onerror=null;this.src='https://placehold.co/600x750/1a1d24/F97316?text=Movie&font=montserrat';">
+                            </div>
+                            <div class="comp-card-content">
+                                <h2 class="comp-card-title" data-translate-key="competition_short_movie_title">Short Movie</h2>
+                                <div class="description-wrapper">
+                                    <div class="expandable-content">
+                                        <p class="comp-card-description" data-translate-key="competition_short_movie_desc_full">This competition aims to encourage participants from diverse backgrounds to express their unique ideas, vision, and creativity in the form of a short film. Through this competition, you are expected to present a story with a compelling narrative and visuals, ensuring the underlying message is effectively conveyed to the audience.</p>
+                                        <div class="comp-card-details">
+                                            <div class="detail-group">
+                                            <h4 data-translate-key="sub_themes_title">Sub-Themes</h4>
+                                                <ul class="sub-theme-list">
+                                                    <li><i class="fas fa-leaf"></i> <span data-translate-key="sdg_2_title_full">Feeding Fair Future (SDG 2)</span></li>
+                                                    <li><i class="fas fa-book-reader"></i> <span data-translate-key="sdg_4_title_full">Learning That Listens (SDG 4)</span></li>
+                                                    <li><i class="fas fa-bolt"></i> <span data-translate-key="sdg_7_title_full">Every Watt Counts (SDG 7)</span></li>
+                                                </ul>
+                                            </div>
+                                            <div class="detail-group">
+                                            <h4 data-translate-key="assessment_criteria_title">Assessment Criteria</h4>
+                                                <ul class="criteria-list-kapow">
+                                                    <li><span data-translate-key="competition_short_movie_c1">Creativity</span> <span class="value">25%</span></li>
+                                                    <li><span data-translate-key="competition_short_movie_c2">Storytelling</span> <span class="value">15%</span></li>
+                                                    <li><span data-translate-key="competition_short_movie_c3">Visuals & Cinematography</span> <span class="value">20%</span></li>
+                                                    <li><span data-translate-key="competition_short_movie_c4">Theme Alignment</span> <span class="value">20%</span></li>
+                                                    <li><span data-translate-key="competition_short_movie_c5">Language</span> <span class="value">10%</span></li>
+                                                    <li><span data-translate-key="competition_short_movie_c6">Originality</span> <span class="value">10%</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="read-more-btn" data-more="Read More" data-less="Read Less">Read More</button>
+                                </div>
+                                <div class="total-prize-container">
+                                    <span class="prize-label">Prizepool</span>
+                                    <div class="prize-amount-wrapper">
+                                        <span class="prize-value">Rp7.000.000</span>
+                                    </div>
+                                </div>
+                                <div class="comp-card-actions">
+                                    <a href="https://wa.me/6289621955267" target="_blank" class="portal-button contact-button-whatsapp"><span data-translate-key="cp_movie_name">Contact Amira Hasna</span></a>
+                                    <a href="https://ipb.link/portal7-shortmovie-competition-registration" target="_blank" class="portal-button register-button-kapow"><span data-translate-key="register_now_button_short">Register</span> <i class="fas fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </section>
+
+                    </div>
+                    
+                    <button class="carousel-nav next" aria-label="Next Competition"><i class="fas fa-chevron-right"></i></button>
+
+                    <div class="carousel-dots"></div>
+                </div>
             </div>
-        </div>
-    </main>
+        </main>
 
-    <footer>
-        <div class="footer-container">
-            <div class="footer-top">
-                <div class="footer-logo-area">
-                    <a href="/#hero"><img src="img/Portal_Logo.png" alt="Logo Mini Portal 7" class="portal-logo footer-logo-img"></a>
-                    <p class="footer-event-name">Portal 7: Empower Digital</p>
-                </div>
-                <div class="footer-quick-links">
-                    <h4 data-translate-key="footer_nav_cepat">Navigasi Cepat</h4>
-                    <a href="/#tentang" data-translate-key="nav_tentang_kami">Tentang Kami</a>
-                    <a href="/competition-hub" data-translate-key="nav_kompetisi">Kompetisi</a>
-                    <a href="/seminar" data-translate-key="nav_seminar">Seminar</a>
-                    <a href="/#linimasa" data-translate-key="nav_linimasa">Linimasa</a>
-                    <a href="/blog" data-translate-key="nav_blog">Blog</a>
-                    <a href="/gallery" data-translate-key="nav_gallery">Galeri</a>
-                    <a href="/#faq" data-translate-key="nav_faq">FAQ</a>
-                </div>
-                <div class="footer-contact-social">
-                    <h4 data-translate-key="footer_hubungi_kami">Terhubung Dengan Kami</h4>
-                    <div class="footer-contact-item"><i class="far fa-envelope"></i> <a href="mailto:portal.ipbuniversity@gmail.com">portal.ipbuniversity@gmail.com</a></div>
-                    <div class="footer-social-links">
-                        <a href="https://instagram.com/portal_ipb" target="_blank" class="social-icon ig" aria-label="Instagram Portal IPB"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.youtube.com/@portalipb" target="_blank" class="social-icon yt" aria-label="YouTube Portal IPB"><i class="fab fa-youtube"></i></a>
-                        <a href="https://www.tiktok.com/@portal_ipb/" target="_blank" class="social-icon tk" aria-label="TikTok Portal IPB"><i class="fab fa-tiktok"></i></a>
+        <footer>
+            <div class="footer-container">
+                <div class="footer-top">
+                    <div class="footer-logo-area">
+                        <a href="/#hero"><img src="img/Portal_Logo.png" alt="Logo Mini Portal 7" class="portal-logo footer-logo-img"></a>
+                        <p class="footer-event-name">Portal 7: Empower Digital</p>
+                    </div>
+                    <div class="footer-quick-links">
+                        <h4 data-translate-key="footer_nav_cepat">Navigasi Cepat</h4>
+                        <a href="/#tentang" data-translate-key="nav_tentang_kami">Tentang Kami</a>
+                        <a href="/competition-hub" data-translate-key="nav_kompetisi">Kompetisi</a>
+                        <a href="/seminar" data-translate-key="nav_seminar">Seminar</a>
+                        <a href="/#linimasa" data-translate-key="nav_linimasa">Linimasa</a>
+                        <a href="/blog" data-translate-key="nav_blog">Blog</a>
+                        <a href="/gallery" data-translate-key="nav_gallery">Galeri</a>
+                        <a href="/#faq" data-translate-key="nav_faq">FAQ</a>
+                    </div>
+                    <div class="footer-contact-social">
+                        <h4 data-translate-key="footer_hubungi_kami">Terhubung Dengan Kami</h4>
+                        <div class="footer-contact-item"><i class="far fa-envelope"></i> <a href="mailto:portal.ipbuniversity@gmail.com">portal.ipbuniversity@gmail.com</a></div>
+                        <div class="footer-social-links">
+                            <a href="https://instagram.com/portal_ipb" target="_blank" class="social-icon ig" aria-label="Instagram Portal IPB"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.youtube.com/@portalipb" target="_blank" class="social-icon yt" aria-label="YouTube Portal IPB"><i class="fab fa-youtube"></i></a>
+                            <a href="https://www.tiktok.com/@portal_ipb/" target="_blank" class="social-icon tk" aria-label="TikTok Portal IPB"><i class="fab fa-tiktok"></i></a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="footer-bottom">
-                <div class="footer-copyright">
-                    <p data-translate-key="footer_copyright_line1">&copy; 2025 Badan Eksekutif Mahasiswa Sekolah Vokasi IPB University. Hak cipta dilindungi.</p>
-                    <p data-translate-key="footer_copyright_line2">Diberdayakan oleh Inspirasi, Didorong oleh Inovasi.</p>
+                <div class="footer-bottom">
+                    <div class="footer-copyright">
+                        <p data-translate-key="footer_copyright_line1">&copy; 2025 Badan Eksekutif Mahasiswa Sekolah Vokasi IPB University. Hak cipta dilindungi.</p>
+                        <p data-translate-key="footer_copyright_line2">Diberdayakan oleh Inspirasi, Didorong oleh Inovasi.</p>
+                    </div>
+                    <a href="#hero" class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
                 </div>
-                <a href="#hero" class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
             </div>
-        </div>
-    </footer>
-
+        </footer>
+    </div>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="script.js" defer></script>
 
