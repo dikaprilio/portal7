@@ -2767,7 +2767,7 @@ nav::after {
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 /* Re-use portal-background-effect and floating-cloud styles from index.html if not already global */
