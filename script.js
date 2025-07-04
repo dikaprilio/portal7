@@ -616,9 +616,8 @@ function renderGalleryItems(itemsToRender, container, itemType) {
         galleryItemDiv.classList.add('gallery-item', itemType);
         galleryItemDiv.setAttribute('data-aos', 'zoom-in-up');
         galleryItemDiv.setAttribute('data-item-id', item.id);
-
         galleryItemDiv.innerHTML = `
-            <img src="${item.thumbnailUrl}" alt="${item.title}" onerror="this.src='https://placehold.co/300x300/e0e0e0/757575?text=Error&font=montserrat';">
+            <img src="${item.thumbnailUrl}" alt="${item.title}" loading="lazy" onerror="this.src='https://placehold.co/300x300/e0e0e0/757575?text=Error&font=montserrat';">
             <div class="gallery-item-overlay">
                 <i class="fas ${itemType === 'photo' ? 'fa-search-plus' : 'fa-play-circle'}"></i>
                 <span>${item.title} ${item.year ? '('+item.year+')' : ''}</span>

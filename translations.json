@@ -246,10 +246,14 @@
     "seminar_awarding_agenda_2": "Prize & Certificate Ceremony",
     "seminar_awarding_agenda_3": "Dynamic Networking Session",
     "seminar_awarding_agenda_4": "Special Entertainment",
-    "seminar_awarding_note": "<em>Attended by finalists, judges, speakers, and invited guests.</em>",
+    "seminar_awarding_note": "Attended by finalists, judges, speakers, and invited guests.",
     "seminar_cta_title": "Ready to be Inspired?",
     "seminar_cta_subtitle": "Details for seminar registration (if separate from the competition) or ticket information will be announced soon. Stay tuned to our social media!",
-    "seminar_cta_button": "View Competition Registration"
+    "seminar_cta_button": "View Competition Registration",
+    "sponsorship_proposal_title": "Sponsorship Proposal",
+    "sponsorship_proposal_subtitle": "We invite you to be part of our journey in empowering digital innovation. Explore our proposal to see how we can collaborate.",
+    "nav_sponsorship": "Join Partnership"
+  
   },
   "id": {
     "nav_beranda": "Beranda",
@@ -501,6 +505,9 @@
     "seminar_awarding_note": "Dihadiri oleh finalis, juri, pembicara, dan tamu undangan.",
     "seminar_cta_title": "Siap Terinspirasi?",
     "seminar_cta_subtitle": "Detail pendaftaran seminar (jika terpisah dari kompetisi) atau informasi tiket akan segera diumumkan. Pantau terus media sosial kami!",
-    "seminar_cta_button": "Lihat Pendaftaran Kompetisi"
+    "seminar_cta_button": "Lihat Pendaftaran Kompetisi",
+    "sponsorship_proposal_title": "Proposal Sponsorship",
+    "sponsorship_proposal_subtitle": "Kami mengundang Anda untuk menjadi bagian dari perjalanan kami dalam memberdayakan inovasi digital. Jelajahi proposal kami untuk melihat bagaimana kita bisa berkolaborasi.",
+    "nav_sponsorship": "Gabung Kemitraan"
   }
 }

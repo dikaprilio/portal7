@@ -45,75 +45,59 @@
     "photos": [
       {
         "id": "foto-1",
-        "title": "Suasana Seminar Portal 6",
+        "title": "Guest Speaker Session",
         "year": "2024",
-        "thumbnailUrl": "img/jovial.jpeg",
-        "fullUrl": "img/jovial.jpeg",
-        "description": "Antusiasme peserta saat sesi talkshow inspiratif."
+        "thumbnailUrl": "img/IMG_3203.jpg",
+        "fullUrl": "img/IMG_3203.jpg",
+        "description": "Guest speaker Kevin Anggara sharing insights during the Portal 6 talkshow."
       },
       {
         "id": "foto-2",
-        "title": "Awarding Night Portal 6",
+        "title": "Certificate of Appreciation",
         "year": "2024",
-        "thumbnailUrl": "img/awarding_2024_thumb.jpg",
-        "fullUrl": "img/awarding_2024_full.jpg",
-        "description": "Momen penghargaan untuk para pemenang kompetisi UI/UX."
+        "thumbnailUrl": "img/IMG_3281.jpg",
+        "fullUrl": "img/IMG_3281.jpg",
+        "description": "Presenting a certificate of appreciation to guest speaker Kevin Anggara."
       },
       {
         "id": "foto-3",
-        "title": "Workshop Desain Grafis",
+        "title": "Audience Engagement",
         "year": "2024",
-        "thumbnailUrl": "img/workshop_desain_thumb.jpg",
-        "fullUrl": "img/workshop_desain_full.jpg",
-        "description": "Peserta aktif dalam sesi praktik workshop."
+        "thumbnailUrl": "img/IMG_3227.jpg",
+        "fullUrl": "img/IMG_3227.jpg",
+        "description": "The audience listening intently during a Portal 6 seminar session."
       },
       {
         "id": "foto-4",
-        "title": "When the Code Finally Works",
-        "year": "2025",
-        "thumbnailUrl": "https://i.imgflip.com/1bij.jpg",
-        "fullUrl": "https://i.imgflip.com/1bij.jpg",
-        "description": "That feeling of pure, unadulterated triumph."
+        "title": "Q&A Session",
+        "year": "2024",
+        "thumbnailUrl": "img/S0952298.jpg",
+        "fullUrl": "img/S0952298.jpg",
+        "description": "The Q&A session in full swing, fostering interactive discussion."
       },
       {
         "id": "foto-5",
-        "title": "Me explaining 'responsive design'",
-        "year": "2025",
-        "thumbnailUrl": "https://i.imgflip.com/26am.jpg",
-        "fullUrl": "https://i.imgflip.com/26am.jpg",
-        "description": "It's all connected, you see..."
+        "title": "Participant Registration",
+        "year": "2024",
+        "thumbnailUrl": "img/IMG_3058.jpg",
+        "fullUrl": "img/IMG_3058.jpg",
+        "description": "Participants registering at the front desk, ready for the event."
       },
       {
         "id": "foto-6",
-        "title": "JavaScript",
-        "year": "2025",
-        "thumbnailUrl": "https://i.imgflip.com/1g8my4.jpg",
-        "fullUrl": "https://i.imgflip.com/1g8my4.jpg",
-        "description": "Everything is fine. The console errors are just suggestions."
+        "title": "Portal 6 Committee",
+        "year": "2024",
+        "thumbnailUrl": "img/IMG_3376.jpg",
+        "fullUrl": "img/IMG_3376.jpg",
+        "description": "The dedicated committee of Portal 6 posing for a group photo."
       },
       {
         "id": "foto-7",
-        "title": "Trying to Center a Div",
-        "year": "2025",
-        "thumbnailUrl": "https://i.imgflip.com/2xsc.jpg",
-        "fullUrl": "https://i.imgflip.com/2xsc.jpg",
-        "description": "CSS: *exists*. Me: `margin: 0 auto;`. CSS: `display: flex; justify-content: center;`"
-      },
-      {
-        "id": "foto-8",
-        "title": "Deadline Approaching",
-        "year": "2025",
-        "thumbnailUrl": "https://i.imgflip.com/1ur9b0.jpg",
-        "fullUrl": "https://i.imgflip.com/1ur9b0.jpg",
-        "description": "Stage 1: Calm. Stage 2: PANIK. Stage 3: Somehow it's done."
-      },
-      {
-        "id": "foto-9",
-        "title": "Client Feedback",
-        "year": "2025",
-        "thumbnailUrl": "https://i.imgflip.com/30b1gx.jpg",
-        "fullUrl": "https://i.imgflip.com/30b1gx.jpg",
-        "description": "'Can you make the logo bigger?' The cat: 'But it's already huge!'"
+        "title": "Enthusiastic Participants & Speakers",
+        "year": "2024",
+        "thumbnailUrl": "img/IMG_3104.jpg",
+        "fullUrl": "img/IMG_3104.jpg",
+        "description": "Speakers and participants sharing a moment of connection."
       }
     ],
     "videos": [
