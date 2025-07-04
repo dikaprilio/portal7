@@ -6865,3 +6865,184 @@ nav {
     color: #f1c40f;
     transform: scale(1.1);
 }
+/* === SPONSORSHIP PROPOSAL SECTION (MODIFIED) === */
+.sponsorship-proposal-section {
+    background-color: var(--navbar-bg);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    /* Animated background pattern */
+    background-image: linear-gradient(rgba(12, 10, 31, 0.9), rgba(12, 10, 31, 0.9)), url(img/Asset_18@4x.png);
+    background-blend-mode: saturation;
+    background-size: 400px;
+    animation: pan-background 50s linear infinite;
+}
+
+@keyframes pan-background {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+}
+
+.sponsorship-proposal-section .section-title {
+    color: var(--secondary-color);
+    text-shadow: 0 0 10px rgba(var(--yellow-accent-rgb), 0.4);
+}
+
+.sponsorship-proposal-section .section-subtitle {
+    color: #c0c8d4;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.proposal-button-wrapper {
+    margin-top: 2rem;
+    display: inline-block;
+    position: relative;
+}
+
+.proposal-image-button {
+    display: block;
+    max-width: 400px;
+    margin: 0 auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 2px solid rgba(var(--yellow-accent-rgb), 0.5);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+    position: relative;
+    /* Floating animation */
+    animation: float-animation 4s ease-in-out infinite;
+}
+
+@keyframes float-animation {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+    100% { transform: translateY(0px); }
+}
+
+.proposal-image-button:hover {
+    transform: scale(1.05) !important; /* Override float animation's transform on hover */
+    animation-play-state: paused; /* Pause floating when hovering */
+    box-shadow: 0 15px 40px rgba(var(--yellow-accent-rgb), 0.3);
+}
+
+.proposal-image-button img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.proposal-button-overlay { /* Replaces ::after for better content control */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.proposal-overlay-text {
+    font-size: 1.25rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.proposal-overlay-text i {
+    font-size: 0.9em;
+}
+
+.proposal-image-button:hover .proposal-button-overlay {
+    opacity: 1;
+}
+
+@media (max-width: 767px) {
+    .proposal-image-button {
+        max-width: 320px;
+    }
+    .proposal-overlay-text {
+        font-size: 1rem;
+    }
+}
+/* === GALLERY PAGE REVAMP === */
+
+/* Gallery Page Hero Enhancement */
+.gallery-page-hero {
+    /* Existing styles are good, let's add a subtle gradient overlay */
+    background-image: 
+        linear-gradient(160deg, rgba(var(--blue-accent-rgb), 0.1), transparent 50%),
+        radial-gradient(ellipse at 70% 30%, rgba(var(--pink-accent-rgb), 0.2) 0%, transparent 40%),
+        radial-gradient(ellipse at 30% 70%, rgba(var(--blue-accent-rgb), 0.25) 0%, transparent 40%),
+        linear-gradient(160deg, #0c0a1f 40%, #1a1238 100%);
+}
+
+/* Gallery Grid and Item Refinements */
+.gallery-grid {
+    gap: 1.25rem; /* Slightly more space between items */
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px; /* Softer radius */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    aspect-ratio: 1 / 1;
+    cursor: pointer;
+    background-color: #23272f; /* Dark background for loading state */
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.4s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+    filter: brightness(0.7);
+}
+
+.gallery-item-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* Gradient starts darker at the bottom for better text readability */
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+    color: white;
+    padding: 1.5rem 1rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end; /* Align content to the bottom */
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px); /* Start slightly lower */
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    pointer-events: none;
+}
+
+.gallery-item:hover .gallery-item-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.gallery-item-overlay i {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    /* Add a subtle text shadow to the icon for depth */
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
