@@ -74,25 +74,6 @@ footer {
   position: relative;
 }
 
-.page-transition-wrapper {
-  transition: opacity .6s cubic-bezier(.4, 0, .2, 1), filter .7s cubic-bezier(.4, 0, .2, 1);
-}
-
-body.is-transitioning .page-transition-wrapper {
-  opacity: 0;
-  filter: blur(20px);
-  pointer-events: none;
-}
-
-body.is-loading .page-transition-wrapper {
-  opacity: 0;
-  filter: blur(20px);
-}
-
-body.is-loading {
-  visibility: hidden;
-}
-
 nav {
   background-color: var(--navbar-bg);
   box-shadow: 0 5px 15px #00000059, 0 0 40px rgba(var(--blue-accent-rgb), .2);
