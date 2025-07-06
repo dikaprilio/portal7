@@ -1,6 +1,8 @@
 // --- Global Variables & Initial Setup ---
-let currentLang = localStorage.getItem('lang') || 'en'; // Default to Indonesian
-let translations = {};
+import translations from './translations.json';
+import mediaContent from './media-content.js';
+
+let currentLang = localStorage.getItem('lang') || 'en'; // Default to English
 const langToggleButton = document.getElementById('lang-toggle');
 const mainNavLinks = document.getElementById('main-nav-links');
 const menuToggleButton = document.getElementById('mobile-menu-toggle');
@@ -8,24 +10,6 @@ let menuIcon = menuToggleButton ? menuToggleButton.querySelector('i') : null;
 let pageTitleElement = null;
 
 // --- Language Toggle Functionality ---
-async function fetchTranslations() {
-    try {
-        const response = await fetch(new URL('translations.json', import.meta.url));
-        if (!response.ok) {
-            console.error(`HTTP error! status: ${response.status}`);
-            return;
-        }
-        translations = await response.json();
-        if (Object.keys(translations).length === 0) {
-            console.error("Translations file loaded but is empty.");
-            return;
-        }
-        applyTranslations(currentLang);
-    } catch (error) {
-        console.error("Could not load or parse translations:", error);
-    }
-}
-
 function applyTranslations(lang) {
     currentLang = lang;
     localStorage.setItem('lang', lang);
@@ -57,7 +41,6 @@ function applyTranslations(lang) {
     }
     setupReadMoreToggles();
 }
-
 // --- AOS Initialization ---
 function initializeAOS() {
     if (typeof AOS !== 'undefined') {
@@ -103,10 +86,8 @@ function setupMobileNavigation() {
         menuToggleButton.addEventListener('click', (e) => {
             e.stopPropagation();
             const isActive = mainNavLinks.classList.toggle('active');
-            menuToggleButton.classList.toggle('active', isActive); // This line is added
+            menuToggleButton.classList.toggle('active', isActive);
             menuToggleButton.setAttribute('aria-expanded', isActive);
-
-            // The old `menuIcon.className` logic is no longer needed as CSS handles the icon switch
 
             if (!isActive) {
                 document.querySelectorAll('.nav-links .nav-item.dropdown.open').forEach(d => d.classList.remove('open'));
@@ -128,12 +109,12 @@ function setupMobileNavigation() {
         anchor.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
             const isSamePageLink = href.startsWith('#') || href.startsWith('/#') || href.startsWith('index.html#');
-            
+
             if (isSamePageLink) {
                 const targetId = href.substring(href.indexOf('#') + 1);
                 if (document.getElementById(targetId)) {
                     e.preventDefault();
-                    smoothScrollToTarget(targetId); // Use the accurate scroll function
+                    smoothScrollToTarget(targetId);
                     if (mainNavLinks.classList.contains('active')) {
                         closeMobileMenu();
                     }
@@ -150,70 +131,45 @@ function setupMobileNavigation() {
         }
     });
 }
-// In script.js, replace the existing setupPageTransitions function with this one.
 
 function setupPageTransitions() {
     const body = document.body;
-    const transitionDuration = 800; // Match your longest transition in CSS
+    const transitionDuration = 800;
 
-    // --- Entry Animation ---
     window.addEventListener('load', () => {
         body.classList.remove('is-loading');
     });
 
-    // --- Unified & Corrected Click Handler ---
     body.addEventListener('click', (e) => {
-        // Find the closest 'a' tag to where the user clicked.
         const link = e.target.closest('a');
+        if (!link || !link.hasAttribute('href')) return;
 
-        // 1. --- EXIT EARLY FOR INVALID CLICKS ---
-        // If it's not a valid link, do nothing.
-        if (!link || !link.hasAttribute('href')) {
-            return;
-        }
-        
         const href = link.getAttribute('href');
+        if (href.startsWith('mailto:') || href.startsWith('tel:') || (link.hasAttribute('target') && link.getAttribute('target') === '_blank')) return;
 
-        // Ignore special protocol links (mailto, tel)
-        if (href.startsWith('mailto:') || href.startsWith('tel:')) {
-            return;
-        }
-
-        // Ignore links that are meant to open in a new tab
-        if (link.hasAttribute('target') && link.getAttribute('target') === '_blank') {
-            return;
-        }
-
-        // 2. --- CHECK IF IT'S A SAME-PAGE ANCHOR LINK ---
-        // This is the core of the fix. It robustly checks if the link points to the current page.
         const currentPath = window.location.pathname.endsWith('/') ? window.location.pathname : window.location.pathname + '/';
         const linkUrl = new URL(href, window.location.origin);
         const linkPath = linkUrl.pathname.endsWith('/') ? linkUrl.pathname : linkUrl.pathname + '/';
-
         const isSamePageAnchorLink = (href.startsWith('#')) || (linkPath === currentPath && href.includes('#'));
 
         if (isSamePageAnchorLink) {
             const targetId = href.substring(href.indexOf('#') + 1);
-            // Check if the target element actually exists on the page
             if (document.getElementById(targetId)) {
-                e.preventDefault(); // Prevent the default jump
-                smoothScrollToTarget(targetId); // Use your smooth scroll function
-                closeMobileMenu(); // Close mobile menu if it's open after navigation
+                e.preventDefault();
+                smoothScrollToTarget(targetId);
+                closeMobileMenu();
             }
-            return; // IMPORTANT: Stop execution here for same-page anchors
+            return;
         }
 
-        // 3. --- IF IT'S A DIFFERENT PAGE, RUN THE TRANSITION ---
-        // If we reach here, it's a link to a different page.
-        e.preventDefault(); // Prevent immediate navigation
-        body.classList.add('is-transitioning'); // Start the exit animation
-        
+        e.preventDefault();
+        body.classList.add('is-transitioning');
         setTimeout(() => {
-            window.location.href = href; // Navigate after the animation
+            window.location.href = href;
         }, transitionDuration);
     });
 }
-// Sets up the "Read More" button on the Competition Hub
+
 function setupReadMoreToggles() {
     document.querySelectorAll('.comp-card .read-more-btn').forEach(button => {
         if (button.hasAttribute('data-readmore-listener')) return;
@@ -229,7 +185,6 @@ function setupReadMoreToggles() {
 }
 function handlePageLoadAnchors() {
     if (window.location.hash) {
-        // Use a timeout to ensure all content is loaded and heights are correct
         window.addEventListener('load', () => {
              setTimeout(() => {
                 smoothScrollToTarget(window.location.hash.substring(1));
@@ -238,7 +193,6 @@ function handlePageLoadAnchors() {
     }
 }
 
-// --- FAQ Accordion ---
 function setupFAQAccordion() {
     const faqQuestions = document.querySelectorAll('.faq-question');
     if (faqQuestions.length > 0) {
@@ -256,19 +210,15 @@ function setupFAQAccordion() {
     }
 }
 
-// --- Countdown Timer (Index Page) ---
 function startCountdown() {
     const countdownTimerEl = document.getElementById("countdown-timer");
     if (!countdownTimerEl) return;
-
     const countdownDate = new Date("October 11, 2025 00:00:00").getTime();
     const daysEl = document.getElementById("days");
     const hoursEl = document.getElementById("hours");
     const minutesEl = document.getElementById("minutes");
     const secondsEl = document.getElementById("seconds");
-
     if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
-
     const countdownFunction = setInterval(function() {
         const now = new Date().getTime();
         const distance = countdownDate - now;
@@ -276,15 +226,13 @@ function startCountdown() {
         const hours = Math.floor((distance % (1000*60*60*24))/(1000*60*60));
         const minutes = Math.floor((distance % (1000*60*60))/(1000*60));
         const seconds = Math.floor((distance % (1000*60))/1000);
-
-        daysEl.innerText = days < 10 ? "0"+days : days;
-        hoursEl.innerText = hours < 10 ? "0"+hours : hours;
-        minutesEl.innerText = minutes < 10 ? "0"+minutes : minutes;
-        secondsEl.innerText = seconds < 10 ? "0"+seconds : seconds;
-
+        daysEl.innerText = String(days).padStart(2, '0');
+        hoursEl.innerText = String(hours).padStart(2, '0');
+        minutesEl.innerText = String(minutes).padStart(2, '0');
+        secondsEl.innerText = String(seconds).padStart(2, '0');
         if (distance < 0) {
             clearInterval(countdownFunction);
-            const eventStartedKey = 'event_started_message'; 
+            const eventStartedKey = 'event_started_message';
             countdownTimerEl.innerHTML = `<span data-translate-key="${eventStartedKey}">${(translations[currentLang] && translations[currentLang][eventStartedKey]) || "EVENT HAS STARTED!"}</span>`;
             countdownTimerEl.style.fontSize="1.5rem";
             countdownTimerEl.style.fontWeight="bold";
@@ -296,64 +244,29 @@ function startCountdown() {
     }, 1000);
 }
 
-// --- Logo Animation (Index Page) ---
-function setupLogoAnimation() {
-    const heroLogo = document.querySelector('.hero-left img.portal-logo.hero-logo-entry');
-    if (heroLogo) {
-        heroLogo.addEventListener('animationend', function handleDrawLogoEnd(event) {
-            if (event.animationName === 'drawLogo') {
-                heroLogo.classList.remove('hero-logo-entry');
-                heroLogo.classList.add('hero-logo-float');
-                heroLogo.removeEventListener('animationend', handleDrawLogoEnd);
-            }
-        });
-    }
-}
-
-// --- Media Content Loading (Index Page Previews) ---
-async function loadMediaContent() {
-    const mediaSection = document.getElementById('media');
-    if (!mediaSection) return;
-
-    const blogArticlesContainer = mediaSection.querySelector('#blog-articles-container .articles-grid');
-    const galleryPhotosContainer = mediaSection.querySelector('#gallery-container .gallery-grid.photos');
-    const galleryVideosContainer = mediaSection.querySelector('#gallery-container .gallery-grid.videos');
-    const partnersSponsorsContainer = mediaSection.querySelector('#partners-sponsors-container .partners-grid');
-    const galleryTabs = mediaSection.querySelectorAll('#media .gallery-tab-button');
-
-    try {
-        const response = await fetch(new URL('media-content.json', import.meta.url));
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-        const data = await response.json();
-
-        if (blogArticlesContainer) renderBlogArticlesPreview(data.blogArticles, blogArticlesContainer);
-        if (galleryPhotosContainer) renderGalleryPhotosPreview(data.gallery.photos, galleryPhotosContainer);
-        if (galleryVideosContainer) renderGalleryVideosPreview(data.gallery.videos, galleryVideosContainer);
-
-        if (galleryTabs.length > 0) {
-            galleryTabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    galleryTabs.forEach(t => t.classList.remove('active'));
-                    tab.classList.add('active');
-                    mediaSection.querySelectorAll('#media .gallery-grid').forEach(content => {
-                        content.classList.remove('active-gallery-content');
-                    });
-                    const targetContentClass = tab.dataset.tab;
-                    const newActiveContent = mediaSection.querySelector(`#media .gallery-grid.${targetContentClass}`);
-                    if (newActiveContent) newActiveContent.classList.add('active-gallery-content');
-                });
-            });
+function startSubmissionCountdown() {
+    const countdownTimerEl = document.getElementById("submission-countdown");
+    if (!countdownTimerEl) return;
+    const countdownDate = new Date("September 3, 2025 23:59:59").getTime();
+    const daysEl = document.getElementById("sub-days");
+    const hoursEl = document.getElementById("sub-hours");
+    const minutesEl = document.getElementById("sub-minutes");
+    const secondsEl = document.getElementById("sub-seconds");
+    if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
+    const interval = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = countdownDate - now;
+        if (distance < 0) {
+            clearInterval(interval);
+            countdownTimerEl.innerHTML = `<span style="font-size: 1.5rem; font-weight: bold; color: var(--pink-accent);">SUBMISSION CLOSED</span>`;
+            return;
         }
-        applyTranslations(currentLang); 
-        if (typeof AOS !== 'undefined') AOS.refresh();
-    } catch (error) {
-        console.error("Gagal memuat konten media (index):", error);
-        if (blogArticlesContainer) blogArticlesContainer.innerHTML = `<p class="error-message" data-translate-key="error_load_articles">Gagal memuat artikel.</p>`;
-        if (galleryPhotosContainer) galleryPhotosContainer.innerHTML = `<p class="error-message" data-translate-key="error_load_photos">Gagal memuat foto.</p>`;
-        if (galleryVideosContainer) galleryVideosContainer.innerHTML = `<p class="error-message" data-translate-key="error_load_videos">Gagal memuat video.</p>`;
-        if (partnersSponsorsContainer) partnersSponsorsContainer.innerHTML = `<p class="error-message" data-translate-key="error_load_partners">Gagal memuat mitra.</p>`;
-        applyTranslations(currentLang); 
-    }
+        const format = (num) => String(num).padStart(2, '0');
+        daysEl.innerText = format(Math.floor(distance / (1000 * 60 * 60 * 24)));
+        hoursEl.innerText = format(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+        minutesEl.innerText = format(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
+        secondsEl.innerText = format(Math.floor((distance % (1000 * 60)) / 1000));
+    }, 1000);
 }
 
 function renderBlogArticlesPreview(articles, container) {
@@ -423,46 +336,16 @@ function renderGalleryVideosPreview(videos, container) {
     });
 }
 
-function renderPartnersSponsors(items, container) {
-    if (!container) return;
-    if (!items || items.length === 0) {
-        container.innerHTML = `<p data-translate-key="no_partners">Mitra akan segera tampil.</p>`;
-        return;
-    }
-    container.innerHTML = '';
-    items.forEach(item => {
-        const partnerItem = `
-            <div class="partner-item" data-aos="fade-up" data-aos-anchor="#partners-sponsors-container">
-                <a href="${item.websiteUrl}" target="_blank" rel="noopener noreferrer" title="${item.name} (${item.type})">
-                    <img src="${item.logoUrl}" alt="${item.name}" onerror="this.parentElement.innerHTML = '<span class=\\'partner-name-fallback\\'>${item.name}</span>';">
-                </a>
-            </div>`;
-        container.insertAdjacentHTML('beforeend', partnerItem);
-    });
-}
-
-
-// --- Blog Page Specific ---
-async function loadAllBlogArticles() {
+function loadAllBlogArticles() {
     const fullArticlesGrid = document.getElementById('full-articles-grid');
     if (!fullArticlesGrid) return;
-
-    try {
-        const response = await fetch(new URL('translations.json', import.meta.url));
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-        const data = await response.json();
-        if (data.blogArticles) {
-            renderFullBlogArticles(data.blogArticles, fullArticlesGrid);
-        } else {
-            fullArticlesGrid.innerHTML = `<p class="error-message" data-translate-key="error_no_articles_found">No articles found in data.</p>`;
-        }
-        applyTranslations(currentLang);
-        if (typeof AOS !== 'undefined') AOS.refresh();
-    } catch (error) {
-        console.error("Gagal memuat semua artikel blog:", error);
-        fullArticlesGrid.innerHTML = `<p class="error-message" data-translate-key="error_load_articles_full">Gagal memuat artikel. Silakan coba lagi nanti.</p>`;
-        applyTranslations(currentLang);
+    if (mediaContent && mediaContent.blogArticles) {
+        renderFullBlogArticles(mediaContent.blogArticles, fullArticlesGrid);
+    } else {
+        fullArticlesGrid.innerHTML = `<p class="error-message" data-translate-key="error_no_articles_found">No articles found in data.</p>`;
     }
+    applyTranslations(currentLang);
+    if (typeof AOS !== 'undefined') AOS.refresh();
 }
 
 function renderFullBlogArticles(articles, container) {
@@ -471,7 +354,7 @@ function renderFullBlogArticles(articles, container) {
         container.innerHTML = `<p data-translate-key="no_articles_available">Belum ada artikel untuk ditampilkan.</p>`;
         return;
     }
-    container.innerHTML = ''; 
+    container.innerHTML = '';
     articles.forEach(article => {
         const articleCardHTML = `
             <div class="article-card" data-aos="fade-up">
@@ -492,111 +375,54 @@ function renderFullBlogArticles(articles, container) {
     });
 }
 
-// --- Blog Detail Page Specific ---
-async function loadSpecificBlogArticle() {
+function loadSpecificBlogArticle() {
     const articleDetailWrapper = document.getElementById('article-detail-wrapper');
     if (!articleDetailWrapper) return;
-
     articleDetailWrapper.innerHTML = `<div class="loading-article"><p data-translate-key="blog_detail_loading">Memuat artikel...</p></div>`;
-    applyTranslations(currentLang); 
-
+    applyTranslations(currentLang);
     const params = new URLSearchParams(window.location.search);
     const articleId = params.get('id');
-
     if (!articleId) {
-        articleDetailWrapper.innerHTML = `<div class="article-not-found">
-                                            <p data-translate-key="blog_detail_no_id">Artikel tidak ditemukan. ID artikel tidak disertakan.</p>
-                                            <a href="/blog" class="back-to-blog-link" data-translate-key="blog_detail_back_button"><i class="fas fa-arrow-left"></i> Kembali ke Blog</a>
-                                          </div>`;
+        articleDetailWrapper.innerHTML = `<div class="article-not-found"><p data-translate-key="blog_detail_no_id">Artikel tidak ditemukan...</p></div>`;
         applyTranslations(currentLang);
         return;
     }
-
-    try {
-        const response = await fetch(new URL('media-content.json', import.meta.url));
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-        const data = await response.json();
-        const article = data.blogArticles.find(post => post.id === articleId);
-
+    if (mediaContent && mediaContent.blogArticles) {
+        const article = mediaContent.blogArticles.find(post => post.id === articleId);
         if (article) {
-            const titleText = article.title; 
-            const authorText = article.author;
-            const fullContent = article.fullContentHTML; 
-
-            if (pageTitleElement) {
-                 document.title = titleText + " - Portal 7";
-            }
-
-            let articleHTML = `
-                <section class="blog-detail-hero">
-                    <h1 class="article-title-main" data-aos="fade-up">${titleText}</h1>
-                    <p class="article-meta-main" data-aos="fade-up" data-aos-delay="100">
-                        <i class="fas fa-calendar-alt"></i> ${article.date} | <i class="fas fa-user"></i> <span data-translate-key="article_author_prefix">Oleh:</span> ${authorText}
-                    </p>
-                </section>
-            `;
-            if (article.image) {
-                articleHTML += `
-                    <div class="article-featured-image-wrapper" data-aos="zoom-in" data-aos-delay="200">
-                        <img src="${article.image}" alt="${titleText}" class="article-featured-image">
-                    </div>`;
-            }
-            articleHTML += `
-                <div class="article-content-container">
-                    <article class="article-body" data-aos="fade-up" data-aos-delay="300">
-                        ${fullContent || `<p data-translate-key="blog_detail_content_unavailable">Konten lengkap tidak tersedia.</p>`}
-                    </article>
-                    <div style="text-align: center;">
-                       <a href="/blog" class="back-to-blog-link" data-translate-key="blog_detail_back_all_articles"><i class="fas fa-arrow-left"></i> Kembali ke Semua Artikel</a>
-                    </div>
-                </div>`;
+            if (pageTitleElement) { document.title = article.title + " - Portal 7"; }
+            let articleHTML = `<section class="blog-detail-hero"><h1 class="article-title-main" data-aos="fade-up">${article.title}</h1><p class="article-meta-main" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-calendar-alt"></i> ${article.date} | <i class="fas fa-user"></i> <span data-translate-key="article_author_prefix">Oleh:</span> ${article.author}</p></section>`;
+            if (article.image) { articleHTML += `<div class="article-featured-image-wrapper" data-aos="zoom-in" data-aos-delay="200"><img src="${article.image}" alt="${article.title}" class="article-featured-image"></div>`; }
+            articleHTML += `<div class="article-content-container"><article class="article-body" data-aos="fade-up" data-aos-delay="300">${article.fullContentHTML || `<p data-translate-key="blog_detail_content_unavailable">Konten lengkap tidak tersedia.</p>`}</article></div>`;
             articleDetailWrapper.innerHTML = articleHTML;
-            if (typeof AOS !== 'undefined') AOS.refresh(); 
-            applyTranslations(currentLang); 
+            if (typeof AOS !== 'undefined') AOS.refresh();
         } else {
-            articleDetailWrapper.innerHTML = `<div class="article-not-found">
-                                                <p data-translate-key="blog_detail_not_found">Artikel tidak ditemukan.</p>
-                                                <a href="/blog" class="back-to-blog-link" data-translate-key="blog_detail_back_button"><i class="fas fa-arrow-left"></i> Kembali ke Blog</a>
-                                              </div>`;
-            applyTranslations(currentLang);
+            articleDetailWrapper.innerHTML = `<div class="article-not-found"><p data-translate-key="blog_detail_not_found">Artikel tidak ditemukan.</p></div>`;
         }
-    } catch (error) {
-        console.error("Gagal memuat artikel:", error);
-        articleDetailWrapper.innerHTML = `<div class="article-not-found">
-                                            <p data-translate-key="blog_detail_load_error">Gagal memuat artikel. Silakan coba lagi nanti.</p>
-                                            <a href="/blog" class="back-to-blog-link" data-translate-key="blog_detail_back_button"><i class="fas fa-arrow-left"></i> Kembali ke Blog</a>
-                                          </div>`;
-        applyTranslations(currentLang);
+    } else {
+         articleDetailWrapper.innerHTML = `<div class="article-not-found"><p data-translate-key="blog_detail_load_error">Gagal memuat artikel.</p></div>`;
     }
+    applyTranslations(currentLang);
 }
 
-
-// --- Gallery Page Specific ---
 let allGalleryPhotos = [];
 let allGalleryVideos = [];
 let currentLightboxItems = [];
 let currentLightboxIndex = 0;
 
-async function loadAllGalleryContent() {
-    const allPhotosContainer = document.getElementById('all-photos-grid');
+function loadAllGalleryContent() {
+    const allPhotosContainer = document.getElementById('all-photos-grid') || document.getElementById('gallery-container');
     const allVideosContainer = document.getElementById('all-videos-grid');
-    if (!allPhotosContainer && !allVideosContainer) return; 
-
-    try {
-        const response = await fetch(new URL('media-content.json', import.meta.url));
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-        const data = await response.json();
-
-        allGalleryPhotos = data.gallery.photos || [];
-        allGalleryVideos = data.gallery.videos || [];
-
+    if (!allPhotosContainer && !allVideosContainer) return;
+    if (mediaContent && mediaContent.gallery) {
+        allGalleryPhotos = mediaContent.gallery.photos || [];
+        allGalleryVideos = mediaContent.gallery.videos || [];
         if (allPhotosContainer) renderGalleryItems(allGalleryPhotos, allPhotosContainer, 'photo');
         if (allVideosContainer) renderGalleryItems(allGalleryVideos, allVideosContainer, 'video');
         applyTranslations(currentLang);
         if (typeof AOS !== 'undefined') AOS.refresh();
-
-    } catch (error) {
-        console.error("Gagal memuat konten galeri lengkap:", error);
+    } else {
+        console.error("Gallery content not found in media-content.js");
         if (allPhotosContainer) allPhotosContainer.innerHTML = `<p class="error-message" data-translate-key="error_load_photos_full">Gagal memuat foto.</p>`;
         if (allVideosContainer) allVideosContainer.innerHTML = `<p class="error-message" data-translate-key="error_load_videos_full">Gagal memuat video.</p>`;
         applyTranslations(currentLang);
@@ -607,17 +433,18 @@ function renderGalleryItems(itemsToRender, container, itemType) {
     if (!container) return;
     if (!itemsToRender || itemsToRender.length === 0) {
         const noItemKey = itemType === 'photo' ? 'no_photos_available' : 'no_videos_available';
-        container.innerHTML = `<p data-translate-key="${noItemKey}">Belum ada ${itemType === 'photo' ? 'foto' : 'video'} untuk ditampilkan.</p>`;
+        container.innerHTML = `<p data-translate-key="${noItemKey}">Belum ada ${itemType} untuk ditampilkan.</p>`;
         return;
     }
     container.innerHTML = '';
     itemsToRender.forEach((item, index) => {
+        const imageUrl = item.thumbnailUrl;
         const galleryItemDiv = document.createElement('div');
         galleryItemDiv.classList.add('gallery-item', itemType);
         galleryItemDiv.setAttribute('data-aos', 'zoom-in-up');
         galleryItemDiv.setAttribute('data-item-id', item.id);
         galleryItemDiv.innerHTML = `
-            <img src="${item.thumbnailUrl}" alt="${item.title}" loading="lazy" onerror="this.src='https://placehold.co/300x300/e0e0e0/757575?text=Error&font=montserrat';">
+            <img src="${imageUrl}" alt="${item.title}" loading="lazy" onerror="this.src='https://placehold.co/300x300/e0e0e0/757575?text=Error&font=montserrat';">
             <div class="gallery-item-overlay">
                 <i class="fas ${itemType === 'photo' ? 'fa-search-plus' : 'fa-play-circle'}"></i>
                 <span>${item.title} ${item.year ? '('+item.year+')' : ''}</span>
@@ -639,11 +466,24 @@ function setupGalleryTabs() {
                 });
                 const targetContentClass = tab.dataset.tab;
                 const newActiveContent = document.querySelector(`.gallery-section .gallery-grid.${targetContentClass}`);
-                if (newActiveContent) {
-                    newActiveContent.classList.add('active-gallery-content');
-                }
+                if (newActiveContent) newActiveContent.classList.add('active-gallery-content');
             });
         });
+    }
+}
+
+window.openLightboxFromPreview = function(itemId, itemType) {
+    let itemsCollection = itemType === 'photo' ? allGalleryPhotos : allGalleryVideos;
+    if (itemsCollection.length === 0) {
+        allGalleryPhotos = mediaContent.gallery.photos || [];
+        allGalleryVideos = mediaContent.gallery.videos || [];
+        itemsCollection = itemType === 'photo' ? allGalleryPhotos : allGalleryVideos;
+    }
+    const itemIndex = itemsCollection.findIndex(item => item.id === itemId);
+    if (itemIndex !== -1) {
+        openLightbox(itemsCollection, itemIndex, itemType);
+    } else {
+        console.error(`Item with ID ${itemId} of type ${itemType} not found for lightbox.`);
     }
 }
 
@@ -657,42 +497,16 @@ function openLightbox(items, index, type) {
     document.body.style.overflow = 'hidden';
 }
 
-async function openLightboxFromPreview(itemId, itemType) {
-    if (allGalleryPhotos.length === 0 && allGalleryVideos.length === 0) {
-        try {
-            const response = await fetch(new URL('media-content.json', import.meta.url));
-            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-            const data = await response.json();
-            allGalleryPhotos = data.gallery.photos || [];
-            allGalleryVideos = data.gallery.videos || [];
-        } catch (error) {
-            console.error("Could not load gallery data for lightbox from preview:", error);
-            return;
-        }
-    }
-
-    let itemsCollection = itemType === 'photo' ? allGalleryPhotos : allGalleryVideos;
-    const itemIndex = itemsCollection.findIndex(item => item.id === itemId);
-
-    if (itemIndex !== -1) {
-        openLightbox(itemsCollection, itemIndex, itemType);
-    } else {
-        console.error(`Item with ID ${itemId} of type ${itemType} not found for lightbox.`);
-    }
-}
-
-
 function closeLightbox() {
     const lightbox = document.getElementById('lightbox-modal');
     const lightboxImage = document.getElementById('lightbox-image');
     const lightboxVideo = document.getElementById('lightbox-video');
     if (!lightbox) return;
-
     lightbox.style.display = 'none';
     if (lightboxImage) lightboxImage.style.display = 'none';
     if (lightboxVideo) {
         lightboxVideo.style.display = 'none';
-        lightboxVideo.src = ""; 
+        lightboxVideo.src = "";
     }
     document.body.style.overflow = 'auto';
 }
@@ -703,36 +517,23 @@ function updateLightboxContent(itemType) {
     const lightboxCaption = document.getElementById('lightbox-caption');
     const lightboxPrev = document.querySelector('.lightbox-prev');
     const lightboxNext = document.querySelector('.lightbox-next');
-
     if (!currentLightboxItems || currentLightboxItems.length === 0 || !lightboxImage || !lightboxVideo || !lightboxCaption) return;
     const item = currentLightboxItems[currentLightboxIndex];
     if (!item) return;
-
     lightboxImage.style.display = 'none';
     lightboxVideo.style.display = 'none';
     lightboxVideo.src = "";
-
     if (itemType === 'photo') {
         lightboxImage.src = item.fullUrl || item.thumbnailUrl;
         lightboxImage.alt = item.title;
         lightboxImage.style.display = 'block';
     } else if (itemType === 'video' && item.videoUrl) {
         let videoEmbedUrl = item.videoUrl;
-        if (videoEmbedUrl.includes("youtube.com/watch?v=")) {
-            videoEmbedUrl = videoEmbedUrl.replace("watch?v=", "embed/");
-        } else if (videoEmbedUrl.match(/googleusercontent\.com\/youtube\.com\/\d+/)) {
-            const videoIdMatch = videoEmbedUrl.match(/googleusercontent\.com\/youtube\.com\/(\w+)/);
-            if (videoIdMatch && videoIdMatch[1]) {
-                 videoEmbedUrl = `https://www.youtube.com/embed/${videoIdMatch[1]}`;
-            } else {
-                console.warn("Could not parse YouTube video ID from googleusercontent URL:", item.videoUrl);
-            }
-        }
+        if (videoEmbedUrl.includes("watch?v=")) { videoEmbedUrl = videoEmbedUrl.replace("watch?v=", "embed/"); }
         lightboxVideo.src = videoEmbedUrl;
         lightboxVideo.style.display = 'block';
     }
     lightboxCaption.textContent = item.title + (item.description ? ` - ${item.description}` : '');
-
     if(lightboxPrev) lightboxPrev.style.display = currentLightboxItems.length > 1 ? 'block' : 'none';
     if(lightboxNext) lightboxNext.style.display = currentLightboxItems.length > 1 ? 'block' : 'none';
 }
@@ -754,16 +555,12 @@ function setupLightboxControls() {
     const lightboxPrevBtn = document.querySelector('.lightbox-prev');
     const lightboxNextBtn = document.querySelector('.lightbox-next');
     const lightboxModal = document.getElementById('lightbox-modal');
-
     if(lightboxCloseBtn) lightboxCloseBtn.addEventListener('click', closeLightbox);
     if(lightboxPrevBtn) lightboxPrevBtn.addEventListener('click', showPrevLightboxItem);
     if(lightboxNextBtn) lightboxNextBtn.addEventListener('click', showNextLightboxItem);
-
     if(lightboxModal) {
         lightboxModal.addEventListener('click', (e) => {
-            if (e.target === lightboxModal) { 
-                closeLightbox();
-            }
+            if (e.target === lightboxModal) closeLightbox();
         });
     }
     document.addEventListener('keydown', (e) => {
@@ -777,8 +574,6 @@ function setupLightboxControls() {
     });
 }
 
-
-// --- Competition Hub & Seminar Page Accordions ---
 function setupAccordions(accordionSelector, toggleSelector) {
     const accordions = document.querySelectorAll(accordionSelector);
     if (accordions.length > 0) {
@@ -798,51 +593,32 @@ function setupAccordions(accordionSelector, toggleSelector) {
         });
     }
 }
-// --- Function to set up the infinite partner logo scroller ---
-async function loadAndSetupPartnerScroller() {
+
+function loadAndSetupPartnerScroller() {
     const scroller = document.querySelector(".partners-scroller");
     if (!scroller) return;
-
     const partnersList = scroller.querySelector(".partners-list");
     if (!partnersList) return;
-
-    try {
-        const response = await fetch(new URL('media-content.json', import.meta.url));
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-        const data = await response.json();
-        
-        if (data.partnersSponsors && data.partnersSponsors.length > 0) {
-            partnersList.innerHTML = ''; // Clear any placeholders
-            data.partnersSponsors.forEach(partner => {
-                const listItem = document.createElement('li');
-                listItem.className = 'partner-logo-item';
-                listItem.innerHTML = `
-                    <a href="${partner.websiteUrl || '#'}" target="_blank" rel="noopener noreferrer" title="${partner.name}">
-                        <img src="${partner.logoUrl}" alt="${partner.name} logo" onerror="this.style.display='none'; this.parentElement.innerHTML = '<span class=\\'partner-name-fallback\\'>${partner.name}</span>';">
-                    </a>
-                `;
-                partnersList.appendChild(listItem);
-            });
-
-            // Set up the animation after logos are loaded
-            setupAnimation(scroller);
-        } else {
-            partnersList.innerHTML = '<li>No partners to display.</li>';
-        }
-    } catch (error) {
-        console.error("Could not load partners for scroller:", error);
-        partnersList.innerHTML = '<li>Error loading partners.</li>';
+    if (mediaContent.partnersSponsors && mediaContent.partnersSponsors.length > 0) {
+        partnersList.innerHTML = '';
+        mediaContent.partnersSponsors.forEach(partner => {
+            const logoUrl = partner.logoUrl;
+            const listItem = document.createElement('li');
+            listItem.className = 'partner-logo-item';
+            listItem.innerHTML = `<a href="${partner.websiteUrl || '#'}" target="_blank"><img src="${logoUrl}" alt="${partner.name} logo"></a>`;
+            partnersList.appendChild(listItem);
+        });
+        setupAnimation(scroller);
+    } else {
+        partnersList.innerHTML = '<li>No partners to display.</li>';
     }
 }
 
 function setupAnimation(scroller) {
-    // If a user prefers reduced motion, do not animate
     if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
         scroller.setAttribute("data-animated", true);
         const scrollerInner = scroller.querySelector(".partners-list");
         const scrollerContent = Array.from(scrollerInner.children);
-
-        // Duplicate items for the seamless scroll effect
         scrollerContent.forEach(item => {
             const duplicatedItem = item.cloneNode(true);
             duplicatedItem.setAttribute("aria-hidden", true);
@@ -853,14 +629,12 @@ function setupAnimation(scroller) {
 function setupCompetitionCarousel() {
     const wrapper = document.querySelector('.competition-carousel-wrapper');
     if (!wrapper) return;
-
     const slidesContainer = wrapper.querySelector('.carousel-slides-container');
     const slides = slidesContainer.querySelectorAll('.comp-card');
     const prevButton = wrapper.querySelector('.carousel-nav.prev');
     const nextButton = wrapper.querySelector('.carousel-nav.next');
     const dotsContainer = wrapper.querySelector('.carousel-dots');
     let currentSlide = 0;
-
     if (slides.length <= 1) {
         if (prevButton) prevButton.style.display = 'none';
         if (nextButton) nextButton.style.display = 'none';
@@ -868,7 +642,6 @@ function setupCompetitionCarousel() {
         if (slides.length === 1) slides[0].classList.add('active');
         return;
     }
-
     dotsContainer.innerHTML = '';
     slides.forEach((_, i) => {
         const dot = document.createElement('button');
@@ -878,19 +651,15 @@ function setupCompetitionCarousel() {
         dotsContainer.appendChild(dot);
     });
     const dots = dotsContainer.querySelectorAll('.dot');
-
     const showSlide = (index) => {
         currentSlide = index;
         slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
         dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
     };
-
     const nextSlide = () => showSlide((currentSlide + 1) % slides.length);
     const prevSlide = () => showSlide((currentSlide - 1 + slides.length) % slides.length);
-
     prevButton.addEventListener('click', prevSlide);
     nextButton.addEventListener('click', nextSlide);
-
     let touchstartX = 0;
     slidesContainer.addEventListener('touchstart', e => { touchstartX = e.changedTouches[0].screenX; }, { passive: true });
     slidesContainer.addEventListener('touchend', e => {
@@ -898,95 +667,48 @@ function setupCompetitionCarousel() {
         if (touchendX < touchstartX - 50) nextSlide();
         if (touchendX > touchstartX + 50) prevSlide();
     }, { passive: true });
-
     showSlide(currentSlide);
 }
 
-function startSubmissionCountdown() {
-    const countdownTimerEl = document.getElementById("submission-countdown");
-    if (!countdownTimerEl) return;
-    
-    const countdownDate = new Date("September 3, 2025 23:59:59").getTime();
-    const daysEl = document.getElementById("sub-days");
-    const hoursEl = document.getElementById("sub-hours");
-    const minutesEl = document.getElementById("sub-minutes");
-    const secondsEl = document.getElementById("sub-seconds");
-
-    if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
-
-    const interval = setInterval(() => {
-        const now = new Date().getTime();
-        const distance = countdownDate - now;
-
-        if (distance < 0) {
-            clearInterval(interval);
-            countdownTimerEl.innerHTML = `<span style="font-size: 1.5rem; font-weight: bold; color: var(--pink-accent);">SUBMISSION CLOSED</span>`;
-            return;
-        }
-
-        const format = (num) => String(num).padStart(2, '0');
-        daysEl.innerText = format(Math.floor(distance / (1000 * 60 * 60 * 24)));
-        hoursEl.innerText = format(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
-        minutesEl.innerText = format(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
-        secondsEl.innerText = format(Math.floor((distance % (1000 * 60)) / 1000));
-    }, 1000);
-}
-// Set the loading class on the body immediately when the script runs.
-// --- Main DOMContentLoaded Listener (Corrected & Unified) ---
-document.addEventListener('DOMContentLoaded', async () => {
-
-    // 1. Set up the page transition structure IMMEDIATELY. This is crucial.
+document.addEventListener('DOMContentLoaded', () => {
     setupPageTransitions();
     initializeAOS();
     setupMobileNavigation();
     handlePageLoadAnchors();
     pageTitleElement = document.querySelector('title[data-translate-key]');
-
-    // 2. Fetch translations and apply them initially
-    await fetchTranslations();
-    
-    // 3. Setup all page-specific components
+    applyTranslations(currentLang);
     if (document.getElementById("countdown-timer")) {
         startCountdown();
     }
     if (document.getElementById('media')) {
-        // Run the new, correct function for the media scroller
-        loadAndSetupPartnerScroller(); 
-        
-        // The functions for blog/gallery previews from the old loadMediaContent are still needed
+        loadAndSetupPartnerScroller();
         const blogArticlesContainer = document.querySelector('#blog-articles-container .articles-grid');
         const galleryPhotosContainer = document.querySelector('#gallery-container .gallery-grid.photos');
         const galleryVideosContainer = document.querySelector('#gallery-container .gallery-grid.videos');
+        if (mediaContent) {
+            if (blogArticlesContainer) renderBlogArticlesPreview(mediaContent.blogArticles, blogArticlesContainer);
+            if (galleryPhotosContainer) renderGalleryPhotosPreview(mediaContent.gallery.photos, galleryPhotosContainer);
+            if (galleryVideosContainer) renderGalleryVideosPreview(mediaContent.gallery.videos, galleryVideosContainer);
+        }
         const galleryTabs = document.querySelectorAll('#media .gallery-tab-button');
-        
-        // Fetch media content to populate blog/gallery previews
-        fetch(new URL('media-content.json', import.meta.url))
-            .then(response => response.json())
-            .then(data => {
-                if (blogArticlesContainer) renderBlogArticlesPreview(data.blogArticles, blogArticlesContainer);
-                if (galleryPhotosContainer) renderGalleryPhotosPreview(data.gallery.photos, galleryPhotosContainer);
-                if (galleryVideosContainer) renderGalleryVideosPreview(data.gallery.videos, galleryVideosContainer);
-
-                if (galleryTabs.length > 0) {
-                    galleryTabs.forEach(tab => {
-                        tab.addEventListener('click', () => {
-                            galleryTabs.forEach(t => t.classList.remove('active'));
-                            tab.classList.add('active');
-                            document.querySelectorAll('#media .gallery-grid').forEach(content => {
-                                content.classList.remove('active-gallery-content');
-                            });
-                            const targetContentClass = tab.dataset.tab;
-                            const newActiveContent = document.querySelector(`#media .gallery-grid.${targetContentClass}`);
-                            if (newActiveContent) newActiveContent.classList.add('active-gallery-content');
-                        });
+        if (galleryTabs.length > 0) {
+            galleryTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    galleryTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    document.querySelectorAll('#media .gallery-grid').forEach(content => {
+                        content.classList.remove('active-gallery-content');
                     });
-                }
-            }).catch(error => console.error("Error loading blog/gallery previews:", error));
+                    const targetContentClass = tab.dataset.tab;
+                    const newActiveContent = document.querySelector(`#media .gallery-grid.${targetContentClass}`);
+                    if (newActiveContent) newActiveContent.classList.add('active-gallery-content');
+                });
+            });
+        }
     }
-
     if (document.getElementById('full-articles-grid')) loadAllBlogArticles();
     if (document.getElementById('article-detail-wrapper')) loadSpecificBlogArticle();
-    if (document.getElementById('all-photos-grid')) {
+    if (document.querySelector('.gallery-page-hero')) {
         setupGalleryTabs();
         loadAllGalleryContent();
         setupLightboxControls();
@@ -997,21 +719,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     setupFAQAccordion();
     setupAccordions('.accordion-seminar', '.accordion-seminar-toggle');
-    
-    // 4. Set up the language toggle button event listener
     if (langToggleButton) {
         langToggleButton.addEventListener('click', () => {
             const newLang = currentLang === 'id' ? 'en' : 'id';
             applyTranslations(newLang);
         });
     }
-
-    // 5. Set up the tribute functionality
     const tributeCode = ['n', 'a', 'r', 'a'];
     let currentPosition = 0;
     const tributeOverlay = document.getElementById('nara-tribute-overlay');
     const closeButton = document.querySelector('.close-tribute');
-
     function showTribute() {
         if (tributeOverlay) {
             tributeOverlay.style.display = 'flex';
@@ -1021,7 +738,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             }, 10);
         }
     }
-
     function hideTribute() {
         if (tributeOverlay) {
             tributeOverlay.style.opacity = '0';
@@ -1031,28 +747,24 @@ document.addEventListener('DOMContentLoaded', async () => {
             }, 500);
         }
     }
-
     document.addEventListener('keydown', function(e) {
         if (e.key.toLowerCase() === tributeCode[currentPosition]) {
             currentPosition++;
             if (currentPosition === tributeCode.length) {
                 showTribute();
-                currentPosition = 0; 
+                currentPosition = 0;
             }
         } else {
             currentPosition = 0;
         }
     });
-
     if (closeButton) closeButton.addEventListener('click', hideTribute);
     if (tributeOverlay) tributeOverlay.addEventListener('click', (e) => { if (e.target === tributeOverlay) hideTribute(); });
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && tributeOverlay && tributeOverlay.style.display === 'flex') hideTribute(); });
 });
-// --- NEW: Accurate Scroll Handling on Initial Page Load ---
-// This waits for all resources (images, fonts) to load, ensuring nav height is accurate.
+
 window.addEventListener('load', () => {
     if (window.location.hash) {
-        // A small timeout allows the browser to settle before we manually scroll.
         setTimeout(() => {
             smoothScrollToTarget(window.location.hash.substring(1));
         }, 100);
