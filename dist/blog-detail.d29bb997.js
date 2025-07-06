@@ -130,7 +130,7 @@
 
   // Only insert newRequire.load when it is actually used.
   // The code in this file is linted against ES5, so dynamic import is not allowed.
-  // INSERT_LOAD_HERE
+  function $parcel$resolve(url) {  url = importMap[url] || url;  return import.meta.resolve(distDir + url);}newRequire.resolve = $parcel$resolve;
 
   Object.defineProperty(newRequire, 'root', {
     get: function () {
@@ -678,7 +678,7 @@ let pageTitleElement = null;
 // --- Language Toggle Functionality ---
 async function fetchTranslations() {
     try {
-        const response = await fetch('translations.json');
+        const response = await fetch(new URL(require("d8c66e60bdb30b51")));
         if (!response.ok) {
             console.error(`HTTP error! status: ${response.status}`);
             return;
@@ -920,7 +920,7 @@ async function loadMediaContent() {
     const partnersSponsorsContainer = mediaSection.querySelector('#partners-sponsors-container .partners-grid');
     const galleryTabs = mediaSection.querySelectorAll('#media .gallery-tab-button');
     try {
-        const response = await fetch('media-content.json');
+        const response = await fetch(new URL(require("f7a54f64e781a780")));
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const data = await response.json();
         if (blogArticlesContainer) renderBlogArticlesPreview(data.blogArticles, blogArticlesContainer);
@@ -1035,7 +1035,7 @@ async function loadAllBlogArticles() {
     const fullArticlesGrid = document.getElementById('full-articles-grid');
     if (!fullArticlesGrid) return;
     try {
-        const response = await fetch('media-content.json');
+        const response = await fetch(new URL(require("d8c66e60bdb30b51")));
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const data = await response.json();
         if (data.blogArticles) renderFullBlogArticles(data.blogArticles, fullArticlesGrid);
@@ -1091,7 +1091,7 @@ async function loadSpecificBlogArticle() {
         return;
     }
     try {
-        const response = await fetch('media-content.json');
+        const response = await fetch(new URL(require("f7a54f64e781a780")));
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const data = await response.json();
         const article = data.blogArticles.find((post)=>post.id === articleId);
@@ -1150,7 +1150,7 @@ async function loadAllGalleryContent() {
     const allVideosContainer = document.getElementById('all-videos-grid');
     if (!allPhotosContainer && !allVideosContainer) return;
     try {
-        const response = await fetch('media-content.json');
+        const response = await fetch(new URL(require("f7a54f64e781a780")));
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const data = await response.json();
         allGalleryPhotos = data.gallery.photos || [];
@@ -1215,7 +1215,7 @@ function openLightbox(items, index, type) {
 }
 async function openLightboxFromPreview(itemId, itemType) {
     if (allGalleryPhotos.length === 0 && allGalleryVideos.length === 0) try {
-        const response = await fetch('media-content.json');
+        const response = await fetch(new URL(require("f7a54f64e781a780")));
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const data = await response.json();
         allGalleryPhotos = data.gallery.photos || [];
@@ -1335,7 +1335,7 @@ async function loadAndSetupPartnerScroller() {
     const partnersList = scroller.querySelector(".partners-list");
     if (!partnersList) return;
     try {
-        const response = await fetch('media-content.json');
+        const response = await fetch(new URL(require("f7a54f64e781a780")));
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const data = await response.json();
         if (data.partnersSponsors && data.partnersSponsors.length > 0) {
@@ -1467,7 +1467,7 @@ document.addEventListener('DOMContentLoaded', async ()=>{
         const galleryVideosContainer = document.querySelector('#gallery-container .gallery-grid.videos');
         const galleryTabs = document.querySelectorAll('#media .gallery-tab-button');
         // Fetch media content to populate blog/gallery previews
-        fetch('media-content.json').then((response)=>response.json()).then((data)=>{
+        fetch(new URL(require("f7a54f64e781a780"))).then((response)=>response.json()).then((data)=>{
             if (blogArticlesContainer) renderBlogArticlesPreview(data.blogArticles, blogArticlesContainer);
             if (galleryPhotosContainer) renderGalleryPhotosPreview(data.gallery.photos, galleryPhotosContainer);
             if (galleryVideosContainer) renderGalleryVideosPreview(data.gallery.videos, galleryVideosContainer);
@@ -1557,6 +1557,12 @@ window.addEventListener('load', ()=>{
     }, 100);
 });
 
-},{}]},["7SvX3","kyksZ"], "kyksZ", "parcelRequirec3f4", {})
+},{"d8c66e60bdb30b51":"5pHaB","f7a54f64e781a780":"cOg0C"}],"5pHaB":[function(require,module,exports,__globalThis) {
+module.exports = module.bundle.resolve("translations.d424ebaf.js");
+
+},{}],"cOg0C":[function(require,module,exports,__globalThis) {
+module.exports = module.bundle.resolve("media-content.c98f7a9c.js");
+
+},{}]},["7SvX3","kyksZ"], "kyksZ", "parcelRequirec3f4", {}, "./", "/")
 
 //# sourceMappingURL=blog-detail.d29bb997.js.map

@@ -10,7 +10,7 @@ let pageTitleElement = null;
 // --- Language Toggle Functionality ---
 async function fetchTranslations() {
     try {
-        const response = await fetch('translations.json');
+        const response = await fetch(new URL('translations.json', import.meta.url));
         if (!response.ok) {
             console.error(`HTTP error! status: ${response.status}`);
             return;
@@ -322,7 +322,7 @@ async function loadMediaContent() {
     const galleryTabs = mediaSection.querySelectorAll('#media .gallery-tab-button');
 
     try {
-        const response = await fetch('media-content.json');
+        const response = await fetch(new URL('media-content.json', import.meta.url));
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const data = await response.json();
 
@@ -448,7 +448,7 @@ async function loadAllBlogArticles() {
     if (!fullArticlesGrid) return;
 
     try {
-        const response = await fetch('media-content.json');
+        const response = await fetch(new URL('translations.json', import.meta.url));
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const data = await response.json();
         if (data.blogArticles) {
@@ -513,7 +513,7 @@ async function loadSpecificBlogArticle() {
     }
 
     try {
-        const response = await fetch('media-content.json');
+        const response = await fetch(new URL('media-content.json', import.meta.url));
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const data = await response.json();
         const article = data.blogArticles.find(post => post.id === articleId);
@@ -583,7 +583,7 @@ async function loadAllGalleryContent() {
     if (!allPhotosContainer && !allVideosContainer) return; 
 
     try {
-        const response = await fetch('media-content.json');
+        const response = await fetch(new URL('media-content.json', import.meta.url));
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const data = await response.json();
 
@@ -660,7 +660,7 @@ function openLightbox(items, index, type) {
 async function openLightboxFromPreview(itemId, itemType) {
     if (allGalleryPhotos.length === 0 && allGalleryVideos.length === 0) {
         try {
-            const response = await fetch('media-content.json');
+            const response = await fetch(new URL('media-content.json', import.meta.url));
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             const data = await response.json();
             allGalleryPhotos = data.gallery.photos || [];
@@ -807,7 +807,7 @@ async function loadAndSetupPartnerScroller() {
     if (!partnersList) return;
 
     try {
-        const response = await fetch('media-content.json');
+        const response = await fetch(new URL('media-content.json', import.meta.url));
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const data = await response.json();
         
@@ -960,7 +960,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const galleryTabs = document.querySelectorAll('#media .gallery-tab-button');
         
         // Fetch media content to populate blog/gallery previews
-        fetch('media-content.json')
+        fetch(new URL('media-content.json', import.meta.url))
             .then(response => response.json())
             .then(data => {
                 if (blogArticlesContainer) renderBlogArticlesPreview(data.blogArticles, blogArticlesContainer);
