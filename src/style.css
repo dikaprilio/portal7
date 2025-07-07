@@ -69,7 +69,44 @@ footer {
         linear-gradient(-45deg, transparent 75%, rgba(var(--blue-accent-rgb), 0.03) 75%);
     background-size: 20px 20px;
 }
+/* ================================================= */
+/* == ELEGANT "BLUR & FADE" PAGE TRANSITION (V2)  == */
+/* ================================================= */
 
+/* 1. The Overlay: This element is no longer used for this transition,
+      so all its related CSS rules have been removed. */
+
+/* 2. The Content Wrapper: This is the main animated element */
+.page-transition-wrapper {
+    /* Define the properties that will be animated */
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+                filter 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 3. Animation Triggers */
+
+/* --- EXIT ANIMATION --- */
+body.is-transitioning .page-transition-wrapper {
+    /* On exit, fade to zero opacity and apply a medium blur */
+    opacity: 0;
+    filter: blur(20px);
+    /* We add a pointer-events: none here to prevent interacting
+       with the invisible content during the transition */
+    pointer-events: none;
+}
+
+
+/* --- ENTRY ANIMATION --- */
+/* On initial load, the wrapper starts blurred and invisible */
+body.is-loading .page-transition-wrapper {
+    opacity: 0;
+    filter: blur(20px);
+}
+
+/* Hide everything during initial load to prevent content flashing */
+body.is-loading {
+    visibility: hidden;
+}
 /* --- NAVBAR STYLES START --- */
 nav {
     background-color: var(--navbar-bg); /* Dark background for the navbar */
@@ -3642,54 +3679,63 @@ nav::after {
 .contact-social-links .social-icon.tk { background-color: #000000; }
 
 
-/* Quirky Contact Form Styling */
+/* --- Simplified and More Robust Quirky Contact Form Styling --- */
+
 .contact-form .form-group {
     margin-bottom: 1.75rem;
     position: relative;
 }
-.contact-form label {
-    position: absolute;
-    top: 0.85rem;
-    left: 1rem;
-    font-weight: 500;
-    color: #a0aec0; /* Lightened placeholder/label color */
-    font-size: 1rem;
-    pointer-events: none;
-    transition: all 0.25s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-    background-color: #2e343f; /* Darker bg for label to match dark input */
-    padding: 0 0.3rem;
-    transform-origin: left top;
-}
+
 .contact-form input[type="text"],
 .contact-form input[type="email"],
 .contact-form textarea {
     width: 100%;
     padding: 0.85rem 1rem;
-    border: 2px solid rgba(var(--secondary-color), 0.3); /* Lighter default border */
+    border: 2px solid rgba(var(--secondary-color), 0.3);
     border-radius: 10px 2px 10px 2px;
-    background-color: #2e343f; /* Dark input background */
+    background-color: #2e343f;
     font-family: inherit;
     font-size: 1rem;
-    color: var(--secondary-color); /* Light text color for input */
+    color: var(--secondary-color);
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
-/* Floating label effect: when input has content */
+
+.contact-form label {
+    position: absolute;
+    top: 0.85rem;
+    left: 1rem;
+    font-weight: 500;
+    color: #a0aec0;
+    font-size: 1rem;
+    pointer-events: none;
+    /* --- Simplified Transition --- */
+    transition: all 0.2s ease-out;
+    transform-origin: left top;
+    /* The label now has a transparent background, which is more robust */
+    background-color: transparent;
+    padding: 0 0.4rem; /* Added padding for a cleaner look */
+}
+
+/* --- Floating Label Effect --- */
 .contact-form input:focus + label,
 .contact-form input:not(:placeholder-shown) + label,
 .contact-form textarea:focus + label,
 .contact-form textarea:not(:placeholder-shown) + label {
-    transform: translateY(-1.8rem) scale(0.85) translateX(-0.2rem);
-    color: var(--pink-accent); /* Focused label color is good */
+    /* Adjust the transform to be less extreme and use the background color of the card */
+    transform: translateY(-1.7rem) scale(0.85);
+    color: var(--pink-accent);
     font-weight: 600;
-    background-color: #23272f; /* Match card background for focused label background */
+    /* This background color should match the card's background (#23272f) */
+    background-color: #23272f;
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
     outline: none;
     border-color: var(--pink-accent);
-    box-shadow: 0 0 0 3px rgba(var(--pink-accent-rgb), 0.25); /* Adjusted shadow for dark */
+    box-shadow: 0 0 0 3px rgba(var(--pink-accent-rgb), 0.25);
 }
+
 .contact-form textarea {
     resize: vertical;
     min-height: 130px;
@@ -6352,7 +6398,6 @@ nav {
     text-align: center;
     position: relative;
     overflow: hidden;
-    background-image: linear-gradient(rgba(12, 10, 31, 0.9), rgba(12, 10, 31, 0.9)), url(img/Asset_18@4x.png);
     background-blend-mode: saturation;
     background-size: 400px;
     animation: pan-background 50s linear infinite;

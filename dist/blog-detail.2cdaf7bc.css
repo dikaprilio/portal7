@@ -74,6 +74,25 @@ footer {
   position: relative;
 }
 
+.page-transition-wrapper {
+  transition: opacity .6s cubic-bezier(.4, 0, .2, 1), filter .7s cubic-bezier(.4, 0, .2, 1);
+}
+
+body.is-transitioning .page-transition-wrapper {
+  opacity: 0;
+  filter: blur(20px);
+  pointer-events: none;
+}
+
+body.is-loading .page-transition-wrapper {
+  opacity: 0;
+  filter: blur(20px);
+}
+
+body.is-loading {
+  visibility: hidden;
+}
+
 nav {
   background-color: var(--navbar-bg);
   box-shadow: 0 5px 15px #00000059, 0 0 40px rgba(var(--blue-accent-rgb), .2);
@@ -3828,20 +3847,6 @@ nav:after {
   position: relative;
 }
 
-.contact-form label {
-  color: #a0aec0;
-  pointer-events: none;
-  transform-origin: 0 0;
-  background-color: #2e343f;
-  padding: 0 .3rem;
-  font-size: 1rem;
-  font-weight: 500;
-  transition: all .25s cubic-bezier(.68, -.55, .27, 1.55);
-  position: absolute;
-  top: .85rem;
-  left: 1rem;
-}
-
 .contact-form input[type="text"], .contact-form input[type="email"], .contact-form textarea {
   border: 2px solid rgba(var(--secondary-color), .3);
   width: 100%;
@@ -3854,11 +3859,25 @@ nav:after {
   transition: border-color .3s, box-shadow .3s;
 }
 
+.contact-form label {
+  color: #a0aec0;
+  pointer-events: none;
+  transform-origin: 0 0;
+  background-color: #0000;
+  padding: 0 .4rem;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all .2s ease-out;
+  position: absolute;
+  top: .85rem;
+  left: 1rem;
+}
+
 .contact-form input:focus + label, .contact-form input:not(:placeholder-shown) + label, .contact-form textarea:focus + label, .contact-form textarea:not(:placeholder-shown) + label {
   color: var(--pink-accent);
   background-color: #23272f;
   font-weight: 600;
-  transform: translateY(-1.8rem)scale(.85)translateX(-.2rem);
+  transform: translateY(-1.7rem)scale(.85);
 }
 
 .contact-form input:focus, .contact-form textarea:focus {
@@ -6690,7 +6709,6 @@ nav {
   background-color: var(--navbar-bg);
   text-align: center;
   background-blend-mode: saturation;
-  background-image: linear-gradient(#0c0a1fe6, #0c0a1fe6), url("Asset_18@4x.c2dde715.png");
   background-size: 400px;
   animation: 50s linear infinite pan-background;
   position: relative;
