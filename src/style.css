@@ -3757,6 +3757,20 @@ nav::after {
     box-shadow: 1px 1px 0px var(--yellow-accent) !important;
 }
 
+/* --- FORM INPUT FIX --- */
+/* This rule targets all text-like inputs inside a .form-group */
+.contact-form .form-group input {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 2px solid rgba(var(--secondary-color), 0.3);
+    border-radius: 10px 2px 10px 2px;
+    background-color: #2e343f;
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--secondary-color);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
 
 /* Map Area */
 .contact-map-container {
