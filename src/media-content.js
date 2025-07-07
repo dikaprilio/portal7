@@ -1,18 +1,18 @@
 // Import all local images using the url: scheme.
 // This tells Parcel to bundle the asset and return its public URL.
-import photo1 from 'url:/img/IMG_3203.jpg';
-import photo2 from 'url:/img/IMG_3281.jpg';
-import photo3 from 'url:/img/IMG_3227.jpg';
-import photo4 from 'url:/img/S0952298.jpg';
-import photo5 from 'url:/img/IMG_3058.jpg';
-import photo6 from 'url:/img/IMG_3376.jpg';
-import photo7 from 'url:/img/IMG_3104.jpg';
+import photo1 from 'url:./img/IMG_3203.jpg';
+import photo2 from 'url:./img/IMG_3281.jpg';
+import photo3 from 'url:./img/IMG_3227.jpg';
+import photo4 from 'url:./img/S0952298.jpg';
+import photo5 from 'url:./img/IMG_3058.jpg';
+import photo6 from 'url:./img/IMG_3376.jpg';
+import photo7 from 'url:./img/IMG_3104.jpg';
 
-import videoThumbRick from 'url:/img/rickroll.jpg';
+import videoThumbRick from 'url:./img/rickroll.jpg';
 
-import partnerLogoMicroIT from 'url:/img/medpart-microit.png';
-import partnerLogoLikista from 'url:/img/medpart-likista.png';
-import partnerLogoInfoSV from 'url:/img/medpart-infosvipb.png';
+import partnerLogoMicroIT from 'url:./img/medpart-microit.png';
+import partnerLogoLikista from 'url:./img/medpart-likista.png';
+import partnerLogoInfoSV from 'url:./img/medpart-infosvipb.png';
 
 
 const mediaContent = {
