@@ -1,5 +1,28 @@
 {
   "dependencies": {
     "@vercel/analytics": "^1.5.0"
-  }
+  },
+  "name": "portal-website",
+  "version": "1.0.0",
+  "description": "",
+  "devDependencies": {
+    "@parcel/packager-raw-url": "^2.15.4",
+    "@parcel/transformer-jsonld": "^2.15.4",
+    "parcel": "^2.15.4"
+  },
+  "scripts": {
+    "start": "parcel src/*.html",
+    "build": "parcel build src/*.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bibobaggin/portal7.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bibobaggin/portal7/issues"
+  },
+  "homepage": "https://github.com/bibobaggin/portal7#readme"
 }

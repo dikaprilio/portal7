@@ -1,12 +1,4 @@
 {
-   "buildCommand": "",
   "cleanUrls": true,
-  "trailingSlash": false,
-  "rewrites": [
-    { "source": "/competition-hub", "destination": "/competition-hub.html" },
-    { "source": "/seminar", "destination": "/seminar.html" },
-    { "source": "/blog", "destination": "/blog.html" },
-    { "source": "/gallery", "destination": "/gallery.html" },
-    { "source": "/blog-detail", "destination": "/blog-detail.html" }
-  ]
+  "trailingSlash": false
 }
