@@ -4837,6 +4837,39 @@ section,
 }
 
 @media (max-width: 767px) {
+        /* Increase space between sections */
+    .section-padding {
+        padding: 4rem 1.5rem; /* Increased top/bottom padding from 3rem */
+    }
+
+    /* Improve readability of body text */
+    .tagline, .section-subtitle, .about-text p, .sdg-item-body p {
+        line-height: 1.7; /* Increased from 1.6 or default */
+    }
+    /* In style.css, inside the @media (max-width: 767px) block */
+    .hero-title {
+        font-size: 2.8rem; /* Was previously 2.2rem, but the image shows it's much larger. Let's adjust it from the desktop size. */
+        line-height: 1.2; /* Add line-height for better spacing between lines */
+    }
+    /* In style.css, inside the @media (max-width: 767px) block */
+    .countdown-timer {
+        padding: 0.75rem 1rem;
+        margin-top: 1.5rem; /* Added margin for spacing */
+        margin-bottom: 2rem;
+    }
+
+    .countdown-timer > span {
+        padding: 0.4rem 0.5rem;
+        min-width: 50px; /* Reduced min-width */
+    }
+
+    .countdown-timer span span {
+        font-size: 1.4rem; /* Reduced from 1.6rem */
+    }
+
+    .countdown-timer span small {
+        font-size: 0.55rem;
+    }
     .sdg-section .section-padding { /* Already applied but can adjust if needed */
         padding: 3rem 1rem;
     }
@@ -7219,4 +7252,86 @@ nav {
     margin-bottom: 0.5rem;
     /* Add a subtle text shadow to the icon for depth */
     text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+/* === Competition/Content Page Specific Styles === */
+
+.page-header {
+    text-align: center;
+    padding: 4rem 1rem 3rem;
+    background-color: var(--section-bg-light);
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.page-header p {
+    font-size: 1.1rem;
+    color: #6B7280;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+.content-container {
+    max-width: 800px;
+    margin: 2.5rem auto 4rem;
+    padding: 0 1rem;
+}
+
+.content-article h2 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--blue-accent);
+    padding-bottom: 0.5rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.content-article h3 {
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.content-article p, .content-article li {
+    line-height: 1.7;
+    color: #374151;
+    margin-bottom: 0.75rem;
+}
+
+.content-article ul, .content-article ol {
+    padding-left: 25px;
+}
+
+.badge-required {
+    background-color: var(--pink-accent);
+    color: white;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    font-weight: 600;
+    margin-left: 8px;
+    display: inline-block;
+}
+
+.info-box {
+    background-color: #E0F2FE;
+    border-left: 5px solid var(--blue-accent);
+    padding: 1.25rem;
+    margin: 1.5rem 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.info-box p {
+    margin: 0;
+    color: #075985;
+    font-weight: 500;
+}
+
+.content-article strong {
+    color: var(--primary-color);
 }
