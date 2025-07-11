@@ -97,32 +97,6 @@ const mediaContent = {
       }
     ],
     "videos": [
-      {
-        "id": "video-1", "title": "Company Profile Portal 7 (User)", "type": "company-profile",
-        "thumbnailUrl": "https://i.ytimg.com/vi/gwOYv7uwp1U/hqdefault.jpg",
-        "videoUrl": "https://www.youtube.com/watch?v=gwOYv7uwp1U",
-        "description": "Kenali lebih dekat Portal 7: Visi, Misi, dan Semangat Kami! (User version)"
-      },
-      {
-        "id": "video-2", "title": "Aftermovie Portal 6 (2024) (User)", "type": "documentation", "year": "2024",
-        "thumbnailUrl": videoThumbRick, "videoUrl": "youtube.com/watch?v=7",
-        "description": "Kilas balik semua keseruan dan momen tak terlupakan di Portal 6. (User version)"
-      },
-      {
-        "id": "video-3", "title": "Portal 7 - Official Hype Trailer (AI)", "type": "trailer",
-        "thumbnailUrl": videoThumbRick, "videoUrl": "youtube.com/watch?v=9",
-        "description": "Get ready for the most epic digital event of the year! (Sound on!)"
-      },
-      {
-        "id": "video-4", "title": "Portal 6 (2024) - Aftermovie Madness (AI)", "type": "documentation", "year": "2024",
-        "thumbnailUrl": videoThumbRick, "videoUrl": "youtu.be/1",
-        "description": "Relive the best moments from last year's Portal event!"
-      },
-      {
-        "id": "video-5", "title": "Speaker Sneak Peek: Dr. Codesalot (AI)", "type": "speaker-intro",
-        "thumbnailUrl": videoThumbRick, "videoUrl": "youtu.be/3",
-        "description": "A quick word from one of our amazing upcoming speakers!"
-      }
     ]
   },
   "partnersSponsors": [
