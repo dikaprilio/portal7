@@ -11,7 +11,7 @@
 89D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\src\img\abstract_star-yellow.png133921296608045012 0
 93D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\node_modules\@parcel\optimizer-image133966850562816977 1
 84D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\node_modules\lmdb\README.md133966850488080643 0
-78D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\src\translations.json133967119452017000 0
+78D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\src\translations.json133967202447385401 0
 131D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\node_modules\node-gyp-build-optional-packages\node_modules\detect-libc\lib133966850581082509 1
 118D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\node_modules\caniuse-lite\data\features\keyboardevent-code.js133966850485340262 0
 105D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\node_modules\caniuse-lite\data\features\xhtml.js133966850488467225 0
@@ -29,7 +29,7 @@
 108D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\node_modules\caniuse-lite\data\features\css-sel3.js133966850481539534 0
 111D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\node_modules\@parcel\reporter-dev-server\src\Server.js133966850537898773 0
 104D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\node_modules\type-fest\ts41\delimiter-case.d.ts133966850464826990 0
-61D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\dist133967128121841288 1
+61D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\dist133967202506256050 1
 95D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\node_modules\caniuse-lite\data\regions133966850488557764 1
 80D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\src\img\Asset_18@4x.png133921296608304549 0
 113D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\node_modules\update-browserslist-db\check-npm-version.js133966850465206915 0
@@ -91,7 +91,7 @@
 83D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\node_modules\color-convert133966850478082771 1
 113D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\node_modules\@parcel\core\test\PublicEnvironment.test.js133966850573867884 0
 101D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\node_modules\caniuse-lite\data\regions\BB.js133966850479633838 0
-68D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\vercel.json133967133460726223 0
+68D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\vercel.json133967138685054141 0
 126D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\node_modules\caniuse-lite\data\features\same-site-cookie-attribute.js133966850487058168 0
 112D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\node_modules\caniuse-lite\data\features\transforms3d.js133966850487769286 0
 116D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\node_modules\@swc\helpers\src\_interop_require_wildcard.mjs133966850487516699 0
@@ -504,7 +504,7 @@
 93D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\node_modules\color-convert\README.md133966850478082771 0
 76D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\node_modules\base-x133966850482794412 1
 101D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\node_modules\caniuse-lite\data\regions\SR.js133966850487356400 0
-85D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\dist\blog-detail.d29bb997.js133967128121661287 0
+85D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\dist\blog-detail.d29bb997.js133967202506176051 0
 82D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\node_modules\browserslist133966850483477519 1
 89D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\node_modules\json5\lib\util.d.ts133966850474335937 0
 119D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\node_modules\@parcel\runtime-js\lib\helpers\node\css-loader.js133966850524226671 0
@@ -2565,7 +2565,7 @@
 109D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\node_modules\@parcel\runtime-browser-hmr\lib\loaders133966850524669990 1
 80D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\node_modules\braces\lib133966850480636942 1
 92D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\dist\IMG_3203.0057dd0b.jpg.17308.3h133966851462273675 0
-89D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\dist\blog-detail.d29bb997.js.map133967128121691290 0
+89D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\dist\blog-detail.d29bb997.js.map133967202506256050 0
 123D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\node_modules\@swc\helpers\src\_class_static_private_method_get.mjs133966850487387512 0
 91D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\node_modules\braces\lib\compile.js133966850480571951 0
 93D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\node_modules\braces\lib\constants.js133966850480571951 0
