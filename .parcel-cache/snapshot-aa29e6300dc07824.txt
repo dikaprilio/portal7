@@ -91,7 +91,7 @@
 83D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\node_modules\color-convert133966850478082771 1
 113D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\node_modules\@parcel\core\test\PublicEnvironment.test.js133966850573867884 0
 101D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\node_modules\caniuse-lite\data\regions\BB.js133966850479633838 0
-68D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\vercel.json133967127880988309 0
+68D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\vercel.json133967133460726223 0
 126D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\node_modules\caniuse-lite\data\features\same-site-cookie-attribute.js133966850487058168 0
 112D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\node_modules\caniuse-lite\data\features\transforms3d.js133966850487769286 0
 116D:\Semester 2 TPL 61_DIKA\Perancangan Web\Portal Website\node_modules\@swc\helpers\src\_interop_require_wildcard.mjs133966850487516699 0
