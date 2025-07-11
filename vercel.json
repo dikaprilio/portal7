@@ -1,14 +1,27 @@
 {
   "routes": [
-  {
-    "handle": "filesystem"
-  },
-  {
-    "src": "/.*/",
-    "status": 404,
-    "dest": "/404.html",
-    "cleanUrls": true,
-    "trailingSlash": false
-  }
+    {
+      "src": "/([^/.]*)\\.html",
+      "dest": "/$1",
+      "headers": {
+        "Location": "/$1"
+      },
+      "status": 308
+    },
+    {
+      "src": "/(.*)/",
+      "headers": {
+        "Location": "/$1"
+      },
+      "status": 308
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/.*/",
+      "status": 404,
+      "dest": "/404.html"
+    }
   ]
 }
