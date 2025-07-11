@@ -384,9 +384,8 @@ nav::after {
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none;
     overflow: hidden; 
-    z-index: 0; /* Behind hero-content (z-index: 2) and portal-background-effect (z-index: 1 or 0) */
+    z-index: 3; /* Behind hero-content (z-index: 2) and portal-background-effect (z-index: 1 or 0) */
 }
 
 .geo-shape { 
@@ -527,10 +526,6 @@ nav::after {
 .hero-section {
     /* New Background: Dark, "portal" inspired */
     background-color: #0c0a1f; /* Deep dark blue/purple */
-    background-image:
-        radial-gradient(ellipse at 70% 30%, rgba(var(--pink-accent-rgb), 0.3) 0%, transparent 40%),
-        radial-gradient(ellipse at 30% 70%, rgba(var(--blue-accent-rgb), 0.35) 0%, transparent 40%),
-        linear-gradient(160deg, #0c0a1f 40%, #1a1238 100%); /* Dark base with subtle color hints */
     color: var(--secondary-color); /* Light text for dark background */
     padding-top: 4rem; /* Adjusted padding */
     padding-bottom: 6rem; /* Adjusted padding */
@@ -5832,8 +5827,9 @@ section,
     left: 0;
     width: 100%;
     height: 100%;
+    opacity: 0.7;
     pointer-events: none; /* Allows clicks through */
-    z-index: 1; /* Above .portal-background-effect (if z-index 0), below .hero-content (z-index 2) */
+    z-index: 2; /* Above .portal-background-effect (if z-index 0), below .hero-content (z-index 2) */
 }
 
 .geo-shape { 
@@ -6855,7 +6851,12 @@ nav {
     border: none;
     box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
 }
-
+.batch-status.status-close {
+    background: linear-gradient(45deg, #b91010, #d33434);
+    color: white;
+    border: none;
+    box-shadow: 0 2px 8px rgba(185, 16, 16, 0.3);
+}
 .reg-process-info {
     font-size: 0.9rem;
     color: #a0aec0;
@@ -7334,4 +7335,103 @@ nav {
 
 .content-article strong {
     color: var(--primary-color);
+}
+/* --- HERO SECTION REVAMP --- */
+.hero-section {
+    /* REMOVED: background-image property with gradients */
+    background-color: #0c0a1f; /* Keep dark fallback color */
+    color: var(--secondary-color);
+    padding-top: 4rem;
+    padding-bottom: 6rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    text-align: center;
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* ADDED: Carousel and Overlay Styles */
+.hero-carousel-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.75; /* Placed at the very back */
+}
+
+.hero-carousel-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+    background-size: cover;
+    background-position: center center;
+    animation: kenburns-effect 20s ease-in-out infinite alternate;
+}
+
+.hero-carousel-slide.active {
+    opacity: 1;
+}
+
+@keyframes kenburns-effect {
+    0% { transform: scale(1.15) translate(-2%, 2%); }
+    100% { transform: scale(1) translate(0, 0); }
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(12, 10, 31, 0.44); /* Dark overlay for text readability */
+    z-index: 2; /* Above carousel, below all other effects */
+}
+/* END OF ADDED STYLES */
+
+.portal-background-effect {
+    /* ... existing styles ... */
+    z-index: 1; /* Above overlay */
+}
+
+/* ADDED: Container for clouds */
+.floating-clouds-container {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* MODIFIED: Opacity for clouds */
+.floating-cloud.cloud-1 { opacity: 0.4; /* ... */ }
+.floating-cloud.cloud-2 { opacity: 0.3; /* ... */ }
+.floating-cloud.cloud-3 { opacity: 0.45; /* ... */ }
+.floating-cloud.cloud-4 { opacity: 0.35; /* ... */ }
+.floating-cloud.cloud-5 { opacity: 0.25; /* ... */ }
+
+/* MODIFIED: Opacity and z-index for geometric shapes */
+.geometric-edge-decorations {
+    /* ... existing styles ... */
+    z-index: 2; /* Same level as clouds */
+}
+.geo-shape { 
+    position: absolute;
+    opacity: 0.1; /* Lowered opacity from 0.8 */
+    will-change: transform;
+    object-fit: contain;
+}
+
+.hero-content {
+    /* ... existing styles ... */
+    z-index: 3; /* On top of everything */
 }

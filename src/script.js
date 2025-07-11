@@ -669,9 +669,47 @@ function setupCompetitionCarousel() {
     }, { passive: true });
     showSlide(currentSlide);
 }
+// --- Hero Section Image Carousel ---
+function setupHeroCarousel() {
+    const carouselContainer = document.querySelector('.hero-carousel-container');
+    if (!carouselContainer || !mediaContent?.gallery?.photos) {
+        return; // Exit if container or photos are not available
+    }
+
+    const photos = mediaContent.gallery.photos;
+    if (photos.length === 0) return;
+
+    let currentSlideIndex = 0;
+
+    // Create slide elements from media content
+    photos.forEach((photo, index) => {
+        const slide = document.createElement('div');
+        slide.className = 'hero-carousel-slide';
+        slide.style.backgroundImage = `url(${photo.fullUrl || photo.thumbnailUrl})`;
+        if (index === 0) {
+            slide.classList.add('active');
+        }
+        carouselContainer.appendChild(slide);
+    });
+
+    const slides = carouselContainer.querySelectorAll('.hero-carousel-slide');
+    if (slides.length <= 1) return; // No need for interval if only one image
+
+    // Function to change slide
+    const changeSlide = () => {
+        slides[currentSlideIndex].classList.remove('active');
+        currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+        slides[currentSlideIndex].classList.add('active');
+    };
+
+    // Start the carousel
+    setInterval(changeSlide, 7000); // Change image every 7 seconds
+}
+
 
 document.addEventListener('DOMContentLoaded', () => {
     setupPageTransitions();
+    setupHeroCarousel();
     initializeAOS();
     setupMobileNavigation();
     handlePageLoadAnchors();
