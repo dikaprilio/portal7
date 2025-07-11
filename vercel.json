@@ -1,12 +1,14 @@
 {
   "routes": [
-    {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/.*/",
-      "status": 404,
-      "dest": "/404.html"
-    }
+  {
+    "handle": "filesystem"
+  },
+  {
+    "src": "/.*/",
+    "status": 404,
+    "dest": "/404.html",
+    "cleanUrls": true,
+    "trailingSlash": false
+  }
   ]
 }
