@@ -2187,7 +2187,7 @@ nav::after {
 /* Cycling accent colors for the left border */
 .batch-list li:nth-child(3n+1)::before { background: linear-gradient(180deg, var(--orange-accent), var(--yellow-accent)); }
 .batch-list li:nth-child(3n+2)::before { background: linear-gradient(180deg, var(--pink-accent), var(--blue-accent)); }
-.batch-list li:nth-child(3n+3)::before { background: linear-gradient(180deg, var(--hero-seven-color), var(--hero-empower-color)); } /* Using other defined accents */
+.batch-list li:nth-child(3n+3)::before { background: linear-gradient(180deg, var(--green-accent), var(--purple-accent)); } /* Using other defined accents */
 
 .batch-list li:hover {
     transform: translateY(-5px) scale(1.01);
@@ -7435,3 +7435,78 @@ nav {
     /* ... existing styles ... */
     z-index: 3; /* On top of everything */
 }
+/* --- Join Our Team Section --- */
+#apply-roles {
+    background-color: var(--navbar-bg);
+    padding: 4rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+#apply-roles .section-title {
+    color: #ffffff;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.roles-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .roles-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.role-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.role-card:hover {
+    transform: translateY(-10px);
+    background-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 25px rgba(var(--hero-seven-color-rgb), 0.3), 0 0 40px rgba(var(--pink-accent), 0.2);
+}
+
+.role-card .card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, var(--orange-accent), var(--pink-accent));
+    color: white;
+    box-shadow: 0 0 15px rgba(var(--blue-accent), 0.5);
+}
+
+.role-card h3 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+
+.role-card p {
+    color: var(--secondary-color, #f0f0f0);
+    margin-bottom: 2rem;
+    flex-grow: 1;
+    line-height: 1.6;
+}
+
+
