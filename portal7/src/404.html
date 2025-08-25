@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title data-translate-key="not_found_page_title_meta">Page Not Found - Portal 7</title>
+
+    <meta name="description" content="The page you are looking for could not be found. Let's get you back on track.">
+    <link href="./favicon.ico" rel="icon" sizes="any">
+    <link type="image/png" sizes="32x32" href="./img/favicon-portal.png" rel="icon">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        .error-page-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 150px); /* Adjust based on nav/footer height */
+            text-align: center;
+            background-color: var(--navbar-bg);
+            color: var(--secondary-color);
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .error-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+        }
+        .error-code {
+            font-size: clamp(6rem, 20vw, 10rem);
+            font-weight: 800;
+            line-height: 1;
+            color: transparent;
+            -webkit-text-stroke: 2px var(--pink-accent);
+            text-shadow: 0 0 15px rgba(var(--pink-accent-rgb), 0.2);
+            animation: pulse-text 4s infinite ease-in-out;
+        }
+        @keyframes pulse-text {
+            0% { -webkit-text-stroke-color: var(--pink-accent); }
+            50% { -webkit-text-stroke-color: var(--blue-accent); }
+            100% { -webkit-text-stroke-color: var(--pink-accent); }
+        }
+        .error-title {
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            font-weight: 700;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+        .error-subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            color: #b0b8c4;
+            margin-bottom: 2.5rem;
+        }
+        .error-page-section .hero-button {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body class="is-loading"> 
+    <div class="page-transition-overlay"></div>
+    <div class="page-transition-wrapper">
+        <nav>
+            <div class="nav-container">
+                <a href="/" class="logo">
+                    <img src="img/Portal_Logo.png" alt="Logo Portal 7" onerror="this.onerror=null;this.src='https://placehold.co/120x30/cccccc/ffffff?text=P7+Logo';">
+                </a>
+                <div class="nav-links" id="main-nav-links">
+                    <a class="nav-a" href="/#hero" data-translate-key="nav_beranda">Beranda</a>
+                    <div class="nav-item dropdown">
+                        <a class="nav-a dropdown-toggle" href="#" data-translate-key="nav_tentang_portal">Tentang Portal <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/#tentang" data-translate-key="nav_tentang_kami">Tentang Kami</a>
+                            <a class="dropdown-item" href="/#sdg-commitment" data-translate-key="nav_sdg_commitment">Komitmen SDG</a>
+                            <a class="dropdown-item" href="/#guest-stars" data-translate-key="nav_guest_stars">Guest Star</a> 
+                            <a class="dropdown-item" href="/#highlight" data-translate-key="nav_highlight">Highlights</a>
+                            <a class="dropdown-item" href="/#linimasa" data-translate-key="nav_linimasa">Linimasa</a>
+                            <a class="dropdown-item" href="/#peserta" data-translate-key="nav_peserta">Siapa Peserta?</a>
+                            <a class="dropdown-item" href="/#faq" data-translate-key="nav_faq">FAQ</a>
+                            <a class="dropdown-item" href="/#sponsorship" data-translate-key="nav_sponsorship">Join Partnership</a>
+                            <a class="dropdown-item" href="/#apply-roles" data-translate-key="nav_apply_roles">Apply for Roles</a>
+                        </div>
+                    </div>
+
+                    <div class="nav-item dropdown">
+                        <a class="nav-a dropdown-toggle" href="#" data-translate-key="nav_event">Event <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/competition-hub" data-translate-key="nav_kompetisi">Kompetisi</a>
+                            <a class="dropdown-item" href="/seminar" data-translate-key="nav_seminar">Seminar</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a class="nav-a dropdown-toggle" href="#" data-translate-key="nav_media">Media <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/blog" data-translate-key="nav_blog">Blog</a>
+                            <a class="dropdown-item" href="/gallery" data-translate-key="nav_gallery">Gallery</a>
+                        </div>
+                    </div>
+                    <a class="nav-a" href="/#kontak" data-translate-key="nav_kontak_kami">Kontak Kami</a>
+                    <a class="nav-a nav-cta-button" href="/#pendaftaran" data-translate-key="nav_pendaftaran">Pendaftaran</a>
+                    
+                    <button id="lang-toggle" class="lang-toggle-button" data-translate-key="lang_toggle">ID</button>
+
+                </div>
+                <button id="mobile-menu-toggle" class="mobile-menu-button" aria-label="Toggle menu" aria-expanded="false">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+
+        <main>
+            <section class="error-page-section">
+                <div class="portal-background-effect"></div>
+                <div class="error-content" data-aos="zoom-in-up">
+                    <div class="error-code">404</div>
+                    <h1 class="error-title" data-translate-key="not_found_title">Page Not Found</h1>
+                    <p class="error-subtitle" data-translate-key="not_found_subtitle">Oops! Looks like you've ventured into an unknown portal. The page you're looking for doesn't exist.</p>
+                    <a href="/" class="hero-button button-main-cta" data-translate-key="not_found_button_home">
+                        <i class="fas fa-home"></i> Go Back to Home
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-container">
+                <div class="footer-top">
+                    <div class="footer-logo-area">
+                        <a href="/#hero"><img src="img/Portal_Logo.png" alt="Logo Mini Portal 7" class="portal-logo footer-logo-img"></a>
+                        <p class="footer-event-name">Portal 7: Empower Digital</p>
+                    </div>
+                    <div class="footer-quick-links">
+                        <h4 data-translate-key="footer_nav_cepat">Navigasi Cepat</h4>
+                        <a href="/#tentang" data-translate-key="nav_tentang_kami">Tentang Kami</a>
+                        <a href="/competition-hub" data-translate-key="nav_kompetisi">Kompetisi</a>
+                        <a href="/seminar" data-translate-key="nav_seminar">Seminar</a>
+                        <a href="/#linimasa" data-translate-key="nav_linimasa">Linimasa</a>
+                        <a href="/blog" data-translate-key="nav_blog">Blog</a>
+                        <a href="/gallery" data-translate-key="nav_gallery">Galeri</a>
+                        <a href="/#faq" data-translate-key="nav_faq">FAQ</a>
+                    </div>
+                    <div class="footer-contact-social">
+                        <h4 data-translate-key="footer_hubungi_kami">Terhubung Dengan Kami</h4>
+                        <div class="footer-contact-item"><i class="far fa-envelope"></i> <a href="mailto:portal.ipbuniversity@gmail.com">portal.ipbuniversity@gmail.com</a></div>
+                        <div class="footer-social-links">
+                            <a href="https://instagram.com/portal_ipb" target="_blank" class="social-icon ig" aria-label="Instagram Portal IPB"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.youtube.com/@portalipb" target="_blank" class="social-icon yt" aria-label="YouTube Portal IPB"><i class="fab fa-youtube"></i></a>
+                            <a href="https://www.tiktok.com/@portal_ipb/" target="_blank" class="social-icon tk" aria-label="TikTok Portal IPB"><i class="fab fa-tiktok"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="footer-copyright">
+                        <p data-translate-key="footer_copyright_line1">© 2025 Badan Eksekutif Mahasiswa Sekolah Vokasi IPB University. Hak cipta dilindungi.</p>
+                        <p data-translate-key="footer_copyright_line2">Diberdayakan oleh Inspirasi, Didorong oleh Inovasi.</p>
+                    </div>
+                    <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
+                </div>
+            </div>
+        </footer>
+    </div>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="script.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title data-translate-key="uiux_detail_page_title">UI/UX Competition Technical Guide - Portal 7</title>
+    <meta name="description" content="Official final technical guide for the Portal 7 UI/UX Competition (Team System). All submission requirements, pitch deck details, video demo rules, and research proof formats.">
+    <link rel="canonical" href="https://portalipb.site/competition-detail">
+
+    <link href="./favicon.ico" rel="icon" sizes="any">
+    <link type="image/png" sizes="32x32" href="./img/favicon-portal.png" rel="icon">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* Styles adapted from competition-hub.html for consistency */
+        .lang-toggle-button {
+            background-color: var(--pink-accent); color: white; border: none; padding: 0.5rem 1rem;
+            border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 0.9rem;
+            margin-left: 1rem; transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .lang-toggle-button:hover { background-color: var(--blue-accent); transform: scale(1.05); }
+        .nav-links { align-items: center; }
+
+        /* Page-specific styles for the guide */
+        .guide-hero {
+            padding: 4rem 2rem;
+            text-align: center;
+            background-color: #0c0a1f;
+            background-image: radial-gradient(ellipse at 70% 30%, rgba(var(--pink-accent-rgb), 0.2) 0%, transparent 45%), radial-gradient(ellipse at 30% 70%, rgba(var(--blue-accent-rgb), 0.25) 0%, transparent 45%), linear-gradient(160deg, #0c0a1f 30%, #1a1238 100%);
+            color: var(--secondary-color);
+            position: relative;
+            overflow: hidden;
+        }
+        .guide-hero .guide-title-main {
+            font-size: clamp(2.5rem, 6vw, 3.2rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            text-shadow: 0 0 10px rgba(var(--pink-accent-rgb), 0.3);
+        }
+        .guide-hero .guide-subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            color: #b0b8c4;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+        .guide-content-container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+            background-color: var(--navbar-bg);
+            color: var(--secondary-color);
+        }
+        .guide-body {
+            line-height: 1.8;
+            font-size: 1.05rem;
+            color: #d1d5db;
+        }
+        .guide-body h2, .guide-body h3 {
+            color: var(--secondary-color);
+            margin-top: 2.8em;
+            margin-bottom: 1.2em;
+            padding-bottom: 0.4em;
+            border-bottom: 2px solid;
+            border-image: linear-gradient(to right, var(--pink-accent), var(--blue-accent)) 1;
+            font-weight: 700;
+        }
+        .guide-body h2 { font-size: 1.8rem; }
+        .guide-body h3 { font-size: 1.4rem; margin-top: 2em; }
+        .guide-body p { margin-bottom: 1.2em; }
+        .guide-body ul, .guide-body ol {
+            padding-left: 25px;
+            margin-bottom: 1.5em;
+        }
+        .guide-body li {
+            margin-bottom: 1em;
+            padding-left: 10px;
+        }
+        .guide-body ul li::marker {
+            color: var(--pink-accent);
+            font-size: 1.2em;
+        }
+        .guide-body ol li::marker {
+            color: var(--blue-accent);
+            font-weight: bold;
+        }
+        .guide-label { /* Replaces <strong> for better styling control */
+            font-weight: 700;
+            color: var(--yellow-accent);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .badge-required, .badge-recommended {
+            background-color: var(--blue-accent);
+            color: white;
+            padding: 3px 12px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+        .badge-recommended {
+            background-color: var(--green-accent);
+        }
+        .info-box {
+            background-color: #2f3542;
+            border-left: 4px solid var(--blue-accent);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+        .info-box p, .info-box li { margin: 0; }
+        .info-box ul { padding-left: 20px; margin-top: 1rem; }
+    </style>
+</head>
+<body class="is-loading"> 
+    <div class="page-transition-overlay"></div>
+    <div class="page-transition-wrapper">
+        <nav>
+            <div class="nav-container">
+                <a href="/" class="logo">
+                    <img src="img/Portal_Logo.png" alt="Logo Portal 7" onerror="this.onerror=null;this.src='https://placehold.co/120x30/cccccc/ffffff?text=P7+Logo';">
+                </a>
+                <div class="nav-links" id="main-nav-links">
+                    <a class="nav-a" href="/#hero" data-translate-key="nav_beranda">Beranda</a>
+                    <div class="nav-item dropdown">
+                        <a class="nav-a dropdown-toggle" href="#" data-translate-key="nav_tentang_portal">Tentang Portal <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/#tentang" data-translate-key="nav_tentang_kami">Tentang Kami</a>
+                            <a class="dropdown-item" href="/#sdg-commitment" data-translate-key="nav_sdg_commitment">Komitmen SDG</a>
+                            <a class="dropdown-item" href="/#guest-stars" data-translate-key="nav_guest_stars">Guest Star</a> 
+                            <a class="dropdown-item" href="/#highlight" data-translate-key="nav_highlight">Highlights</a>
+                            <a class="dropdown-item" href="/#linimasa" data-translate-key="nav_linimasa">Linimasa</a>
+                            <a class="dropdown-item" href="/#peserta" data-translate-key="nav_peserta">Siapa Peserta?</a>
+                            <a class="dropdown-item" href="/#faq" data-translate-key="nav_faq">FAQ</a>
+                            <a class="dropdown-item" href="/#sponsorship" data-translate-key="nav_sponsorship">Join Partnership</a>
+                            <a class="dropdown-item" href="/#apply-roles" data-translate-key="nav_apply_roles">Apply for Roles</a>
+                        </div>
+                    </div>
+
+                    <div class="nav-item dropdown">
+                        <a class="nav-a dropdown-toggle" href="#" data-translate-key="nav_event">Event <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/competition-hub" data-translate-key="nav_kompetisi">Kompetisi</a>
+                            <a class="dropdown-item" href="/seminar" data-translate-key="nav_seminar">Seminar</a>
+                        </div>
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a class="nav-a dropdown-toggle" href="#" data-translate-key="nav_media">Media <i class="fas fa-chevron-down dropdown-icon"></i></a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="/blog" data-translate-key="nav_blog">Blog</a>
+                            <a class="dropdown-item" href="/gallery" data-translate-key="nav_gallery">Gallery</a>
+                        </div>
+                    </div>
+                    <a class="nav-a" href="/#kontak" data-translate-key="nav_kontak_kami">Kontak Kami</a>
+                    <a class="nav-a nav-cta-button" href="/#pendaftaran" data-translate-key="nav_pendaftaran">Pendaftaran</a>
+                    
+                    <button id="lang-toggle" class="lang-toggle-button" data-translate-key="lang_toggle">ID</button>
+
+                </div>
+                <button id="mobile-menu-toggle" class="mobile-menu-button" aria-label="Toggle menu" aria-expanded="false">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+
+        <main>
+            <div class="guide-hero">
+                <h1 class="guide-title-main" data-translate-key="uiux_detail_hero_title">Final Technical Guide: UI/UX Competition</h1>
+                <p class="guide-subtitle" data-translate-key="uiux_detail_hero_subtitle">This document is the official technical guide, updated according to the change to a team-based competition system. All participants are expected to follow this guide in preparing their submissions.</p>
+                
+                <!-- Download Button Implementation -->
+                <a href="/src/booklets/UI_UX_BOOKLET_PORTAL_7.pdf" download="Portal7-UIUX-Competition-Booklet.pdf" class="hero-button button-secondary-cta" style="margin-top: 2rem;" data-translate-key="download_booklet_button">
+                    <i class="fas fa-download"></i> Download Full Booklet
+                </a>
+            </div>
+            
+            <div class="guide-content-container">
+                <article class="guide-body">
+                    <h2 data-translate-key="uiux_detail_submission_title">A. Submission Requirements</h2>
+                    <p data-translate-key="uiux_detail_submission_intro">Each team is required to submit the following three main components:</p>
+                    <ol>
+                        <li data-translate-key="uiux_detail_submission_item1">High-Fidelity Figma Prototype Link (View-Only Access).</li>
+                        <li data-translate-key="uiux_detail_submission_item2">Presentation Pitch Deck (.PPT or .PDF Format).</li>
+                        <li data-translate-key="uiux_detail_submission_item3">Demonstration Video (YouTube/Google Drive Link).</li>
+                    </ol>
+
+                    <h2 data-translate-key="uiux_detail_pitchdeck_title">B. Detailed Pitch Deck Guide (Max. 25 Slides)</h2>
+                    <p data-translate-key="uiux_detail_pitchdeck_intro">The Pitch Deck is a primary assessment component that must narrate your team's entire process, from idea to solution.</p>
+                    
+                    <h3 data-translate-key="uiux_detail_pd_cover_title">1. Cover & Team Identity</h3>
+                    <ul>
+                        <li data-translate-key="uiux_detail_pd_cover_item1">Work Title & Team Name.</li>
+                        <li data-translate-key="uiux_detail_pd_cover_item2">Team Identity: Include the full names of all members (2-3 people) along with their main roles/contributions in the project (e.g., UX Researcher, UI Designer, Project Manager).</li>
+                        <li data-translate-key="uiux_detail_pd_cover_item3">The chosen sub-theme and SDG.</li>
+                    </ul>
+
+                    <h3 data-translate-key="uiux_detail_pd_research_title">2. Research & Idea Validation</h3>
+                    <ul>
+                        <li><span data-translate-key="uiux_detail_pd_research_bg_label">Background & Problem:</span> <span data-translate-key="uiux_detail_pd_research_bg_desc">Explain the context, urgency, and specific problem you aim to solve.</span></li>
+                        <li>
+                            <span data-translate-key="uiux_detail_pd_research_method_label">Research Method</span><span class="badge-required" data-translate-key="uiux_badge_mandatory">Mandatory: Min. 1</span>
+                            <p data-translate-key="uiux_detail_pd_research_method_desc">To validate your problem, choose and conduct at least ONE of the following research methods:</p>
+                            <ul>
+                                <li data-translate-key="uiux_detail_pd_research_method1"><span>User Interview:</span> Conduct in-depth interviews with 3-5 people who are your target audience.</li>
+                                <li data-translate-key="uiux_detail_pd_research_method2"><span>Online Survey:</span> Distribute an online questionnaire to obtain quantitative data.</li>
+                                <li data-translate-key="uiux_detail_pd_research_method3"><span>Competitor Analysis:</span> Analyze 2-3 existing similar products/applications to find their strengths and weaknesses.</li>
+                                <li data-translate-key="uiux_detail_pd_research_method4"><span>Secondary Research (Desk Research):</span> Collect and analyze existing data, articles, journals, or reports to support your argument about the urgency of the problem.</li>
+                                <li data-translate-key="uiux_detail_pd_research_method5"><span>Forum & Review Analysis:</span> Dig for insights from reviews on the App Store/Play Store or discussions in online forums (like Reddit, etc.) to find real user complaints and needs.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span data-translate-key="uiux_detail_pd_research_results_label">Research Findings & Persona:</span>
+                            <p data-translate-key="uiux_detail_pd_research_results_desc">Present the key findings from your research and summarize them in the form of:</p>
+                            <ul>
+                                <li data-translate-key="uiux_detail_pd_research_persona"><strong>User Persona:</strong> One representative fictional user profile.</li>
+                                <li data-translate-key="uiux_detail_pd_research_painpoints"><strong>Pain Points:</strong> 3-5 main difficulties faced by the persona.</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h3 data-translate-key="uiux_detail_pd_ideation_title">3. Ideation & Solution Priority</h3>
+                    <ul>
+                        <li data-translate-key="uiux_detail_pd_ideation_item1">Show how your team brainstormed to generate solution ideas.</li>
+                        <li data-translate-key="uiux_detail_pd_ideation_item2">Explain the main features you propose and provide reasons why these features are a priority.</li>
+                    </ul>
+
+                    <h3 data-translate-key="uiux_detail_pd_userflow_title">4. User Flow</h3>
+                    <ul>
+                        <li data-translate-key="uiux_detail_pd_userflow_item1">Illustrate the most crucial user interaction flow in using your solution, from start to goal achievement.</li>
+                    </ul>
+
+                    <h3 data-translate-key="uiux_detail_pd_hifi_title">5. Design Showcase (High-Fidelity Screens)</h3>
+                    <ul>
+                        <li data-translate-key="uiux_detail_pd_hifi_item1">Present several of the most representative screens from your application.</li>
+                        <li data-translate-key="uiux_detail_pd_hifi_item2">Also, include a simple Design System (Colors, Typography, Icons) that you used to maintain consistency.</li>
+                    </ul>
+
+                    <h3 data-translate-key="uiux_detail_pd_vision_title">6. Vision & Development Potential</h3>
+                    <p data-translate-key="uiux_detail_pd_vision_intro">Explain the long-term vision of your project. You can choose 1-2 of the areas below that are most relevant to describe:</p>
+                    <ul>
+                        <li data-translate-key="uiux_detail_pd_vision_item1"><strong>Product Evolution:</strong> What's the next big feature? How will this product evolve in the next year?</li>
+                        <li data-translate-key="uiux_detail_pd_vision_item2"><strong>Growth & Outreach:</strong> How will you reach more users or collaborate with other parties?</li>
+                        <li data-translate-key="uiux_detail_pd_vision_item3"><strong>Sustainable Impact:</strong> How will you measure the success of your project's social impact?</li>
+                    </ul>
+
+                    <h3 data-translate-key="uiux_detail_pd_closing_title">7. Closing & Prototype Link</h3>
+                    <ul>
+                        <li data-translate-key="uiux_detail_pd_closing_item1">Close your presentation with a strong conclusion.</li>
+                        <li data-translate-key="uiux_detail_pd_closing_item2">Re-include the view-only link to your interactive prototype in Figma.</li>
+                    </ul>
+
+                    <h2 data-translate-key="uiux_detail_video_title">C. Detailed Demonstration Video Guide</h2>
+                    <p data-translate-key="uiux_detail_video_intro">The demonstration video is a mandatory component aimed at showcasing the function and value of your solution visually and engagingly.</p>
+                    
+                    <h3 data-translate-key="uiux_detail_video_format_title">1. Duration & Format</h3>
+                    <ul>
+                        <li data-translate-key="uiux_detail_video_format_item1">Maximum duration: 3 minutes.</li>
+                        <li data-translate-key="uiux_detail_video_format_item2">Minimum video resolution of 1080p (Full HD) with MP4 file format.</li>
+                    </ul>
+
+                    <h3 data-translate-key="uiux_detail_video_audio_title">2. Audio & Language</h3>
+                    <ul>
+                        <li data-translate-key="uiux_detail_video_audio_item1">Narration (voice-over) in English with clear audio quality is mandatory.</li>
+                        <li data-translate-key="uiux_detail_video_audio_item2">Videos without narration or with only music/text will not be judged maximally.</li>
+                    </ul>
+
+                    <h3 data-translate-key="uiux_detail_video_structure_title">3. Video Structure & Content (Sequential Order Required)</h3>
+                    <ul>
+                        <li>
+                            <span data-translate-key="uiux_detail_video_structure_intro_title">Opening (0-20 seconds):</span>
+                            <ul>
+                                <li data-translate-key="uiux_detail_video_structure_intro_item1">Introduce the project title, team name, and all members.</li>
+                                <li data-translate-key="uiux_detail_video_structure_intro_item2">State the problem and the SDG being addressed.</li>
+                                <li data-translate-key="uiux_detail_video_structure_intro_item3">Display the Portal 7 & Ditmawa logos.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span data-translate-key="uiux_detail_video_structure_demo_title">Scenario-Based Demonstration (± 2 minutes):</span>
+                            <ul>
+                                <li data-translate-key="uiux_detail_video_structure_demo_item1">Must show one most crucial user flow from start to finish.</li>
+                                <li data-translate-key="uiux_detail_video_structure_demo_item2">Narrate the scenario being performed by the user, not just randomly clicking buttons.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span data-translate-key="uiux_detail_video_structure_outro_title">Closing (± 30 seconds):</span>
+                            <ul>
+                                <li data-translate-key="uiux_detail_video_structure_outro_item1">Provide a brief statement about the expected impact of your solution.</li>
+                                <li data-translate-key="uiux_detail_video_structure_outro_item2">End the video with a call-to-action or hope for future development.</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h2 data-translate-key="uiux_detail_appendix_title">D. Appendix: Research Proof Format<span class="badge-recommended" data-translate-key="uiux_badge_recommended">Recommended</span></h2>
+                    <p data-translate-key="uiux_detail_appendix_intro">To strengthen your arguments and validation, it is highly recommended to include research proof as an appendix at the end of your presentation (within the 25-slide limit). Here are the suggested formats:</p>
+                    
+                    <h3 data-translate-key="uiux_detail_appendix_interview_title">For User Interviews:</h3>
+                    <ul>
+                        <li data-translate-key="uiux_detail_appendix_interview_item1"><span>Documentation:</span> Screenshot of the conversation (chat) or a photo of the interview session (interviewee's face may be blurred for privacy).</li>
+                        <li data-translate-key="uiux_detail_appendix_interview_item2"><span>Summary:</span> A simple table containing a list of key questions and a summary of the most important answers or quotes from the interviewees.</li>
+                    </ul>
+
+                    <h3 data-translate-key="uiux_detail_appendix_survey_title">For Short Surveys:</h3>
+                    <ul>
+                        <li data-translate-key="uiux_detail_appendix_survey_item1"><span>Link & Demographics:</span> Include a link to the active survey (e.g., Google Forms) and a summary of respondent demographics (e.g., "50 respondents, 60% students, 40% workers").</li>
+                        <li data-translate-key="uiux_detail_appendix_survey_item2"><span>Key Results:</span> Screenshot 2-3 of the most relevant charts or diagrams from your survey results that support your main arguments.</li>
+                    </ul>
+
+                    <h3 data-translate-key="uiux_detail_appendix_secondary_title">For Secondary Research:</h3>
+                    <ul>
+                        <li data-translate-key="uiux_detail_appendix_secondary_item1"><span>List of Sources:</span> Create a list of the sources you used (e.g., Article/Report Title, Author, Year, and Link). 3-5 of the most relevant sources are sufficient.</li>
+                    </ul>
+
+                    <h3 data-translate-key="uiux_detail_appendix_forum_title">For Forum & Review Analysis:</h3>
+                    <ul>
+                        <li data-translate-key="uiux_detail_appendix_forum_item1"><span>Screenshot Collection:</span> Present 3-5 of the most representative screenshots of reviews (from App Store/Play Store) or comments/discussions (from online forums). Highlight or mark the most important parts of the text.</li>
+                    </ul>
+                </article>
+            </div>
+        </main>
+
+        <footer>
+            <div class="footer-container">
+                <div class="footer-top">
+                    <div class="footer-logo-area">
+                        <a href="/#hero"><img src="img/Portal_Logo.png" alt="Logo Mini Portal 7" class="portal-logo footer-logo-img"></a>
+                        <p class="footer-event-name">Portal 7: Empower Digital</p>
+                    </div>
+                    <div class="footer-quick-links">
+                        <h4 data-translate-key="footer_nav_cepat">Navigasi Cepat</h4>
+                        <a href="/#tentang" data-translate-key="nav_tentang_kami">Tentang Kami</a>
+                        <a href="/competition-hub" data-translate-key="nav_kompetisi">Kompetisi</a>
+                        <a href="/seminar" data-translate-key="nav_seminar">Seminar</a>
+                        <a href="/#linimasa" data-translate-key="nav_linimasa">Linimasa</a>
+                        <a href="/blog" data-translate-key="nav_blog">Blog</a>
+                        <a href="/gallery" data-translate-key="nav_gallery">Galeri</a>
+                        <a href="/#faq" data-translate-key="nav_faq">FAQ</a>
+                    </div>
+                    <div class="footer-contact-social">
+                        <h4 data-translate-key="footer_hubungi_kami">Terhubung Dengan Kami</h4>
+                        <div class="footer-contact-item"><i class="far fa-envelope"></i> <a href="mailto:portal.ipbuniversity@gmail.com">portal.ipbuniversity@gmail.com</a></div>
+                        <div class="footer-social-links">
+                            <a href="https://instagram.com/portal_ipb" target="_blank" class="social-icon ig" aria-label="Instagram Portal IPB"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.youtube.com/@portalipb" target="_blank" class="social-icon yt" aria-label="YouTube Portal IPB"><i class="fab fa-youtube"></i></a>
+                            <a href="https://www.tiktok.com/@portal_ipb/" target="_blank" class="social-icon tk" aria-label="TikTok Portal IPB"><i class="fab fa-tiktok"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="footer-copyright">
+                        <p data-translate-key="footer_copyright_line1">© 2025 Badan Eksekutif Mahasiswa Sekolah Vokasi IPB University. Hak cipta dilindungi.</p>
+                        <p data-translate-key="footer_copyright_line2">Diberdayakan oleh Inspirasi, Didorong oleh Inovasi.</p>
+                    </div>
+                    <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
+                </div>
+            </div>
+        </footer>
+    </div>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="script.js" type="module"></script>
+</body>
+</html>
