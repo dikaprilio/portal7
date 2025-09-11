@@ -24,11 +24,15 @@ function applyTranslations(lang) {
     const elementsToTranslate = document.querySelectorAll('[data-translate-key]');
     elementsToTranslate.forEach(el => {
         const key = el.dataset.translateKey;
-        if (translations[lang] && typeof translations[lang][key] !== 'undefined') {
-            if (el.children.length > 0 && el.innerHTML.includes("<i")) {
-                el.innerHTML = translations[lang][key];
+        const translationValue = translations[lang]?.[key];
+
+        if (typeof translationValue !== 'undefined') {
+            // This new logic is smarter: it checks if the translation
+            // itself contains HTML code and renders it correctly.
+            if (translationValue.includes('<') && translationValue.includes('>')) {
+                el.innerHTML = translationValue;
             } else {
-                el.textContent = translations[lang][key];
+                el.textContent = translationValue;
             }
         }
     });

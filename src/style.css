@@ -7508,5 +7508,930 @@ nav {
     flex-grow: 1;
     line-height: 1.6;
 }
+.sponsorship-cta-section .hero-button {
+    display: block;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
 
+/* === SEMINAR PAGE REVAMP (NEW STYLES) === */
 
+.seminar-revamp-hero-title {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 800;
+    color: var(--secondary-color);
+    margin-bottom: 0.75rem;
+    text-shadow: 0 0 15px rgba(var(--pink-accent-rgb), 0.4);
+}
+
+.seminar-revamp-main-theme {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    color: var(--yellow-accent);
+    margin-bottom: 1.5rem;
+    font-style: italic;
+    font-weight: 500;
+}
+
+.seminar-meta-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #d1d5db;
+}
+
+.seminar-meta-info span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#seminar-expect {
+    background-color: var(--navbar-bg);
+}
+
+#seminar-expect .section-title {
+    color: var(--secondary-color);
+}
+
+.expect-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.expect-card {
+    background: #23272f;
+    padding: 2rem 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid rgba(var(--blue-accent-rgb), 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.expect-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(var(--pink-accent-rgb), 0.15);
+}
+
+.expect-icon {
+    font-size: 2.5rem;
+    color: var(--pink-accent);
+    margin-bottom: 1rem;
+}
+
+.expect-card h3 {
+    font-size: 1.3rem;
+    color: var(--secondary-color);
+    margin-bottom: 0.75rem;
+}
+
+.expect-card p {
+    font-size: 0.9rem;
+    color: #b0b8c4;
+    line-height: 1.6;
+}
+
+#seminar-speakers {
+    background-color: #0c0a1f; /* Even darker bg for contrast */
+}
+
+.speakers-grid-seminar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    align-items: stretch;
+}
+
+.speaker-card-seminar {
+    background-color: #23272f;
+    border-radius: 12px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.speaker-card-seminar.featured {
+    grid-column: 1 / -1; /* Make featured speaker span full width */
+    flex-direction: row;
+    text-align: left;
+    gap: 2rem;
+    background: linear-gradient(135deg, rgba(var(--pink-accent-rgb), 0.1), rgba(var(--blue-accent-rgb), 0.1));
+}
+
+.speaker-card-seminar .speaker-img-placeholder img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+.speaker-card-seminar.featured .speaker-img-placeholder img {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 0;
+}
+
+.speaker-card-seminar .speaker-info h4 {
+    font-size: 1.4rem;
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+}
+
+.speaker-card-seminar .speaker-info .speaker-title {
+    font-size: 1rem;
+    color: var(--yellow-accent);
+    font-style: italic;
+}
+
+#seminar-agenda {
+    background-color: var(--navbar-bg);
+}
+#seminar-agenda .section-title {
+    color: var(--secondary-color);
+}
+.agenda-timeline {
+    position: relative;
+    max-width: 700px;
+    margin: 2rem auto;
+    padding-left: 2rem;
+    border-left: 3px solid rgba(var(--secondary-color), 0.15);
+}
+
+.agenda-item {
+    position: relative;
+    margin-bottom: 2.5rem;
+}
+.agenda-item:last-child {
+    margin-bottom: 0;
+}
+
+.agenda-time {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--pink-accent);
+    margin-bottom: 0.5rem;
+}
+
+.agenda-icon {
+    position: absolute;
+    left: -39px;
+    top: 28px;
+    width: 30px;
+    height: 30px;
+    background-color: var(--pink-accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border: 3px solid var(--navbar-bg);
+}
+
+.agenda-details h3 {
+    font-size: 1.25rem;
+    color: var(--secondary-color);
+    margin-bottom: 0.25rem;
+}
+
+.agenda-details p {
+    font-size: 0.9rem;
+    color: #b0b8c4;
+}
+
+.venue-section {
+    background-color: #0c0a1f;
+}
+.venue-section .section-title,
+.venue-section .section-subtitle {
+    color: var(--secondary-color);
+}
+.venue-section .map-placeholder iframe {
+    filter: invert(0.9) hue-rotate(180deg) saturate(0.5) brightness(1.1);
+}
+
+@media (max-width: 767px) {
+    .speaker-card-seminar.featured {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+}
+/* Styling for Font Awesome icons within the SDG card structure */
+.sdg-icon-wrapper {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    border-radius: 8px;
+    background-color: rgba(240, 240, 240, 0.1);
+    padding: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sdg-icon-fa {
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+}
+
+/* Adjustments for SDG card titles when used for benefits */
+#seminar-benefits .sdg-item-header .sdg-title-number {
+    flex-grow: 1;
+    display: flex;
+    align-items: center; /* Vertically center the title */
+}
+
+#seminar-benefits .sdg-item h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin-bottom: 0;
+    line-height: 1.3;
+}
+/* === SEMINAR BOOKING CTA REVAMP === */
+#seminar-booking-cta {
+    background: linear-gradient(135deg, #1a1d24, #0c0a1f);
+    border-top: 1px solid rgba(var(--pink-accent-rgb), 0.3);
+    border-bottom: 1px solid rgba(var(--blue-accent-rgb), 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+#seminar-booking-cta::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 800px;
+    height: 800px;
+    background-image: radial-gradient(circle, rgba(var(--pink-accent-rgb), 0.15) 0%, transparent 60%);
+    transform: translate(-50%, -50%);
+    animation: pulsePortalEffect 12s infinite linear;
+}
+
+#seminar-booking-cta .container {
+    position: relative;
+    z-index: 1;
+}
+
+#seminar-booking-cta .section-title {
+    font-size: clamp(2rem, 5vw, 2.5rem);
+    color: var(--secondary-color);
+    text-shadow: 0 0 15px rgba(var(--pink-accent-rgb), 0.5);
+}
+
+#seminar-booking-cta .section-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
+    color: #c0c8d4;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2.5rem;
+}
+
+#seminar-booking-cta .nav-cta-button {
+    display: inline-block; /* Allows for centering */
+    text-decoration: none; /* remove underline from nav-a */
+}
+
+/* === SEMINAR TICKET CTA (NEW CONCEPT) === */
+#seminar-ticket-cta {
+    background-color: #23272f; /* Dark card background */
+    border-top: 1px solid rgba(var(--secondary-color), 0.1);
+    border-bottom: 1px solid rgba(var(--secondary-color), 0.1);
+}
+
+.ticket-cta-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+@media (min-width: 992px) {
+    .ticket-cta-grid {
+        grid-template-columns: 1.2fr 1fr; /* Give more space to text */
+    }
+}
+
+.ticket-info .section-title,
+.ticket-info .section-subtitle {
+    text-align: left;
+    margin-left: 0;
+    margin-right: 0;
+    color: var(--secondary-color);
+}
+.ticket-info .section-subtitle {
+    color: #b0b8c4;
+}
+
+.ticket-info h4 {
+    font-size: 1.2rem;
+    color: var(--yellow-accent);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.ticket-benefits-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ticket-benefits-list li {
+    color: #d1d5db;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1rem;
+}
+
+.ticket-benefits-list li i {
+    color: var(--green-accent);
+    font-size: 1.2em;
+}
+
+.ticket-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.ticket-graphic {
+    width: 100%;
+    max-width: 350px;
+    background: #1f2128;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    display: flex;
+    border: 1px solid rgba(var(--secondary-color), 0.1);
+    transition: transform 0.3s ease;
+}
+
+.ticket-visual:hover .ticket-graphic {
+    transform: rotate(3deg) scale(1.05);
+}
+
+.ticket-header {
+    background: linear-gradient(135deg, var(--pink-accent), var(--orange-accent));
+    padding: 1rem;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    text-align: center;
+    border-radius: 16px 0 0 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.ticket-header img {
+    width: 30px;
+    filter: brightness(0) invert(1);
+    margin-bottom: 1rem;
+}
+
+.ticket-header span {
+    font-weight: 700;
+    color: white;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+}
+
+.ticket-body {
+    flex-grow: 1;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    color: var(--secondary-color);
+}
+
+.ticket-body h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+}
+
+.ticket-body p {
+    font-size: 1rem;
+    color: #b0b8c4;
+    margin: 0;
+}
+
+.ticket-stub {
+    padding: 1rem;
+    border-left: 2px dashed rgba(var(--secondary-color), 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ticket-qr-placeholder {
+    width: 60px;
+    height: 60px;
+    background: white;
+    border-radius: 8px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+.ticket-booking-button {
+    width: 100%;
+    max-width: 350px;
+    text-decoration: none;
+    padding: 1rem 2rem !important; /* Important to override nav-a padding */
+    font-size: 1.1rem !important; /* Important to override nav-a font-size */
+}
+/* === SEMINAR PAGE COLOR & RESPONSIVE FIXES === */
+
+/* Unify background colors */
+#seminar-ticket-cta,
+#seminar-agenda,
+.venue-section {
+    background-color: var(--navbar-bg);
+}
+
+/* Make the ticket section responsive */
+@media (max-width: 991px) {
+    .ticket-cta-grid {
+        grid-template-columns: 1fr; /* Stack into a single column */
+        gap: 2.5rem;
+    }
+
+    .ticket-info {
+        text-align: center; /* Center-align the text content */
+    }
+
+    /* Ensure titles are centered in the mobile layout */
+    .ticket-info .section-title,
+    .ticket-info .section-subtitle {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Center the benefits list block */
+    .ticket-benefits-list {
+        display: inline-block; 
+        text-align: left; /* Keep list items themselves left-aligned */
+        margin: 0 auto;
+    }
+}
+/* === SEMINAR TICKET CTA TYPOGRAPHY FIX FOR MOBILE === */
+@media (max-width: 767px) {
+    #seminar-ticket-cta .section-title {
+        font-size: 1.8rem; /* Reduced from 2.25rem */
+        margin-bottom: 1rem;
+    }
+
+    #seminar-ticket-cta .section-subtitle {
+        font-size: 0.95rem; /* Reduced from 1.1rem */
+        margin-bottom: 2rem;
+    }
+
+    #seminar-ticket-cta .ticket-info h4 {
+        font-size: 1.1rem; /* Reduced from 1.2rem */
+        margin-top: 1.5rem;
+    }
+
+    #seminar-ticket-cta .ticket-benefits-list li {
+        font-size: 0.9rem; /* Reduced from 1rem */
+    }
+
+    .ticket-graphic {
+        max-width: 320px; /* Constrain ticket size on mobile */
+    }
+}
+/* === SEMINAR TICKET CTA RESPONSIVE FIX (V2) === */
+@media (max-width: 767px) {
+    /* Add padding to the section on mobile to prevent content touching edges */
+    #seminar-ticket-cta {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    /* Target the container for the ticket visual */
+    #seminar-ticket-cta .ticket-visual {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center the ticket and button horizontally */
+    }
+
+    /* Reduce the ticket's size and ensure it's centered */
+    #seminar-ticket-cta .ticket-graphic {
+        max-width: 300px; /* Reduced max-width for better mobile fit */
+        width: 100%;      /* Allow it to shrink on very small screens */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Scale down the elements INSIDE the ticket */
+    #seminar-ticket-cta .ticket-header {
+        padding: 0.75rem;
+    }
+    #seminar-ticket-cta .ticket-header img {
+        width: 25px;
+        margin-bottom: 0.75rem;
+    }
+    #seminar-ticket-cta .ticket-header span {
+        font-size: 0.7rem;
+        letter-spacing: 1.5px;
+    }
+    #seminar-ticket-cta .ticket-body {
+        padding: 1.5rem 1.25rem;
+    }
+    #seminar-ticket-cta .ticket-body h3 {
+        font-size: 1.2rem;
+    }
+    #seminar-ticket-cta .ticket-body p {
+        font-size: 0.9rem;
+    }
+    #seminar-ticket-cta .ticket-stub {
+        padding: 0.75rem;
+    }
+    #seminar-ticket-cta .ticket-qr-placeholder {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+
+    /* Constrain the button width to match the ticket */
+    #seminar-ticket-cta .ticket-booking-button {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+/* === INDEX.HTML - NEW REGISTRATION SECTION === */
+.registration-section {
+    background-color: var(--navbar-bg);
+    position: relative;
+    overflow: hidden;
+}
+
+.registration-section .section-title {
+    color: var(--secondary-color);
+    text-shadow: 0 0 10px rgba(var(--pink-accent-rgb), 0.4);
+}
+
+.registration-section .section-subtitle {
+    color: #c0c8d4;
+}
+
+.registration-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    margin-top: 3rem;
+}
+
+@media (min-width: 992px) {
+    .registration-grid {
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+    }
+}
+
+.registration-column {
+    background: #23272f;
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    border: 1px solid rgba(var(--blue-accent-rgb), 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.registration-column .guidebook-button {
+    margin-top: 2.5rem;
+}
+
+.registration-column.seminar-ticket .ticket-visual {
+    margin-top: 1rem;
+}
+
+/* Responsive Adjustments for New Registration Section */
+@media (max-width: 767px) {
+    .registration-grid {
+        gap: 2rem;
+    }
+    .registration-column {
+        padding: 2rem 1.5rem;
+    }
+}
+/* === INDEX.HTML - REVAMPED REGISTRATION SECTION === */
+.registration-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    margin-top: 3rem;
+    align-items: stretch; /* This makes columns equal height */
+}
+
+@media (min-width: 992px) {
+    .registration-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.registration-column {
+    background: #23272f;
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    border: 1px solid rgba(var(--blue-accent-rgb), 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative; /* For decorative elements */
+    overflow: hidden; /* Important! */
+}
+
+/* --- Left Column: Registration Flow --- */
+.registration-column.registration-flow .guidebook-button {
+    margin-top: auto; /* Pushes button to the bottom */
+}
+
+.reg-process-info {
+    font-size: 0.9rem;
+    color: #a0aec0;
+    text-align: center;
+    line-height: 1.6;
+    margin-top: 1.5rem;
+}
+
+/* --- Right Column: Seminar Ticket (EYECATCHING) --- */
+@keyframes spotlight-pan {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.seminar-deco-spotlight {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 180deg at 50% 50%, 
+        rgba(236, 72, 153, 0) 0%, 
+        rgba(236, 72, 153, 0.15) 30%, 
+        rgba(236, 72, 153, 0) 60%);
+    animation: spotlight-pan 15s linear infinite;
+    z-index: 0;
+}
+
+.seminar-deco-star {
+    position: absolute;
+    top: 15%;
+    right: 15%;
+    width: 80px;
+    opacity: 0.2;
+    transform: rotate(15deg);
+    z-index: 0;
+}
+
+.registration-column.seminar-ticket .reg-card-title,
+.registration-column.seminar-ticket .ticket-visual {
+    position: relative;
+    z-index: 1; /* Keep content above decorations */
+}
+
+.registration-column.seminar-ticket .ticket-visual {
+    margin-top: 1rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.registration-column.seminar-ticket .ticket-graphic {
+    filter: drop-shadow(0 8px 25px rgba(0,0,0,0.5));
+}
+/* === SEMINAR TICKET CARD ENHANCEMENTS === */
+
+/* Add a subtle grid background to the card */
+.registration-column.seminar-ticket {
+    background-image: linear-gradient(rgba(var(--blue-accent-rgb), 0.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(var(--blue-accent-rgb), 0.03) 1px, transparent 1px);
+    background-size: 30px 30px;
+}
+
+/* Keyframes for the new floating animation */
+@keyframes float-subtle {
+    0% { transform: translateY(0px) rotate(15deg); }
+    50% { transform: translateY(-10px) rotate(12deg); }
+    100% { transform: translateY(0px) rotate(15deg); }
+}
+
+/* Apply floating animation to the star */
+.seminar-deco-star {
+    animation: float-subtle 6s ease-in-out infinite;
+}
+
+/* Styling for the new "What You'll Get" list */
+.seminar-benefits-list {
+    width: 100%;
+    max-width: 350px;
+    padding: 0 1rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+    position: relative;
+    z-index: 1;
+}
+
+.seminar-benefits-list h4 {
+    font-weight: 600;
+    color: var(--yellow-accent);
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+}
+
+.seminar-benefits-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.seminar-benefits-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #d1d5db;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.seminar-benefits-list li i {
+    color: var(--green-accent);
+}
+/* === SEMINAR TICKET - AGGRESSIVE MOBILE RESPONSIVENESS FIX === */
+
+@media (max-width: 767px) {
+    /* Reduce padding on the main card for more content space */
+    .registration-column.seminar-ticket {
+        padding: 2rem 1.25rem;
+    }
+
+    /* Scale down the main title */
+    .registration-column.seminar-ticket .reg-card-title {
+        font-size: 1.5rem; /* Significantly reduced */
+        margin-bottom: 1.5rem;
+    }
+
+    /* Scale down the benefits list for readability */
+    .seminar-benefits-list {
+        margin-bottom: 2rem;
+    }
+    .seminar-benefits-list h4 {
+        font-size: 1rem;
+    }
+    .seminar-benefits-list li {
+        font-size: 0.85rem;
+    }
+
+    /* Disable hover animation and scale down the ticket visual */
+    .ticket-visual:hover .ticket-graphic {
+        transform: none !important;
+    }
+    .ticket-graphic {
+        max-width: 280px; /* Further reduced from 300px */
+    }
+
+    /* Scale down the text and elements INSIDE the ticket */
+    .ticket-header {
+        padding: 0.75rem;
+    }
+    .ticket-header img {
+        width: 22px;
+        margin-bottom: 0.5rem;
+    }
+    .ticket-header span {
+        font-size: 0.65rem;
+    }
+    .ticket-body {
+        padding: 1.25rem 1rem;
+    }
+    .ticket-body h3 {
+        font-size: 1.1rem;
+    }
+    .ticket-body p {
+        font-size: 0.8rem;
+    }
+    .ticket-stub {
+        padding: 0.75rem;
+    }
+    .ticket-qr-placeholder {
+        width: 45px;
+        height: 45px;
+        font-size: 1.4rem;
+    }
+
+    /* Scale down the booking button */
+    .ticket-booking-button {
+        padding: 0.8rem 1rem !important;
+        font-size: 0.9rem !important;
+        max-width: 280px; /* Match the new ticket width */
+    }
+
+    /* Adjust the decorative star */
+    .seminar-deco-star {
+        width: 50px;
+        top: 8%;
+        right: 8%;
+    }
+}
+
+/* Additional tweaks for very narrow screens */
+@media (max-width: 360px) {
+    .registration-column.seminar-ticket {
+        padding: 1.5rem 1rem;
+    }
+    .ticket-graphic, .ticket-booking-button {
+        max-width: 260px;
+    }
+}
+/* === REGISTRATION FLOW - MOBILE RESPONSIVENESS FIX === */
+@media (max-width: 767px) {
+    /* Reduce spacing between the batch cards */
+    .batch-list {
+        gap: 1rem;
+        width: 100%;
+    }
+
+    /* Reduce padding and gap inside each batch card */
+    .batch-list li {
+        padding: 1rem;
+    }
+    .batch-item-content {
+        gap: 1rem;
+    }
+
+    /* Significantly scale down the batch number circle */
+    .batch-number {
+        font-size: 1.5rem;
+        padding: 0.5rem;
+        min-width: 45px;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Scale down the text next to the number */
+    .batch-info h4 {
+        font-size: 1.1rem;
+    }
+    .batch-info .batch-dates {
+        font-size: 0.8rem;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Scale down the "CLOSED" status tag */
+    .batch-status {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.8rem;
+    }
+
+    /* Adjust the info text below the batches for better spacing */
+    .reg-process-info {
+        margin-top: 2rem;
+    }
+}
+/* This single rule aligns both buttons at the bottom */
+.registration-column > .nav-cta-button {
+    margin-top: auto;
+}
+/* === SEMINAR TICKET "OPEN" STATUS TAG === */
+
+/* === SEMINAR TICKET "OPEN" TAG FIX === */
+
+/* Restore bottom margin for the main title */
+.registration-column .reg-card-title {
+    margin-bottom: 0.75rem;
+}
+
+/* Position the status tag correctly with proper spacing */
+.seminar-ticket .batch-status {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+}
+
+.batch-status.status-open {
+    background: linear-gradient(45deg, #10B981, #34D399);
+    color: white;
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
+}
