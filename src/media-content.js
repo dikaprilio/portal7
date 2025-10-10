@@ -1,5 +1,4 @@
-// Import all local images using the url: scheme.
-// This tells Parcel to bundle the asset and return its public URL.
+
 import photo1 from 'url:./img/IMG_3203.jpg';
 import photo2 from 'url:./img/IMG_3281.jpg';
 import photo3 from 'url:./img/IMG_3227.jpg';
@@ -13,6 +12,8 @@ import videoThumbRick from 'url:./img/rickroll.jpg';
 import partnerLogoMicroIT from 'url:./img/medpart-microit.png';
 import partnerLogoLikista from 'url:./img/medpart-likista.png';
 import partnerLogoInfoSV from 'url:./img/medpart-infosvipb.png';
+import partnerLogoInfoSEI from 'url:./img/sponsor-sei.png';
+import partnerLogoSmartfren from 'url:./img/sponsor-smartfren.svg';
 
 
 const mediaContent = {
@@ -111,6 +112,14 @@ const mediaContent = {
     {
       "id": "partner-3", "name": "Info SV IPB", "logoUrl": partnerLogoInfoSV, "type": "media_partner",
       "websiteUrl": "https://www.instagram.com/infosvipb/?hl=en"
+    },
+    {
+      "id": "partner-4", "name": "SEI Indonesia", "logoUrl": partnerLogoInfoSEI, "type": "sponsor",
+      "websiteUrl": "https://www.seindonesia.co.id/"
+    },
+    {
+      "id": "partner-5", "name": "Smartfren", "logoUrl": partnerLogoSmartfren, "type": "sponsor",
+      "websiteUrl": "https://www.smartfren.com/"
     }
   ]
 };
