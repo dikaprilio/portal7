@@ -6222,6 +6222,11 @@ nav {
     flex: 1 1 55%; padding: 2.5rem 3rem;
     display: flex; flex-direction: column;
 }
+
+.comp-card-content .theme-title {
+    color: var(--yellow-accent);
+}
+
 .comp-card.left .comp-card-content { padding-left: 1.5rem; }
 .comp-card.right .comp-card-content { padding-right: 1.5rem; }
 
@@ -6233,6 +6238,7 @@ nav {
 .comp-card-description {
     font-size: 0.95rem; line-height: 1.7; color: #c0c8d4;
     transition: max-height 0.5s ease-out;
+    margin: 10px 0;
 }
 .read-more-btn {
     display: none; /* Hidden by default, shown by JS on mobile */
