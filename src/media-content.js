@@ -1,19 +1,19 @@
 
-import photo1 from './img/slide1.jpg';
-import photo2 from './img/slide2.jpg';
-import photo3 from './img/slide3.jpg';
-import photo4 from './img/slide4.jpg';
-import photo5 from './img/slide5.jpg';
-import photo6 from './img/IMG_3376.jpg';
-import photo7 from './img/IMG_3104.jpg';
+import photo1 from 'url:./img/Slide1.jpg';
+import photo2 from 'url:./img/Slide2.jpg';
+import photo3 from 'url:./img/Slide3.jpg';
+import photo4 from 'url:./img/Slide4.jpg';
+import photo5 from 'url:./img/Slide5.jpg';
+import photo6 from 'url:./img/IMG_3376.jpg';
+import photo7 from 'url:./img/IMG_3104.jpg';
 
-import videoThumbRick from './img/rickroll.jpg';
+import videoThumbRick from 'url:./img/rickroll.jpg';
 
-import partnerLogoMicroIT from './img/medpart-microit.png';
-import partnerLogoLikista from './img/medpart-likista.png';
-import partnerLogoInfoSV from './img/medpart-infosvipb.png';
-import partnerLogoInfoSEI from './img/sponsor-sei.png';
-import partnerLogoSmartfren from './img/sponsor-smartfren.svg';
+import partnerLogoMicroIT from 'url:./img/medpart-microit.png';
+import partnerLogoLikista from 'url:./img/medpart-likista.png';
+import partnerLogoInfoSV from 'url:./img/medpart-infosvipb.png';
+import partnerLogoInfoSEI from 'url:./img/sponsor-sei.png';
+import partnerLogoSmartfren from 'url:./img/sponsor-smartfren.svg';
 
 
 const mediaContent = {
@@ -25,7 +25,7 @@ const mediaContent = {
       "author": "Muzzayan & Hanuna",
       "summary": "Minimalist digital posters help audiences focus on important messages by reducing visual noise and improving information retention.",
       "image": "https://placehold.co/600x400/3B82F6/FFFFFF?text=Minimalist+Poster&font=montserrat",
-      "link": "./blog-detail?id=artikel-1",
+      "link": "/blog-detail?id=artikel-1",
       "fullContentHTML":
       `
         <p>In today’s digital era, people are constantly surrounded by massive amounts of information from social media, advertisements, and online platforms. As a result, audiences often experience information overload, making it difficult to focus on important messages. Minimalist digital posters offer a solution by presenting information in a clean, simple, and visually balanced way.</p>
@@ -42,7 +42,7 @@ const mediaContent = {
       "author": "Muzzayan & Hanuna",
       "summary": "Motion graphics transform complex social issues into engaging visual stories capable of inspiring empathy and action.",
       "image": "https://placehold.co/600x400/EC4899/FFFFFF?text=Motion+Graphics&font=montserrat",
-      "link": "./blog-detail?id=artikel-2",
+      "link": "/blog-detail?id=artikel-2",
       "fullContentHTML":
       `
         <h2>Motion Graphics Trend</h2>
@@ -69,7 +69,7 @@ const mediaContent = {
       "author": "Muzzayan & Hanuna",
       "summary": "Digital fluency has become an essential skill for Gen Z to survive and thrive in the rapidly evolving future workforce.",
       "image": "https://placehold.co/600x400/F97316/FFFFFF?text=Digital+Fluency&font=montserrat",
-      "link": "./blog-detail?id=artikel-3",
+      "link": "/blog-detail?id=artikel-3",
       "fullContentHTML":
       `
         <p>In today’s rapidly evolving world, having digital fluency is no longer just an advantage — it has become a necessity. As the first generation to grow up fully surrounded by technology, digital skills are now the “new currency” that determines career opportunities and long-term success for Gen Z.</p>
