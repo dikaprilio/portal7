@@ -1151,7 +1151,7 @@ nav::after {
     object-fit: contain;
     border-radius: 8px; /* Slightly rounded icon */
     background-color: rgba(var(--secondary-color-rgb, 240,240,240), 0.1); /* Subtle bg for icon */
-    padding: 5px;
+    padding: 7px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
