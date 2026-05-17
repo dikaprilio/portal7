@@ -415,7 +415,13 @@
     "seminar_ticket_include_1": "Knowledge from Seminar: Sustainable Digitalization for Global Progress",
     "seminar_ticket_include_2": "Knowledge from Talkshow: Powering the World in Digital 4.0",
     "seminar_ticket_include_3": "Networking Lunch & E-Certificate",
-    "seminar_ticket_status_open": "Open"
+    "seminar_ticket_status_open": "Open",
+    "not_found_title": "Page Not Found",
+    "not_found_subtitle": "Oops! Looks like you've ventured into an unknown portal. The page you're looking for doesn't exist.",
+    "not_found_back_to_home": "<i class=\"fas fa-home\" ></i> Go Back to Home",
+    "blog_all_articles_title": "All Articles",
+    "blog_page_hero_subtitle": "Dive into insights, stories, and updates from the heart of digital empowerment and creativity.",
+    "article_read_more": "Read More <i class=\"fas fa-arrow-right\"></i>"
   },
   "id": {
     "nav_beranda": "Beranda",
@@ -833,6 +839,12 @@
     "seminar_ticket_include_1": "<i class=\"fas fa-chalkboard-teacher\"></i> Ilmu dari Seminar: Digitalisasi Berkelanjutan untuk Kemajuan Global",
     "seminar_ticket_include_2": "<i class=\"fas fa-comments\"></i> Ilmu dari Talkshow: Menggerakkan Dunia di Era Digital 4.0",
     "seminar_ticket_include_3": "<i class=\"fas fa-utensils\"></i> Makan Siang & <i class=\"fas fa-certificate\"></i> E-Sertifikat",
-    "seminar_ticket_status_open": "Dibuka"
+    "seminar_ticket_status_open": "Dibuka",
+    "not_found_title": "Halaman Tidak Ditemukan",
+    "not_found_subtitle": "Oops! Sepertinya kamu telah memasuki halaman yang tidak dikenal. Halaman yang kamu cari tidak ditemukan.",
+    "not_found_back_to_home": "<i class=\"fas fa-home\" ></i> Kembali ke Beranda",
+    "blog_all_articles_title": "Semua Artikel",
+    "blog_page_hero_subtitle": "Selami wawasan, cerita, dan pembaruan dari jantung pemberdayaan dan kreativitas digital.",
+    "article_read_more": "Baca Selengkapnya <i class=\"fas fa-arrow-right\"></i>"
   }
 }
