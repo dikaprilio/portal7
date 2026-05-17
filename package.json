@@ -12,8 +12,8 @@
     "parcel": "^2.16.4"
   },
   "scripts": {
-    "start": "parcel src/*.html",
-    "build": "parcel build src/*.html"
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html"
   },
   "repository": {
     "type": "git",
