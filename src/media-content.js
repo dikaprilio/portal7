@@ -1,9 +1,9 @@
 
-import photo1 from 'url:./img/IMG_3203.jpg';
-import photo2 from 'url:./img/IMG_3281.jpg';
-import photo3 from 'url:./img/IMG_3227.jpg';
-import photo4 from 'url:./img/S0952298.jpg';
-import photo5 from 'url:./img/IMG_3058.jpg';
+import photo1 from 'url:./img/Slide1.jpg';
+import photo2 from 'url:./img/Slide2.jpg';
+import photo3 from 'url:./img/Slide3.jpg';
+import photo4 from 'url:./img/Slide4.jpg';
+import photo5 from 'url:./img/Slide5.jpg';
 import photo6 from 'url:./img/IMG_3376.jpg';
 import photo7 from 'url:./img/IMG_3104.jpg';
 
