@@ -20,6 +20,7 @@ const mediaContent = {
   "blogArticles": [
     {
       "id": "artikel-1",
+<<<<<<< HEAD
       "title": "More Than Just Aesthetics: How Minimalist Digital Posters Can Combat Information Overload",
       "date": "17 May 2026",
       "author": "Muzzayan & Hanuna",
@@ -81,6 +82,36 @@ const mediaContent = {
         <p>Ultimately, digital fluency is the ultimate shield against an unpredictable job market. By mastering this currency, Gen Z can transform technological disruption into personal opportunity, ensuring they don’t just survive the future of work, but drive it.</p>
       `
     }
+=======
+      "title": "More Than Just Aesthetics: How Minimalist Digital Posters Can Combat Information Overload.",
+      "date": "7 June 2025",
+      "author": "Team Portal IPB",
+      "summary": "Minimalist digital posters help combat information overload by presenting messages in a simple, clean, and visually balanced way. Beyond aesthetics, minimalism improves communication efficiency by using whitespace, bold typography, and limited colors to reduce distractions and emphasize the main message. This approach creates stronger emotional impact, provides psychological relief for viewers, and increases audience focus and information retention.",
+      "image": "https://placehold.co/600x400/3B82F6/FFFFFF?text=Bento+Grids+Trend&font=montserrat",
+      "link": "/blog-detail?id=artikel-1",
+      "fullContentHTML": "<p>In today’s digital era, people are constantly surrounded by massive amounts of information from social media, advertisements, and online platforms. As a result, audiences often experience information overload, making it difficult to focus on important messages. Minimalist digital posters offer a solution by presenting information in a clean, simple, and visually balanced way. <br><br> Minimalism in digital posters is not only about visual aesthetics, but also about communication efficiency. Minimalism, it is a sophisticated cognitive strategy. By intentionally utilizing whitespace, bold typography, and a restricted color palette, minimalist design strips away the digital noise to amplify the core message, providing psychological relief to the viewer and drastically boosting information retention. <br><br> A simple design can create a <strong>stronger emotional impact</strong> and <strong>improve message retention among viewers</strong>. By reducing unnecessary elements, designers are able to direct audience attention toward the core message.</p>"
+    },
+    {
+      "id": "artikel-2",
+      "title": "Future-Proofing Your Career: Why Digital Fluency is the New Currency for Gen Z",
+      "date": "6 June 2025",
+      "author": "Team Portal IPB",
+      "summary": "Digital fluency has become an essential skill for Gen Z in today’s technology-driven world. More than just knowing how to use digital tools, digital fluency means understanding how to apply technology effectively to create value, solve problems, and adapt to changing work environments. As technology influences every industry, employers now prioritize candidates who can work with automation, data, AI platforms, and online collaboration tools alongside traditional professional skills.",
+      "image": "https://placehold.co/600x400/EC4899/FFFFFF?text=UX+Trends+2025&font=montserrat",
+      "link": "/blog-detail?id=artikel-2",
+      "fullContentHTML": "<p>In today’s rapidly evolving world, having digital fluency is no longer just an advantage it has become a necessity. As the first generation to grow up fully surrounded by technology, digital skills are now the <strong>New currency</strong> that determines career opportunities and long-term success for Gen Z. Traditional degrees are no longer the sole ticket to a secure career. Today, employers look for a hybrid skill set. Whether you are in marketing, agriculture, finance, or engineering, technology intersects with every industry. Understanding automation tools, basic data visualization, and AI-driven platforms will set a candidate apart from the competition. In essence, those who speak the language of technology are the ones who will lead the future workforce. <br><br>While Gen Z is famously labeled as <strong>digital natives</strong>, there is a significant difference between digital literacy and digital fluency. Literacy is knowing how to use a tool; fluency is knowing when, why, and how to leverage that tool to create value. In a professional landscape heavily influenced by automation and remote collaboration, being fluent means you can seamlessly pivot between different software, interpret data to make decisions, and maintain a professional online presence. Digital fluency goes beyond simply knowing how to use social media or operate gadgets. It means understanding how to communicate, create, adapt, and solve problems using digital tools. Companies are increasingly looking for individuals who can thrive in a digital environment, from content creation and data analysis to artificial intelligence and online collaboration. <br><br>Ultimately, digital fluency is the ultimate shield against an unpredictable job market. By mastering this currency, Gen Z can transform technological disruption into personal opportunity, ensuring they don't just survive the future of work, but drive it. </p>"
+    },
+    {
+      "id": "artikel-3",
+      "title": "Motion Graphics: The Future of Social Advocacy",
+      "date": "5 June 2025",
+      "author": "Team Portal IPB",
+      "summary": "Motion graphics are an effective solution for modern digital advocacy because they transform complex issues into engaging visual stories that quickly capture attention on social media. By combining animation, text, and sound, motion graphics make important messages easier to understand, emotionally impactful, and harder to ignore in fast-scrolling platforms like Instagram and TikTok.",
+      "image": "https://placehold.co/600x400/F97316/FFFFFF?text=BONA+IPB+Project&font=montserrat",
+      "link": "/blog-detail?id=artikel-3",
+      "fullContentHTML": "<p>  <h2>Motion Graphic Trend</h2>   Traditional advocacy often gets lost in the fast-scrolling world of modern social media. The solution? Motion graphics. By mixing dynamic visuals, text, and sound, they turn heavy data and complex social issues into captivating, bite-sized stories. They beat the algorithms, grab attention from the very first second, and make crucial messages impossible to scroll past.   <h2>Building and Emotional Bridge</h2>  Beyond simply stopping the scroll, motion graphics spark real empathy and action. Scientifically, visual storytelling bypasses language barriers and triggers an immediate emotional response. This builds a powerful bridge between activists and the public, transforming passive viewers into active participants who donate, sign petitions, and educate others. Because they are perfectly built for sharing across platforms like Instagram, TikTok, and LinkedIn, these visually driven advocacy campaigns possess the unique power to go global instantly. <h2> Why Motion Graphics Work</h2> They balance visual harmony with functional clarity. In events like Portal 8, motion graphics perfectly embody the <strong>Beyond Creativity</strong> approach. It is no longer just about making things look aesthetically pleasing; it is about taking an abstract issue and turning it into a real-world solution, or <strong>From Ideas to Digital Impact</strong>. By participating in formats like the Animated Video Campaign ,creators can communicate complex future challenges in a structured, elegant way. Motion graphics aren't just a fleeting trend; they are the future of driving tangible social change. </p>"
+    },
+>>>>>>> ac706aea70f11c7e71ce8f930f3e5becb8d372cc
   ],
   "gallery": {
     "photos": [
