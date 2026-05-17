@@ -20,43 +20,66 @@ const mediaContent = {
   "blogArticles": [
     {
       "id": "artikel-1",
-      "title": "UX/UI Trend Alert: Bento Grids Are Going Mainstream",
-      "date": "7 June 2025",
-      "author": "Team Portal IPB",
-      "summary": "Inspired by Japanese bento boxes, this modular layout is reshaping digital interfaces in 2025. Here's why designers love it.",
-      "image": "https://placehold.co/600x400/3B82F6/FFFFFF?text=Bento+Grids+Trend&font=montserrat",
+      "title": "More Than Just Aesthetics: How Minimalist Digital Posters Can Combat Information Overload",
+      "date": "17 May 2026",
+      "author": "Muzzayan & Hanuna",
+      "summary": "Minimalist digital posters help audiences focus on important messages by reducing visual noise and improving information retention.",
+      "image": "https://placehold.co/600x400/3B82F6/FFFFFF?text=Minimalist+Poster&font=montserrat",
       "link": "/blog-detail?id=artikel-1",
-      "fullContentHTML": "<p>Bento Grids—named after the clean and compact layout of bento lunch boxes—are redefining user interfaces across websites and apps. Each card serves a clear purpose, whether it's a feature, call-to-action, or testimonial.</p><h2>Why Bento Grids Work</h2><p>They balance visual harmony with functional clarity. In competitions like Portal 7, using a Bento Grid layout can help communicate complex ideas in a structured, elegant way.</p>"
+      "fullContentHTML":
+      `
+        <p>In today’s digital era, people are constantly surrounded by massive amounts of information from social media, advertisements, and online platforms. As a result, audiences often experience information overload, making it difficult to focus on important messages. Minimalist digital posters offer a solution by presenting information in a clean, simple, and visually balanced way.</p>
+
+        <p>Minimalism in digital posters is not only about visual aesthetics, but also about communication efficiency. Minimalism is a sophisticated cognitive strategy. By intentionally utilizing whitespace, bold typography, and a restricted color palette, minimalist design strips away the digital noise to amplify the core message, providing psychological relief to the viewer and drastically boosting information retention.</p>
+
+        <p>A simple design can create a stronger emotional impact and improve message retention among viewers. By reducing unnecessary elements, designers are able to direct audience attention toward the core message.</p>
+      `
     },
     {
       "id": "artikel-2",
-      "title": "The UX Design Trends You Can’t Ignore in 2025",
-      "date": "6 June 2025",
-      "author": "Team Portal IPB",
-      "summary": "From ethical design to inclusive interfaces and AI co-creation, these trends are shaping how we create for people in 2025.",
-      "image": "https://placehold.co/600x400/EC4899/FFFFFF?text=UX+Trends+2025&font=montserrat",
+      "title": "Motion Graphics: The Future of Social Advocacy",
+      "date": "17 May 2026",
+      "author": "Muzzayan & Hanuna",
+      "summary": "Motion graphics transform complex social issues into engaging visual stories capable of inspiring empathy and action.",
+      "image": "https://placehold.co/600x400/EC4899/FFFFFF?text=Motion+Graphics&font=montserrat",
       "link": "/blog-detail?id=artikel-2",
-      "fullContentHTML": "<p>2025 is a year of intentional UX. We’re seeing greater emphasis on accessibility, ethical tech, and personalization powered by AI. Designers are now co-creating with technology while maintaining their role as human storytellers.</p><h2>How You Can Apply This</h2><p>In Portal 7 competitions, think beyond aesthetics. Consider accessibility tools, diverse user needs, and how your UI/UX design can support ethical, meaningful digital experiences.</p>"
+      "fullContentHTML":
+      `
+        <h2>Motion Graphics Trend</h2>
+
+        <p>Traditional advocacy often gets lost in the fast-scrolling world of modern social media. The solution? Motion graphics. By mixing dynamic visuals, text, and sound, they turn heavy data and complex social issues into captivating, bite-sized stories. They beat the algorithms, grab attention from the very first second, and make crucial messages impossible to scroll past.</p>
+
+        <h2>Building an Emotional Bridge</h2>
+
+        <p>Beyond simply stopping the scroll, motion graphics spark real empathy and action. Scientifically, visual storytelling bypasses language barriers and triggers an immediate emotional response. This builds a powerful bridge between activists and the public, transforming passive viewers into active participants who donate, sign petitions, and educate others.</p>
+
+        <p>Because they are perfectly built for sharing across platforms like Instagram, TikTok, and LinkedIn, these visually driven advocacy campaigns possess the unique power to go global instantly.</p>
+
+        <h2>Why Motion Graphics Work</h2>
+
+        <p>They balance visual harmony with functional clarity. In events like Portal 8, motion graphics perfectly embody the “Beyond Creativity” approach. It is no longer just about making visuals aesthetically pleasing; it is about taking an abstract issue and turning it into a solution, or “From Ideas to Digital Impact”.</p>
+
+        <p>By participating in formats like the Animated Video Campaign, creators can communicate complex future challenges in a structured, elegant way. Motion graphics aren’t just a fleeting trend; they are the future of driving tangible social change.</p>
+      `
     },
     {
       "id": "artikel-3",
-      "title": "From Puppets to Pixels: IPB Students Tackle Literacy Through Creativity",
-      "date": "5 June 2025",
-      "author": "Team Portal IPB",
-      "summary": "IPB's BONA program shows how traditional storytelling and digital tools can combine to solve real-world challenges like childhood literacy.",
-      "image": "https://placehold.co/600x400/F97316/FFFFFF?text=BONA+IPB+Project&font=montserrat",
+      "title": "Future-Proofing Your Career: Why Digital Fluency is the New Currency for Gen Z",
+      "date": "17 May 2026",
+      "author": "Muzzayan & Hanuna",
+      "summary": "Digital fluency has become an essential skill for Gen Z to survive and thrive in the rapidly evolving future workforce.",
+      "image": "https://placehold.co/600x400/F97316/FFFFFF?text=Digital+Fluency&font=montserrat",
       "link": "/blog-detail?id=artikel-3",
-      "fullContentHTML": "<p>The BONA (Boneka Dongeng Anak) project blends puppet shows with digital storytelling to improve literacy among children. Created by IPB’s Digital Communication students, it's a model of user-centered innovation with cultural roots.</p><h2>What You Can Learn</h2><p>Good design solves problems. Look for local or social issues that can inspire your competition entry, just like BONA did—with empathy, creativity, and a clear message.</p>"
-    },
-    {
-      "id": "artikel-4",
-      "title": "Material You Comes to Wearables: What Designers Should Know",
-      "date": "4 June 2025",
-      "author": "Team Portal IPB",
-      "summary": "Google's Wear OS 6 introduces Material 3 Expressive and deep personalization. Here's how this affects UI/UX in the wearable space.",
-      "image": "https://placehold.co/600x400/10B981/FFFFFF?text=Wear+OS+6&font=montserrat",
-      "link": "/blog-detail?id=artikel-4",
-      "fullContentHTML": "<p>With the launch of Wear OS 6, designers can now create ultra-personalized experiences using Google's Material You system. Colors, components, and interactions adjust dynamically based on user preferences, making design more fluid than ever.</p><h2>Takeaway for Designers</h2><p>Adaptivity is key. Whether you’re designing a smartwatch interface or a mobile app, consider how your UI could evolve in real-time to match user behavior, mood, or environment.</p>"
+      "fullContentHTML":
+      `
+        <p>In today’s rapidly evolving world, having digital fluency is no longer just an advantage — it has become a necessity. As the first generation to grow up fully surrounded by technology, digital skills are now the “new currency” that determines career opportunities and long-term success for Gen Z.</p>
+
+        <p>Traditional degrees are no longer the sole ticket to a secure career. Today, employers look for a hybrid skill set. Whether you are in marketing, agriculture, finance, or engineering, technology intersects with every industry. Understanding automation tools, basic data visualization, and AI-driven platforms will set a candidate apart from the competition.</p>
+
+        <p>While Gen Z is famously labeled as “digital natives,” there is a significant difference between digital literacy and digital fluency. Literacy is knowing how to use a tool; fluency is knowing when, why, and how to leverage that tool to create value.</p>
+
+        <p>Ultimately, digital fluency is the ultimate shield against an unpredictable job market. By mastering this currency, Gen Z can transform technological disruption into personal opportunity, ensuring they don’t just survive the future of work, but drive it.</p>
+      `
     }
   ],
   "gallery": {
