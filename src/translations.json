@@ -421,7 +421,9 @@
     "not_found_back_to_home": "<i class=\"fas fa-home\" ></i> Go Back to Home",
     "blog_all_articles_title": "All Articles",
     "blog_page_hero_subtitle": "Dive into insights, stories, and updates from the heart of digital empowerment and creativity.",
-    "article_read_more": "Read More <i class=\"fas fa-arrow-right\"></i>"
+    "article_read_more": "Read More <i class=\"fas fa-arrow-right\"></i>",
+    "gallery_page_hero_title": "Gallery",
+    "gallery_page_hero_subtitle": "Explore unforgettable moments and inspiring works from the series of events at Portal 8."
   },
   "id": {
     "nav_beranda": "Beranda",
@@ -845,6 +847,8 @@
     "not_found_back_to_home": "<i class=\"fas fa-home\" ></i> Kembali ke Beranda",
     "blog_all_articles_title": "Semua Artikel",
     "blog_page_hero_subtitle": "Selami wawasan, cerita, dan pembaruan dari jantung pemberdayaan dan kreativitas digital.",
-    "article_read_more": "Baca Selengkapnya <i class=\"fas fa-arrow-right\"></i>"
+    "article_read_more": "Baca Selengkapnya <i class=\"fas fa-arrow-right\"></i>",
+    "gallery_page_hero_title": "Galeri",
+    "gallery_page_hero_subtitle": "Jelajahi momen tak terlupakan dan karya-karya inspiratif dari rangkaian acara Portal 8."
   }
 }

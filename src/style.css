@@ -8103,16 +8103,18 @@ nav {
     grid-template-columns: 1fr;
     gap: 2.5rem;
     margin-top: 3rem;
+    justify-items: center;
 }
 
-@media (min-width: 992px) {
+/* @media (min-width: 992px) {
     .registration-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
         align-items: start;
     }
-}
+} */
 
 .registration-column {
+    width: fit-content;
     background: #23272f;
     border-radius: 16px;
     padding: 2.5rem 2rem;
@@ -8146,13 +8148,14 @@ nav {
     gap: 2.5rem;
     margin-top: 3rem;
     align-items: stretch; /* This makes columns equal height */
+    justify-items: center;
 }
 
-@media (min-width: 992px) {
+/* @media (min-width: 992px) {
     .registration-grid {
         grid-template-columns: 1fr 1fr;
     }
-}
+} */
 
 .registration-column {
     background: #23272f;
