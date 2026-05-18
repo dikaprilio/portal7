@@ -217,7 +217,7 @@ function setupFAQAccordion() {
 function startCountdown() {
     const countdownTimerEl = document.getElementById("countdown-timer");
     if (!countdownTimerEl) return;
-    const countdownDate = new Date("September 19, 2026 00:00:00").getTime();
+    const countdownDate = new Date("October 11, 2025 00:00:00").getTime();
     const daysEl = document.getElementById("days");
     const hoursEl = document.getElementById("hours");
     const minutesEl = document.getElementById("minutes");
