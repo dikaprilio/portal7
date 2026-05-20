@@ -1622,11 +1622,11 @@ nav::after {
     color: #a9b3c1; /* Lighter text for readability */
     line-height: 1.6;
     margin-bottom: 1.5rem;
-    flex-grow: 1; /* Pushes prize/button down if content is short */
+    /* flex-grow: 1; Pushes prize/button down if content is short */
 }
 /* Ensure some minimum height for intros if needed */
 .competition-highlight .card-intro { min-height: 60px; } 
-.seminar-highlight .card-intro { min-height: 40px; }
+/* .seminar-highlight .card-intro { min-height: 40px; } */
 
 
 .competition-item {
@@ -1790,7 +1790,7 @@ nav::after {
     padding: 0;
     margin-bottom: 2rem; /* Space before button */
     margin-top: 0.5rem; /* Space after card-intro */
-    flex-grow: 1; /* Pushes button down in flex column */
+    /* flex-grow: 1; Pushes button down in flex column */
 }
 .seminar-list li {
     display: flex;
