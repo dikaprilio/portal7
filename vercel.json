@@ -1,4 +1,34 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/en"
+    },
+    {
+      "source": "/blog",
+      "destination": "/en/blog"
+    },
+    {
+      "source": "/blog-detail",
+      "destination": "/en/blog"
+    },
+    {
+      "source": "/gallery",
+      "destination": "/en/gallery"
+    },
+    {
+      "source": "/competition-hub",
+      "destination": "/en/competition-hub"
+    },
+    {
+      "source": "/competition-detail",
+      "destination": "/en/competition-detail"
+    },
+    {
+      "source": "/seminar",
+      "destination": "/en/seminar"
+    }
+  ]
 }
