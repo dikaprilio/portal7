@@ -1236,7 +1236,7 @@ nav::after {
 .wow-guest-stars-section {
     background-color: var(--navbar-bg); /* Dark background */
     /* Example using a subtle gradient from your assets if desired
-    background-image: linear-gradient(rgba(var(--navbar-bg-rgb),0.95), rgba(var(--navbar-bg-rgb),0.95)), url('img/Asset_16@4x.png');
+    background-image: linear-gradient(rgba(var(--navbar-bg-rgb),0.95), rgba(var(--navbar-bg-rgb),0.95)), url('/img/Asset_16@4x.png');
     background-blend-mode: overlay;
     background-size: cover;
     */
@@ -2393,7 +2393,7 @@ nav::after {
     position: absolute;
     top: 0; left: 0;
     width: 10%; height: 10%;
-    background-image: url('img/Asset 16@4x.png'); /* Example: a larger, simpler asset */
+    background-image: url('/img/Asset 16@4x.png'); /* Example: a larger, simpler asset */
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover; /* Or contain, depending on asset */
@@ -4246,7 +4246,7 @@ nav::after {
 
 .blog-page-hero {
     background: linear-gradient(rgba(var(--navbar-bg-rgb, 26, 29, 36), 0.85), rgba(var(--navbar-bg-rgb, 26, 29, 36), 0.95)), 
-                url('img/foto-bersama.png') no-repeat center center/cover; /* Placeholder background */
+                url('/img/foto-bersama.png') no-repeat center center/cover; /* Placeholder background */
     color: var(--navbar-text); /* Light text */
     text-align: center;
     padding: 5rem 2rem; /* Generous padding */
@@ -7086,7 +7086,7 @@ nav {
     position: relative;
     overflow: hidden;
     /* Animated background pattern */
-    background-image: linear-gradient(rgba(12, 10, 31, 0.9), rgba(12, 10, 31, 0.9)), url(img/Asset_18@4x.png);
+    background-image: linear-gradient(rgba(12, 10, 31, 0.9), rgba(12, 10, 31, 0.9)), url(/img/Asset_18@4x.png);
     background-blend-mode: saturation;
     background-size: 400px;
     animation: pan-background 50s linear infinite;

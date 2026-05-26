@@ -57,16 +57,19 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
-      <body className="font-sans antialiased">
-        <NextIntlClientProvider messages={messages}>
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
-          <NaraTribute />
-          <Analytics />
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `document.documentElement.lang = '${locale}'`,
+        }}
+      />
+      <NextIntlClientProvider messages={messages}>
+        <Navbar />
+        <main>{children}</main>
+        <Footer />
+        <NaraTribute />
+        <Analytics />
+      </NextIntlClientProvider>
+    </>
   );
 }
