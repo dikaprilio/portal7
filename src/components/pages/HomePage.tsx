@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import {
@@ -28,6 +28,8 @@ import {
   Plus,
   Minus,
 } from 'lucide-react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import CountdownTimer from '@/components/shared/CountdownTimer';
 import NaraTribute from '@/components/shared/NaraTribute';
 import mediaContent from '@/lib/data/media-content';
@@ -122,6 +124,50 @@ export default function HomePage() {
   const blogArticles = mediaContent.blogArticles.slice(0, 3);
   const galleryPhotos = mediaContent.gallery.photos.slice(0, 6);
   const partners = mediaContent.partnersSponsors;
+
+  useEffect(() => {
+    AOS.init({ duration: 800, once: true });
+
+    // Hero background carousel
+    const container = document.querySelector('.hero-carousel-container');
+    if (container && mediaContent.gallery.photos.length > 0) {
+      const photos = mediaContent.gallery.photos;
+      photos.forEach((photo, index) => {
+        const slide = document.createElement('div');
+        slide.className = 'hero-carousel-slide';
+        slide.style.backgroundImage = `url(${photo.fullUrl})`;
+        if (index === 0) slide.classList.add('active');
+        container.appendChild(slide);
+      });
+      const slides = container.querySelectorAll('.hero-carousel-slide');
+      if (slides.length > 1) {
+        let current = 0;
+        const interval = setInterval(() => {
+          slides[current].classList.remove('active');
+          current = (current + 1) % slides.length;
+          slides[current].classList.add('active');
+        }, 7000);
+        return () => clearInterval(interval);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    // Partner scroller infinite scroll clone
+    const scroller = document.querySelector('.partners-scroller');
+    if (scroller && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      scroller.setAttribute('data-animated', 'true');
+      const list = scroller.querySelector('.partners-list');
+      if (list) {
+        const items = Array.from(list.children);
+        items.forEach((item) => {
+          const clone = item.cloneNode(true) as HTMLElement;
+          clone.setAttribute('aria-hidden', 'true');
+          list.appendChild(clone);
+        });
+      }
+    }
+  }, []);
 
   return (
     <main>
