@@ -394,7 +394,7 @@ function loadSpecificBlogArticle() {
     if (mediaContent && mediaContent.blogArticles) {
         const article = mediaContent.blogArticles.find(post => post.id === articleId);
         if (article) {
-            if (pageTitleElement) { document.title = article.title + " - Portal 7"; }
+            if (pageTitleElement) { document.title = article.title + " - Portal 8"; }
             let articleHTML = `<section class="blog-detail-hero"><h1 class="article-title-main" data-aos="fade-up">${article.title}</h1><p class="article-meta-main" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-calendar-alt"></i> ${article.date} | <i class="fas fa-user"></i> <span data-translate-key="article_author_prefix">Oleh:</span> ${article.author}</p></section>`;
             if (article.image) { articleHTML += `<div class="article-featured-image-wrapper" data-aos="zoom-in" data-aos-delay="200"><img src="${article.image}" alt="${article.title}" class="article-featured-image"></div>`; }
             articleHTML += `<div class="article-content-container"><article class="article-body" data-aos="fade-up" data-aos-delay="300">${article.fullContentHTML || `<p data-translate-key="blog_detail_content_unavailable">Konten lengkap tidak tersedia.</p>`}</article></div>`;
