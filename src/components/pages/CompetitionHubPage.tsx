@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import CountdownTimer from '@/components/shared/CountdownTimer';
+import { ChevronLeft, ChevronRight, Leaf, BookOpen, Zap, ArrowRight } from 'lucide-react';
 
 export default function CompetitionHubPage() {
   const t = useTranslations();
@@ -148,7 +149,7 @@ export default function CompetitionHubPage() {
             aria-label="Previous Competition"
             onClick={prevSlide}
           >
-            <i className="fas fa-chevron-left"></i>
+            <ChevronLeft size={24} />
           </button>
 
           <div className="carousel-slides-container">
@@ -186,23 +187,23 @@ export default function CompetitionHubPage() {
                           <h4>{t('sub_themes_title')}</h4>
                           <ul className="sub-theme-list">
                             <li>
-                              <i className="fas fa-leaf"></i>{' '}
+                              <Leaf size={16} className="inline mr-1" />
                               <span>{t('sub_themes_1')}</span>
                             </li>
                             <li>
-                              <i className="fas fa-book-reader"></i>{' '}
+                              <BookOpen size={16} className="inline mr-1" />
                               <span>{t('sub_themes_2')}</span>
                             </li>
                             <li>
-                              <i className="fas fa-bolt"></i>{' '}
+                              <Zap size={16} className="inline mr-1" />
                               <span>{t('sub_themes_3')}</span>
                             </li>
                             <li>
-                              <i className="fas fa-bolt"></i>{' '}
+                              <Zap size={16} className="inline mr-1" />
                               <span>{t('sub_themes_4')}</span>
                             </li>
                             <li>
-                              <i className="fas fa-bolt"></i>{' '}
+                              <Zap size={16} className="inline mr-1" />
                               <span>{t('sub_themes_5')}</span>
                             </li>
                           </ul>
@@ -253,7 +254,7 @@ export default function CompetitionHubPage() {
                       className="portal-button register-button-kapow"
                     >
                       <span>Register</span>{' '}
-                      <i className="fas fa-arrow-right"></i>
+                      <ArrowRight size={16} className="inline" />
                     </a>
                   </div>
                 </div>
@@ -266,7 +267,7 @@ export default function CompetitionHubPage() {
             aria-label="Next Competition"
             onClick={nextSlide}
           >
-            <i className="fas fa-chevron-right"></i>
+            <ChevronRight size={24} />
           </button>
 
           <div className="carousel-dots">

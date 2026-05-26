@@ -42,8 +42,8 @@ export default async function BlogDetailPage({
       <section className="blog-detail-hero">
         <h1 className="article-title-main">{article.title}</h1>
         <p className="article-meta-main">
-          <i className="fas fa-calendar-alt" /> {article.date} |{' '}
-          <i className="fas fa-user" /> {article.author}
+          📅 {article.date} |{' '}
+          👤 {article.author}
         </p>
       </section>
       {article.image && (

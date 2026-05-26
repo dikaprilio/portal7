@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
+import { ImageIcon } from 'lucide-react';
 import mediaContent from '@/lib/data/media-content';
 
 export async function generateMetadata({
@@ -10,9 +11,14 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale });
   return {
-    title: t('index_page_title_meta'),
+    title: `${t('blog_all_articles_title')} | Portal 8`,
     description:
-      'Portal 8 is the premier digital competition and seminar by BEM SV IPB University. Join us to innovate in UI/UX Design, Short Movie, and Digital Poster, and get inspired by industry leaders.',
+      'Dive into insights, stories, and updates from the heart of digital empowerment and creativity at Portal 8.',
+    openGraph: {
+      title: `${t('blog_all_articles_title')} | Portal 8`,
+      description: 'Insights, stories, and updates from Portal 8.',
+      url: 'https://portalipb.site/blog',
+    },
   };
 }
 
@@ -29,10 +35,10 @@ export default async function BlogPage({
       <section className="blog-page-hero section-padding" id="blog-top">
         <div className="portal-background-effect" />
         <div className="floating-cloud cloud-1">
-          <img src="img/cloud_orange.png" alt="Orange cloud" />
+          <img src="/img/cloud_orange.png" alt="Orange cloud" />
         </div>
         <div className="floating-cloud cloud-3">
-          <img src="img/cloud_blue.png" alt="Blue cloud" />
+          <img src="/img/cloud_blue.png" alt="Blue cloud" />
         </div>
 
         <div className="container">
@@ -69,7 +75,7 @@ export default async function BlogPage({
                       className="article-image-fallback"
                       style={{ display: 'none' }}
                     >
-                      <i className="fas fa-image fa-3x" />
+                      <ImageIcon size={48} className="text-gray-400" />
                     </div>
                   </div>
                   <div className="article-content">

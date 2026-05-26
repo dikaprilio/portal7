@@ -130,7 +130,7 @@ export default async function CompetitionDetailPage({
           className="hero-button button-secondary-cta"
           style={{ marginTop: '2rem' }}
         >
-          <i className="fas fa-download"></i> Download Full Booklet
+          ⬇ Download Full Booklet
         </a>
       </div>
 

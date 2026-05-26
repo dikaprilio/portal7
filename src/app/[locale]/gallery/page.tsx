@@ -9,9 +9,14 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale });
   return {
-    title: t('index_page_title_meta'),
+    title: `${t('gallery_page_hero_title')} | Portal 8`,
     description:
-      'Portal 8 is the premier digital competition and seminar by BEM SV IPB University. Join us to innovate in UI/UX Design, Short Movie, and Digital Poster, and get inspired by industry leaders.',
+      'Explore unforgettable moments and inspiring works from the series of events at Portal 8.',
+    openGraph: {
+      title: `${t('gallery_page_hero_title')} | Portal 8`,
+      description: 'Unforgettable moments and inspiring works from Portal 8.',
+      url: 'https://portalipb.site/gallery',
+    },
   };
 }
 

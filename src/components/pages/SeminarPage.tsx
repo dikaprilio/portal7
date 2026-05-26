@@ -7,9 +7,38 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from '@/components/ui/accordion';
+import {
+  QrCode,
+  Lightbulb,
+  MessageSquare,
+  Award,
+  ClipboardCheck,
+  Flag,
+  Utensils,
+} from 'lucide-react';
 
 function HtmlText({ text }: { text: string }) {
   return <span dangerouslySetInnerHTML={{ __html: text }} />;
+}
+
+function AgendaIcon({ icon }: { icon: string }) {
+  const className = 'w-5 h-5 text-[#3B82F6]';
+  switch (icon) {
+    case 'fa-clipboard-check':
+      return <ClipboardCheck className={className} />;
+    case 'fa-flag':
+      return <Flag className={className} />;
+    case 'fa-lightbulb':
+      return <Lightbulb className={className} />;
+    case 'fa-utensils':
+      return <Utensils className={className} />;
+    case 'fa-comments':
+      return <MessageSquare className={className} />;
+    case 'fa-award':
+      return <Award className={className} />;
+    default:
+      return <Lightbulb className={className} />;
+  }
 }
 
 export default function SeminarPage() {
@@ -123,7 +152,7 @@ export default function SeminarPage() {
                 </div>
                 <div className="ticket-stub">
                   <div className="ticket-qr-placeholder">
-                    <i className="fas fa-qrcode"></i>
+                    <QrCode size={48} className="text-[#3B82F6]" />
                   </div>
                 </div>
               </div>
@@ -149,7 +178,7 @@ export default function SeminarPage() {
             <div className="sdg-item">
               <div className="sdg-item-header">
                 <div className="sdg-icon-wrapper">
-                  <i className="fas fa-lightbulb sdg-icon-fa"></i>
+                  <Lightbulb size={32} className="text-[#FBBF24]" />
                 </div>
                 <div className="sdg-title-number">
                   <h3>{t('seminar_revamp_expect_seminar_title')}</h3>
@@ -163,7 +192,7 @@ export default function SeminarPage() {
             <div className="sdg-item">
               <div className="sdg-item-header">
                 <div className="sdg-icon-wrapper">
-                  <i className="fas fa-comments sdg-icon-fa"></i>
+                  <MessageSquare size={32} className="text-[#3B82F6]" />
                 </div>
                 <div className="sdg-title-number">
                   <h3>{t('seminar_revamp_expect_talkshow_title')}</h3>
@@ -177,7 +206,7 @@ export default function SeminarPage() {
             <div className="sdg-item">
               <div className="sdg-item-header">
                 <div className="sdg-icon-wrapper">
-                  <i className="fas fa-award sdg-icon-fa"></i>
+                  <Award size={32} className="text-[#EC4899]" />
                 </div>
                 <div className="sdg-title-number">
                   <h3>{t('seminar_revamp_expect_awarding_title')}</h3>
@@ -209,7 +238,7 @@ export default function SeminarPage() {
                     <div className="flex items-center gap-3 text-left">
                       <span className="agenda-time">{item.time}</span>
                       <span className="agenda-icon">
-                        <i className={`fas ${item.icon}`}></i>
+                        <AgendaIcon icon={item.icon} />
                       </span>
                       <span className="agenda-details">
                         <h3>{t(item.titleKey)}</h3>
