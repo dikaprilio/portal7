@@ -1,6 +1,6 @@
 
 import photo1 from 'url:./img/Slide1.JPG';
-import photo2 from 'url:./img/slide2.JPG';
+import photo2 from 'url:./img/Slide2.JPG';
 import photo3 from 'url:./img/Slide3.JPG';
 import photo4 from 'url:./img/Slide4.JPG';
 import photo5 from 'url:./img/Slide5.jpeg';
