@@ -251,7 +251,7 @@ function startCountdown() {
 function startSubmissionCountdown() {
     const countdownTimerEl = document.getElementById("submission-countdown");
     if (!countdownTimerEl) return;
-    const countdownDate = new Date("June 13, 2026 23:59:59").getTime();
+    const countdownDate = new Date("July 18, 2026 23:59:59").getTime();
     const daysEl = document.getElementById("sub-days");
     const hoursEl = document.getElementById("sub-hours");
     const minutesEl = document.getElementById("sub-minutes");
