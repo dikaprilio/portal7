@@ -45,6 +45,23 @@ function applyTranslations(lang) {
     }
     setupReadMoreToggles();
 }
+
+// Keeps competition batch labels in sync with their configured closing times.
+function updateRegistrationBatchStatuses() {
+    document.querySelectorAll('[data-registration-closes]').forEach(statusElement => {
+        const closesAt = new Date(statusElement.dataset.registrationCloses);
+        const isClosed = !Number.isNaN(closesAt.getTime()) && new Date() > closesAt;
+        const statusKey = isClosed
+            ? 'registration_batch_status_close'
+            : 'registration_batch_status_open';
+
+        statusElement.classList.toggle('status-close', isClosed);
+        statusElement.classList.toggle('status-open', !isClosed);
+        statusElement.dataset.translateKey = statusKey;
+        statusElement.textContent = translations[currentLang]?.[statusKey]
+            || (isClosed ? 'Closed' : 'Open');
+    });
+}
 // --- AOS Initialization ---
 function initializeAOS() {
     if (typeof AOS !== 'undefined') {
@@ -251,7 +268,7 @@ function startCountdown() {
 function startSubmissionCountdown() {
     const countdownTimerEl = document.getElementById("submission-countdown");
     if (!countdownTimerEl) return;
-    const countdownDate = new Date("July 18, 2026 23:59:59").getTime();
+    const countdownDate = new Date("July 31, 2026 23:59:59").getTime();
     const daysEl = document.getElementById("sub-days");
     const hoursEl = document.getElementById("sub-hours");
     const minutesEl = document.getElementById("sub-minutes");
@@ -719,6 +736,8 @@ document.addEventListener('DOMContentLoaded', () => {
     handlePageLoadAnchors();
     pageTitleElement = document.querySelector('title[data-translate-key]');
     applyTranslations(currentLang);
+    updateRegistrationBatchStatuses();
+    setInterval(updateRegistrationBatchStatuses, 60_000);
     if (document.getElementById("countdown-timer")) {
         startCountdown();
     }
